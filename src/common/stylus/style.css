@@ -1,0 +1,411 @@
+﻿.wp .layer-l{ width: 704px; overflow: hidden; float: left}
+.wp .layer-r{ width: 268px; overflow: hidden; float: right}
+/* .wp .chge{
+        width:100%;
+        height: 2px;
+        background:url(../images/member/chge.png) no-repeat;
+        background-size:100% 100%;
+        position: relative;
+} */
+.wp .layer-r .layer-r-div .cptabbar22 ul .invest_boxShow{
+        display:inline-block;
+        background:#fff;
+        line-height:58px;
+        border:1px solid #eee;
+        border-bottom:0;
+        border-radius:5px 5px 0 0;
+        /*box-shadow:5px 0px 3px #888888;*/
+        /*box-shadow:0 5px 40px -20px #888888;*/
+        width:90px;
+        font-size:18px;
+        text-align:center;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .invest_boxShow .invest_text_boxShow {
+        color:#eb494b;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .invest_noShow {
+        color:#fff;
+        font-size:16px;
+        padding:20px 10px;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .invest_noShow .invest_text_noShow {
+        color:#fff;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .news_boxShow{
+        display:inline-block;
+        background:#fff;
+        line-height:58px;
+        border:1px solid #eee;
+        border-bottom:0;
+        border-radius:5px 5px 0 0;
+        /*box-shadow:5px 0px 3px #888888;*/
+        /*box-shadow:0 5px 40px -20px #888888;*/
+        width:90px;
+        font-size:18px;
+        text-align:center;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .news_boxShow .news_text_boxShow {
+        color:#eb494b;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .news_noShow {
+        color:#fff;
+        font-size:16px;
+        padding:20px 10px;
+    }
+.wp .layer-r .layer-r-div .cptabbar22 ul .news_noShow .news_text_noShow {
+        color:#fff;
+    }
+
+/*banner*/
+.banner{width: 100%;height: 394px;position:relative;z-index:0;}
+.banner .bannerwp{width: 1000px;margin: 0px auto;position: relative;height:0px;}
+.banner .indexbanner-txt{position: absolute; width: 300px;height: 254px;padding:20px 10px;z-index: 20 ;right:0;top:55px;*right:10%;*top:155px;border-radius:6px;background-color: rgba(255, 255, 255, 0.8);}
+.banner .indexbanner-txt p{color: #fff;font-size: 16px;line-height: 24px; width: 100%; overflow:hidden;}
+.banner .indexbanner-txt p a{color:#fff}
+.banner .indexbanner-txt .btn{width: 116px;height: 36px;line-height: 36px;font-size:14px;padding: 0;margin: 0 2px; display: inline-block}
+
+.banner .indexbanner-txt2{padding: 20px 30px;width: 210px}
+.banner .indexbanner-txt2 .go{margin: 10px 0; width: 100%; overflow: hidden}
+.banner .indexbanner-txt2  .go a{color: #fff;display: block;float: left; height: 30px;width:100px;font-size: 14px; text-align: center}
+.banner .indexbanner-txt2 .btn-orange{width: 204px;color: #fff}
+
+.banner .indexbanner-txt .index_login{width:100%;padding-top:20px; overflow:hidden}
+.banner .indexbanner-txt .index_login p:after{display: block;content:'';clear:both;}
+.banner .indexbanner-txt .index_login p{width:100%; padding-bottom:10px; overflow:hidden}
+.banner .indexbanner-txt .index_login .logname{font-size:14px;line-height:30px;width:70px; overflow:hidden; padding-right:10px;text-align:right}
+.banner .indexbanner-txt .index_login .loglabel{width:170px;overflow:hidden;font-size:14px;line-height:28px}
+.banner .indexbanner-txt .index_login .loglabel .input_text{width:110px;height:30px;padding:0 5px 0 45px;border:1px solid #dedede;}
+/* .banner .indexbanner-txt .index_login .loglabel .input_user{ background:url(../images/index_user.jpg) no-repeat #fff}
+.banner .indexbanner-txt .index_login .loglabel .input_pw{ background:url(../images/index_pw.jpg) no-repeat #fff} */
+.banner .indexbanner-txt .index_login .loglabel .input_user2{width:52px;height:30px;padding:0 5px 0 5px;border:1px solid #dedede;}
+.banner .indexbanner-txt .index_login .code img{height: 30px;width:80px;}
+
+.indexbanner{width:100%;height:394px;position:relative;margin:0 auto;overflow:hidden; background:#eee; font-weight: normal}
+.focusWarp{width:100%;height:394px;overflow:hidden;position:relative;}
+.imgList{position:absolute;}
+.imgList li{float:left;text-align:center;height:394px;}
+.imgList li a{background-repeat: no-repeat;background-position: center top;width: 100%;height: 100%;display: inline-block}
+.imgList_two{position:absolute;z-index:10;top:100px; width: 1000px;}
+.imgList_two li{float:left;text-align:center;}
+.imgList_two li img{margin-left:-330px;}
+.imgBtn{position:absolute;bottom:10px;z-index:10; right: 50%;margin: 0}
+.btnWarp{overflow:hidden;}
+
+
+.sizeBox{display: none;}
+/*banner-layer*/
+.index-total{background: #f0f0f0;border-bottom: 1px solid #d7d7d7; width: 100%;}
+.index-total .index-total-box{width: 302px; border-right: 1px solid #e5e4e2;padding:15px;text-align: center;font-size: 14px;color: #333; float: left;overflow: hidden;}
+.index-total .index-total-box i.ico{width:17px;height:16px;}
+.index-total .index-total-box i.total01{background-position:0 -33px;}
+.index-total .index-total-box i.total02{background-position:-21px -33px;}
+.index-total .index-total-box i.total03{background-position:-40px -33px;}
+.index-total .index-total-box p{font-size: 40px;color: #e6494b;}
+.index-total .index-total-box p em{font-size: 20px;padding: 0 5px;}
+.index-banner-bm{width: 100%; padding:50px 0; overflow: hidden;}
+.index-banner-bm ul{width:100%; overflow: hidden; }
+.index-banner-bm ul li{float: left;width:333px; text-align: left;}
+.index-banner-bm ul li p{line-height: 26px;padding: 20px 0 0 20px; font-size: 18px; color: #333; display: inline-block; float: left;}
+.index-banner-bm ul li i{width:94px;height:94px;display: inline-block; margin: 0; float: left}
+.index-banner-bm ul li i.ico1{background-position:0 -82px; }
+.index-banner-bm ul li i.ico2{background-position:-94px -82px; }
+.index-banner-bm ul li i.ico3{background-position:-190px -82px; }
+
+/*投资排行*/
+.indexlayer .layer-r .layer-r-div{ width:264px; overflow: hidden; border: 1px solid #e4e4e4;margin-bottom: 28px}
+.indexlayer .layer-r .layer-r-div .hd{ width: 100%; height: 48px; line-height: 48px;background:#d1aa67;color: #feefd4; font-size: 16px;border-bottom: 1px solid #feefd4}
+.indexlayer .layer-r .layer-r-div .hdNew{ width: 100%; height: 48px; line-height: 48px;color: #feefd4; font-size: 16px;border-bottom: 1px solid #feefd4}
+.indexlayer .layer-r .layer-r-div .bd{height:auto !important;height:240px; min-height:240px;}
+/*首页新闻*/
+.wp .newslist li{ width:244px;padding:0 10px; line-height: 28px; color: #666; font-size: 14px;overflow: hidden;}
+.wp .newslist li i{width:8px;height:25px;background-position:-147px 8px; display: inline-block; float: left}
+.wp .newslist li a{ width: 220px; overflow: hidden;text-overflow:ellipsis;white-space:nowrap; float: left; padding-left: 10px; display: inline-block;}
+
+/*最新动态*/
+.wp .rightmain-c .lover{width:100%;min-height:484px;}
+.wp .rightmain-c .lover .lover-l{
+    float:left;
+    width:100%;
+    height:50px;
+    background:#f0f0f0;
+}
+.wp .rightmain-c .lover .lover-l span{
+     float: right;
+     width: 543px;
+     height:42px;
+     display: block;
+      margin-top: 8px;
+     background: linear-gradient(to right, #eb494b , #f39b1e);
+}
+.wp .rightmain-c .lover .lover-l div{
+            width: 103px;
+            height:42px;
+            font-size: 16px;
+            margin-top: 8px;
+            color: #fff9ef;
+            cursor:pointer;
+            border-right: 1px solid #fecccd;
+            text-align: center;
+            line-height: 42px;
+            background:#eb494b;
+            float: left;
+        }
+.wp .rightmain-c .lover .lover-l .active{           
+            height:50px;
+            margin-top: 0;
+            color:#eb494b;
+            cursor:pointer;
+            line-height: 50px;
+            border-radius:5px 5px 0 0;
+            background:#fff;
+        }
+.wp .rightmain-c .lover .newslist{
+    width:100%;
+    min-height:430px;
+   display:none;
+}
+.wp .rightmain-c .lover  .newslist li{height: 24px; width: 930px; line-height:24px; font-size: 14px; padding:10px;border-bottom: 1px solid #e5e4e2;}
+.wp .rightmain-c .lover  .newslist li .rightmain .rightmain-c .story li .l i{background-position: -147px 5px; display: inline-block;float: left; height: 24px;width: 8px;}
+.wp .rightmain-c .lover  .newslist li a{float: left;overflow: hidden; padding-left: 10px;text-overflow: ellipsis;white-space: nowrap;width: 610px;}
+.wp .rightmain-c .lover  .newslist li a:hover{color: #e6494b}
+.wp .rightmain-c .lover  .newslist li span{float: right;}
+/* .wp .rightmain-c .lover  .newslist li .yes{ background: url(../images/member/house.png) no-repeat;width:17px;height:20px; display: block;}
+.wp .rightmain-c .lover  .newslist li .no{ background: url(../images/member/house-1.png) no-repeat;width:17px;height:20px; display: block;} */
+
+.wp .index-news{ width:325px; overflow: hidden; border: 1px solid #e4e4e4;margin-bottom: 10px;}
+.wp .index-news .hd,.wp .index-event .hd{ width: 100%; height: 48px; line-height: 48px;color: #feefd4;background:#d1aa67; font-size: 16px;border-bottom: 1px solid #e4e4e4}
+.wp .index-news .bd .newslist li,.wp .index-event .newslist li { width:300px; line-height:29px}
+.wp .index-news .bd .newslist li a,.wp .index-event .newslist li a{ width: 280px;}
+.wp .index-news .bd,.wp .index-event .bd{width: 100%;height:175px; padding: 10px 0; overflow: hidden;}
+.wp .index-event{ overflow: hidden; border: 1px solid #e4e4e4;margin-bottom: 10px;}
+.wp .index-event .eventpic{ width: 312px; height: 165px;padding: 5px 6px; float: left;display: inline-block;overflow:hidden; position:relative;}
+.wp .index-event .eventpic .hd{ height:30px; width: auto; overflow:hidden; position:absolute; right:10px; bottom:5px; z-index:1;border:0;}
+.wp .index-event .eventpic .hd ul{ overflow:hidden; zoom:1; float:left;  }
+.wp .index-event .eventpic .hd ul li{ float:left; margin:0 4px 0 0;  width:25px; height:25px; color:#e6494b;font-size: 14px; line-height: 25px; text-align: center; background:#fff;border:1px solid #e6494b; cursor:pointer; }
+.wp .index-event .eventpic .hd ul li.on{background: #e6494b; color: #fff}
+.wp .index-event .eventpic .ebd{ position:relative; height:100%; z-index:0; }
+.wp .index-event .eventpic .ebd li{ zoom:1; width: 100%; height: 165px; display: inline-block; position:relative}
+.wp .index-event .eventpic .ebd  img{width: 305px;height: 165px; }
+.wp .index-event .newslist{ width:325px; overflow: hidden;}
+/*首页列表*/
+.wp .layer-l-list{ width: 100%; display: block}
+.wp .layer-l-list .hd{ width: 702px; background:#d1aa67; border:1px solid #dadada; border-bottom:0; height: 45px; line-height: 45px; display: block}
+.wp .layer-l-list .hd .t{padding:0 10px;height:45px; font-size: 16px;color: #fff9ef; display: inline-block; background: #d1aa67}
+.wp .layer-l-list .bd{width:702px;height:644px; display: block; border: 1px solid #e4e4e4; }
+.wp .layer-l-list .bd ul li{width:672px;padding:18px 15px;border-bottom:1px solid #e7eaec; display: inline-block;}
+.wp .layer-l-list .bd ul li:last-child{border-bottom: 0}
+.wp .layer-l-list .bd ul li .list-left{width: 510px; float: left;overflow: hidden}
+.wp .layer-l-list .bd ul li .list-right{width: 160px; float: right; overflow: hidden;}
+.wp .xmlist li:hover{border:none;background-color:#fff;}
+.wp .xmlist li .list-left .title{color: #666; font-size: 14px;width: 100%; display: inline-block;}
+.wp .xmlist li .list-left .title a{ color: #333; font-size: 24px;line-height: 26px; text-decoration: none; width: 100%; display:inline-block;overflow: hidden;text-overflow:ellipsis;white-space:nowrap; }
+.wp .xmlist li .list-left .title a em,.wp .mainwp-details .hd h2 em{padding:2px 5px; margin-right: 5px;font-size: 12px; font-family: simsun}
+.wp .xmlist li .list-left .title a em.xmblue,.wp .mainwp-details .hd h2 em.xmblue{ color: #1284e5;border:1px solid #1284e5;}
+.wp .xmlist li .list-left .title a em.xmgreen,.wp .mainwp-details .hd h2 em.xmgreen{ color: #3eb205;border:1px solid #3eb205;}
+.wp .xmlist li .list-left .title a em.xmred,.wp .mainwp-details .hd h2 em.xmred{ color: #e6494b;border:1px solid #e6494b;}
+.wp .xmlist li .list-left .title a em.xmorange,.wp .mainwp-details .hd h2 em.xmorange{ color: #ff8b1b;border:1px solid #ff8b1b;}
+.wp .xmlist li .list-left .title a em.xmgrey,.wp .mainwp-details .hd h2 em.xmgrey{ color: #999;border:1px solid #c0c0c0;}
+
+.wp .layer-l-list .bd ul li .list-left .item{line-height: 24px; width: 100%; font-weight: normal; padding-top:3px; overflow: hidden;}
+.wp .layer-l-list .bd ul li .list-left .item em{ width:172px; float: left; font-style: normal; font-size: 14px}
+.wp .layer-l-list .bd ul li .list-left .item em2{ width:180px; float: left; font-style: normal; font-size: 10px}
+.wp .layer-l-list .bd ul li .list-left .item em.w200{width: 200px}
+.wp .layer-l-list .bd ul li .list-right .progressbarbox{ width: 94%; font-size: 14px; overflow:hidden;}
+.wp .layer-l-list .bd ul li .list-right .tzbtn{width: 123px; height:30px;line-height:30px; font-size: 16px;}
+
+
+/*首页投资动态*/
+.txtScroll-top{ width:100%;  overflow:hidden; position:relative;}
+.txtScroll-top .hd{ display: none}
+.txtScroll-top .bd{ margin:10px 20px; width: 224px;height: 260px; overflow: hidden;}
+.txtScroll-top .bd ul{ overflow:hidden; zoom:1;cursor: pointer; }
+.txtScroll-top .bd ul li{ width: 100%; line-height: 24px; border-bottom:1px dashed #d6d6d6; color: #787878; font-size: 12px; text-align: left; padding: 5px 0}
+.txtScroll-top .bd ul li p{ font-size: 12px; color: #333; width: 100%; display:block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+/*合作伙伴*/
+.index-coo .index-coo-hd{width: 100%; height: 48px; line-height: 48px;color: #d1aa67; font-size: 16px;}
+.index-coo .index-coo-bd{ width:998px;padding:10px 0;border:1px solid #d6d6d6;  overflow:hidden; position:relative;}
+.index-coo .index-coo-bd .hd{ overflow:hidden;  }
+.index-coo .index-coo-bd .hd .prev,.index-coo .index-coo-bd .hd .next{ position: absolute; top:10px;display:block;float:right;width:24px; height:47px;overflow:hidden; cursor:pointer;font-size: 26px;text-decoration: none; font-weight: bold; color:#b9b9b9}
+.index-coo .index-coo-bd .hd .prev{ background-position:0 0 ;float:left; text-align: right; left:0px;}
+.index-coo .index-coo-bd .hd .next{right:0px;}
+.index-coo .index-coo-bd .bd{ padding:0px 20px}
+.index-coo .index-coo-bd .bd ul{ overflow:hidden; zoom:1;cursor: pointer; z-index: 999 }
+.index-coo .index-coo-bd .bd ul li{width: 25%;height:40px;float:left; _display:inline; overflow:hidden; text-align:center;position:relative;}
+.index-coo .index-coo-bd .bd ul li::after{content:"";position:absolute;top:10px;right:0;height:20px;width:1px;border-right:1px solid #d7d7d7;}
+.index-coo .index-coo-bd .bd ul li:nth-child(4)::after{content:"";position:absolute;top:10px;right:0;height:20px;width:1px;border-right:0px solid #d7d7d7;}
+.index-coo .index-coo-bd .bd ul li a{ width: 100%; height: 100%; overflow: hidden; display: inline-block}
+.index-coo .index-coo-bd .bd ul li  img{width: 100px;height:40px; border: 0}
+
+/*最新动态*/
+.mainwp{width: 998px;border: 1px solid #e0e0e0;background: #fff;margin:0 auto; margin-bottom: 70px;margin-top: 20px; display: block}
+.wp .leftmenu{width: 100%;float: left;max-height: 379px;overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.wp .leftmenu h2.t{width: 100%;line-height:40px;font-size: 18px;color: #333; text-align: center;font-weight: normal;}
+.wp .leftmenu ul{ width: 100%; padding: 5px 0 20px 0; overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.wp .leftmenu ul li{width: 100%;line-height: 30px;}
+.wp .leftmenu ul li a{width: 145px; border-left: 3px solid #fff; text-align: center; line-height: 30px;font-size: 14px;color: #666; display: inline-block}
+.wp .leftmenu ul li a:hover,.wp .leftmenu ul li a.c{background: #efefef; text-decoration:none;border-left-color: #e6494b;}
+.wp .rightmain{float: right;width: 958px;border: 1px solid #e4e4e4;overflow: hidden;background: #fff;margin:0 auto;border-radius:10px;margin-bottom:20px}
+.wp  .rightmain-t{width:98%;height: 30px;padding:15px 0;color: #333; font-size: 24px;margin-left:20px}
+.wp .rightmain-t:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+.wp  .rightmain-t h3{line-height: 20px;color: #333; font-size: 24px;margin-left: 20px;}
+.wp  .rightmain-t p{line-height: 20px;color: #646464; font-size: 16px;margin-right:20px}
+.rightmain-t em{position: absolute; width: 132px; height:2px; background:#e6494b;left: 0px;bottom:0px;}
+.wp .rightmain .rightmain-c{width:96%;margin:0 auto}
+
+.wp .rightmain-c .newslist li{height: 24px; width: 98%; line-height:24px; font-size: 14px; padding:10px;border-bottom: 1px solid #e5e4e2;}
+.wp .rightmain-c .newslist li i,.rightmain .rightmain-c .story li .l i{background-position: -147px 5px; display: inline-block; float:left; height: 24px;width: 8px;}
+.wp .rightmain-c .newslist li a{float: left;overflow: hidden; padding-left: 10px;text-overflow: ellipsis;white-space: nowrap;width: 610px;}
+.wp .rightmain-c .newslist li a:hover{color: #e6494b}
+.wp .rightmain-c .newslist li span{float: right;}
+/*公告原理*/
+/* .wp  .rightmain-t .aherf{font-size:16px;color:#fce8e0;cursor:pointer;text-decoration:none;line-height:30px;text-align:center;display:block;width:80px; border-radius: 3px;height:30px;background:url(../images/member/logbox-z.png) no-repeat;background-size:100% 100%;} */
+.wp  .rightmain-t .ppz{color: #323232;font-size:24px;margin-left: 23.5%;line-height: 30px; color:#323232}
+/* .wp  .rightmain-t .ppa{font-size:16px;margin-right:20px;color:#fff;cursor:pointer;text-decoration:none;line-height:30px;text-align:center;display:block;width:80px; border-radius: 3px;height:30px;background:url(../images/member/logbox-z.png) no-repeat;background-size:100% 100%;} */
+
+/*报道列表*/
+.rightmain .rightmain-c .story li {width:98%; padding:15px 10px;overflow: hidden; border-bottom: 1px solid #e4e4e4;}
+.rightmain .rightmain-c .story li .img {
+    border: 1px solid #d8d8d8;
+    float: right;
+    height:100px;
+    line-height:100px;
+    overflow: hidden;
+    text-align: center;
+    width: 175px;
+}
+.rightmain .rightmain-c .story li .img img{height:100px;  width: 175px;border: 0}
+.rightmain .rightmain-c .story li .l { float: left;overflow: hidden; width:540px;}
+.rightmain .rightmain-c .story li .l dd{ padding-left: 20px; width: 520px; overflow: hidden; line-height: 24px; color: #999; font-size: 12px;}
+.rightmain .rightmain-c .story li .l .story-p{color: #666; margin-bottom: 5px}
+.rightmain .rightmain-c .story li .l .story-p a{color: #ff8b1b}
+/*文章详情*/
+.wp .rightmain-c .newsinfo-title{ margin-bottom:10px;padding: 15px 0 20px;text-align: center;}
+.wp .rightmain-c .newsinfo-title h2 {font-weight: 400;font-size: 20px;line-height: 30px;color: #323232;margin: 0px;padding: 10px 0;border-bottom: 1px dashed #d7d7d7;font-family:微软雅黑}
+.wp .rightmain-c .newsinfo-title .newsinfo-time {line-height: 18px;color: #969696;padding: 5px 0;text-align: right;font-family:微软雅黑}
+.wp .rightmain-c .turn { border-top:1px solid #e5e5e5;padding-top:18px;position:relative;height:45px;}
+/* .wp .rightmain-c .turn .ppa{font-size:16px;margin-right:20px;color:#fff;cursor:pointer;text-decoration:none;line-height:30px;text-align:center;display:block;width:80px; border-radius: 3px;height:30px;background:url(../images/member/logbox-z.png) no-repeat;background-size:100% 100%;} */
+.wp .rightmain-c .turn p,.turn a {line-height:24px; color:#888;}
+.wp .rightmain-c .turn a.back { display:inline-block; position:absolute;  right:12px;top:12px;color:#0062a3;}
+.wp .rightmain-c .newsinfo-logo{width: 100%; margin: 0px auto;text-align: center; margin-top: -10px}
+.wp .rightmain-c .newsinfo-intro-t{font-size: 16px;color: #333;font-weight: bold;line-height: 20px;padding-bottom: 10px;margin: 15px 0;border-bottom:1px solid #f4f4f4 }
+.wp .rightmain-c .newsinfo-intro p{text-indent:2em}
+.wp .rightmain-c .newsinfo-intro .sap-1{width: 238px;height: 32px;text-align: center;}
+.content { color: #666;line-height: 24px; overflow: hidden;text-align: left;font-size: 14px; height: auto !important;height: 400px;min-height: 400px;width:1000px;margin:0 auto;background-color:#fff;}
+.content .bigimg{ margin:30px auto 50px auto;border:0;max-width:900px;display: inline-block;}
+.content h1{margin-top:40px;font-size:28px;font-weight:normal;color:#323232;line-height:60px;}
+.content h1 img{display:block;height:2px;line-height:2px;margin:0 auto;}
+
+
+/*投资项目*/
+.prokdul{ width: 100%; padding:50px 0; overflow: hidden;}
+.prokd {background:#fff;width:478px;height:477px;border:1px solid #d3d3d3;display: inline-block;}
+
+
+
+.prokd .current{background:#f8fafc;border-top:2px solid #f3183a;margin-top: 0;border-left: 1px solid #d0d0d0;border-right: 1px solid #d0d0d0;}
+.prokd h3{height:89px;line-height:89px;border-bottom:1px solid #ebebeb;font-size:28px;color:#000;margin:0;text-align: center;_padding: 28px 0;_height:33px;}
+.prokd .prokdbody{width: 100%; padding: 30px 0; overflow: hidden;}
+.prokd  p{color: #333;font-size: 14px}
+.prokd  span{font-size: 16px;color: #000;}
+.prokd  span em{font-size: 24px;}
+.prokd  label{font-size:22px;color:#61baff;float:right;font-family:"arial";margin:20px 0}
+.prokd  .prokdbody-fl span{color:#f31437}
+.prokd .pro1 .prokdbody-fl span{color:#61baff}
+.prokd  .prokdbody-fr span{color:#000}
+.prokd  h4{color: #626262;font-size: 14px}
+.prokd .prokdbody-fl{width: 200px;border-right: 1px solid #d3d3d3;padding: 0 0 10px 38px;}
+.prokd .prokdbody-fr{width: 200px;padding: 0 0 0 38px;}
+.prokd .gotz{font-size: 26px;width: 300px;height: 52px;line-height: 52px; display: block;margin:0px auto;}
+
+.pjtab{ width: 100%; border-bottom:#e4e4e4 1px solid; background: #f7f7f7 }
+.pjtab .pjtabbox{ height: 60px;width: 1000px; margin-left: auto;margin-right: auto}
+.pjtab .pjtablink{width: 200px;text-align: center; font-size: 20px;line-height: 60px;height: 60px; color: #666;text-decoration: none; display: inline-block; margin-bottom: -1px}
+.pjtab .pjtablink-select{border:1px solid #e4e4e4; border-bottom-color:#fff;color: #e65245 ; background: #fff;}
+
+.wp .project-filter{width:978px;padding: 20px 10px; overflow: hidden; margin:30px 0px 0 0; background: #fff; border: 1px solid #e4e4e4;}
+.wp .project-box{width:720px;padding: 0px 10px;border-right: 1px solid #ebebeb; overflow: hidden; float: left;}
+.wp .project-box dl.classify-selected{width: 100%;height: 25px;line-height: 25px;padding: 10px 0;color: #666;font-size: 14px}
+.wp .project-box dl.classify-selected dt{float: left;width: 100px;text-align: right; }
+.wp .project-box dl.classify-selected dd{float: left;width: 600px;padding-left: 10px;}
+.wp .project-box dl.classify-selected dd ul.classify-selected-list{width: 100%;float: left;line-height: 25px;}
+.wp .project-box dl.classify-selected dd ul.classify-selected-list li{float: left;}
+.wp .project-box dl.classify-selected dd ul.classify-selected-list li a{color: #333;padding: 0 20px;line-height:26px;}
+.wp .project-box dl.classify-selected dd ul.classify-selected-list li a:hover{color: #e6494b; text-decoration: none}
+.wp .project-box dl.classify-selected dd ul.classify-selected-list li a.btn-red{height: 25px;color: #fff}
+.wp .project-filter .guide-box{ padding-left: 20px; line-height: 26px;font-size: 14px; width: 200px; float: right;}
+.wp .project-filter .guide-box li{ width: 100%; display: block; overflow: hidden;text-overflow:ellipsis;white-space:nowrap; }
+
+/*.wp .project-filter2{width:978px;padding: 20px 10px; overflow: hidden; margin:30px 0px 0 0; background: #fff; border: 1px solid #e4e4e4;}*/
+
+.wp .project-filter2{width:998px;padding: 20px 0px;overflow: hidden; margin:30px 0px 0 0; background: #fff; border: 1px solid #e4e4e4;}
+.wp  .handlesearch{ width:100%;padding: 10px 0;border-bottom: 1px solid #e0e0e0; overflow: hidden}
+.wp  .handlesearch #div_sorters{ width: 660px; padding: 6px 0 0;float: left;font-size: 14px;line-height:20px; padding-left: 20px}
+
+#div_sorters .sorter_title {color: #555;}
+#div_sorters .sorter_items .sorter_item {
+    color: #555;
+    display: block;
+    float: left;
+    padding: 0 18px;
+    position: relative;
+    border-right: 1px solid #ddd
+}
+
+#div_sorters .sorter_items .sorter_item.current,#div_sorters .sorter_items .sorter_item:hover  {color: #e6494b;}
+#div_sorters .sorter_items .sorter_item i { display: block;width: 7px;height: 8px;background-position: -27px 0px;position:absolute;top: 5px;right: 7px; }
+#div_sorters .sorter_items .sorter_item.d i {background-position: -72px -37px}
+#div_sorters .sorter_items .sorter_item.a i {background-position: -82px -37px}
+.wp .handlesearch .inp{ font-size: 14px; line-height: 30px; border:1px solid #e4e4e4; height: 30px}
+.mainwp .xmlist .boxaa1{width:970px;padding:15px 0px;margin:0 15px;border-bottom:1px dashed #dee1e2; display: inline-block;}
+.mainwp .xmlist .boxaa1:hover{background:#fdeced;border-bottom:0;margin:0 20px;}
+.mainwp .xmlist li .list-left{width: 770px;padding-left: 10px; float: left;overflow: hidden}
+.mainwp .xmlist li .list-right{width: 160px; float: right; overflow: hidden; padding-right: 10px; padding-top: 5px; text-align:center}
+.mainwp .xmlist  li .list-left .item{line-height: 26px; width: 100%; font-weight: normal; padding-top:5px; overflow: hidden;}
+.mainwp .xmlist  li .list-left .item em{ width:280px; float: left; font-style: normal; font-size: 14px}
+.mainwp .xmlist  li .list-left .item em.nlv{ width: 180px}
+.mainwp .xmlist  li .list-right .tzbtn{width: 136px; height:30px;line-height:30px; font-size: 16px;}
+/* 关于利通 */
+.content .aboutcon {
+    width: 880px;
+    margin: 20px auto;
+}
+.content .aboutcon dd h3 {
+    font-size: 16px;
+    margin-bottom: 22px;
+    color: #eb494b;
+    font-family: 微软雅黑;
+}
+.content .aboutcon dd {
+    padding: 20px 0;
+}
+.content .aboutcon dd p {
+    font-size: 14px;
+    line-height: 28px;
+    text-indent: 2em;
+    font-family: 微软雅黑;
+}
+.content .aboutcon dd .indent0p {
+    text-indent: 0;
+}
+.content .aboutcon dd p em {
+    color: #323232;
+    font-weight: bold;
+    font-family: 微软雅黑;
+}
+.aboutcon .about-t div:first-child {
+    width: 308px;
+}
+.aboutcon .about-t i {
+    font-size: 14px;
+    line-height: 35px;
+    float: left;
+    display: block;
+}
+.aboutcon .about-t i span {
+    padding: 3px 12px;
+    margin-right: 5px;
+}
