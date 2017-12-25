@@ -6,7 +6,7 @@
             <!-- 左侧菜单 -->
             <div class="sidebar" v-cloak>
                 <div class="personalInfoC">
-                    <router-link style="display:inline-block;width:70px;height:70px;" to="/account/headImgChange"><img class="headimg" :src="userInfo.avatar" /></router-link>
+                    <router-link style="display:block;width:70px;height:70px;" to="/account/headImgChange"><img class="headimg" :src="userInfo.avatar" /></router-link>
                     <a class="checkinBtn" @click="SignNow">每日签到</a>
                     <ul class="iconul">
                         <li>

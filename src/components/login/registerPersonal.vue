@@ -4,7 +4,7 @@
                 <login-header></login-header>
                 <div class="header" style="border-bottom:none;height:68px;width:100%;">
                     <div class="headerwp">
-                        <router-link to="/index" class="ico logo fl" style="width:240px;height:42px;"></router-link>
+                        <router-link to="/index" class="ico logo fl"></router-link>
                         <span class="pl40 f-30">
                             <router-link to="/login/registerPersonal"><span class="pl40" style="border-left:2px solid #f0f0f0;">个人注册</span></router-link>
                             <router-link to="/login/registerEnterprise"><span class="pl40 c-999">企业注册</span></router-link>

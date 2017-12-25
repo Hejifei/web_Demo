@@ -26,13 +26,13 @@
                             <div class="ytbSelline clearfix">
                                 <div class="ytbfistLine form-group">
                                     <span class="blodspan">最大投资金额</span>
-                                    <input type="number" class="form-submit required" id="maxMoney" name="maxMoney" placeholder="100元起" v-model="maxMoney" />
+                                    <input type="text" class="form-submit required" id="maxMoney" name="maxMoney" placeholder="100元起"  onkeyup="this.value=this.value.replace(/\D/g,'')" v-model="maxMoney"  />
                                     <span class="blodspan">元</span>
                                     <span class="tip"></span>
                                 </div>
                                 <div class="ytbfistLine form-group">
                                     <span class="blodspan">账户保留金额</span>
-                                    <input type="number" class="form-submit required" id="reserveMoney" name="reserveMoney" v-model="reserveMoney"  />
+                                    <input type="number" class="form-submit required" id="reserveMoney" name="reserveMoney"  onkeyup="this.value=this.value.replace(/\D/g,'')"  v-model="reserveMoney"  />
                                     <span class="blodspan">元</span>
                                     <span class="tip"></span>
                                     <input class="form-submit" type="hidden" name="type" />

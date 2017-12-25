@@ -49,8 +49,11 @@ fieldset { border-width: 0; padding: 0.35em 0.625em 0.75em; margin: 0 2px; borde
 .cl:after, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .cl, .clearfix { zoom: 1; }
 /* 公共样式  */
-.wp { width: 1000px; margin: auto;}
-
+.wp { width: 1000px; margin: auto;font-size: 0;}
+.wpleft{width: 650px;display: inline-block;vertical-align: top;}
+.wpright{width: 350px;display: inline-block;vertical-align: top;text-align: right;}
+.wpright a{display: inline-block;margin: 10px 0 10px 20px;}
+.wpright a img{width: 75px;height: 28px;}
 .m20 { margin: 20px; }
 .fl { float: left; }
 .fr { float: right; }
@@ -140,7 +143,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
 
  .topnav{ width: 100%; padding: 10px 0; line-height: 20px; background: #ececec; font-size: 12px; color: #666;    border-bottom: 1px solid #e0e0e0;}
     .topnav a { display: inline-block; }
-    .topnav span { display: inline-block; padding: 0 5px; }
+    .topnav span { display: inline-block;}
     /*.topnav .topnav_login { width: 60px; line-height: 20px; text-align: center; color: #e65245; border: 1px solid #e65245; background: #fff; text-decoration: none; }
     .topnav .topnav_reg { width: 60px; line-height: 20px; text-align: center; color: #fff; border: 1px solid #e65245; background: #e6494b; text-decoration: none; }*/
     .topnav .topnav_login { width: 60px; line-height: 20px; text-align: center; color: #d1aa67; border: 1px solid #feefd4; background: #fff; text-decoration: none; }
@@ -150,7 +153,8 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
     .topnav #ink_con a { white-space: nowrap; text-overflow: ellipsis; font-size: 12px; line-height: 18px; padding: 0; margin: 0; padding-left: 10px; width: 450px; display: block; }
 
 .header .headerwp { width: 1000px; margin: 0px auto; }
-.header .logo { width: 165px; height: 31px; background: url(logo.png) no-repeat; display: inline-block;background-size:contain; }
+.header .logo { width: 183px; height: 37px; background: url(./img/newlogo.png) no-repeat; display: inline-block;background-size:contain;position: relative; }
+.header .logoright::after{content: '';width: 1px;height: 22px;border-right:1px solid #646464;position: absolute;right: -20px;top:8px;}
 /* .header .headernav { display: inline-block; line-height: 35px; float: right; padding: 15px 0 5px; }
 .header .headernav li { float: left;  display: inline-block;margin-left: 30px; }
 .header .headernav li a { font-size: 16px;display: inline-block;color:#323232;padding: 0 10px;}
@@ -178,9 +182,11 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
     .footer a { color: #000; }
     .footer .footnav dl.last { width: 530px; height: 160px; background: url("./img/index_foot3.png") no-repeat top -10px right; }
         .footer .footnav dl.last h2 { color: #e6494b; font-size: 32px; line-height: 50px; font-weight: normal; }
-    .footer .footertxt { padding: 20px 0; font-size: 12px; line-height: 22px; border-top: 1px solid #eb494b; color: #d1d1d1; }
-        .footer .footertxt p { margin: 10px 0; text-align: center; color:#969696; }
+    .footer .footertxt { padding: 20px 0; font-size: 12px; line-height: 22px; border-top: 1px solid #eb494b; color: #d1d1d1;background-color: #ccc; }
+        .footer .footertxt p { margin: 10px 0; text-align: left; color:#969696;font-size: 14px; }
         /* .footer .footertxt .footerimg { background: url("../images/foot-img1.png") no-repeat center top; width: 100%; height: 50px; } */
+        .footer .footertxt .labelp{color: #646464;}
+        .footer .footertxt .labelp a{color: #646464;font-weight: 400;margin-right: 10px;}
         .footer .footertxt p a { color:#969696; }
 
 /*分页*/
@@ -360,7 +366,7 @@ table.f-14 td { font-size: 14px; }
     display:none;
 }
 .footertxt .wp p span a {
-    border-right:1px solid;
+    /* border-right:1px solid; */
     padding:0px 10px;
 }
 .footertxt .wp p span #last {

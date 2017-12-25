@@ -429,7 +429,7 @@
 .headerwp:after {
   clear: both;
 }
-.headmenuleft{width:300px;
+.headmenuleft{width:340px;padding:12px 0;
               img{width:120px;float:right;margin-top:3px;}
               p{display:block;float:left;width:100%;text-align:center;letter-spacing:8px;color:#aaa;font-size:14px;}
 }
@@ -446,13 +446,14 @@
 .top_wechata:hover{background:url('index_top_wechat_icon_highlight.png') no-repeat left center;background-size:cover;}
 .top_appa{background:url('index_top_mobile_icon_normal.png') no-repeat left center;background-size:cover;}
 .top_appa:hover{background:url('index_top_mobile_icon_highlignt.png') no-repeat left center;background-size:cover;}
-.footerMenuC{width:47%;float:left;position:relative;
-             ul{list-style:none;
-                li{width:25%;float:left;text-align:left;margin-bottom:25px;
-                   a{color:@text-lightgray;font-size:14px;cursor:pointer;text-decoration:none;}
-                }
-                
-             }
+.footerMenuC{width:364px;float:left;position:relative;font-size:0;
+    title{display: inline-block;width: 33.3%;text-align: center;padding: 20px 0;font-size: 14px;color: #646464;}
+    ul{list-style:none;
+        li{width:33.3%;float:left;text-align:left;margin-bottom:25px;
+           a{color:@text-lightgray;font-size:14px;cursor:pointer;text-decoration:none;text-align: center;display: block;}
+        }
+        
+     }         
 }
 .footerMenuC::after{content:"";width:1px;height:75%;border-left:1px solid @text-lightgraylow;position:absolute;top:8%;right:0;}
 .bannertopbox{background-color:#fff;padding:20px 30px !important;
@@ -461,6 +462,7 @@
                     .numspan{font-size:48px;font-weight:normal;margin-right:5px;border:1px solid #f3f3f3;padding:5px 8px;position:relative;}
                     .numspan::before{content:"";width:100%;height:50%;display:inline-block;background-color:#fafafa;z-index:-1;position:absolute;top:0;left:0;border-bottom:1px solid #f3f3f3;}
     }
+    .expectedRate{font-size: 40px;color: @btn-red;text-align: center;padding: 20px 0;font-weight: 400;}
     .bannerbox_registerbtn{display:block;background-color:@btn-red;color:#fff;border-radius:4px;text-align:center;line-height:40px;font-size:14px;cursor:pointer;text-decoration:none;}
     .bannerbox_registerbtn:active{background-color:@btn-selred;}
     i{display:block;text-align:left;color:@text-lightgray;font-size:12px;margin-top:10px;height: 31px;overflow: hidden;position: relative;
@@ -603,7 +605,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 /*我的账户*/
 .personalInfoC{padding:30px 20px 0;text-align:center;
                .headimg{width:70px;height:70px;border-radius:50%;}
-               .checkinBtn{color:#fff;background-color:@btn-red;margin:10px 0;line-height:25px;padding:0 20px;display:inline-block;border-radius:4px;}
+               .checkinBtn{color:#fff;background-color:@btn-red;margin:10px 0;line-height:25px;padding:0 20px;display:inline-block;border-radius:4px;font-size: 12px;}
                .iconul{list-style:none;text-align:center;padding:5px 0;
                        li{width:28px;height:28px;display:inline-block;margin:2px 5px;}
                }
@@ -839,7 +841,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
              }
              .dateselinput{width: 140px;font-family: 微软雅黑;text-align: left;height: 25px;line-height: 25px;}
              .spanbetweeninput{display:inline-block;float:left;margin:0 10px;}
-             a{padding:0 20px;margin-left:20px;line-height:25px;}
+             a{padding:0 20px;margin-left:20px;line-height:25px;font-size: 12px;}
              p{display:inline-block;color:#666;font-size:14px;padding-top:5px;}
 }
 /*站内信*/
@@ -1128,15 +1130,22 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 
 }
 .publictopleft{display:inline-block;
-    span{line-height:26px;display:inline-block;}
-    a{font-size:12px;color:@btn-red;display:inline-block;margin:0 12px;}
+    span{line-height:26px;display:inline-block;font-size: 12px;
+        img{margin-right: 5px;}
+    }
+    a{font-size:12px;color:#646464;display:inline-block;padding-right: 12px;position: relative;}
+    a:nth-child(2){padding-left: 8px;}
+    a:nth-child(1)::after{content: '';width: 1px;height: 12px;position: absolute;right: 0;top: 8px;border-right: 1px solid #646464;}
     .logobtnC{height:26px;display:inline-block;
               .logoa{width:20px;height:20px;display:inline-block;margin-top:3px;}
     }
 }
 .publictopright{float:right;line-height:26px;height:26px;
                 .margintop20{margin-top:2px;}
-                span{display:inline-block;position:relative;vertical-align: top;
+                .unlogina{color: #646464;padding:0 12px;position: relative;font-size: 12px;}
+                .unlogina:nth-child(2){padding-right: 0;}
+                .unlogina:nth-child(1)::after{content: '';width: 1px;height: 12px;position: absolute;right: -1px;top: 8px;border-right: 1px solid #646464;}
+                span{display:inline-block;position:relative;vertical-align: top;font-size:12px;padding:0 5px;
                      a{position:relative;vertical-align: top;display: inline-block;
                         // img{vertical-align: top;}
                     }
@@ -1336,8 +1345,8 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
              a{display:inline-block;vertical-align:top;line-height:25px;font-size:16px;padding:0 5px;background-color:@btn-red;color:#fff;border-top-left-radius:0;border-bottom-left-radius:0;}
 }
 .dixian{width:100%;height:15px;background:url('foot_bottom.png') no-repeat center top;float:left;}
-.suxintong{width:127px;height:47px;display:inline-block;border:1px solid #2f7fbe;border-radius:4px;background:url(suxintong.png) no-repeat center center;background-size:contain;vertical-align: middle;}
-.bankmoneymanage{width: 120px;height: 28px;display: inline-block;background:url(index_titleslogan_img.png) no-repeat center center;background-size: contain;}
+.suxintong{width:75px;height:28px;display:inline-block;border:1px solid #2f7fbe;border-radius:4px;background:url(suxintong.png) no-repeat center center;background-size:contain;vertical-align: middle;}
+.bankmoneymanage{width: 120px;height: 28px;display: inline-block;background:url(index_titleslogan_img.png) no-repeat center center;background-size: contain;margin-top: 5px;}
 // 我的好友
 .friendsTableC table td{width:20%;padding:0 20px !important;text-align:center !important;
     img{width:20px;margin-right:5px;}
@@ -1583,13 +1592,30 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         }
     }
 }
-.footerErweimaC{width: 530px;height: 160px;display: inline-block;font-size: 0;vertical-align:top;padding-left:50px;
-    .footer_son{display: inline-block;text-align:center;margin-right: 20px;vertical-align:top;font-size:14px;
-        p{padding: 0;font-size: 0.7em;color: #323232;font-family: "Microsoft YaHei";display: block;text-align: center;}
+.footerErweimaC{width: 323px;height: 189px;display: inline-block;font-size: 0;vertical-align:top;padding-left:32px;position: relative;padding-top:30px;
+    .footer_son{display: inline-block;text-align:center;margin-right: 32px;vertical-align:top;font-size:14px;
+        p{padding: 0;font-size: 0.8em;color: #323232;font-family: "Microsoft YaHei";display: block;text-align: center;}
     }
-    .footer_son:nth-child(3){margin-right: 0;}
-
+    .footer_son:nth-child(2){margin-right: 0;}
 }
+.footerErweimaC::after{content:"";width:1px;height:75%;border-left:1px solid @text-lightgraylow;position:absolute;top:8%;right:0;}
+.footerKefu{width: 305px;height: 189px;display: inline-block;text-align: center;
+    label{display: block;text-align: center;font-size: 24px;color: @btn-red;padding: 5px 0;}
+    span{color: #969696;font-size: 12px;}
+    .footer_iconC{padding: 10px 0;
+        i{width: 35px;height:35px;display: inline-block;margin: 0 3px;border-radius: 50%;cursor: pointer;position: relative;
+            .son_img{position: absolute;bottom:-147px;left: -50px;display: none;}
+        }
+        i:hover .son_img{display: block;}
+        .footer_wechat{background: url(./img/footer_wechat.png) no-repeat center center;}
+        .footer_wechat:hover{background: url(./img/footer_wechat_sel.png) no-repeat center center;}
+        .footer_weibo{background: url(./img/footer_weibo.png) no-repeat center center;}
+        .footer_weibo:hover{background: url(./img/footer_weibo_sel.png) no-repeat center center;}
+        .footer_app{background: url(./img/footer_app.png) no-repeat center center;}
+        .footer_app:hover{background: url(./img/footer_app_sel.png) no-repeat center center;}
+    }
+}
+
 .rankingC{width: 100%;min-width: 1000px;background-color: #f0f0f0;padding-bottom: 30px;}
 .rankingHead{width: 100%;height: 394px;background: url(/static/img/ranking_banner.png) no-repeat center center;position: relative;}
 .rankingBody{width: 1000px;position: relative;margin:30px auto 0 auto;border-radius: 10px;background-color: #fff;font-size: 0;

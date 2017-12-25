@@ -4,11 +4,12 @@
     <div class="banner" >
       <div class="bannerwp">
         <div class="indexbanner-txt bannertopbox" v-if="uid == null || uid == ''">
-          <h3>利通金服平台累计成交额超过</h3>
-          <div class="InvestmentSumC">
+          <h3>预订年化收益率</h3>
+          <!-- <div class="InvestmentSumC">
             <span v-for="(totalMoneyList,index) in totalMoneyList" class="numspan" :key="index">{{totalMoneyList.key}}</span>
             万元
-          </div>
+          </div> -->
+          <div class="expectedRate">6.5%-12%</div>
           <router-link to="/login/registerPersonal" class="bannerbox_registerbtn">注册领888元红包</router-link>
           <i id="promptsonC">
             <div class="swiper-container swiper-container_promptson" id="swiper_proptson">

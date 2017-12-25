@@ -1,6 +1,5 @@
 <template>
     <div class="hello">
-
         <div class="SignContactC" id="SignContactC" @click="SignContactChide($event)">
             <div class="SignContact" id="SignContact">
                 <div class="SignContact_box">
@@ -22,23 +21,23 @@
         <div class="topnav" style="background:#fff;">
             <div class="wp clearfix">
                 <div class="wp-ll publictopleft clearfix">
-                <span><img src="../../common/stylus/0818new/index_top_tel_icon.png" /></span>
-                <span>客服热线：</span>
-                <span >400-606-1018</span>
-                <span>
-                    <router-link to="/about/newHands">新手入门</router-link>
-                    <router-link to="/about/helpCenter">帮助中心</router-link>
-                </span>
-                <div class="wp-rr logobtnC fr">
-                    <a href="http://weibo.com/u/5929500361?topnav=1&wvr=6&topsug=1&is_all=1" target="_blank" class="top_weboa logoa" id="mvp"></a>
-                    <a id="contactwechat" class="top_wechata logoa" @mouseenter="wechatenter" @mouseleave="wechatleave">
-                    </a>
-                    <ul v-show="wechatul == 1" id="wechatul" class="divhide-l">
-                        <li><img src="../../common/stylus/img/index_top_erweima_img.png"></li>
-                    </ul>
-                    <router-link to="/login/appDownload" class="top_appa logoa" id="em3"></router-link>
+                    <span><img src="../../common/stylus/0818new/index_top_tel_icon.png" /></span>
+                    <span>客服热线：</span>
+                    <span >400-606-1018</span>
+                    <span style="margin-left:10px;">
+                        <router-link to="/about/newHands">新手入门</router-link>
+                        <router-link to="/about/helpCenter">帮助中心</router-link>
+                    </span>
+                    <!-- <div class="wp-rr logobtnC fr">
+                        <a href="http://weibo.com/u/5929500361?topnav=1&wvr=6&topsug=1&is_all=1" target="_blank" class="top_weboa logoa" id="mvp"></a>
+                        <a id="contactwechat" class="top_wechata logoa" @mouseenter="wechatenter" @mouseleave="wechatleave">
+                        </a>
+                        <ul v-show="wechatul == 1" id="wechatul" class="divhide-l">
+                            <li><img src="../../common/stylus/img/index_top_erweima_img.png"></li>
+                        </ul>
+                        <router-link to="/login/appDownload" class="top_appa logoa" id="em3"></router-link>
+                    </div> -->
                 </div>
-            </div>
             <div class="publictopright clearfix" v-if="uid != null" style="width:320px;text-align:right;">
                 <span class="signImg" @click='SignNow' >
                     <img src="../../common/stylus/0818new/Sign_logo.png" title="点击签到" />每日签到
@@ -56,15 +55,17 @@
                         <img src="../../common/stylus/0818new/email_message.png"/>
                     </router-link>
                 </span>
-                <a class="f-main" v-on:click="signOut">退出</a>
+                <a class="f-main" v-on:click="signOut" style="font-size:12px;">退出</a>
             </div>
-            <div class="publictopright clearfix" v-if="uid == null" style="width:320px;">
-                <span class="fl margintop20">
+            <div class="publictopright clearfix" v-if="uid == null" style="width:320px;text-align:right;font-size:0;">
+                <router-link to="/login" class="unlogina">登录</router-link>
+                <router-link to="/login/registerPersonal" class="unlogina">个人注册</router-link>
+                <!-- <span class="fl margintop20">
                     <a @click='SignNow' class="fl radius headtopbtn">
                         <img src="../../common/stylus/0818new/sign_logoUnlogin.png"/>签到
                     </a>
-                </span>
-                <span  class="fl margintop20">
+                </span> -->
+                <!-- <span  class="fl margintop20">
                     <router-link to="/login" class="fl radius headtopbtn">
                         <img src="../../common/stylus/0818new/index_top_login_icon.png"/>登录
                     </router-link>
@@ -73,12 +74,12 @@
                     <router-link to="/login/registerPersonal" class="fl radius headtopbtn2">
                         <img src="../../common/stylus/0818new/index_top_personal_icon.png"/>个人注册
                     </router-link>
-                </span>
-                <span class="fl margintop20">
+                </span> -->
+                <!-- <span class="fl margintop20">
                     <router-link to="/login/registerEnterprise" class="fl radius headtopbtn2">
                         <img src="../../common/stylus/0818new/index_top_company_icon.png"/>企业注册
                     </router-link>
-                </span>
+                </span> -->
             </div>
         </div>
     
