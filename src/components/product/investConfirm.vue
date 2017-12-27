@@ -147,7 +147,6 @@
             if (self.moneyGet == undefined || self.productId == undefined) {
                 self.$router.push({path:'/product'});
             }
-            this.$store.state.checklogin(this);
 
             //产品详情信息获取
             this.$store.state._ajax(this,'/api/product/detail', { id: idGet }, function (data) {

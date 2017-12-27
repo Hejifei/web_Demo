@@ -109,7 +109,6 @@
             self.transfer_idGet = this.$store.state.getUrl(location.href).transfer_id;
             self.productId = idGet;
 
-            this.$store.state.checklogin(this);
 
             //转让标的详情信息获取
             this.$store.state._ajax(this,'/api/product/transferDetail', { id: self.transfer_idGet }, function (data) {

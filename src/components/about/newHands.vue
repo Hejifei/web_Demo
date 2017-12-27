@@ -101,7 +101,36 @@
                         </div>
                         <div class="listDetail">
                             <div class="info" style="display: block;">
-                                <p style="line-height: 2em;"><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 16px;"></span></strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>1.充值前，需先完成实名认证；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>2.进入个人中心页面，点击【充值】，输入充值金额，填写验证码，点击【前往充值】；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>3.进入第三方平台核对相关信息，并选择要充值的银行，点击【下一步】；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>4.进入网上银行页面，输入所需信息，充值成功；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>5.也可选择无卡支付（快捷支付）方式充值；</strong></span></p>
+                                <!-- <p style="line-height: 2em;"><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 16px;"></span></strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>1.充值前，需先完成实名认证；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>2.进入个人中心页面，点击【充值】，输入充值金额，填写验证码，点击【前往充值】；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>3.进入第三方平台核对相关信息，并选择要充值的银行，点击【下一步】；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>4.进入网上银行页面，输入所需信息，充值成功；</strong></span></p><p><span style="font-family: 微软雅黑, &quot;Microsoft YaHei&quot;; font-size: 14px;"><strong>5.也可选择无卡支付（快捷支付）方式充值；</strong></span></p> -->
+                                <div class="swiper-container" id="swiper_recharge">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <img src="/static/img/help_register/recharge_flow2.png" />
+                                            <p>第二步：输入金额，立即充值</p>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="/static/img/help_register/recharge_flow3.png" />
+                                            <p>第三步：绑定银行卡，开通快捷支付</p>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="/static/img/help_register/recharge_flow4.png" />
+                                            <p>第四步：输入充值密码</p>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="/static/img/help_register/recharge_flow5.png" />
+                                            <p>第五步：完成充值</p>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="/static/img/help_register/recharge_flow1.png" />
+                                            <p>第一步：进入主页，点击充值</p>
+                                        </div>
+                                    </div>
+                                    <!-- Add Pagination -->
+                                    <div class="swiper-pagination"></div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -212,6 +241,19 @@
                 loop: true,
                 // autoplay: 3000,
                 // autoplayDisableOnInteraction: false,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper，主要是这两行  
+                observeParents: true //修改swiper的父元素时，自动初始化swiper  
+            });
+            // 充值流程
+            var swiper_authentication = new Swiper('#swiper_recharge', {
+                // pagination: '.swiper-pagination',
+                nextButton: '#swiper_recharge .swiper-button-next',
+                prevButton: '#swiper_recharge .swiper-button-prev',
+                slidesPerView: 1,
+                paginationClickable: true,
+                spaceBetween: 0,
+                freeMode: true,
+                loop: true,
                 observer: true, //修改swiper自己或子元素时，自动初始化swiper，主要是这两行  
                 observeParents: true //修改swiper的父元素时，自动初始化swiper  
             });

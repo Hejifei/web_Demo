@@ -359,21 +359,19 @@
                 self.ret = 140;
             }
             //验证是否登陆
-            self.$store.state._ajax(self,'/api/session/check', {}, function (data) {
-                self.uid = data.data.uid;
-                // 如果登录
-                if (data.data.uid != null) {
-                    // 余额查询
-                    self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
-                        self.accountInfo = data.data;
-                    });
-                    //借款及服务协议
-                    self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
-                    //可用红包获取
-                    self.RewardgetList(1,1);
-                    self.RewardgetList(2,1);
-                }
-            }, '', false);
+            self.uid = localStorage.uid;
+            // 如果登录
+            if (localStorage.uid != null && localStorage.uid != '') {
+                // 余额查询
+                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                    self.accountInfo = data.data;
+                });
+                //借款及服务协议
+                self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+                //可用红包获取
+                self.RewardgetList(1,1);
+                self.RewardgetList(2,1);
+            }
             //产品详情信息获取
             this.$store.state._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
                 //console.log(data.data)
@@ -592,9 +590,9 @@
                 //         layer.closeAll();
                 //     },2000)
                 // } else 
-                if (parseFloat(reMoney) >= parseFloat(money)) {
+                if (parseFloat(reMoney) >= parseFloat(money) && reMoney != 0) {
                     layer.msg("投资金额必须大于红包金额!");
-                } else if (parseFloat(minMoney) > parseFloat(money)) {
+                } else if (parseFloat(minMoney) > parseFloat(money) && reMoney != 0) {
                     layer.msg("投资金额必须大于红包最小起投金额!");
                 } else {
                     var actualmoney = money - parseInt(reMoney);

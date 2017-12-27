@@ -112,7 +112,6 @@
             var idGet = self.$store.state.getUrl(location.href).id;
             var idtransfer_id = self.$store.state.getUrl(location.href).transfer_id;
             self.productId = idGet;
-            self.$store.state.checklogin(self);
             self.investListGet(1, 3);
             laydate.render({
                 elem: '#begintime', //指定元素

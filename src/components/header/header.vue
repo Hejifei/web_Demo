@@ -38,7 +38,7 @@
                         <router-link to="/login/appDownload" class="top_appa logoa" id="em3"></router-link>
                     </div> -->
                 </div>
-            <div class="publictopright clearfix" v-if="uid != null" style="width:320px;text-align:right;">
+            <div class="publictopright clearfix" v-if="uid != null && uid != ''" style="width:320px;text-align:right;">
                 <span class="signImg" @click='SignNow' >
                     <img src="../../common/stylus/0818new/Sign_logo.png" title="点击签到" />每日签到
                 </span>
@@ -57,7 +57,7 @@
                 </span>
                 <a class="f-main" v-on:click="signOut" style="font-size:12px;">退出</a>
             </div>
-            <div class="publictopright clearfix" v-if="uid == null" style="width:320px;text-align:right;font-size:0;">
+            <div class="publictopright clearfix" v-if="uid == null || uid == ''" style="width:320px;text-align:right;font-size:0;">
                 <router-link to="/login" class="unlogina">登录</router-link>
                 <router-link to="/login/registerPersonal" class="unlogina">个人注册</router-link>
                 <!-- <span class="fl margintop20">
@@ -126,22 +126,15 @@ export default {
     mounted:function(){
         let self = this;
         //验证是否登陆
-        self.$store.state._ajax(self,'/api/session/check', {}, function (data) {
-            self.uid = data.data.uid;
-            if (self.uid != null) {
-                self.userinfo = JSON.parse(localStorage.ltjfUserInfo);
-                //验证是否有未读信息
-                // self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
-                //     self.unreadMsg = data.data.unreadMsg;
-                // }, '', false);
-            }
-        }, '', false);
-        //微信图标上传出现二维码
-        $("#contactwechat").hover(function () {
-            $("#wechatul").show();
-        }, function () {
-            $("#wechatul").hide();
-        })
+        self.uid = localStorage.uid;
+        if (self.uid != null && self.uid != '') {
+            self.userinfo = JSON.parse(localStorage.ltjfUserInfo);
+            //验证是否有未读信息
+            // self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+            //     self.unreadMsg = data.data.unreadMsg;
+            // }, '', false);
+        }
+
         // 消息披露子菜单上浮显示
         $(".menuson").hover(function(){
             if($(".menuson ul li:eq(0)").is(":hidden")){
@@ -174,10 +167,11 @@ export default {
         signOut: function () {
             let self = this;
             this.$store.state._ajax(this,'/api/user/logout', {}, function (data) {
-                //console.log(data)
                 if (data.code == '1') {
-                    self.$store.state.getSID(self,'/login');
                     localStorage.removeItem("ltjfUserInfo");
+                    localStorage.removeItem("SID");
+                    localStorage.removeItem("uid");
+                    self.$store.state.getSID(self,'/login');
                 }
             })
         },

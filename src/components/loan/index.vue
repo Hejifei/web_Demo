@@ -515,18 +515,9 @@
             var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
-
             self.apiurl = self.$store.state.APIURL;
             self.sid = localStorage.SID;
-
             self.$store.state.checklogin(self);   //验证是否登录
-            //是否实名认证获取，若未实名就跳转到开户界面
-            self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
-                if (data.data.status == 0) {
-                    self.$router.push({path:'/account/accountOpen'});
-                }
-                self.regType =data.data.regType;
-            },'');
 
             //获取用户信息
             self.$store.state._ajax(self,'/api/loan/finLoan', {}, function (data) {
@@ -587,7 +578,16 @@
                         required: false
                     });
                 }
-            }, '');
+            }, function(data){
+                if(data.code == 0){
+                    setTimeout(function(){layer.closeAll();self.$router.push({path:'/account/accountOpen'});}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll();self.$router.push({path:'/account/accountOpen'}); })
+                    
+                }else{
+                    setTimeout(function(){layer.closeAll();}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
+                }
+            });
             
         },
         mounted:function(){

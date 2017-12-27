@@ -92,6 +92,7 @@
             var self = this;
             //提交登陆申请
             this.$store.state.AjaxSumbit(this,"/", "/api/user/login", function (j) {
+                localStorage.uid = j.data.id;
                 layer.msg(j.msg);
                 localStorage.ltjfUserInfo = JSON.stringify(j.data);
                 //记住用户名

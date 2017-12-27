@@ -289,17 +289,15 @@
             self.ret = 150;
         }
         //验证是否登陆
-        self.$store.state._ajax(self,'/api/session/check', {}, function (data) {
-            self.uid = data.data.uid;
-            if (data.data.uid != null) {
-                // 余额查询
-                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
-                    self.accountInfo = data.data;
-                });
-                //借款及服务协议
-                self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
-            }
-        }, '', false);
+        self.uid = localStorage.uid;
+        if (localStorage.uid != null && localStorage.uid != '') {
+            // 余额查询
+            self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                self.accountInfo = data.data;
+            });
+            //借款及服务协议
+            self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+        }
         //产品详情信息获取
         this.$store.state._ajax(this,'/api/product/transferDetail', { id: idtransfer_id }, function (data) {
             // console.log(data.data)

@@ -54,11 +54,12 @@
                 } else if (d.code == '-3'|| _url == "/api/user/logout" && d.code == -1) {
                     setTimeout(function () { 
                         layer.closeAll();
-                        that.$router.push({path:'/login'}); 
+                        getSID(that,'/login')
+                        // that.$router.push({path:'/login'}); 
                     }, 2000)
                     layer.alert(d.msg, {title: '操作提示',icon: 5}, function () { 
                         layer.closeAll();
-                        that.$router.push({path:'/login'});
+                        getSID(that,'/login')
                     })
                 } else {
                     d.code == '1' ? b(d) : c(d);
@@ -375,21 +376,19 @@
 
     //获取sid
     const getSID =function(that,newhref) {
-        var mydate = new Date();
-        var year = mydate.getFullYear();
-        var month = mydate.getMonth()+1;
-        var date = mydate.getDate();
-        var _str = String(year) + String(month) + String(date);
-        newhref = newhref ? newhref : that.$route.path;
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:_str},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20171227'},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {
                     localStorage.SID = d.data.sid;
                     setCookie('sid', d.data.sid);
-                    that.$router.push({path:newhref});
-                    window.location.reload();
+                    // 获取好sid后，如果有新链接，跳转到新链接，否则刷新界面
+                    if(newhref){
+                        that.$router.push({path:newhref});
+                    }else{
+                        window.location.reload();
+                    }
                 }
             },function(err){
                 console.log(err)
@@ -399,24 +398,20 @@
 
     //验证是否登陆
     const checklogin =function(that) {
-        _ajax(that,'/api/session/check', {}, function (data) {
-            if (data.data.uid == null) {
-                localStorage.url = that.$route.path;
-                that.$router.push({path:'/login'});
-            } 
-        }, '', false);
+        if (localStorage.uid == null || localStorage.uid == '') {
+            localStorage.url = that.$route.path;
+            that.$router.push({path:'/login'});
+        }
     }
 
     //点击链接前验证是否登录
     const logincheckhref =function(_href,that) {
-        _ajax(that,'/api/session/check', {}, function (data) {
-            if (data.data.uid == null) {
-                localStorage.url = _href;
-                that.$router.push({path:'/login'});
-            } else {
-                that.$router.push({path:_href})
-            }
-        }, '', false);
+        if (localStorage.uid == null || localStorage.uid == '') {
+            localStorage.url = _href;
+            that.$router.push({path:'/login'});
+        } else {
+            that.$router.push({path:_href})
+        }
     }
 
     var countdown = 60;

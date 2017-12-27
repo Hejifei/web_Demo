@@ -94,7 +94,7 @@
                                 <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
                             </div>
                         </div>
-                        <div class="routeDetail" v-html="award.content"></div>
+                        <div class="routeDetail" v-html="award.content">11</div>
                     </div>
                     <div class="havenoaward" v-if="keywords == 0 && awardInfo.length == 0"><em>暂无未使用加息券</em></div>
                 </div>

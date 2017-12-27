@@ -6,7 +6,7 @@
             <!-- 左侧菜单 -->
             <div class="sidebar" v-cloak>
                 <div class="personalInfoC">
-                    <router-link style="display:block;width:70px;height:70px;" to="/account/headImgChange"><img class="headimg" :src="userInfo.avatar" /></router-link>
+                    <router-link style="display:block;width:70px;height:70px;margin:auto;" to="/account/headImgChange"><img class="headimg" :src="userInfo.avatar" /></router-link>
                     <a class="checkinBtn" @click="SignNow">每日签到</a>
                     <ul class="iconul">
                         <li>
@@ -162,34 +162,6 @@
         methods: {
             SignNow: function () {
                 LTJF.$emit("signtoday",1);
-                // var that = this;
-                //     that.$store.state.checklogin(that);
-                //     //签到的的模态框出现
-                //     //获取今日签到信息
-                //     that.$store.state._ajax(that,'/api/index/findScore', {}, function (data) {
-                //         let is_sign=data.data.is_sign == 1?1:0;
-                //         LTJF.$emit("txt",{is_sign:is_sign});
-                //         //获取当月签到记录
-                //         that.$store.state._ajax(that,'/api/index/signDetail', {}, function (data) {
-                //             // //var signList = [{ "signDay": "09" }, { "signDay": "11" }, { "signDay": "12" }, { "signDay": "13" }, { "signDay": "15" }, { "signDay": "25" }];
-                //             // console.log(data);
-                //             // return;
-                //             var signList = [];
-                //             var signDetail = data.data.detail;
-                //             if (signDetail.length > 0) {
-                //                 for (var i = 0 ; i < signDetail.length; i++) {
-                //                     signList.push({ "signDay": signDetail[i].createTime.substr(8, 2) })
-                //                 }
-                //             }
-                //             that.$store.state.calUtil.init(signList);
-                //             let totalScore = data.data.score == '.00' ? 0 : parseInt(data.data.score);
-                //             LTJF.$emit("txt",{totalScore:totalScore});
-                //         }, function () {
-                //             that.$store.state.calUtil.init([]);
-                //             LTJF.$emit("txt",{totalScore:0});
-                //         }, false);
-                //         $(".SignContactC").show();
-                //     }, '', false);
             },
             PhoneChange:function(){
                 layer.alert("如需要更换手机号，请联系客服<br />400-606-1018",{title: '操作提示',icon: 6},function(){layer.closeAll();});

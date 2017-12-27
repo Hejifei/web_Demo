@@ -71,7 +71,6 @@
     },
     mounted:function(){
         var self = this;
-        self.$store.state.checklogin(self);
     },
     methods: {
         gotoSLB:function() {

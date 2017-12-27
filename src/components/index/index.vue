@@ -380,35 +380,33 @@ export default {
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             //验证是否登陆
-            this.$store.state._ajax(self,'/api/session/check', {}, function (data) {
-                self.uid = data.data.uid;
-                self.sid = data.data.sid;
-                if (self.uid != null) {
-                    //如果已登陆获取账户信息,验证是否有未读信息
-                    self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
-                        self.accountInfo = data.data;
-                        self.UnreadMsg = data.data.unreadMsg;
-                    }, '');
-                }else{
-                    // 首页提示
-                    self.$store.state._ajax(self,'/api/product/statistics', {isPrompt:1}, function (data) {
-                        self.prompt = data.data.prompt;
-                        setTimeout(function () {
-                            var swiper_prompt = new Swiper('#swiper_proptson', {
-                                slidesPerView: 1,
-                                spaceBetween: 0,
-                                centeredSlides: true,
-                                paginationClickable: true,
-                                loop: true,
-                                autoplay: 1,
-                                speed:6000,
-                                autoplayDisableOnInteraction: false,
-                                freeMode: true
-                            });
-                        },10)
-                    }, function(){});
-                }
-            }, '', false);
+            self.uid = localStorage.uid;
+            self.sid = localStorage.sid;
+            if (self.uid != null && self.uid != '') {
+                //如果已登陆获取账户信息,验证是否有未读信息
+                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                    self.accountInfo = data.data;
+                    self.UnreadMsg = data.data.unreadMsg;
+                }, '');
+            }else{
+                // 首页提示
+                self.$store.state._ajax(self,'/api/product/statistics', {isPrompt:1}, function (data) {
+                    self.prompt = data.data.prompt;
+                    setTimeout(function () {
+                        var swiper_prompt = new Swiper('#swiper_proptson', {
+                            slidesPerView: 1,
+                            spaceBetween: 0,
+                            centeredSlides: true,
+                            paginationClickable: true,
+                            loop: true,
+                            autoplay: 1,
+                            speed:6000,
+                            autoplayDisableOnInteraction: false,
+                            freeMode: true
+                        });
+                    },10)
+                }, function(){});
+            }
 
             //获取统计资金
             this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {

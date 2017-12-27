@@ -50,8 +50,8 @@ fieldset { border-width: 0; padding: 0.35em 0.625em 0.75em; margin: 0 2px; borde
 .cl, .clearfix { zoom: 1; }
 /* 公共样式  */
 .wp { width: 1000px; margin: auto;font-size: 0;}
-.wpleft{width: 650px;display: inline-block;vertical-align: top;}
-.wpright{width: 350px;display: inline-block;vertical-align: top;text-align: right;}
+.wpleft{width: 710px;display: inline-block;vertical-align: top;}
+.wpright{width: 290px;display: inline-block;vertical-align: top;text-align: left;}
 .wpright a{display: inline-block;margin: 10px 0 10px 20px;}
 .wpright a img{width: 75px;height: 28px;}
 .m20 { margin: 20px; }
@@ -182,7 +182,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
     .footer a { color: #000; }
     .footer .footnav dl.last { width: 530px; height: 160px; background: url("./img/index_foot3.png") no-repeat top -10px right; }
         .footer .footnav dl.last h2 { color: #e6494b; font-size: 32px; line-height: 50px; font-weight: normal; }
-    .footer .footertxt { padding: 20px 0; font-size: 12px; line-height: 22px; border-top: 1px solid #eb494b; color: #d1d1d1;background-color: #ccc; }
+    .footer .footertxt { padding: 20px 0; font-size: 12px; line-height: 22px; border-top: 1px solid #eb494b; color: #d1d1d1;background-color: #f9f9f9; }
         .footer .footertxt p { margin: 10px 0; text-align: left; color:#969696;font-size: 14px; }
         /* .footer .footertxt .footerimg { background: url("../images/foot-img1.png") no-repeat center top; width: 100%; height: 50px; } */
         .footer .footertxt .labelp{color: #646464;}

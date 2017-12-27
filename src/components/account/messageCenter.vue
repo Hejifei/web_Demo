@@ -20,14 +20,6 @@
             <div class="pages mypage clearfix">
                 <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
             </div>
-            <!-- @*<div class="letterwebFooter clearfix">
-                <label><input type="checkbox" id="selectall" /><i id="selectalltext">全选</i></label>
-                <div class="fenyeC">
-                    <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
-                </div>
-                <a class="redBtn"><span class="icon-trash"></span></a>
-                <a class="redBtn">标记为已读</a>
-            </div>*@ -->
         </div>
     </div>
 </template>

@@ -22,14 +22,11 @@
                       <li><router-link to="/service/ranking">创富排行</router-link></li>
                       <li><router-link to="/service/insurance">安全保障</router-link></li>
                       <li><router-link to="/service/bankDeposit">银行存管</router-link></li>
-                      <!-- <li><router-link to="/service/automaticBid">自动投标</router-link></li> -->
-                      <!-- <li><router-link to="/service/personalTailor">私人定制</router-link></li> -->
                       <li><router-link to="/about/aboutus">关于利通</router-link></li>
                     </ul>
                   </div>
                 </li>
                 <li><a @click="logincheckhref('/account')">我的账户</a></li>
-                <!-- <li><router-link to="/about/aboutus">关于利通</router-link></li> -->
             </ul>
         </div>
       </div>

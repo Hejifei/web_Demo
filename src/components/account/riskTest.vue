@@ -67,12 +67,13 @@
                 <span class="tip"></span>
             </li>
             <li class="form-group">
-                <h3>7、以下情况，您会选择哪一种？</h3>
+                <h3>7、您当前期望的理财回报大概是？</h3>
                 <ul class="riskDetail">
-                    <li><label><input class="radio" name="win" type="radio" value="1" />A.有100%的机会赢取1000元现金</label></li>
-                    <li><label><input class="radio" name="win" type="radio" value="2" />B.有50%的机会赢取5万元现金</label></li>
-                    <li><label><input class="radio" name="win" type="radio" value="3" />C.有25%的机会赢取50万元现金</label></li>
-                    <li><label><input class="radio" name="win" type="radio" value="4" />D.有10%的机会赢取100万元现金</label></li>
+                    <li><label><input class="radio" name="win" type="radio" value="1" />A.5%以内</label></li>
+                    <li><label><input class="radio" name="win" type="radio" value="2" />B.5-10%</label></li>
+                    <li><label><input class="radio" name="win" type="radio" value="3" />C.10-20%</label></li>
+                    <li><label><input class="radio" name="win" type="radio" value="4" />D.20-50%</label></li>
+                    <li><label><input class="radio" name="win" type="radio" value="5" />E.50%以上</label></li>
                 </ul>
                 <span class="tip"></span>
             </li>
