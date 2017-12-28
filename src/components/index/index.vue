@@ -4,7 +4,7 @@
     <div class="banner" >
       <div class="bannerwp">
         <div class="indexbanner-txt bannertopbox" v-if="uid == null || uid == ''">
-          <h3>预订年化收益率</h3>
+          <h3>预计年化收益率</h3>
           <!-- <div class="InvestmentSumC">
             <span v-for="(totalMoneyList,index) in totalMoneyList" class="numspan" :key="index">{{totalMoneyList.key}}</span>
             万元

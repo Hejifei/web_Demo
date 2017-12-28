@@ -5,7 +5,7 @@
       <div class="headerwp">
         <div class="fl headmenuleft">
             <router-link class="logo fl logoright" to="/index"></router-link>
-            <span class="bankmoneymanage fr"></span>
+            <span class="bankmoneymanage">银行资金存管</span>
             <!-- <p>利/惠/苏/州/通/达/八/方/</p> -->
         </div>
         <div class="headernav">

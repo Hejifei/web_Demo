@@ -122,9 +122,9 @@
                         <div class="investActline">&nbsp;</div>
                         <router-link v-if="uid == null" class="redBtn buynowBtn" to="/login">登录查看</router-link>
                         <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '0' && uid != null" >暂未转让</a>
-                        <a class="redBtn buynowBtn" v-if="productInfo.status == '1' && uid != null" v-on:click="buynow">立即投资</a>
-                        <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '2' && uid != null" >转让结束</a>
-                        <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '3' && uid != null" >再次转让</a>
+                        <a class="redBtn buynowBtn" v-if="productInfo.status == '1' && uid != null" v-on:click="buynow">立即承接</a>
+                        <a class="redBtn buynowBtn graybtn" v-if="productInfo.status != '1' && uid != null" >转让结束</a>
+                        <!-- <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '3' && uid != null" >再次转让</a> -->
                         <div class="xieyiline"  v-if="uid != null">
                             <label v-if="productDetail.status == 1"><input class="required agreement" type="checkbox" checked />我已阅读并同意<a :href="loanxieyi" target="_blank">《借款及服务协议》</a></label>
                             <label v-if="productDetail.status != 1" style="height:46px;display:block;"></label>

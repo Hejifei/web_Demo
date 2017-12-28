@@ -118,7 +118,7 @@
                         <td>
                           <router-link v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
                           <a v-if="sblist.transfer_status == 2" class="projectEndbtn">转让结束</a>
-                          <a v-if="sblist.transfer_status == 3" class="projectEndbtn">再次转让</a>
+                          <router-link v-if="sblist.transfer_status == 3" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">再次转让</router-link>
                         </td>
                     </tr>
                     <tr v-if="listnum == 2 && projectlist_zqzr.length ==0">
