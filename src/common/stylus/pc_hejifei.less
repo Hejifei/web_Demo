@@ -429,9 +429,95 @@
 .headerwp:after {
   clear: both;
 }
-.headmenuleft{width:340px;padding:12px 0;position: relative;
-              img{width:120px;float:right;margin-top:3px;}
+@keyframes flash {
+    from, 50%, to {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeIn{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@keyframes fadeIn{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+@-webkit-keyframes fadeIn1{
+    0%{opacity:0;margin-top:-45px;margin-left:0;}
+    100%{opacity:1;margin-top:-20px;margin-left:-40px;}
+}
+@keyframes fadeIn1{
+    0%{opacity:0;margin-top:-45px;margin-left:0;}
+    100%{opacity:1;margin-top:-20px;margin-left:-40px;}
+}
+.headmenuleft{width:345px;position: relative;
+            //   img{width:120px;float:right;margin-top:3px;}
               p{display:block;float:left;width:100%;text-align:center;letter-spacing:8px;color:#aaa;font-size:14px;}
+              .newlogoimg{width: 180px;margin-top: 24px;}
+              .logo-r{width: 124px;padding: 25px 0;position: relative;margin: 0 20px;cursor: pointer;
+                .logo-cg {width: 124px;height: 36px;background: url(./img/yinhangbg.png) no-repeat center center;background-size: contain;opacity: 0;animation: fadeIn 5s forwards;-webkit-animation: fadeIn 5s forwards;position: relative;z-index: 11;line-height: 36px;font-size: 16px;color: #fff;text-align: center;}
+                .yuan2 {
+                    width: 3px;
+                    height: 3px;
+                    position: absolute;
+                    left: 70px;
+                    top: 20px;
+                    opacity: 0;
+                    animation: flash 3s forwards linear infinite;
+                    animation-delay: 1.5s;
+                    -webkit-animation-delay: 1.5s;
+                }
+                .yuan3 {
+                    width: 5px;
+                    height: 5px;
+                    left: 52px;
+                    top: 67px;
+                    opacity: 0;
+                    animation: flash 2s forwards linear infinite;
+                    animation-delay: 2s;
+                    -webkit-animation-delay: 2s;
+                    position: absolute;
+                }
+                .yuan4 {
+                    width: 6px;
+                    height: 6px;
+                    right: 20px;
+                    top: 69px;
+                    opacity: 0;
+                    animation: flash 2s forwards linear infinite;
+                    animation-delay: 2.5s;
+                    -webkit-animation-delay: 2.5s;
+                    position: absolute;
+                }
+                .cg-bg {
+                    width: 72px;
+                    height: 51px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: 10px;
+                    margin-top: -45px;
+                    opacity: 0;
+                    z-index: 12;
+                    background: none;
+                    animation: fadeIn1;
+                    -webkit-animation: fadeIn1;
+                    animation-duration: 1s;
+                    -webkit-animation-duration: 1s;
+                    animation-timing-function: linear;
+                    -webkit-animation-timing-function: linear;
+                    animation-delay: 2s;
+                    -webkit-animation-delay: 2s;
+                    animation-fill-mode: forwards;
+                    -webkit-animation-fill-mode: forwards;
+                    animation-iteration-count: infinite;
+                    -webkit-animation-iteration-count: infinite;
+                }
+              }
 }
 .indexdataC{width:33%;float:left;padding:30px 25px 30px 45px;
             img{position:relative;top:9px;}
@@ -1346,7 +1432,9 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 .dixian{width:100%;height:15px;background:url('foot_bottom.png') no-repeat center top;float:left;}
 .suxintong{width:75px;height:28px;display:inline-block;border:1px solid #2f7fbe;border-radius:4px;background:url(suxintong.png) no-repeat center center;background-size:contain;vertical-align: middle;}
-.bankmoneymanage{position: absolute;top:8px;left:222px;width: 111px;height: 45px;display: inline-block;background:url(index_titleslogan_img.png) no-repeat center center;background-size: 100% 100%;color:#fff;font-size: 14px;text-align: center;padding-top: 13px;}
+.bankmoneymanage{
+
+}
 // 我的好友
 .friendsTableC table td{width:20%;padding:0 20px !important;text-align:center !important;
     img{width:20px;margin-right:5px;}
@@ -1451,17 +1539,22 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 
 //顶部菜单
-.headernav{display: inline-block;float: right;padding: 20px 0 5px;
-    >ul >li{line-height: 1.15;display: inline-block;vertical-align: top;position: relative;padding: 0 34px;
-        a{display: inline-block;font-size: 18px;color:#5f5f5f;}
-        a:hover{color:@btn-red;}
+.headernav{display: inline-block;float: right;
+    >ul{margin: 25px 0;
+        >li{line-height: 1.15;display: inline-block;vertical-align: top;position: relative;margin-left: 4px;
+            a{display: inline-block;font-size: 16px;color:#5f5f5f;}
+            .outA {width: 80px;height: 40px;line-height: 40px;border-radius: 2px;text-align: center;
+            }
+            .outDl {width: 100px;border-radius: 2px;line-height: 40px;text-align: center;}
+            a:hover{color:@btn-red;}
+        }
     }
-    >ul >li:last-child {padding-left: 34px;padding-right: 0;}
-    .disclosure{position: relative;top: -15px;width: 150px;height: 1px;z-index: 9;}
+    // >ul >li:last-child {padding-left: 34px;padding-right: 0;}
+    .disclosure{position: relative;top: 0px;width: 130px;height: 1px;z-index: 9;}
     // >ul >li:hover{border-bottom-style: solid;border-bottom-color: #eb494b;border-bottom-width: 4px;}
     .router-link-exact-active{color: @btn-red;}
 }
-.menuson{position: absolute;left: 0;width: 140px;margin-left: 10px;padding: 5px 23px 5px 23px;line-height: 42px;text-align: center;border: 1px solid transparent;border-radius: 3px;background-color: #fff;
+.menuson{position: absolute;left: 0;width: 130px;line-height: 42px;text-align: center;border: 1px solid transparent;border-radius: 3px;background-color: #fff;
     .xiaoxia{line-height: 1.15;}
 }
 .menuson:hover{border-color: rgb(229, 229, 229)}

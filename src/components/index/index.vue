@@ -245,7 +245,7 @@
                 <div class="newP_right" v-if="type == 2">
                     <div v-for="(sblist,index) in projectlist_sblb" v-if="index < 5"  :key="index" class="newP_detailC">
                         <h3>
-                            <router-link :to="'/product/PInfo?id='+sblist.id">
+                            <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">
                                 <img :src="sblist.img"/>  
                                 {{sblist.title}} 
                                 <span title="此标的可使用红包" v-if="sblist.is_reward == 1" >红包</span>
@@ -265,11 +265,11 @@
                             </li>
                             <li>
                                 <label title="金额" style="text-align:center;"><span>{{sblist.self_money}}</span>元</label>
-                                <p>转让金额</p>
+                                <p>原本金</p>
                             </li>
                             <li>
                                 <label><span>{{sblist.transfer_money}}</span>元</label>
-                                <p>预期回款</p>
+                                <p>转让金额</p>
                             </li>
                             <li>
                                 <router-link v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
@@ -323,11 +323,10 @@
             </div>
             <div class="index_activityC clearfix">
                 <ul class="index_partnerlist clearfix">
-                    <li v-for="(cooperation,index) in cooperationList" :key="index">
-                        <a target="_blank" :href="cooperation.url">
-                            <img :title="cooperation.name" :src="cooperation.icon" />
-                        </a>
-                    </li>
+                    <li><a target="_blank" href="http://www.bgzchina.com/"><img title="贵州银行" src="../../common/stylus/img/gzyh.png" /></a></li>
+                    <li><a target="_blank" href="https://www.tongdun.cn"><img title="同盾科技" src="../../common/stylus/img/tdkj.png" /></a></li>
+                    <li><a target="_blank" href="http://www.chinapnr.com/"><img title="汇付天下" src="../../common/stylus/img/hftx.png" /></a></li>
+                    <li><a target="_blank" href="http://www.pycredit.cn"><img title="鹏元征信" src="../../common/stylus/img/pyzx.png" /></a></li>
                 </ul>
             </div>
         </div>
@@ -474,9 +473,9 @@ export default {
             // 各类标数据条数获取
             self.productNumget();
             ////合作伙伴信息获取
-            this.$store.state._ajax(self,'/api/open/cooperation', {}, function (data) {
-                self.cooperationList = data.data;
-            });
+            // this.$store.state._ajax(self,'/api/open/cooperation', {}, function (data) {
+            //     self.cooperationList = data.data;
+            // });
     },
     mounted:function(){
             // 顶部菜单添加选中效果
@@ -498,7 +497,7 @@ export default {
         },
         productlistChange:function(_type,_index){
             var self = this;
-            
+            LTJF.$emit("NumberChage",1);
             //散标/债券数据获取
             self.$store.state._ajax(self,'/api/product/index',
             {

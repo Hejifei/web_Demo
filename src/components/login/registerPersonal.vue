@@ -2,7 +2,7 @@
     <div class="hello">
             <div class="loginC">
                 <login-header></login-header>
-                <div class="header" style="border-bottom:none;height:68px;width:100%;">
+                <div class="header" style="border-bottom:none;height:63px;width:100%;">
                     <div class="headerwp">
                         <router-link to="/index" class="ico logo fl"></router-link>
                         <span class="pl40 f-30">

@@ -224,9 +224,9 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>征信信息</td>
+                                    <td>风险等级</td>
                                     <td colspan="3">
-                                        <p v-for="(creditInfo,index) in productrisking.creditInfo" :key='index'>{{creditInfo}}</p>
+                                        <p>{{productrisking.dangerLevel}} <a class="getmoredangerLevel" @click="getdangerLevel">（点击查看风险等级详情）</a></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -239,6 +239,12 @@
                                     <td>保障方式</td>
                                     <td colspan="3">
                                         <p>{{productrisking.securityInfo}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>征信信息</td>
+                                    <td colspan="3">
+                                        <p v-for="(creditInfo,index) in productrisking.creditInfo" :key='index'>{{creditInfo}}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -339,7 +345,8 @@
             CouponList:[],
             ret:0,
             sid:'',
-            actualmoney:0
+            actualmoney:0,
+            risk:0
         }
     },
     created() {
@@ -382,6 +389,7 @@
                 productdetail.progress = Math.floor(productdetail.progress);
                 productdetail.extra_rate = Number(productdetail.extra_rate);
                 self.productDetail = productdetail;
+                self.risk = data.data.risk;
             });
             //借款人信息获取
             this.$store.state._ajax(this,'/api/product/information', { id: idGet }, function (data) {
@@ -531,6 +539,35 @@
         },
         buynow: function () {
             let self = this;
+            // risk 风险提示 0未登录1未评测2风险不匹配3风险匹配
+            if(self.risk = 0){
+                layer.confirm("您还没有登录！",{title: '操作提示',icon: 6, btn: ['去登录','取消']},function(){
+                    self.$router.push({path:"/login"});
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else if(self.risk = 1){
+                layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+                    self.$router.push({path:"/account/riskTest"});
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else if(self.risk = 2){
+                layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
+                    self.moneyCheck();
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else{
+                self.moneyCheck();
+            }
+            
+        },
+        moneyCheck:function(){
+            let self = this;
             if (this.money <= 0) {
                 layer.alert("请输入正确的金额!",'',function(){layer.closeAll();});
             } else if (this.money > parseFloat(this.accountInfo.useMoney)) {
@@ -657,6 +694,17 @@
             setTimeout(function() {
                 self.redpackageSel();
             }, 500);
+        },
+        getdangerLevel:function(){
+            layer.open({
+                    type: 2,
+                    title: '风险等级说明',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['375px', '667px'],
+                    content: 'https://cdn.litongjinfu.com/public/riskassessment.html'
+                    });
         }
 
     }
@@ -665,6 +713,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .getmoredangerLevel{text-align:right;color:#3a84cf;cursor:pointer;font-size: 12px;margin-left: 10px;}
   .swiper-container {
         width: 100%;
         height: 260px;

@@ -78,7 +78,7 @@
                             <span><label>转让日期</label>{{productInfo.transferTime}}</span>
                             <span><label>回款日期</label>{{productInfo.repay_time}}</span>
                         </div>
-                        <div class="projectInfoLine">
+                        <!-- <div class="projectInfoLine">
                             <span class="projectprocessC" v-if="productInfo.status == 0 ||productInfo.status == 1">
                                 <label>投标进度</label>
                                 <div class="processline">
@@ -93,8 +93,9 @@
                                 </div>
                                 100%
                             </span>
-                        </div>
+                        </div> -->
                         <div class="projectInfoLine">
+                            <span><label>剩余收益</label>{{productDetailpay.interest}}元</span>
                             <span v-if="productInfo.repay_type == 0"><label>还款方式</label>每月付息，到期还本</span>
                             <span v-if="productInfo.repay_type == 1"><label>还款方式</label>按月等额</span>
                             <span v-if="productInfo.repay_type == 2"><label>还款方式</label>到期还本付息</span>
@@ -102,23 +103,23 @@
                             <span v-if="productInfo.repay_type == 4"><label>还款方式</label>等额本金</span>
                         </div>
                     </div>
-                    <div class="projectInfo_headright"  id="AjaxForm">
-                        <div class="projectmoneyleft" v-if="uid != null">
+                    <div class="projectInfo_headright" style="padding:20px 40px 0 40px"  id="AjaxForm">
+                        <div class="projectmoneyleft">
                             <label>转让金额</label><span>{{productInfo.transferMoney}}</span>元
-                            <router-link class="fr" to="/account/recharge">充值</router-link>
+                            <router-link  v-if="uid != null" class="fr" to="/account/recharge">充值</router-link>
                         </div>
-                        <div class="projectmoneyleft mymoneyleft" v-if="uid == null">
-                            <label>转让金额</label> <span></span><router-link style="margin-top: 5px;" to="/login">登录查看</router-link>
-                        </div>
+                        <!-- <div class="projectmoneyleft mymoneyleft" v-if="uid == null">
+                            转让金额<span></span><router-link class="logina" style="bottom:16px;" to="/login">登录查看</router-link>
+                        </div> -->
                         <!-- <div class="projectmoneyleft">
                             <label>转让金额</label>
                             <span>{{productInfo.transferMoney}}</span>元
                         </div> -->
                         <label v-if="uid != null" class="mymoneyleft">账户余额 <span>{{productDetail.available}}元</span></label>
-                        <label v-if="uid == null" class="mymoneyleft">账户余额 <span></span><router-link  to="/login">登录查看</router-link></label>
+                        <label v-if="uid == null" class="mymoneyleft">账户余额 <span v-if="uid == null"><router-link class="logina" style="margin-top: 5px;" to="/login">登录</router-link>后查看</span></label>
                         <!-- <label class="mymoneyleft">账户余额 <span>{{productDetail.available}}元</span><router-link to="/account/recharge">充值</router-link></label> -->
                         <input :value="productInfo.transferMoney" class="form-submit" readonly name="money" />
-                        <div class="awardunlogin"></div>
+                        <!-- <div class="awardunlogin"></div> -->
                         <div class="investActline">&nbsp;</div>
                         <router-link v-if="uid == null" class="redBtn buynowBtn" to="/login">登录查看</router-link>
                         <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '0' && uid != null" >暂未转让</a>
@@ -152,7 +153,7 @@
                         <table>
                             <tbody>
                                 <tr><td>剩余本息</td><td>{{productDetailpay.money}}元</td><td>转让金额</td><td>{{productInfo.transferMoney}}元</td></tr>
-                                <tr><td>剩余本金</td><td>{{productDetailpay.capital}}元</td><td>剩余利息</td><td>{{productDetailpay.interest}}元</td></tr>
+                                <tr><td>剩余本金</td><td>{{productDetailpay.capital}}元</td><td>剩余收益</td><td>{{productDetailpay.interest}}元</td></tr>
                                 <tr>    
                                     <td>借款利率</td>
                                     <td>{{productInfo.rate}}%</td>
@@ -185,9 +186,9 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>征信信息</td>
+                                    <td>风险等级</td>
                                     <td colspan="3">
-                                        <p v-for="(creditInfo,index) in productrisking.creditInfo" :key='index'>{{creditInfo}}</p>
+                                        <p>{{productrisking.dangerLevel}} <a class="getmoredangerLevel" @click="getdangerLevel">（点击查看风险等级详情）</a></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -200,6 +201,12 @@
                                     <td>保障方式</td>
                                     <td colspan="3">
                                         <p>{{productrisking.securityInfo}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>征信信息</td>
+                                    <td colspan="3">
+                                        <p v-for="(creditInfo,index) in productrisking.creditInfo" :key='index'>{{creditInfo}}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -235,8 +242,9 @@
                                     <td>{{repayplan.repay_time}}</td>
                                     <td>{{repayplan.self_money}} 元</td>
                                     <td>{{repayplan.month_repay_money}} 元</td>
-                                    <td v-if="repayplan.is_pay == 0" style="padding:10px 0;">未收益 {{repayplan.repay_money}} 元</td>
-                                    <td v-if="repayplan.is_pay == 1" style="padding:10px 0;">已收益 {{repayplan.repay_money}} 元</td>
+                                    <td style="padding:10px 0;">{{repayplan.repay_money}} 元</td>
+                                    <!-- <td v-if="repayplan.is_pay == 0" style="padding:10px 0;">未收益 {{repayplan.repay_money}} 元</td>
+                                    <td v-if="repayplan.is_pay == 1" style="padding:10px 0;">已收益 {{repayplan.repay_money}} 元</td> -->
                                 </tr>
                             </tbody>
                         </table>
@@ -267,7 +275,8 @@
             PhotoMagnifyC:false,
             loanxieyi:'',
             ret:0,
-            sid:''
+            sid:'',
+            risk:0
         }
     },
     created() {
@@ -301,6 +310,7 @@
         //产品详情信息获取
         this.$store.state._ajax(this,'/api/product/transferDetail', { id: idtransfer_id }, function (data) {
             // console.log(data.data)
+            self.risk = data.data.detail.risk
             var productdetail=data.data;
             productdetail.detail.transferTime = productdetail.detail.transferTime.substr(0, 10)
             productdetail.detail.repay_time = productdetail.detail.repay_time.substr(0, 10)
@@ -361,7 +371,7 @@
             }
         }, '');
         
-        //回款计划获取
+        // //回款计划获取
         this.$store.state._ajax(this,'/api/product/transferPlan', { id: idGet,transfer_id: idtransfer_id}, function (data) {
             var repayPlanlist = data.data;
             if (repayPlanlist.length != 0) {
@@ -431,22 +441,61 @@
         },
         buynow: function () {
             var self = this;
+            if(self.risk = 0){
+                layer.confirm("您还没有登录！",{title: '操作提示',icon: 6, btn: ['去登录','取消']},function(){
+                    self.$router.push({path:"/login"});
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else if(self.risk = 1){
+                layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+                    self.$router.push({path:"/account/riskTest"});
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else if(self.risk = 2){
+                layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
+                    self.moneyCheck();
+                    layer.closeAll();
+                },function(){
+                    layer.closeAll();
+                });
+            }else{
+                self.moneyCheck();
+            }          
+        },
+        moneyCheck: function(){
+            var self = this;
             if (parseFloat(this.productDetail.detail.transferMoney) > parseFloat(this.productDetail.available)) {
                 layer.alert("你的余额不足以投资，请先充值!",'',function(){self.$router.push({path:'/account/recharge'});layer.closeAll(); setTimeout(function () { self.$router.push({path:'/account/recharge'}); layer.closeAll();}, 2000) });
             } else {
                 // self.$router.push({path:"/product/transInvestComfirm?id=" + self.productId + "&transfer_id=" + self.productDetail.detail.transfer_id})
                 $("#SubmitBtn").click();
-            }            
+            }  
         },
         BanklimitInfo: function () {
             $("#ContactC").show();
-        }    
+        },
+        getdangerLevel:function(){
+            layer.open({
+                    type: 2,
+                    title: '风险等级说明',
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['375px', '667px'],
+                    content: 'https://cdn.litongjinfu.com/public/riskassessment.html'
+                    });
+        }   
     }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.getmoredangerLevel{text-align:right;color:#3a84cf;cursor:pointer;font-size: 12px;margin-left: 10px;}
   .swiper-container {
         width: 100%;
         height: 260px;

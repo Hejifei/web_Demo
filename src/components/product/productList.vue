@@ -65,8 +65,8 @@
                     <tr v-else-if="listnum ==2">
                         <td>借款标题</td>
                         <td>年利率<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></td>
-                        <td>转让金额<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></td>
-                        <td>预期回款</td>
+                        <td>原本金<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></td>
+                        <td>转让金额</td>
                         <td style="text-align:center;">剩余期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></td>
                         <td></td>
                     </tr>
@@ -117,8 +117,8 @@
                         <td style="text-align:center;padding:0 20px;">{{sblist.transferTerm}}个月</td>
                         <td>
                           <router-link v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
-                          <a v-if="sblist.transfer_status == 2" class="projectEndbtn">转让结束</a>
-                          <router-link v-if="sblist.transfer_status == 3" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">再次转让</router-link>
+                          <a v-else class="projectEndbtn">转让结束</a>
+                          <!-- <router-link v-if="sblist.transfer_status == 3" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">再次转让</router-link> -->
                         </td>
                     </tr>
                     <tr v-if="listnum == 2 && projectlist_zqzr.length ==0">

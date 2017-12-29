@@ -141,7 +141,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
     .alert-danger h4 { color: #b94a48; }
 /*头部*/
 
- .topnav{ width: 100%; padding: 10px 0; line-height: 20px; background: #ececec; font-size: 12px; color: #666;    border-bottom: 1px solid #e0e0e0;}
+ .topnav{ width: 100%; padding: 4px 0; line-height: 20px; background: #ececec; font-size: 12px; color: #666;    border-bottom: 1px solid #e0e0e0;}
     .topnav a { display: inline-block; }
     .topnav span { display: inline-block;}
     /*.topnav .topnav_login { width: 60px; line-height: 20px; text-align: center; color: #e65245; border: 1px solid #e65245; background: #fff; text-decoration: none; }
@@ -152,7 +152,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
 .topnav #ink_con { float: left; width: 450px; height: 20px; }
     .topnav #ink_con a { white-space: nowrap; text-overflow: ellipsis; font-size: 12px; line-height: 18px; padding: 0; margin: 0; padding-left: 10px; width: 450px; display: block; }
 
-.header .headerwp { width: 1000px; margin: 0px auto; }
+.header .headerwp { width: 1000px;height: 90px; margin: 0px auto; }
 .header .logo { width: 183px; height: 37px; background: url(./img/newlogo.png) no-repeat; display: inline-block;background-size:contain;position: relative; }
 .header .logoright::after{content: '';width: 1px;height: 22px;border-right:1px solid #646464;position: absolute;right: -20px;top:8px;}
 /* .header .headernav { display: inline-block; line-height: 35px; float: right; padding: 15px 0 5px; }
