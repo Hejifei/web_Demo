@@ -74,6 +74,7 @@ import recharge from 'components/account/recharge';
 import capitalflow from 'components/account/capitalflow';
 import bankcard from 'components/account/bankcard';
 import authorizationEntrust from 'components/account/authorizationEntrust';//授权代收
+import paymentCalendar from 'components/account/paymentCalendar';//回款日历
 import investlist from 'components/account/investlist';
 import investlistTransfer from 'components/account/investlistTransfer';
 import personalTailorDetail from 'components/account/personalTailorDetail';//私人订制
@@ -151,6 +152,7 @@ const routes = [
       {path: '/account/capitalflow',component: capitalflow,},
       {path: '/account/bankcard',component: bankcard,},
       {path: '/account/authorizationEntrust',component: authorizationEntrust,},
+      {path: '/account/paymentCalendar',component: paymentCalendar,},
       {path: '/account/investlist',component: investlist,},
       {path: '/account/investlistTransfer',component: investlistTransfer,},
       {path: '/account/personalTailorDetail',component: personalTailorDetail,},

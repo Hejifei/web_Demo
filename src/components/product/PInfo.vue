@@ -540,31 +540,31 @@
         buynow: function () {
             let self = this;
             // risk 风险提示 0未登录1未评测2风险不匹配3风险匹配
-            if(self.risk = 0){
-                layer.confirm("您还没有登录！",{title: '操作提示',icon: 6, btn: ['去登录','取消']},function(){
-                    self.$router.push({path:"/login"});
-                    layer.closeAll();
-                },function(){
-                    layer.closeAll();
-                });
-            }else if(self.risk = 1){
-                layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
-                    self.$router.push({path:"/account/riskTest"});
-                    layer.closeAll();
-                },function(){
-                    layer.closeAll();
-                });
-            }else if(self.risk = 2){
-                layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
-                    self.moneyCheck();
-                    layer.closeAll();
-                },function(){
-                    layer.closeAll();
-                });
-            }else{
-                self.moneyCheck();
-            }
-            
+            // if(self.risk = 0){
+            //     layer.confirm("您还没有登录！",{title: '操作提示',icon: 6, btn: ['去登录','取消']},function(){
+            //         self.$router.push({path:"/login"});
+            //         layer.closeAll();
+            //     },function(){
+            //         layer.closeAll();
+            //     });
+            // }else if(self.risk = 1){
+            //     layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+            //         self.$router.push({path:"/account/riskTest"});
+            //         layer.closeAll();
+            //     },function(){
+            //         layer.closeAll();
+            //     });
+            // }else if(self.risk = 2){
+            //     layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
+            //         self.moneyCheck();
+            //         layer.closeAll();
+            //     },function(){
+            //         layer.closeAll();
+            //     });
+            // }else{
+            //     self.moneyCheck();
+            // }
+            self.moneyCheck();
         },
         moneyCheck:function(){
             let self = this;

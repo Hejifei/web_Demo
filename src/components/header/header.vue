@@ -180,6 +180,7 @@ export default {
                 that.$store.state.checklogin(that);
                 //签到的的模态框出现
                 //获取今日签到信息
+                var DateInsert = new Date();
                 that.$store.state._ajax(that,'/api/index/findScore', {}, function (data) {
                     that.is_sign=data.data.is_sign == 1?1:0;
                     //获取当月签到记录
@@ -194,10 +195,10 @@ export default {
                                 signList.push({ "signDay": signDetail[i].createTime.substr(8, 2) })
                             }
                         }
-                        that.$store.state.calUtil.init(signList);
+                        that.$store.state.calUtil.init(signList,"#calendar",DateInsert);
                         that.totalScore = data.data.score == '.00' ? 0 : parseInt(data.data.score);
                     }, function () {
-                        that.$store.state.calUtil.init([]);
+                        that.$store.state.calUtil.init([],"#calendar",DateInsert);
                         that.totalScore = 0;
                     }, false);
                     $(".SignContactC").show();

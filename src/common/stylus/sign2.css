@@ -31,11 +31,13 @@
     display:none;
 	text-align: center;
 	/*width: 398px;*/
-	border-left: 1px solid #e3e3e3;
-	border-right: 1px solid #e3e3e3;
-	background: #fff;
+	/* border-left: 1px solid #e3e3e3;
+	border-right: 1px solid #e3e3e3; */
+	/* background: #fff; */
 }
-
+.calendar_left .sign_succ_calendar_title{display: block;border-bottom: 1px solid #ccc;}
+.calendar_left .prevbtn{font-size: 16px;line-height: 41px;float: left;padding: 0 10px;cursor: pointer;}
+.calendar_left .nextbtn{font-size: 16px;line-height: 41px;float: right;padding: 0 10px;cursor: pointer;}
 .sign_main {
 	/*width: 400px;*/
 /**background-color: #FBFEFE;**/
@@ -50,7 +52,7 @@
 	font-size: 16px;
 	color: #656565;
 	letter-spacing: 2px;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 .sign_equal {
@@ -60,7 +62,7 @@
     position:relative;
 }
 .sign_equal:after{
-    width:260px;height:240px;display:inline-block;position:absolute;top:0;left:-10px;line-height:260px;font-size:200px;color:rgba(235, 73, 75, 0.2);
+    width:240px;height:240px;display:inline-block;position:absolute;top:0;left:-10px;line-height:240px;font-size:160px;color:rgba(235, 73, 75, 0.2);
 }
 .sign_row {
 	display:table-row;
@@ -68,10 +70,10 @@
 .sign_row div {
 	display:table-cell;
 	width:14.3%;
-	height: 40px;
     text-align: center;
-    line-height: 40px;
-    color:#323232;
+    line-height: 35px;
+	color:#323232;
+	font-size: 14px;
 }
 .sign_row .bold{
 	font-weight: bold;
