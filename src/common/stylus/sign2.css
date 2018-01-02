@@ -35,9 +35,9 @@
 	border-right: 1px solid #e3e3e3; */
 	/* background: #fff; */
 }
-.calendar_left .sign_succ_calendar_title{display: block;border-bottom: 1px solid #ccc;}
-.calendar_left .prevbtn{font-size: 16px;line-height: 41px;float: left;padding: 0 10px;cursor: pointer;}
-.calendar_left .nextbtn{font-size: 16px;line-height: 41px;float: right;padding: 0 10px;cursor: pointer;}
+/* .calendar_left .sign_succ_calendar_title{display: block;border-bottom: 1px solid #ccc;} */
+.calendar_left .prevbtn{font-size: 16px;line-height: 41px;float: left;padding: 0 20px;cursor: pointer;}
+.calendar_left .nextbtn{font-size: 16px;line-height: 41px;float: right;padding: 0 20px;cursor: pointer;}
 .sign_main {
 	/*width: 400px;*/
 /**background-color: #FBFEFE;**/
@@ -62,7 +62,7 @@
     position:relative;
 }
 .sign_equal:after{
-    width:240px;height:240px;display:inline-block;position:absolute;top:0;left:-10px;line-height:240px;font-size:160px;color:rgba(235, 73, 75, 0.2);
+    width:240px;height:240px;display:inline-block;position:absolute;top:0;left:-10px;line-height:240px;font-size:160px;color:rgba(235, 73, 75, 0.2);text-align: center;
 }
 .sign_row {
 	display:table-row;
@@ -81,7 +81,7 @@
 .sign_equal .on {position:relative;
     
 }
-.sign_equal .on::after{content:"";border-radius:50%;border:2px solid #eb494b;width:25px;height:25px;display:inline-block;position:absolute;top:6px;left:1px;}
+.sign_equal .on::after{content:"";border-radius:50%;border:2px solid #eb494b;width:25px;height:25px;display:inline-block;position:absolute;top:4px;left:1px;}
 
 .sign_contener,.sign_contener:visited {
 	line-height: 30px;

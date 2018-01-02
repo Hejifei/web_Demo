@@ -88,7 +88,7 @@
                         <span name="Invest"><i class="ico mico3"></i>投资管理</span>
                         <div class="info">
                             <router-link to="/account/investlist">历史投资</router-link>
-                            <!-- @*<a href="/Member/Invest/myReservation">我的预约</a> -->
+                            <router-link to="/account/paymentCalendar">回款日历</router-link>
                             <router-link to="/account/investlistTransfer">债权转让</router-link>
                             <router-link to="/account/objectBookingDetails">自动投标</router-link>
                             <router-link to="/account/personalTailorDetail">私人定制</router-link>

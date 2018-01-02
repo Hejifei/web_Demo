@@ -54,78 +54,52 @@
         <div class="index_center projectListC">
             <div class="projectInfoC">
                 <div class="graph">
-                    <img :src="productInfo.img"/>
-                    {{productInfo.title}}
+                    <img :src="productDetail.img"/>
+                    {{productDetail.title}}
                 </div>
                 <div class="chge"></div>
                 <div class="clearfix">
                     <div class="projectInfo_headleft">
                         <ul class="clearfix">
                             <li>
-                                <p><span>{{productDetailpay.money}}</span>元</p>
+                                <p><span>{{productDetail.money}}</span>元</p>
                                 <p>剩余本息</p>
                             </li>
                             <li>
-                                <p><span>{{productInfo.rate}}</span>%</p>
+                                <p><span>{{productDetail.rate}}</span>%</p>
                                 <p>预期年化收益率</p>
                             </li>
                             <li>
-                                <p><span>{{productDetailpay.num}}</span>个月</p>
+                                <p><span>{{productDetail.surplusNum}}</span>个月</p>
                                 <p>剩余期限</p>
                             </li>
                         </ul>
                         <div class="projectInfoLine">
-                            <span><label>转让日期</label>{{productInfo.transferTime}}</span>
-                            <span><label>回款日期</label>{{productInfo.repay_time}}</span>
+                            <span><label>转让日期</label>{{productDetail.transferTime}}</span>
+                            <span><label>回款日期</label>{{productDetail.repayTime}}</span>
                         </div>
-                        <!-- <div class="projectInfoLine">
-                            <span class="projectprocessC" v-if="productInfo.status == 0 ||productInfo.status == 1">
-                                <label>投标进度</label>
-                                <div class="processline">
-                                    <i style="width:0%;"></i>
-                                </div>
-                                0%
-                            </span>
-                            <span class="projectprocessC" v-if="productInfo.status == 2 ">
-                                <label>投标进度</label>
-                                <div class="processline">
-                                    <i style="width:100%;"></i>
-                                </div>
-                                100%
-                            </span>
-                        </div> -->
                         <div class="projectInfoLine">
-                            <span><label>剩余收益</label>{{productDetailpay.interest}}元</span>
-                            <span v-if="productInfo.repay_type == 0"><label>还款方式</label>每月付息，到期还本</span>
-                            <span v-if="productInfo.repay_type == 1"><label>还款方式</label>按月等额</span>
-                            <span v-if="productInfo.repay_type == 2"><label>还款方式</label>到期还本付息</span>
-                            <span v-if="productInfo.repay_type == 3"><label>还款方式</label>等额本息</span>
-                            <span v-if="productInfo.repay_type == 4"><label>还款方式</label>等额本金</span>
+                            <span><label>剩余收益</label>{{productDetail.interest}}元</span>
+                            <span v-if="productDetail.repayType == 0"><label>还款方式</label>每月付息，到期还本</span>
+                            <span v-if="productDetail.repayType == 1"><label>还款方式</label>按月等额</span>
+                            <span v-if="productDetail.repayType == 2"><label>还款方式</label>到期还本付息</span>
+                            <span v-if="productDetail.repayType == 3"><label>还款方式</label>等额本息</span>
+                            <span v-if="productDetail.repayType == 4"><label>还款方式</label>等额本金</span>
                         </div>
                     </div>
                     <div class="projectInfo_headright" style="padding:20px 40px 0 40px"  id="AjaxForm">
                         <div class="projectmoneyleft">
-                            <label>转让金额</label><span>{{productInfo.transferMoney}}</span>元
+                            <label>转让金额</label><span>{{productDetail.transferMoney}}</span>元
                             <router-link  v-if="uid != null" class="fr" to="/account/recharge">充值</router-link>
                         </div>
-                        <!-- <div class="projectmoneyleft mymoneyleft" v-if="uid == null">
-                            转让金额<span></span><router-link class="logina" style="bottom:16px;" to="/login">登录查看</router-link>
-                        </div> -->
-                        <!-- <div class="projectmoneyleft">
-                            <label>转让金额</label>
-                            <span>{{productInfo.transferMoney}}</span>元
-                        </div> -->
-                        <label v-if="uid != null" class="mymoneyleft">账户余额 <span>{{productDetail.available}}元</span></label>
+                        <label v-if="uid != null" class="mymoneyleft">账户余额 <span>{{available}}元</span></label>
                         <label v-if="uid == null" class="mymoneyleft">账户余额 <span v-if="uid == null"><router-link class="logina" style="margin-top: 5px;" to="/login">登录</router-link>后查看</span></label>
-                        <!-- <label class="mymoneyleft">账户余额 <span>{{productDetail.available}}元</span><router-link to="/account/recharge">充值</router-link></label> -->
                         <input :value="productInfo.transferMoney" class="form-submit" readonly name="money" />
-                        <!-- <div class="awardunlogin"></div> -->
                         <div class="investActline">&nbsp;</div>
                         <router-link v-if="uid == null" class="redBtn buynowBtn" to="/login">登录查看</router-link>
                         <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '0' && uid != null" >暂未转让</a>
                         <a class="redBtn buynowBtn" v-if="productInfo.status == '1' && uid != null" v-on:click="buynow">立即承接</a>
                         <a class="redBtn buynowBtn graybtn" v-if="productInfo.status != '1' && uid != null" >转让结束</a>
-                        <!-- <a class="redBtn buynowBtn graybtn" v-if="productInfo.status == '3' && uid != null" >再次转让</a> -->
                         <div class="xieyiline"  v-if="uid != null">
                             <label v-if="productDetail.status == 1"><input class="required agreement" type="checkbox" checked />我已阅读并同意<a :href="loanxieyi" target="_blank">《借款及服务协议》</a></label>
                             <label v-if="productDetail.status != 1" style="height:46px;display:block;"></label>
@@ -152,24 +126,24 @@
                         <h3>借款标的信息</h3>
                         <table>
                             <tbody>
-                                <tr><td>剩余本息</td><td>{{productDetailpay.money}}元</td><td>转让金额</td><td>{{productInfo.transferMoney}}元</td></tr>
-                                <tr><td>剩余本金</td><td>{{productDetailpay.capital}}元</td><td>剩余收益</td><td>{{productDetailpay.interest}}元</td></tr>
+                                <tr><td>剩余本息</td><td>{{productDetail.money}}元</td><td>转让金额</td><td>{{productDetail.transferMoney}}元</td></tr>
+                                <tr><td>剩余本金</td><td>{{productDetail.capital}}元</td><td>剩余收益</td><td>{{productDetail.interest}}元</td></tr>
                                 <tr>    
                                     <td>借款利率</td>
-                                    <td>{{productInfo.rate}}%</td>
+                                    <td>{{productDetail.rate}}%</td>
                                     <td>还款方式</td>
-                                    <td v-if="productInfo.repay_type == 0">每月付息，到期还本</td>
-                                    <td v-if="productInfo.repay_type == 1">按月等额</td>
-                                    <td v-if="productInfo.repay_type == 2">到期还本付息</td>
-                                    <td v-if="productInfo.repay_type == 3">等额本息</td>
-                                    <td v-if="productInfo.repay_type == 4">等额本金</td>
+                                    <td v-if="productDetail.repayType == 0">每月付息，到期还本</td>
+                                    <td v-if="productDetail.repayType == 1">按月等额</td>
+                                    <td v-if="productDetail.repayType == 2">到期还本付息</td>
+                                    <td v-if="productDetail.repayType == 3">等额本息</td>
+                                    <td v-if="productDetail.repayType == 4">等额本金</td>
                                 </tr>
-                                <tr><td>转让日期</td><td>{{productInfo.transferTime}}</td><td>回款日期</td><td>{{productInfo.repay_time}}</td></tr>
+                                <tr><td>转让日期</td><td>{{productDetail.transferTime}}</td><td>回款日期</td><td>{{productDetail.repayTime}}</td></tr>
                                 <tr>
                                     <td>剩余期限</td>
-                                    <td>{{productDetailpay.num}}个月</td>
+                                    <td>{{productDetail.surplusNum}}个月</td>
                                     <td>借款用途</td>
-                                    <td>{{productInfo.borrowUse}}</td>
+                                    <td>{{productDetail.borrowUse}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -276,7 +250,8 @@
             loanxieyi:'',
             ret:0,
             sid:'',
-            risk:0
+            risk:0,
+            available:0
         }
     },
     created() {
@@ -300,88 +275,79 @@
         //验证是否登陆
         self.uid = localStorage.uid;
         if (localStorage.uid != null && localStorage.uid != '') {
-            // 余额查询
-            self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
-                self.accountInfo = data.data;
-            });
             //借款及服务协议
             self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
         }
-        //产品详情信息获取
-        this.$store.state._ajax(this,'/api/product/transferDetail', { id: idtransfer_id }, function (data) {
-            // console.log(data.data)
-            self.risk = data.data.detail.risk
-            var productdetail=data.data;
-            productdetail.detail.transferTime = productdetail.detail.transferTime.substr(0, 10)
-            productdetail.detail.repay_time = productdetail.detail.repay_time.substr(0, 10)
-            productdetail.detail.description = productdetail.detail.description.split('；');
-            self.productDetail = productdetail;
-            self.productInfo = productdetail.detail;
-            self.productDetailpay=productdetail.pay;
-            });
-            //借款人信息获取
-            this.$store.state._ajax(this,'/api/product/information', { id: idGet }, function (data) {
-            self.BorrowerInfo = data.data;
-            setTimeout(function(){
-                var swiper1 = new Swiper('#swiper-containerSmall', {
-                    pagination: '#swiper-containerSmall .swiper-pagination',
-                    nextButton: '#swiper-containerSmall .swiper-button-next',
-                    prevButton: '#swiper-containerSmall .swiper-button-prev',
-                    slidesPerView: 3,
-                    paginationClickable: true,
-                    spaceBetween: 30,
-                    freeMode: false,
-                    loop: true,
-                    autoplay: 3000,
-                    autoplayDisableOnInteraction: false
-                });
-                var swiper2 = new Swiper('#swiper-containerBig', {
-                        pagination: '#swiper-containerBig .swiper-pagination',
-                        nextButton: '#swiper-containerBig .swiper-button-next',
-                        prevButton: '#swiper-containerBig .swiper-button-prev',
-                        slidesPerView: 1,
+        // 债权转让详情new
+        self.$store.state._ajax(self,'/api/product/transferInfo', {id: idtransfer_id}, function (data) {
+                console.log(data);
+                // var detail = data.data.detail;
+                var productdetail=data.data.detail;
+                productdetail.transferTime = productdetail.transferTime.substr(0, 10)
+                productdetail.repayTime = productdetail.repayTime.substr(0, 10)
+                productdetail.description = productdetail.description.split('；');
+                self.productDetail = productdetail;
+                self.risk = productdetail.risk;
+                
+                // 剩余金额
+                self.available = data.data.available;
+
+                self.BorrowerInfo = data.data.information;
+                setTimeout(function(){
+                    var swiper1 = new Swiper('#swiper-containerSmall', {
+                        pagination: '#swiper-containerSmall .swiper-pagination',
+                        nextButton: '#swiper-containerSmall .swiper-button-next',
+                        prevButton: '#swiper-containerSmall .swiper-button-prev',
+                        slidesPerView: 3,
                         paginationClickable: true,
-                        spaceBetween: 20,
+                        spaceBetween: 30,
                         freeMode: false,
                         loop: true,
-                        autoplay: 5000,
-                        autoplayDisableOnInteraction: false,
-                        observer: true, //修改swiper自己或子元素时，自动初始化swiper，主要是这两行  
-                        observeParents: true //修改swiper的父元素时，自动初始化swiper  
+                        autoplay: 3000,
+                        autoplayDisableOnInteraction: false
                     });
-            },10)
-        });
-        //风控策略获取
-        this.$store.state._ajax(this,'/api/product/risking', {id:idGet}, function (data) {
-            var risking= data.data;
-            risking.creditInfo = risking.creditInfo.split('；');
-            self.productrisking = risking;
-            // console.log(self.productrisking);
-            if(self.productrisking.authInfo.length > 0){
-                $("#sextr").append("<td>"+self.productrisking.authInfo[0].content+"</td><td>已认证</td>")
-                let authinfoC='';
-                for(var i = 1;i<self.productrisking.authInfo.length;i++){
-                if(i %2 != 0){
-                    authinfoC +="<tr><td>"+self.productrisking.authInfo[i].content+"</td><td>已认证</td>";
-                }else{
-                    authinfoC +="<td>"+self.productrisking.authInfo[2].content+"</td><td>已认证</td></tr>";
+                    var swiper2 = new Swiper('#swiper-containerBig', {
+                            pagination: '#swiper-containerBig .swiper-pagination',
+                            nextButton: '#swiper-containerBig .swiper-button-next',
+                            prevButton: '#swiper-containerBig .swiper-button-prev',
+                            slidesPerView: 1,
+                            paginationClickable: true,
+                            spaceBetween: 20,
+                            freeMode: false,
+                            loop: true,
+                            autoplay: 5000,
+                            autoplayDisableOnInteraction: false,
+                            observer: true, //修改swiper自己或子元素时，自动初始化swiper，主要是这两行  
+                            observeParents: true //修改swiper的父元素时，自动初始化swiper  
+                        });
+                },10)
+
+                var risking= data.data.risking;
+                risking.creditInfo = risking.creditInfo.split('；');
+                self.productrisking = risking;
+                if(risking.authInfo.length > 0){
+                    $("#sextr").append("<td>"+risking.authInfo[0].content+"</td><td>已认证</td>")
+                    let authinfoC='';
+                    for(var i = 1;i<risking.authInfo.length;i++){
+                    if(i %2 != 0){
+                        authinfoC +="<tr><td>"+risking.authInfo[i].content+"</td><td>已认证</td>";
+                    }else{
+                        authinfoC +="<td>"+risking.authInfo[2].content+"</td><td>已认证</td></tr>";
+                    }
+                    }
+                    $("#personbaseInfo").append(authinfoC);
                 }
+
+                var repayPlanlist = data.data.transferPlan;
+                if (repayPlanlist.length != 0) {
+                    for (var i = 0; i < repayPlanlist.length; i++) {
+                    repayPlanlist[i].repay_time = repayPlanlist[i].repay_time == '' ? "--" : repayPlanlist[i].repay_time.substr(0, 10);
+                    }
                 }
-                $("#personbaseInfo").append(authinfoC);
-            }
-        }, '');
+                repayPlanlist[(repayPlanlist.length - 1)].month_repay_money = parseFloat(parseInt((repayPlanlist[(repayPlanlist.length - 1)].repay_money - repayPlanlist[(repayPlanlist.length - 1)].self_money) * 100) / 100).toFixed(2);
+                self.repayPlan = repayPlanlist;
+            });
         
-        // //回款计划获取
-        this.$store.state._ajax(this,'/api/product/transferPlan', { id: idGet,transfer_id: idtransfer_id}, function (data) {
-            var repayPlanlist = data.data;
-            if (repayPlanlist.length != 0) {
-                for (var i = 0; i < repayPlanlist.length; i++) {
-                repayPlanlist[i].repay_time = repayPlanlist[i].repay_time == '' ? "--" : repayPlanlist[i].repay_time.substr(0, 10);
-                }
-            }
-            repayPlanlist[(repayPlanlist.length - 1)].month_repay_money = parseFloat(parseInt((repayPlanlist[(repayPlanlist.length - 1)].repay_money - repayPlanlist[(repayPlanlist.length - 1)].self_money) * 100) / 100).toFixed(2);
-            self.repayPlan = repayPlanlist;
-        }, '');
 
         // 银行限额信息获取
         this.$store.state._ajax(this,'/api/product/bankLimit', {}, function (data) {
@@ -469,7 +435,7 @@
         },
         moneyCheck: function(){
             var self = this;
-            if (parseFloat(this.productDetail.detail.transferMoney) > parseFloat(this.productDetail.available)) {
+            if (parseFloat(this.productDetail.transferMoney) > parseFloat(this.available)) {
                 layer.alert("你的余额不足以投资，请先充值!",'',function(){self.$router.push({path:'/account/recharge'});layer.closeAll(); setTimeout(function () { self.$router.push({path:'/account/recharge'}); layer.closeAll();}, 2000) });
             } else {
                 // self.$router.push({path:"/product/transInvestComfirm?id=" + self.productId + "&transfer_id=" + self.productDetail.detail.transfer_id})

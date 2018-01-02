@@ -13,13 +13,13 @@
     // layer.alert("提示语", {title: '操作提示',icon: 6}, function () { window.location.reload(); })//笑脸
     let APIURL = ''
     let ifRegular = 0;
-    if (window.location.hostname.indexOf('pc.litongbank.com.cn') != '-1' || window.location.hostname.indexOf('localhost') != '-1') { //测试环境
-        APIURL = 'https://t.litongjinfu.com'
-        ifRegular = 0;
-    } else {//正式环境
+    // if (window.location.hostname.indexOf('pc.litongbank.com.cn') != '-1' || window.location.hostname.indexOf('localhost') != '-1') { //测试环境
+    //     APIURL = 'https://t.litongjinfu.com'
+    //     ifRegular = 0;
+    // } else {//正式环境
         APIURL = 'https://api.litongjinfu.com'
         ifRegular = 1;
-    }
+    // }
     //访问统计
     var _hmt = _hmt || [];
     (function () {
@@ -444,36 +444,48 @@
     //签到日期插件
     var calUtil = {
         //当前日历显示的年份
-        showYear:2017,
+        showYear:2018,
         //当前日历显示的月份
-        showMonth:12,
+        showMonth:1,
         //当前日历显示的天数
         showDays:1,
         eventName:"load",
         //初始化日历
-        init: function (signList,calDom,DateInsert) {
+        init: function (signList,calDom,DateInsert,repayedList,datetoday) {
             var s=''
             calUtil.setMonthAndDay(DateInsert);
+            // var Form = repayedList ? repayedList :'';
             if (typeof(s) == 'undefined'){
             }else{
                 signList.splice('','',s);
+                if(repayedList){
+                    repayedList.splice('','',s);
+                }
             }
-            calUtil.draw(signList,calDom);
-            calUtil.bindEnvent(signList);
+            calUtil.draw(signList,calDom,repayedList,datetoday);
+            
         },
-        draw:function(signList,calDom){
+        draw:function(signList,calDom,repayedList,datetoday){
             //绑定日历
             //alert(signList.length);
-            //console.log(signList);
-            if(signList.length > 21){
-                //alert(21);
-                $("#sign_note").empty();
-                $("#sign_note").html('<button class="sign_contener" type="button"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;已达标，获取1次抽奖</button>');
-            }
-            var str = calUtil.drawCal(calUtil.showYear,calUtil.showMonth,signList);
+            // console.log(signList);
+            // if(signList.length > 21){
+            //     //alert(21);
+            //     $("#sign_note").empty();
+            //     $("#sign_note").html('<button class="sign_contener" type="button"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;已达标，获取1次抽奖</button>');
+            // }
+            var str = calUtil.drawCal(calUtil.showYear,calUtil.showMonth,signList,repayedList,datetoday);
             $(calDom).html(str);
+
+            if(datetoday != ''){
+                $(".sign_row div").each(function(){
+                    if($(this).attr("date") && $(this).attr("date") == datetoday){
+                        $(this).addClass('currentdate');
+                    }
+                })
+            }
             //绑定日历表头
-            $('head').append("<style>.sign_equal:after{ content:'" + calUtil.showMonth + "'  !important;}</style>");
+            $('head').append("<style>.sign_equal:after{ content:'" + calUtil.showMonth + "';}</style>");
             var calendarName=calUtil.showYear+"年"+calUtil.showMonth+"月";
             $(".calendar_month_span").html(calendarName);
         },
@@ -517,8 +529,8 @@
             {
                 case "load":
                     // var current = new Date();
-                    calUtil.showYear=DateInsert.getFullYear();
-                    calUtil.showMonth=DateInsert.getMonth() + 1;
+                    calUtil.showYear=(new Date(DateInsert)).getFullYear();
+                    calUtil.showMonth=(new Date(DateInsert)).getMonth() + 1;
                     break;
                 case "prev":
                     var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
@@ -583,14 +595,15 @@
         ifHasSigned : function(signList,day){
             var signed = false;
             $.each(signList,function(index,item){
-            if(item.signDay == day) {
-            signed = true;
-            return false;
-            }
-        });
-        return signed ;
+            //     console.log('item.signDay='+item.signDay+'   day='+day);
+                if(item.signDay == day) {
+                    signed = true;
+                    return false;
+                }
+            });
+            return signed ;
         },
-        drawCal : function(iYear, iMonth ,signList) {
+        drawCal : function(iYear, iMonth ,signList,repayedList) {
             var myMonth = calUtil.bulidCal(iYear, iMonth);
             var htmls = new Array();
             htmls.push("<div class='sign_main' id='sign_layer'>");
@@ -615,11 +628,14 @@
                 for (d = 0; d < 7; d++) {
             
                     var ifHasSigned = calUtil.ifHasSigned(signList,myMonth[w][d]);
+                    var ifrepayed = calUtil.ifHasSigned(repayedList,myMonth[w][d]);
                     //console.log("001:"+ifHasSigned);
                     if(ifHasSigned && typeof(myMonth[w][d]) != 'undefined'){
-                        htmls.push("<div class='td_"+d+" on'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</div>");
-                    } else {
-                        htmls.push("<div class='td_"+d+" calendar_record'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</div>");
+                        htmls.push("<div class='td_"+d+" on' date='"+iYear+"-"+iMonth+"-"+(!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") +"'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</div>");
+                    }else if(ifrepayed && typeof(myMonth[w][d]) != 'undefined'){
+                        htmls.push("<div class='td_"+d+" end' date='"+iYear+"-"+iMonth+"-"+(!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") +"'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</div>");
+                    }else {
+                        htmls.push("<div class='td_"+d+" calendar_record' date='"+iYear+"-"+iMonth+"-"+(!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") +"'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</div>");
                     }
                 }
                 htmls.push("</div>");
