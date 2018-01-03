@@ -1927,11 +1927,6 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 // 回款日历
 .calendarC{margin: 0 30px;box-shadow: 0px 0px 10px #ccc;padding:10px 0;font-size: 0;}
 .calendar_left{width:55%;display: inline-block;border-right: 1px solid #f0f0f0;vertical-align: top;}
-#calendar_left .sign_equal .on::after{content: '.';border: 0;color:@btn-red;font-size: 25px;width: 59px;height: 0;left: 0;text-align: center;top:10px;}
-#calendar_left .sign_equal .end{position: relative;}
-#calendar_left .sign_equal .end::after{content: '.';border: 0;color:#969696;font-size: 25px;width: 59px;height: 0;position:absolute;top:4px;left: 0;text-align: center;top:10px;}
-// content:"";border-radius:50%;border:2px solid #eb494b;width:25px;height:25px;display:inline-block;left:1px;
-#calendar_left .sign_equal:after{content: '' !important;z-index: -99;}
 .calendar_left_text{
     div{display: inline-block;vertical-align: top;font-size:14px;padding:20px 0;
         label{}
@@ -1944,8 +1939,11 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     .sign_succ_calendar_title{display: block;padding: 10px 0;}
     .sign_row div{line-height: 55px;}
     .sign_row div{position: relative;z-index: 0;cursor: pointer;}
-    .currentdate::after{content:'';border-radius: 50%;
-        border: 2px solid #eb494b;
+    .sign_equal:after{content: '' !important;z-index: -99;}
+    .on::after{content: '.';border: 0;color:@btn-red;font-size: 25px;width: 59px;height: 0;left: 0;text-align: center;top:6px;}
+    .sign_equal .end::after{content: '.';border: 0;color:#969696;font-size: 25px;width: 59px;height: 0;position:absolute;left: 0;text-align: center;top:6px;z-index: -3;}
+    .currentdate::before{content:'';border-radius: 50%;
+        border: 2px solid #498aeb;
         width: 28px;
         height: 28px;
         display: inline-block;
@@ -1955,19 +1953,20 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     .Selecteddate{color:#fff;}
     .Selecteddate::before{content:'';
         border-radius: 50% ;
-        border: 2px solid #498aeb;
+        border: 2px solid @btn-red;
         width: 28px;
         height: 28px;
         display: inline-block;
         position: absolute;
         top: 12px;
-        left: 14px;background-color: #498aeb;z-index: -1;}
-    .end.Selecteddate::before{background-color: #ccc;}    
-    .currentdate.Selecteddate::before{background-color: @btn-red;border: 2px solid @btn-red;}
+        left: 14px;background-color: @btn-red;z-index: -1;}
+    .end.Selecteddate::before{background-color: #ccc; border: 2px solid #ccc;}    
+    .currentdate.Selecteddate::before{background-color: #498aeb;border: 2px solid #498aeb;}
+    .end.currentdate{}
 }
 .calendar_right{width: 45%;display:inline-block;vertical-align: top;
     .dayListC{height: 390px;overflow: auto;padding:20px 0;
-        img{width: 100%;}
+        .norepayimg{display: block;width: 80%;opacity: 0.5;margin:70px auto;}
         a{font-weight: normal;padding:0 20px;font-size: 14px;line-height:25px;display: block;color:#323232;
             img{width: 20px;height: 20px;margin-right: 5px;}
             label{float: right;font-size: 12px;color:#969696;

@@ -134,7 +134,7 @@
                             </select>
                             <select v-if="redPackageList.length !=0" class="form-submit" name="vocherId" id="vocherId"  v-on:change="redpackageSel">
                                 <option reMoney ="0" minMoney='0' selected value="">请选择红包</option>
-                                <option v-for="(redPackage,index) in redPackageList" :key="index" :minMoney="redPackage.minMoney" :reMoney="redPackage.money" :value="redPackage.id">{{redPackage.source}}红包：￥{{redPackage.money}}（最小起投金额：￥{{redPackage.minMoney}}）</option>
+                                <option v-for="(redPackage,index) in redPackageList" :key="index" :minMoney="redPackage.minMoney" :reMoney="redPackage.money" :value="redPackage.id">{{redPackage.source}}：￥{{redPackage.money}}（最小起投金额：￥{{redPackage.minMoney}}）</option>
                             </select>
                         </div>
                         <div class="awardSelLine"  v-if="uid != null">
@@ -145,7 +145,7 @@
                             </select>
                             <select v-if="CouponList.length !=0" class="form-submit" name="useRateId" id="useRateId" v-on:change="couponSel" style="margin-right:20px;">
                                 <option reMoney="0" minMoney="0" selected value="">请选择加息券</option>
-                                <option v-for="(coupon,index) in CouponList" :key="index" v-if="coupon.minMoney" :minMoney="coupon.minMoney" :reMoney="coupon.money" :value="coupon.id">{{coupon.source}}加息券：+{{coupon.money}}%（最小起投金额：￥{{coupon.minMoney}}）</option>
+                                <option v-for="(coupon,index) in CouponList" :key="index" v-if="coupon.minMoney" :minMoney="coupon.minMoney" :reMoney="coupon.money" :value="coupon.id">{{coupon.source}}：+{{coupon.money}}%（最小起投金额：￥{{coupon.minMoney}}）</option>
                             </select>
                         </div>
                         <div class="awardunlogin" v-if="uid == null"><router-link style="margin-top: 5px;" to="/login">登录</router-link>查看我的奖券</div>
@@ -633,7 +633,8 @@
                     layer.msg("投资金额必须大于红包最小起投金额!");
                 } else {
                     var actualmoney = money - parseInt(reMoney);
-                    self.actualmoney = actualmoney;
+                    self.actualmoney = actualmoney > 0 ? actualmoney :0;
+                    // self.actualmoney = actualmoney;
                 }
         },
         couponSel: function () {

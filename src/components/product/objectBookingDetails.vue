@@ -355,7 +355,8 @@
                 useReward:1,
                 useExtraRate:1,
                 automaticBtnText:'开启',
-                autobid:''
+                autobid:'',
+                dangerType:''
             }
         },
         created() {
@@ -380,6 +381,15 @@
             //获取自动投标状态
             self.$store.state._ajax(self,'/api/invest/findPlan', {}, function (data) {
                 self.autoBid = data.data.autoBid;
+                self.dangerType = data.data.autoBid.dangerType;
+                // if(self.dangerType == null){
+                //     layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+                //         self.$router.push({path:"/account/riskTest"});
+                //         layer.closeAll();
+                //     },function(){
+                //         layer.closeAll();
+                //     });
+                // }
                 self.userSortRank = data.data.userSortRank;
                 self.switch1Class = (data.data.autoBid.status == 0) ? 'close1' : 'open1';
                 self.switch2Class = (data.data.autoBid.status == 0) ? 'close2' : 'open2';

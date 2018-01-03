@@ -273,8 +273,12 @@
                         ]
                     })
                 var yeardatalist=[];
+                var yearlabellist=[];
                 $.each(self.platformdata.bidProportion.year,function(name,value){
-                    yeardatalist.push({value: value, name: name})
+                    yearlabellist.push(name);
+                    yeardatalist.push({value: value, name: name});
+                    console.log(name);
+                    // yearlabellist.pusth(name);
                 })
                 //投资人年龄比例
                 self.pieChart("PAgedistribution", '#fff',
@@ -294,7 +298,7 @@
                             fontSize: 24
                         }
                     },
-                    { show: true, data: ["18-25岁", "26-35岁", "36-45岁", "45岁以上"], orient: 'vertical', x: '20px', y: '20px' },
+                    { show: true, data: yearlabellist, orient: 'vertical', x: '20px', y: '20px' },
                     {
                         name: "各类订单数及所占比重",
                         type: "pie",
@@ -337,13 +341,13 @@
                             fontSize:24
                         }
                     },
-                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name], orient: 'vertical', x: '30px',y:'30px' },
+                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name,self.platformdata.bidData.productType[2].name], orient: 'vertical', x: '30px',y:'30px' },
                     {
                         name: "各类订单数及所占比重",
                         type: "pie",
                         radius: ['50%', '70%'],
                         center: ["50%", "55%"],
-                        color: ["#fe7228", "#498bec" ],
+                        color: ["#fe7228", "#498bec","#27dcb6" ],
                         selectedMode: 'single',
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         itemStyle: {
@@ -363,6 +367,7 @@
                         data: [
                             { value: self.platformdata.bidData.productType[0].value, name: self.platformdata.bidData.productType[0].name },
                             { value: self.platformdata.bidData.productType[1].value, name: self.platformdata.bidData.productType[1].name },
+                            { value: self.platformdata.bidData.productType[2].value, name: self.platformdata.bidData.productType[2].name },
                         ]
                     })
                 //标的期限分布
@@ -426,7 +431,7 @@
                 var optionTM = {
                     title: {
                         show: true,
-                        text: '近10个月投资项目交易额',
+                        text: '每月交易额',
                         x: 'center',
                         y: '25px',
                         textStyle: {

@@ -13,13 +13,13 @@
     // layer.alert("提示语", {title: '操作提示',icon: 6}, function () { window.location.reload(); })//笑脸
     let APIURL = ''
     let ifRegular = 0;
-    // if (window.location.hostname.indexOf('pc.litongbank.com.cn') != '-1' || window.location.hostname.indexOf('localhost') != '-1') { //测试环境
-    //     APIURL = 'https://t.litongjinfu.com'
-    //     ifRegular = 0;
-    // } else {//正式环境
+    if (window.location.hostname.indexOf('pc.litongbank.com.cn') != '-1' || window.location.hostname.indexOf('localhost') != '-1') { //测试环境
+        APIURL = 'https://t.litongjinfu.com'
+        ifRegular = 0;
+    } else {//正式环境
         APIURL = 'https://api.litongjinfu.com'
         ifRegular = 1;
-    // }
+    }
     //访问统计
     var _hmt = _hmt || [];
     (function () {
@@ -377,10 +377,11 @@
     //获取sid
     const getSID =function(that,newhref) {
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:'20171227'},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20180103'},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {
+                    localStorage.removeItem('uid');
                     localStorage.SID = d.data.sid;
                     setCookie('sid', d.data.sid);
                     // 获取好sid后，如果有新链接，跳转到新链接，否则刷新界面
@@ -431,6 +432,7 @@
         }, 1000);
     }
     //Unix时间戳转换
+    // 正常时间转unix时间戳
     const unixChange=function(_str){
         if(_str != ''){
             var date = new Date(_str);
@@ -439,6 +441,16 @@
         }else{
             return '';
         }
+    }
+    // unix转普通时间
+    const formatTime =function(time) {
+        let unixtime = time;
+        let unixTimestamp = new Date(unixtime * 1000);
+        let Y = unixTimestamp.getFullYear();
+        let M = unixTimestamp.getMonth() + 1;
+        let D = unixTimestamp.getDate();
+        let toDay = Y + '-' + M + '-' + D;
+        return toDay;
     }
 
     //签到日期插件
@@ -1579,7 +1591,8 @@
                 citySelect:$.fn.citySelect,
                 layer:layer,
                 unixChange:unixChange,
-                wave:wave
+                wave:wave,
+                formatTime:formatTime
             },
             mutations:{
                 sayhello(state,num){
