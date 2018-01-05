@@ -277,7 +277,6 @@
                 $.each(self.platformdata.bidProportion.year,function(name,value){
                     yearlabellist.push(name);
                     yeardatalist.push({value: value, name: name});
-                    console.log(name);
                     // yearlabellist.pusth(name);
                 })
                 //投资人年龄比例
@@ -341,7 +340,7 @@
                             fontSize:24
                         }
                     },
-                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name,self.platformdata.bidData.productType[2].name], orient: 'vertical', x: '30px',y:'30px' },
+                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name], orient: 'vertical', x: '30px',y:'30px' },
                     {
                         name: "各类订单数及所占比重",
                         type: "pie",
@@ -366,8 +365,7 @@
                         },
                         data: [
                             { value: self.platformdata.bidData.productType[0].value, name: self.platformdata.bidData.productType[0].name },
-                            { value: self.platformdata.bidData.productType[1].value, name: self.platformdata.bidData.productType[1].name },
-                            { value: self.platformdata.bidData.productType[2].value, name: self.platformdata.bidData.productType[2].name },
+                            { value: self.platformdata.bidData.productType[1].value, name: self.platformdata.bidData.productType[1].name }
                         ]
                     })
                 //标的期限分布
@@ -400,7 +398,7 @@
                         type: "pie",
                         radius: ['50%', '70%'],
                         center: ["50%", "55%"],
-                        color: ["#ff3232", "#ff6c32","#ffb932", "#ffb932","#c3ff32","#32ff4f","#32ffd1","#32b4ff","#3259ff","#a132ff","#ff32d1","#ff3267"],
+                        color: ["#ff3232", "#ff6c32","#ffb932","#c3ff32","#32ff4f","#32ffd1","#32b4ff","#3259ff","#a132ff","#ff32d1","#ff3267"],
                         selectedMode: 'single',
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         itemStyle: {

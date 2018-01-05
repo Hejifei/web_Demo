@@ -1,13 +1,15 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+//兼容IE
+import 'babel-polyfill';
+import 'eventsource-polyfill';
+
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
-//兼容IE
-import 'babel-polyfill';
-import 'eventsource-polyfill';
+
 import App from './App';
 
 // jquery引用

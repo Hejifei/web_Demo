@@ -23,7 +23,7 @@
         <div class="indexbanner-txt bannertopbox" v-else>
           <div class="bannertopinfoC">
             <div class="baninfotopline clearfix">
-              <img class="headimg" :src="accountInfo.avatar" />
+              <img class="headimg" :src="accountInfo.avatar" title="头像" />
               <div class="baninfotoplineright">
                 <h3>您好：{{accountInfo.realname}}</h3>
                 <p><a><span>账户余额</span><span>{{accountInfo.useMoney}}</span></a></p>

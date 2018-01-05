@@ -2,16 +2,16 @@
     <div class="overview">
         <div class="awardListC">
             <ul class="clearfix">
-                <li @click="getawardList(1, 0, 1)" class="awardList_active">我的红包</li>
-                <li @click="getawardList(2, 0, 1)">我的加息券</li>
+                <li @click="getawardList(1, 0, 1,0)" class="awardList_active">我的红包</li>
+                <li @click="getawardList(2, 0, 1,1)">我的加息券</li>
             </ul>
         </div>
         <!-- @*红包列表*@ -->
         <div class="awardsonlistC"  v-cloak>
             <ul class="awardsonlist clearfix">
-                <li class="awardsonlist_active" @click="getawardList(1, 0, 1)">未使用</li>
-                <li @click="getawardList(1, 1, 1)">已使用</li>
-                <li @click="getawardList(1, 2, 1)">已过期</li>
+                <li class="awardsonlist_active" @click="getawardList(1, 0, 1,0)">未使用</li>
+                <li @click="getawardList(1, 1, 1,0)">已使用</li>
+                <li @click="getawardList(1, 2, 1,0)">已过期</li>
             </ul>
             <div class="chge"></div>
             <div class="awardDetailListC">
@@ -74,9 +74,9 @@
         <!-- @*加息券列表*@ -->
         <div class="awardsonlistC"  v-cloak>
             <ul class="awardsonlist clearfix">
-                <li @click="getawardList(2, 0, 1)" class="awardsonlist_active">未使用</li>
-                <li @click="getawardList(2, 1, 1)">已使用</li>
-                <li @click="getawardList(2, 2, 1)">已过期</li>
+                <li @click="getawardList(2, 0, 1,1)" class="awardsonlist_active">未使用</li>
+                <li @click="getawardList(2, 1, 1,1)">已使用</li>
+                <li @click="getawardList(2, 2, 1,1)">已过期</li>
             </ul>
             <div class="chge"></div>
             <div class="awardDetailListC">
@@ -153,21 +153,21 @@
     },
     mounted:function(){
       var self = this;
-      this.getawardList(1,0,1)
+      this.getawardList(1,0,1,0)
 
       //红包与加息券切换
-      $(".awardListC ul li").click(function () {
-        $(".awardList_active").removeClass("awardList_active");
-        $(this).addClass("awardList_active");
-        $(".awardsonlistC").hide();
-        $(".awardsonlistC").eq($(this).index()).show();
-      })
-      $(".awardsonlist li").click(function () {
-        $(this).siblings(".awardsonlist_active").removeClass("awardsonlist_active");
-        $(this).addClass("awardsonlist_active");
-        $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").hide();
-        $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
-      })
+    //   $(".awardListC ul li").click(function () {
+    //     $(".awardList_active").removeClass("awardList_active");
+    //     $(this).addClass("awardList_active");
+    //     $(".awardsonlistC").hide();
+    //     $(".awardsonlistC").eq($(this).index()).show();
+    //   })
+    //   $(".awardsonlist li").click(function () {
+    //     $(this).siblings(".awardsonlist_active").removeClass("awardsonlist_active");
+    //     $(this).addClass("awardsonlist_active");
+    //     $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").hide();
+    //     $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
+    //   })
 
       //使用规则的开关
             $(".overview").delegate(".awardoutC .routeLab", 'click', function () {
@@ -182,7 +182,7 @@
             })
     },
     methods: {
-        getawardList:function(_type, _keywords, _page) {
+        getawardList:function(_type, _keywords, _page,_index) {
             var self = this;
             //红包列表获取
             self.$store.state._ajax(self,'/api/reward/getList',
@@ -222,8 +222,20 @@
                     self.keywords = _keywords;
                     self.awardInfo = awardInfo;
                         
-                            
+                    $(".awardList_active").removeClass("awardList_active");
+                    $(".awardListC ul li").eq(_index).addClass("awardList_active");
+                    $(".awardsonlistC").hide();
+                    $(".awardsonlistC").eq(_index).show();       
+
+                    $(".awardsonlist li").click(function () {
+                        $(".awardsonlist_active").removeClass("awardsonlist_active");
+                        $(".awardsonlist li").eq(_keywords).addClass("awardsonlist_active");
+                        $(".awardDetailList").hide();
+                        $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
+                    })
                 }, '');
+            
+            
         }
     }
   }

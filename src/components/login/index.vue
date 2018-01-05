@@ -46,7 +46,8 @@
                                     <input type="text"  placeholder="请输入验证码" class="input_text  radius w90 form-submit required" name="imgverify" id="imgverify">
                                     <span class="tip" style="right: 120px;"></span>
                                     <span class="code">
-                                        <img id="codeimg" :src="codeimgurl" @click='numchange'>
+                                        <!-- <img id="codeimg" :src="codeimgurl" @click='numchange'> -->
+                                        <img id="codeimg" v-bind:src="apiurl +'/api/user/getImgVerify?sid='+sid+'&random='+numrandom" v-on:click="numchange">
                                         <!-- @*<img id="codeimg" v-bind:src="apiurl +'/api/user/getImgVerify?random='+numrandom" v-on:click="numrandomChange">*@ -->
                                     </span>
                                     
@@ -85,11 +86,12 @@
                 apiurl: '',
                 sid: '',
                 mobile:'',
-                numrandom : Math.random(),
+                numrandom : '',
             }
         },
         mounted:function(){
             var self = this;
+            self.numrandom = Math.random();
             //提交登陆申请
             this.$store.state.AjaxSumbit(this,"/", "/api/user/login", function (j) {
                 localStorage.uid = j.data.id;

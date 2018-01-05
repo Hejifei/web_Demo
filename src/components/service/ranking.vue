@@ -83,7 +83,6 @@
                     $(".specialtr").removeClass("specialtr");
                     if(self.myRanking.paiming <= 10){
                         setTimeout(function() {
-                            console.log($(".rankB_right table tbody").find("tr").eq(self.myRanking.paiming - 1))
                             $(".rankB_right table tbody").find("tr").eq(self.myRanking.paiming - 1).addClass("specialtr");
                         }, 100);
                     }

@@ -220,7 +220,8 @@ export default {
                                 signList.push({ "signDay": signDetail[i].createTime.substr(8, 2) })
                             }
                         }
-                        that.$store.state.calUtil.init(signList);
+                        var DateInsert = new Date();
+                        that.$store.state.calUtil.init(signList,"#calendar",DateInsert);
                     }, '', false);
                 }, '', false);
         },

@@ -113,8 +113,8 @@
                 self.$store.state.calUtil.showMonth=12;
                 self.$store.state.calUtil.showYear-=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'-'+self.$store.state.calUtil.showMonth+'-01';
-            
+            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            changetime= new Date(changetime);
             // 如果上一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
             if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
@@ -134,7 +134,8 @@
                 self.$store.state.calUtil.showMonth=1;
                 self.$store.state.calUtil.showYear+=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'-'+self.$store.state.calUtil.showMonth+'-01';
+            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            changetime= new Date(changetime);
             // 如果下一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
             if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
@@ -177,7 +178,9 @@
                 });
                 $(".sign_row div").click(function(){
                     if($(this).attr("date")){
-                        var direcedate = new Array($(this).attr("date"));
+                        var direcedate = $(this).attr("date");
+                        direcedate = direcedate.replace(/-/g, "\/");
+                        direcedate = new Date(direcedate);
                         self.dailycalendar(self.$store.state.unixChange(direcedate));
                         $(".Selecteddate").removeClass("Selecteddate");
                         $(this).addClass('Selecteddate');
@@ -218,6 +221,7 @@
         nextPaydate:function(_time){
             var self = this;
             var unUnixedTime = self.$store.state.formatTime(_time);
+            unUnixedTime = unUnixedTime.replace(/-/g, "\/");
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var purposeMonth = (new Date(unUnixedTime)).getMonth() + 1;
             if(purposeMonth != nowMonth){
