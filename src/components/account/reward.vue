@@ -169,7 +169,7 @@
     //     $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
     //   })
 
-      //使用规则的开关
+        //使用规则的开关
             $(".overview").delegate(".awardoutC .routeLab", 'click', function () {
                 if ($(this).find("span").hasClass("icon-angle-up")) {
                     $(this).find(".icon-angle-up").removeClass("icon-angle-up").addClass("icon-angle-down");
@@ -225,14 +225,17 @@
                     $(".awardList_active").removeClass("awardList_active");
                     $(".awardListC ul li").eq(_index).addClass("awardList_active");
                     $(".awardsonlistC").hide();
-                    $(".awardsonlistC").eq(_index).show();       
-
-                    $(".awardsonlist li").click(function () {
-                        $(".awardsonlist_active").removeClass("awardsonlist_active");
-                        $(".awardsonlist li").eq(_keywords).addClass("awardsonlist_active");
-                        $(".awardDetailList").hide();
-                        $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
-                    })
+                    $(".awardsonlistC").eq(_index).show();    
+                    $(".awardsonlist_active").removeClass("awardsonlist_active");
+                    $(".awardsonlistC").eq(_index).find(".awardsonlist li").eq(_keywords).addClass("awardsonlist_active");
+                    $(".awardsonlistC").eq(_index).find(".awardDetailListC .awardDetailList").hide();
+                    $(".awardsonlistC").eq(_index).find(".awardDetailListC .awardDetailList").eq(_keywords).show();
+                    // $(".awardsonlist li").click(function () {
+                    //     $(".awardsonlist_active").removeClass("awardsonlist_active");
+                    //     $(".awardsonlist li").eq(_keywords).addClass("awardsonlist_active");
+                    //     $(".awardDetailList").hide();
+                    //     $(this).parent(".awardsonlist").siblings(".awardDetailListC").find(".awardDetailList").eq($(this).index()).show();
+                    // })
                 }, '');
             
             

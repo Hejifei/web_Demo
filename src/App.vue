@@ -68,7 +68,6 @@
       LTJF.$on('txt', function(msg){
         self.headshow = msg.header == false ? false : true
       })
-
       self.NumberGet();
       // 定时重新获取顶部出借数据条数
       setInterval(function(){

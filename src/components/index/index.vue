@@ -468,6 +468,8 @@ export default {
                 self.newHandAcitvityInfo = newHandAcitvity.info;
             });
             
+            // 重新获取各类标的数量
+            LTJF.$emit("NumberChage",1);
             //散标、债权
             self.productlistChange(3,0);
             // 各类标数据条数获取
@@ -497,7 +499,7 @@ export default {
         },
         productlistChange:function(_type,_index){
             var self = this;
-            LTJF.$emit("NumberChage",1);
+            
             //散标/债券数据获取
             self.$store.state._ajax(self,'/api/product/index',
             {
