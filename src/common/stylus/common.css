@@ -49,8 +49,8 @@ fieldset { border-width: 0; padding: 0.35em 0.625em 0.75em; margin: 0 2px; borde
 .cl:after, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .cl, .clearfix { zoom: 1; }
 /* 公共样式  */
-.wp { width: 1000px; margin: auto;font-size: 0;}
-.wpleft{width: 710px;display: inline-block;vertical-align: top;}
+.wp { width: 1050px; margin: auto;font-size: 0;}
+.wpleft{width: 760px;display: inline-block;vertical-align: top;}
 .wpright{width: 290px;display: inline-block;vertical-align: top;text-align: left;}
 .wpright a{display: inline-block;margin: 10px 0 10px 20px;}
 .wpright a img{width: 75px;height: 28px;}
@@ -152,7 +152,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
 .topnav #ink_con { float: left; width: 450px; height: 20px; }
     .topnav #ink_con a { white-space: nowrap; text-overflow: ellipsis; font-size: 12px; line-height: 18px; padding: 0; margin: 0; padding-left: 10px; width: 450px; display: block; }
 
-.header .headerwp { width: 1000px;height: 90px; margin: 0px auto; }
+.header .headerwp { width: 1050px;height: 90px; margin: 0px auto; }
 .header .logo { width: 183px; height: 37px; background: url(./img/newlogo.png) no-repeat; display: inline-block;background-size:contain;position: relative; }
 .header .logoright::after{content: '';width: 1px;height: 22px;border-right:1px solid #646464;position: absolute;right: -20px;top:8px;}
 /* .header .headernav { display: inline-block; line-height: 35px; float: right; padding: 15px 0 5px; }
@@ -173,7 +173,7 @@ del { color: #aaa; font-size: 12px; font-family: "\5FAE\8F6F\96C5\9ED1","Microso
 
 /*footer*/
 
-.footer { width: 100%;  background: #3c3c3c; min-width:1000px;}
+.footer { width: 100%;  background: #3c3c3c; min-width:1050px;}
     .footer .footnav { margin: 0px auto;  padding: 30px 0 20px 0; }
         .footer .footnav dl { float: left; overflow: hidden; text-align: left; width: 110px; padding-right: 20px;}
         .footer .footnav dt { width: 100%; line-height: 20px; font-size: 16px; color: #eb494b; padding: 0px 10px; border-left-style: solid; }

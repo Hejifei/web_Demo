@@ -10,7 +10,7 @@
                 <input type="password" style="width:0;height:0;"/>
                 </div>
                 <div class="loginbody registerBG" style="margin:0;width:100%;">
-                    <div style="width:1000px;height:450px;"  class="clearfix">
+                    <div style="width:1050px;height:450px;"  class="clearfix">
                         <div class="login-form fr" style="width:362px;height:395px;padding-top:0;border-top:1px solid #d8d8d8;margin-bottom: 0;margin-left:40px;">
                             <div class="login-title clearfix">
                                 <div class="login-title">

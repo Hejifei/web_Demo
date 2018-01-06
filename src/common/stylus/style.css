@@ -294,7 +294,7 @@
 .wp .rightmain-c .newsinfo-intro-t{font-size: 16px;color: #333;font-weight: bold;line-height: 20px;padding-bottom: 10px;margin: 15px 0;border-bottom:1px solid #f4f4f4 }
 .wp .rightmain-c .newsinfo-intro p{text-indent:2em}
 .wp .rightmain-c .newsinfo-intro .sap-1{width: 238px;height: 32px;text-align: center;}
-.content { color: #666;line-height: 24px; overflow: hidden;text-align: left;font-size: 14px; height: auto !important;height: 400px;min-height: 400px;width:1000px;margin:0 auto;background-color:#fff;}
+.content { color: #666;line-height: 24px; overflow: hidden;text-align: left;font-size: 14px; height: auto !important;height: 400px;min-height: 400px;width:1050px;margin:0 auto;background-color:#fff;}
 .content .bigimg{ margin:30px auto 50px auto;border:0;max-width:900px;display: inline-block;}
 .content h1{margin-top:40px;font-size:28px;font-weight:normal;color:#323232;line-height:60px;}
 .content h1 img{display:block;height:2px;line-height:2px;margin:0 auto;}
@@ -370,7 +370,7 @@
 .mainwp .xmlist  li .list-right .tzbtn{width: 136px; height:30px;line-height:30px; font-size: 16px;}
 /* 关于利通 */
 .content .aboutcon {
-    width: 880px;
+    width: 930px;
     margin: 20px auto;
 }
 .content .aboutcon dd h3 {

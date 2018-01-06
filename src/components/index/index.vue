@@ -569,7 +569,7 @@ export default {
 <style scoped>
     .swiper-container {
         width: 100%;
-        min-width:1000px;
+        min-width:1050px;
         height: 100%;
         margin-left: auto;
         margin-right: auto;

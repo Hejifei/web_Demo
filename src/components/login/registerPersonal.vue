@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="loginbody registerBG registerC" id="box" style="margin:0;width:100%;"> 
-                    <div style="width:1000px;"  class="clearfix"> 
+                    <div style="width:1050px;"  class="clearfix"> 
                         <div class="login-r-r fl"></div>
                         <div class="fr loginbody-z">
                             <p class="registerTitle">个人注册</p>

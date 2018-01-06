@@ -182,9 +182,9 @@
     .box_shaow-1 .guaranteer-3 ul li img{width:70px;}
     .box_shaow-1 .guaranteer-3 ul li div{width:270px;}
     .wangluojiaoyi ul li{padding: 0 53px 20px;}
-    .box_shaow .guaranteer-2 .fengkongsafeUl li{width:327px;height:177px;}
+    .box_shaow .guaranteer-2 .fengkongsafeUl li{width:347px;height:177px;}
     .box_shaow .guaranteer-2 .fengkongsafeUl li:nth-child(odd){margin-right:333px;}
-    .fengkongProcessul{width: 900px !important;height: 40px !important;list-style:none;background:url(../../common/stylus/img/fengkongProcessul.png) no-repeat center center;background-size:100% 100%;margin:0 50px 0 !important;}
+    .fengkongProcessul{width: 900px !important;height: 40px !important;list-style:none;background:url(../../common/stylus/img/fengkongProcessul.png) no-repeat center center;background-size:100% 100%;margin:0 75px 0 !important;}
     .fengkongProcessul li{float:left;padding:0 !important;line-height:40px;width:12.5% !important; color:#333;font-size:16px;}
     .box_shaow-2 .guaranteer-4 ul li{width:auto;height:auto;padding: 15px 20px;}
     .box_shaow-2 .guaranteer-4 ul li div{width:85%;}
