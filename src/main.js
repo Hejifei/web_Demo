@@ -88,6 +88,7 @@ import loan from 'components/loan/index';//我要出借
 import applyRecord from 'components/loan/applyRecord';//申请记录
 import loanManage from 'components/loan/loanManage';//借款管理
 import returnMoney from 'components/loan/returnMoney';//还款管理
+import returnAdvance from 'components/loan/returnAdvance';//提前还款申请
 import overdueMoney from 'components/loan/overdueMoney';//逾期管理
 import insurance from 'components/service/insurance';//安全保障
 import bankDeposit from 'components/service/bankDeposit';//银行存管
@@ -165,6 +166,7 @@ const routes = [
       {path: '/account/applyRecord',component: applyRecord,},
       {path: '/account/loanManage',component: loanManage,},
       {path: '/account/returnMoney',component: returnMoney,},
+      {path: '/account/returnAdvance',component: returnAdvance,},
       {path: '/account/overdueMoney',component: overdueMoney,},
       {path: '/account/objectBookingDetails',component: objectBookingDetails,},
     ]

@@ -21,6 +21,8 @@
 @text-lightblack:#323232;
 @bluehref:#498aeb;
 @loanblue:#498aeb;
+.unuescolor{color:@text-lightgray; }
+.canusecolor{color:@btn-red; }
 /*通用按钮输入框样式*/
 .redBtn{color:#fff;background-color:@btn-red;text-align:center;display:inline-block;cursor:pointer;border-radius:3px;}
 .redBtn:active{background-color:#bf0d0e;}
@@ -98,6 +100,8 @@
             .ytbfistLine{width:50%;float:left;color:#2B2B2B;font-size:14px;line-height:50px;position:relative;
                          input{margin:0 5px;border-radius:4px;padding:0 5px;color:#000;width:200px;height:32px;line-height:32px;border:1px solid #d1d1d1;}
                          select{margin:0 5px;border-radius:4px;padding:0 5px;color:#000;width:200px;height:32px;line-height:32px;border:1px solid #d1d1d1;}
+                         i{margin:0 5px;color: #969696;}
+                         .redtext{color: @btn-red;}
                          .ytb_sylIntro{position:absolute;left:193px;}
                          .specialLab{font-weight:bold;}
                          .orderNum{padding:0 35px;}
@@ -1998,8 +2002,18 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 .pf_newOutC{background-color: #f5f6f8;width:100%;
     .pf_newBody{width: 1050px;margin: auto;padding:20px 0;}
 }
-.pf_dataC{margin:20px 0;background-color: #fff;
-    h1{font-size: 24px;color: #646464;padding:0 20px;line-height:80px;
-        img{width: 20px;height: 20px;margin-right: 20px;}
+.pf_dataC{margin-bottom: 40px;background-color: #fff;
+    h1{font-size: 24px;color: #646464;padding:0 35px;line-height:80px;border-bottom:1px solid #e0e0e0;font-weight:normal;
+        img{width: 25px;height: 25px;margin-right: 20px;}
+    }
+    ul{list-style: none;font-size:0;
+        li{width: 25%;display: inline-block;padding:40px 0;
+            label{display: block;font-size: 24px;color: #323232;text-align:center;}
+            span{display: block;font-size: 16px;color: #646464;text-align:center;padding-top:15px;}
+        }
+    }
+    .echarts_ydjyze{height: 400px;}
+    .echarts_3{font-size: 0;
+        .echarts_son{display: inline-block;width: 33.3%;height: 350px;}
     }
 }

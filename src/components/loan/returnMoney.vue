@@ -3,44 +3,49 @@
         <div class="awardListC width25">
             <ul class="clearfix">
                 <li @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
-                <li @click="Select(1,1)"><a>提前还款</a></li>
+                <li @click="Select(1,1)"><a>待还列表</a></li>
                 <li @click="Select(2,1)"><a>已还列表</a></li>
                 <li @click="Select(3,1)"><a>已逾期列表</a></li>
             </ul>
         </div>
         <div class="streamTypeC clearfix">
-            <label class="introlab">还款日期：</label>
+            <!-- <label class="introlab">还款日期：</label>
             <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
             <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
-            <a class="redBtn" @click="Select(repayType, 1)">搜索</a>
-            <a v-if="repayType == '' || repayType ==1" class="redBtn" @click="moneyBackAll()">当页全部还款</a>
-            <a v-if="repayType == '' || repayType ==1" class="redBtn" @click="moneyBackSel()">选定项还款</a>
+            <a class="redBtn" @click="Select(repayType, 1)">搜索</a> -->
+            <a v-if="repayType == ''" class="redBtn" @click="moneyBackAll()">当页全部还款</a>
+            <a v-if="repayType == ''" class="redBtn" @click="moneyBackSel()">选定项还款</a>
         </div>
         <div class="RetuurnDetilInfo" style="height:32px;">
-            <p v-if="repayType == '' || repayType ==1">已选项金额：<span id="lenth">￥{{moneySel}}</span></p>
-            <p v-if="repayType == '' || repayType ==1">待付总金额：<span>￥{{moneyAll}}</span></p>
+            <p v-if="repayType == ''">已选项金额：<span id="lenth">￥{{moneySel}}</span></p>
+            <p v-if="repayType == ''">待付总金额：<span>￥{{moneyAll}}</span></p>
         </div>
         <div class="content-rowlist" style="display:block">
             <table class="table  table-bg table-border table-bordered table-striped">
                 <thead>
                     <tr style="white-space:nowrap;">
-                        <th v-if="repayType == '' || repayType ==1">选择</th>
+                        <th v-if="repayType == ''">选择</th>
                         <th>项目名称</th>
                         <th v-if="repayType == '' || repayType ==2 || repayType ==3">投资编号</th>
                         <th v-if="repayType == '' || repayType ==2 || repayType ==3">投资人账号</th>
-                        <th>收益</th>
-                        <th>本金</th>
+                        <th v-if="repayType != 1">收益</th>
+                        <th v-if="repayType == 1">待还利息</th>
+                        <th v-if="repayType != 1">本金</th>
+                        <th v-if="repayType == 1">待还本金</th>
                         <th v-if="repayType ==2 || repayType ==3">服务费</th>
+                        <th v-if="repayType ==1">待还服务费</th>
                         <th>还款金额</th>
                         <th>还款日期</th>
+                        <th v-if="repayType ==1">还款方式</th>
                         <th v-if="repayType == ''">状态</th>
                         <th v-if="repayType ==2 || repayType ==3">支付日期</th>
+                        <th v-if="repayType == 1">提前还款</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(array,index) in arrayList" :key="index">
-                        <td v-if="repayType == '' || repayType ==1"><input class="Checkbox px subCheckbox" type="checkbox" name="subCheckbox" :value="array.id" :money="array.repayMoney" /></td>
+                        <td v-if="repayType == ''"><input class="Checkbox px subCheckbox" type="checkbox" name="subCheckbox" :value="array.id" :money="array.repayMoney" /></td>
                         <td>
                             <router-link :to="'/product/PInfo?id='+array.ppid" target="_blank" class="c-000">{{array.title}}</router-link>
                         </td>
@@ -48,19 +53,27 @@
                         <td v-if="repayType == '' || repayType ==2 || repayType ==3"><span>{{array.mobile}}</span></td>
                         <td>{{array.interest}}</td>
                         <td>{{array.capital}}</td>
-                        <td v-if="repayType ==2 || repayType ==3">￥{{array.serviceMoney}}</td>
+                        <td v-if="repayType ==1 ||repayType ==2 || repayType ==3">￥{{array.serviceMoney}}</td>
                         <td>{{array.repayMoney}}</td>
                         <td><span class="c-orange">{{array.returnTime}}</span></td>
+                        <td v-if="repayType ==1">
+                            <span v-if="array.repayType == 0">每月付息，到期还本</span>
+                            <span v-if="array.repayType == 1">按月等额</span>
+                            <span v-if="array.repayType == 2">到期还本付息</span>
+                            <span v-if="array.repayType == 3">等额本息</span>
+                            <span v-if="array.repayType == 4">等额本金</span>
+                        </td>
                         <td v-if="repayType == ''"><span class="f-main">正常</span></td>
                         <td v-if="repayType ==2 && array.isPay == 1 || repayType ==3 && array.isPay == 1">{{array.paytime}}</td>
                         <td v-if="repayType ==2 && array.isPay == 0 || repayType ==3 && array.isPay == 0">未支付</td>
+                        <td v-if="repayType == 1"><router-link to="/account/returnAdvance?id='+array.ppid" style="color: #6794d1;">发起申请</router-link></td>
                     </tr>
 
             </tbody>
         </table>
         </div>
         <div class="letterwebFooter">
-            <label  v-if="arrayList.length != 0 && repayType == '' || arrayList.length != 0 && repayType ==1"><input type="checkbox" id="selectall"><i id="selectalltext">当页全选</i></label>
+            <label  v-if="arrayList.length != 0 && repayType == ''"><input type="checkbox" id="selectall"><i id="selectalltext">当页全选</i></label>
             <div class="fenyeC">
                 <div class="pages mypage clearfix">
                     <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
@@ -178,8 +191,8 @@
                     {
                         repayType: _repayType,
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        // beginTime: self.$store.state.unixChange($("#begintime").val()),
+                        // endTime: self.$store.state.unixChange($("#endtime").val())
                     },
                 function (data) {
                     var applylist = data.data.data;
@@ -190,7 +203,7 @@
                         moneyAll = 0.00;
                     } else {
                         for (var i = 0; i < applylist.length; i++) {
-                            applylist[i].returnTime = applylist[i].returnTime.substr(0, 10);
+                            applylist[i].returnTime = (applylist[i].returnTime == null) ? '' : applylist[i].returnTime.substr(0, 10);
                             applylist[i].paytime = (applylist[i].paytime == null) ? '' : applylist[i].paytime.substr(0, 10);
                             moneyAll += parseFloat(applylist[i].repayMoney);
                         }
