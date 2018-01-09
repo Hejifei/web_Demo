@@ -5,14 +5,38 @@
                 <div class="pf_dataC">
                     <h1><img src="../../common/stylus/img/platformdata_ptsj.png"/>平台数据</h1>
                     <ul>
-                        <li><label>100</label><span>累计交易总额（元）</span></li>
-                        <li><label>100</label><span>累计为用户赚取收益（元）</span></li>
-                        <li><label>100</label><span>平台安全运营（天）</span></li>
-                        <li><label>100</label><span>累计用户（位）</span></li>
-                        <li><label>100</label><span>累计交易笔数</span></li>
-                        <li><label>100</label><span>借贷余额（万元）</span></li>
-                        <li><label>100</label><span>借贷剩余笔数</span></li>
-                        <li><label>100</label><span>预期笔数</span></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="totalMoney"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计交易总额（元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="profit"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="platformTime"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>平台安全运营（天）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="totalUser"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计用户（位）</label></li>
+                        <li><span>100</span><label>累计交易笔数</label></li>
+                        <li><span>100</span><label>借贷余额（万元）</label></li>
+                        <li><span>100</span><label>借贷剩余笔数</label></li>
+                        <li><span>100</span><label>预期笔数</label></li>
                     </ul>
                 </div>
                 <div class="pf_dataC">
@@ -31,96 +55,47 @@
                     <div class="echarts_3">
                         <div class="echarts_son" id="echarts_newtzrxb"></div>
                         <div class="echarts_son" id="echarts_newyhzd"></div>
-                        <div class="echarts_son" id="echarts_newtzrnl"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="PF_outC">
-            <div class="PFbody">
-                <!-- @*数据总览*@ -->
-                <div class="PFTitle">数据总览</div>
-                <div class="PFzlC">
-                    <div class="zlDetail">
-                        <span>平台安全运营（天）</span>
-                        <span class="iCountUp">
-                            <i-count-up
-                                    :start="0"
-                                    :end="platformTime"
-                                    :decimals="0"
-                                    :duration="2"
-                                    :options="options"
-                                ></i-count-up>
-                        </span>
-                    </div>
-                    <div class="zlDetail">
-                        <span>累计用户（人）</span>
-                        <span class="iCountUp">
-                            <i-count-up
-                                    :start="0"
-                                    :end="totalUser"
-                                    :decimals="0"
-                                    :duration="2"
-                                    :options="options"
-                                ></i-count-up>
-                        </span>
-                    </div>
-                    <div class="zlDetail">
-                        <span>累计交易总额（元）</span>
-                        <span class="iCountUp">
-                            <i-count-up
-                                    :start="0"
-                                    :end="totalMoney"
-                                    :decimals="2"
-                                    :duration="2"
-                                    :options="options"
-                                ></i-count-up>
-                        </span>
-                    </div>
-                    <div class="zlDetail">
-                        <span>累计为用户赚取收益（元）</span>
-                        <span class="iCountUp">
-                            <i-count-up
-                                    :start="0"
-                                    :end="profit"
-                                    :decimals="2"
-                                    :duration="2"
-                                    :options="options"
-                                ></i-count-up>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- @*每月交易额*@ -->
-                <div class="PFTitle">每月交易额</div>
-                <div class="pfTMC" id="pfTMC"></div>
-
-                <!-- @*投资数据*@ -->
-                <div class="PFTitle">投资数据</div>
-                <div class="pfTMC">
-                    <div class="halfdiv" id="PTdistribution"></div>
-                    <div class="halfdiv" id="PTermdistribution"></div>
-                </div>
-                <div class="pfTMC">
-                    <div class="halfdiv" id="PAgedistribution"></div>
-                    <div class="halfdiv" id="">
-                        <h3>单笔投资分布</h3>
-                        <div class="PTimeDistriC">
-                            <div v-for="(singleBidson,index) in singleBid" :key="index" class="ptdprocessLine"><p>{{singleBidson.name}}</p><div class="ptdProcessC"><i class="ptdProcess" :title="singleBidson.name+'：'+singleBidson.value+'单'" :style="{width:+singleBidson.percent+'%'}"></i></div><span>{{singleBidson.percent}}%</span></div>
-                        
+                        <div class="echarts_son">
+                            <h3>单笔投资分布</h3>
+                            <div class="PTimeDistriC">
+                                <div v-for="(singleBidson,index) in singleBid" :key="index" class="ptdprocessLine"><p>{{singleBidson.name}}</p><div class="ptdProcessC"><i class="ptdProcess" :title="singleBidson.name+'：'+singleBidson.value+'单'" :style="{width:+singleBidson.percent+'%'}"></i></div><span>{{singleBidson.percent}}%</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="pfTMC">
-                    <div class="halfdiv" id="PSexdistribution"></div>
-                    <div class="halfdiv" id="PFTerminaldstbtion"></div>
+                <div class="pf_dataC">
+                    <h1>
+                        <img src="../../common/stylus/img/platformdata_jyxx.png"/>经营信息
+                    </h1>
+                    <ul>
+                        <li><span>100</span><label>累计出借人数</label></li>
+                        <li><span>100</span><label>累计借款人数</label></li>
+                        <li><span>100</span><label>当期累计出借人数</label></li>
+                        <li><span>100</span><label>当期累计借款人数</label></li>
+                        <li><span>100</span><label>前十大借款人待还金额占比</label></li>
+                        <li><span>100</span><label>最大单一借款人待还金额占比</label></li>
+                        <li><span>100</span><label>关联关系借款金额（元）</label></li>
+                        <li><span>100</span><label>关联关系借款笔数</label></li>
+                        <li><span>100</span><label>逾期金额（元）</label></li>
+                        <li><span>100</span><label>逾期笔数</label></li>
+                        <li><span>100</span><label>逾期90天（不含）以上金额（元）</label></li>
+                        <li><span>100</span><label>逾期90天（不含）以上笔数</label></li>
+                        <li><span>100</span><label>累计代偿金额</label></li>
+                        <li><span>100</span><label>累计代偿笔数</label></li>
+                        <li><p>...</p></li>
+                    </ul>
+                </div>
+                <div class="pf_dataC">
+                    <h1>
+                        <img src="../../common/stylus/img/platformdata_fygl.png"/>收费标准
+                        <a>借款客户</a>
+                        <a>投资客户</a>
+                        <a class="activea">全体客户</a>
+                    </h1>
+                    
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 
@@ -231,11 +206,11 @@
                             normal: {
                                 color: '#498aeb',
                                 label: {
-                                    show: false,
+                                    show: true,
                                     position: 'top',
                                     textStyle: {
-                                        color: '#498aeb',
-                                        fontSize: 14
+                                        color: '#fb5a5c',
+                                        fontSize: 12
                                     },
                                     formatter: function (val){
                                         return val.data + "万元"
@@ -249,10 +224,6 @@
                     }]
                 };
                 echarts_ydjyze.setOption(optionTecharts_ydjyze);
-
-
-
-
 
                 //投资人性别比例
                 self.pieChart("echarts_newtzrxb", '#fff',
@@ -498,76 +469,7 @@
                     pfTMC_xAxis.push(self.platformdata.transaction[i].date);
                     pfTMC_series.push(parseFloat(self.platformdata.transaction[i].money /10000).toFixed(2));
                 }
-                //每月交易额柱状图
-                var myChartTM = echarts.init(document.getElementById('pfTMC'));
-                // 指定图表的配置项和数据
-                var optionTM = {
-                    title: {
-                        show: true,
-                        text: '每月交易额',
-                        x: 'center',
-                        y: '25px',
-                        textStyle: {
-                            //文字颜色
-                            color: '#fe7228',
-                            //字体风格,'normal','italic','oblique'
-                            fontStyle: 'normal',
-                            //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                            fontWeight: 'normal',
-                            //字体系列
-                            fontFamily: 'sans-serif',
-                            //字体大小
-                            fontSize: 24
-                        }
-                    },
-                    grid: {  
-                        left: '5%',  
-                        right: '5%',
-                        bottom: '5%',
-                        top: '25%',
-                        containLabel: true  
-                    },
-                    tooltip: {},
-                    legend: {
-                        data: ['单位:万元']
-                    },
-                    xAxis: {
-                        data:pfTMC_xAxis,
-                        
-                    },
-                    yAxis: {
-                        axisTick: {
-                            show: false
-                        }
-                    },
-                    series: [{
-                        name: '交易额',
-                        type: 'bar',
-                        //设置柱体颜色  
-                        itemStyle:{  
-                            normal: {
-                                color: '#fe7228',
-                                label: {
-                                    show: true,
-                                    position: 'top',
-                                    textStyle: {
-                                        color: '#fe7228',
-                                        fontSize: 14
-                                    },
-                                    formatter: function (val){
-                                        return val.data + "万元"
-                                    }
-                                }
-                            }
-                        },
-                        barWidth: 60,//柱图宽度
-                        data: pfTMC_series
-
-                    }]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChartTM.setOption(optionTM);
-                });
+            });
         },
         mounted(){
             // 顶部菜单添加选中效果

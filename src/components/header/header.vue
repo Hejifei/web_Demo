@@ -161,8 +161,8 @@ export default {
     methods: {
         SignContactChide:function(e){
             if (e.target.id == "SignContactC" ) {
-            $("#SignContactC").hide();
-        }
+                $("#SignContactC").hide();
+            }
         },
         signOut: function () {
             let self = this;

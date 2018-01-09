@@ -9,11 +9,11 @@
             </ul>
         </div>
         <div class="streamTypeC clearfix">
-            <!-- <label class="introlab">还款日期：</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
-            <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
-            <a class="redBtn" @click="Select(repayType, 1)">搜索</a> -->
+            <label v-show="repayType != 1" class="introlab">还款日期：</label>
+            <input v-show="repayType != 1" class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <span v-show="repayType != 1" class="spanbetweeninput">~</span>
+            <input v-show="repayType != 1" class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <a v-show="repayType != 1" class="redBtn" @click="Select(repayType, 1)">搜索</a>
             <a v-if="repayType == ''" class="redBtn" @click="moneyBackAll()">当页全部还款</a>
             <a v-if="repayType == ''" class="redBtn" @click="moneyBackSel()">选定项还款</a>
         </div>
@@ -47,7 +47,8 @@
                     <tr v-for="(array,index) in arrayList" :key="index">
                         <td v-if="repayType == ''"><input class="Checkbox px subCheckbox" type="checkbox" name="subCheckbox" :value="array.id" :money="array.repayMoney" /></td>
                         <td>
-                            <router-link :to="'/product/PInfo?id='+array.ppid" target="_blank" class="c-000">{{array.title}}</router-link>
+                            <router-link v-if="repayType != 1" :to="'/product/PInfo?id='+array.ppid" target="_blank" class="c-000">{{array.title}}</router-link>
+                            <router-link v-if="repayType == 1" :to="'/product/PInfo?id='+array.id" target="_blank" class="c-000">{{array.title}}</router-link>
                         </td>
                         <td v-if="repayType == '' || repayType ==2 || repayType ==3">{{array.pid}}</td>
                         <td v-if="repayType == '' || repayType ==2 || repayType ==3"><span>{{array.mobile}}</span></td>
@@ -66,7 +67,7 @@
                         <td v-if="repayType == ''"><span class="f-main">正常</span></td>
                         <td v-if="repayType ==2 && array.isPay == 1 || repayType ==3 && array.isPay == 1">{{array.paytime}}</td>
                         <td v-if="repayType ==2 && array.isPay == 0 || repayType ==3 && array.isPay == 0">未支付</td>
-                        <td v-if="repayType == 1"><router-link to="/account/returnAdvance?id='+array.ppid" style="color: #6794d1;">发起申请</router-link></td>
+                        <td v-if="repayType == 1"><router-link :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">发起申请</router-link></td>
                     </tr>
 
             </tbody>
@@ -191,8 +192,8 @@
                     {
                         repayType: _repayType,
                         page: _page,
-                        // beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        // endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.$store.state.unixChange($("#begintime").val()),
+                        endTime: self.$store.state.unixChange($("#endtime").val())
                     },
                 function (data) {
                     var applylist = data.data.data;

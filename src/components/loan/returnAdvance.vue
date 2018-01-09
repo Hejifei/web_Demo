@@ -5,74 +5,85 @@
             <router-link class="redBtn" style="margin-right:10px;" to="/account/returnMoney">返回</router-link>    
         </div>
         <div class="chge"></div>
+        <div class="commissionDetailC">
+            <table>
+                <tbody>
+                    <tr></tr>
+                    <tr>
+                        <td>项目名称</td>
+                        <td>{{advanceDetail.title}}</td>
+                        <td>年化收益</td>
+                        <td>{{advanceDetail.rate}} %</td>
+                    </tr>
+                    <tr>
+                        <td>还款方式</td>
+                        <td v-if="advanceDetail.repayType == 0">每月付息，到期还本</td>
+                        <td v-if="advanceDetail.repayType == 1">按月等额</td>
+                        <td v-if="advanceDetail.repayType == 2">到期还本付息</td>
+                        <td v-if="advanceDetail.repayType == 3">等额本息</td>
+                        <td v-if="advanceDetail.repayType == 4">等额本金</td>
+                        <td>是否申请提前还款</td>
+                        <td v-if="advanceDetail.status == null">未申请</td>
+                        <td v-if="advanceDetail.status == 0">申请中</td>
+                        <td v-if="advanceDetail.status == 1">审核通过</td>
+                        <td v-if="advanceDetail.status == 2">未通过</td>
+                    </tr>
+                    <tr>
+                        <td>待还本息</td>
+                        <td>{{advanceDetail.repayMoney}} 元</td>
+                        <td>借款服务费</td>
+                        <td>{{advanceDetail.serviceMoney}} 元</td>
+                    </tr>
+                    <tr>
+                        <td>待还本金</td>
+                        <td>{{advanceDetail.capital}} 元</td>
+                        <td>待还利息</td>
+                        <td>{{advanceDetail.interest}} 元</td>
+                    </tr>
+                    <tr>
+                        <td>借款期限</td>
+                        <td>{{advanceDetail.term}} 个月</td>
+                        <td>已还期数</td>
+                        <td>{{advanceDetail.repayedTerm}} 个月</td>
+                    </tr>
+                    <tr>
+                        <td>待还期数</td>
+                        <td>{{advanceDetail.repayTerm}} 个月</td>
+                        <td>发布时间</td>
+                        <td>{{advanceDetail.investTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>最后一笔待还时间</td>
+                        <td>{{advanceDetail.returnTime}}</td>
+                        <td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="ytbSelC">
-            <div class="ytbSelline clearfix">
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">项目名称</span>
-                    <i class="graytext">利房宝 SD1802006</i>
-                </div>
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">借款总额</span>
-                    <i class="redtext">￥50.00</i>
-                </div>
-            </div>
-            <div class="ytbSelline clearfix">
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">年化收益</span>
-                    <input type="number" class="form-submit required" id="" name=""   />
-                    <span class="tip"></span>
-                </div>
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">借款期限</span>
-                    <select class="form-submit required" id="" name="">
-                        <option value="1">12个月</option>
-                        <option value="2">只投一次</option>
-                    </select>
-                    <span class="tip"></span>
-                </div>
-            </div>
-            <div class="ytbSelline clearfix">
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">发布日期</span>
-                    <i class="graytext">2017-06-12</i>
-                </div>
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">截止日期</span>
-                    <i class="graytext">2018-06-12</i>
-                </div>
-            </div>
-            <div class="ytbSelline clearfix">
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">剩余期次</span>
-                    <i class="redtext">11期</i>
-                </div>
-                <div class="ytbfistLine form-group">
+            <div class="ytbSelline">
+                <div class="ytbfistLine" style="width:100%;">
                     <span class="blodspan">还款期次</span>
-                    <select class="form-submit required" id="" name="">
-                        <option value="1">12个月</option>
-                        <option value="2">只投一次</option>
-                    </select>
-                    <span class="tip"></span>
-                </div>
-            </div>
-            <div class="ytbSelline clearfix">
-                <div class="ytbfistLine form-group">
-                    <span class="blodspan">还款方式</span>
-                    <select class="form-submit required" id="" name="">
-                        <option value="0">每月付息，到期还本</option>
-                        <option value="1">按月等额</option>
-                        <option value="2">到期还本付息</option>
-                        <option value="3">等额本息</option>
-                        <option value="4">等额本金</option>
-                    </select>
-                    <span class="tip"></span>
+                    <div class="selinpt" id="selinpt" :class="selinptactiveClass" @click="selinptactive($event)">
+                        <i :title="selInText">{{selInText}}</i>
+                        <ul class="repaytermdiv">
+                            <li v-for="(repay,index) in repayTermList" :key="index"><label><input type="checkbox" class="subCheckbox" :value="repay.ternNo" />第 {{repay.ternNo}} 期</label></li>
+                            <li><label><input id="selectall" type="checkbox"/><span id="selectalltext">全选</span></label></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="repaytermdiv">
+                        <label v-for="(repay,index) in repayTermList" :key="index"><input type="checkbox" class="subCheckbox" :value="repay.ternNo" />第 {{repay.ternNo}} 期</label>
+                    </div> -->
+                    <div class="SelAllC">
+                        <label v-if="termsel.length > 0">您选中的期限有：第<span v-for="(term,index) in termsel" :key="index">{{term}}、</span>期</label>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="ytbBtnLine">
             <p>
                 <span class="logbox">
-                    <a class="btn confirmBtn redBtn" id="SubmitBtn">确认</a>
+                    <a class="btn confirmBtn redBtn" @click="moneyBackSel">确认</a>
                 </span>
             </p>
         </div>
@@ -83,37 +94,117 @@
   export default {
     data () {
       return {
+          advanceDetail:[],
+          repayTermList:[],
+          idget:'',
+          termsel:[],
+          selinptactiveClass:'',
       }
     },
     mounted:function(){
         var self = this;
         self.idget = self.$store.state.getUrl(location.href).id;
         self.sid = localStorage.SID;    
-        //产品详情信息获取
-        self.$store.state._ajax(self,'/api/transfer/detail', { id: self.idget }, function (data) {
-            
+        //提前还款详情
+        self.$store.state._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
+            self.advanceDetail = data.data;
+            self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,16);
+            self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,16);
+            for(var i=1;i<=self.advanceDetail.repayTerm;i++){
+                self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
+            }
         }, '');
-
-        
-
-        self.$store.state.AjaxSumbit(self,"", "/api/transfer/applyTransfer", function (data) {
-            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){
-                    layer.closeAll();
-                    self.$router.push({path:'/account/investlistTransfer'})
+        //还款管理全选
+        $(".ytbSelline").delegate("#selectall", 'click', function () {
+            if ($(this).prop("checked")) {
+                //全选
+                $("#selectalltext").text("取消全选")
+                $(".subCheckbox").prop("checked", true);
+            } else {
+                $("#selectalltext").text("全选")
+                $(".subCheckbox").prop("checked", false);
+            }
+            var termsel =[];
+            $(".subCheckbox").each(function () {
+                if ($(this).prop('checked')) {
+                    termsel.push($(this).val());
+                }
+            });
+            self.termsel = termsel;
+        })
+        $(".ytbSelline").delegate(".subCheckbox", "click", function () {
+            if ($("#selectall").prop("checked")) {
+                $("#selectalltext").text("全选");
+                $("#selectall").attr("checked", false);
+            } else {
+                var i = 0;
+                var termsel =[];
+                $(".subCheckbox").each(function () {
+                    if ($(this).prop('checked')) {
+                        termsel.push($(this).val());
+                        i++;
+                    }
                 });
-                setTimeout(function () {
-                    layer.closeAll();
-                    self.$router.push({path:'/account/investlistTransfer'})
-                }, 2000)
-        },'', true)
+                self.termsel = termsel;
+                if ($(".subCheckbox").length == i) {
+                    $("#selectalltext").text("取消全选");
+                    $("#selectall").attr("checked", true);
+                }
+            }        
+        })
+    },
+    computed:{
+        selInText:function(){
+            if(this.termsel.length == 0){
+                return '请选择还款期次';
+            }else{
+                return '您选择的期次有：'+this.termsel;
+            }
+        }
     },
     methods: {
-        
+        moneyBackSel:function() {
+                // var index = layer.load(2, {
+                //     shade: [0.2,'#000'] //0.1透明度的白色背景
+                // });
+                var self = this;
+                var termlist = $('.subCheckbox').map(function () {
+                    if ($(this).prop('checked')) {
+                        return $(this).attr("value");
+                    }
+                }).get().join(',');
+                if(termlist == ''){
+                    layer.alert('您还没有选择要提前还款的期次！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
+                }else{
+                    self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: termlist }, function (data) {
+                        layer.closeAll();
+                        layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();window.location.reload();});
+                    },function (data) {
+                        layer.closeAll();
+                        layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                    });
+                }
+        },
+        selinptactive:function(e){
+            // 仿下拉菜单
+            var self = this;
+            if($(".selinpt").hasClass("selinptactive")){
+                if(e.target.getAttribute("id") == 'selinpt'){
+                    self.selinptactiveClass ='';
+                }else{
+                    
+                }
+                
+            }else{
+                self.selinptactiveClass ='selinptactive';
+            }
+        }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-        
+<style scoped>
+    .commissionDetailC{padding: 0;margin:20px 0;}
+    .commissionDetailC table tbody tr td{text-align: left;}
 </style>
