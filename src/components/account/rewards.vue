@@ -94,8 +94,10 @@
                         $(".mypage").html("");
                     } else {
                         for (var i = 0; i < arrlist.length; i++) {
-                            arrlist[i].payTime = arrlist[i].payTime.substr(0, 16);
-                            arrlist[i].createTime = arrlist[i].createTime.substr(0, 10);
+                            arrlist[i].payTime = (arrlist[i].payTime == null) ? '--' : arrlist[i].payTime.substr(0, 16);
+                            console.log(arrlist[i].createTime);
+                            arrlist[i].createTime = (arrlist[i].createTime == null) ? '--' :  arrlist[i].createTime.substr(0, 10);
+                            console.log(arrlist[i].createTime);
                         }
                         //分页的重置
                         $(".mypage").html("");
@@ -117,18 +119,12 @@
             var self = this;
             const reward = this.reward;
             layer.confirm("是否转出至余额？",{title: '操作提示'},function(){
-                if (reward < 10) {
-                    layer.alert("奖励金低于10元，无法转出！",{},function(){
-                        layer.closeAll();
-                    });
-                } else {
-                        //奖励金转出
-                        self.$store.state._ajax(self,'/api/award/index', { money: reward }, function (data) {
-                            self.bankcardList = data.data;
-                        }, function (data) {
-                            layer.alert(data.msg,{title: '操作提示',icon: 5},function(){window.location.reload();});
-                        });
-                    }
+                //奖励金转出
+                self.$store.state._ajax(self,'/api/award/index', { money: reward }, function (data) {
+                    self.bankcardList = data.data;
+                }, function (data) {
+                    layer.alert(data.msg,{title: '操作提示',icon: 5},function(){window.location.reload();});
+                });
             },function(){
                 layer.closeAll();
             });

@@ -62,7 +62,7 @@
         </div>
         <div class="ytbSelC">
             <div class="ytbSelline">
-                <div class="ytbfistLine" style="width:100%;">
+                <div class="ytbfistLine" style="width:100%;"  v-if="advanceDetail.repayType != 2">
                     <span class="blodspan">还款期次</span>
                     <div class="selinpt" id="selinpt" :class="selinptactiveClass" @click="selinptactive($event)">
                         <i :title="selInText">{{selInText}}</i>
@@ -71,16 +71,21 @@
                             <li><label><input id="selectall" type="checkbox"/><span id="selectalltext">全选</span></label></li>
                         </ul>
                     </div>
-                    <!-- <div class="repaytermdiv">
-                        <label v-for="(repay,index) in repayTermList" :key="index"><input type="checkbox" class="subCheckbox" :value="repay.ternNo" />第 {{repay.ternNo}} 期</label>
-                    </div> -->
                     <div class="SelAllC">
                         <label v-if="termsel.length > 0">您选中的期限有：第<span v-for="(term,index) in termsel" :key="index">{{term}}、</span>期</label>
                     </div>
                 </div>
+                <div class="ytbfistLine" style="width:100%;"   v-if="advanceDetail.repayType == 2">
+                    <span class="blodspan">请输入最新的还款期限</span>
+                    <input type="text" v-model="newterm" id="newterm" @keyup="caltool" />个月
+                    <div class="SelAllC" style="display:inline-block;">
+                        <label v-if="fee>0">预期还款金额：{{fee}}元</label>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="ytbBtnLine">
+        <div class="ytbBtnLine" v-if="advanceDetail.status == null">未申请>
             <p>
                 <span class="logbox">
                     <a class="btn confirmBtn redBtn" @click="moneyBackSel">确认</a>
@@ -99,9 +104,11 @@
           idget:'',
           termsel:[],
           selinptactiveClass:'',
+          newterm:'',
+          fee:0
       }
     },
-    mounted:function(){
+    created(){
         var self = this;
         self.idget = self.$store.state.getUrl(location.href).id;
         self.sid = localStorage.SID;    
@@ -114,6 +121,20 @@
                 self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
             }
         }, '');
+    },
+    mounted:function(){
+        var self = this;
+        // self.idget = self.$store.state.getUrl(location.href).id;
+        // self.sid = localStorage.SID;    
+        // //提前还款详情
+        // self.$store.state._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
+        //     self.advanceDetail = data.data;
+        //     self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,16);
+        //     self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,16);
+        //     for(var i=1;i<=self.advanceDetail.repayTerm;i++){
+        //         self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
+        //     }
+        // }, '');
         //还款管理全选
         $(".ytbSelline").delegate("#selectall", 'click', function () {
             if ($(this).prop("checked")) {
@@ -164,26 +185,39 @@
     },
     methods: {
         moneyBackSel:function() {
-                // var index = layer.load(2, {
-                //     shade: [0.2,'#000'] //0.1透明度的白色背景
-                // });
                 var self = this;
-                var termlist = $('.subCheckbox').map(function () {
-                    if ($(this).prop('checked')) {
-                        return $(this).attr("value");
+                if(self.advanceDetail.repayType != 2){
+                    var termlist = $('.subCheckbox').map(function () {
+                        if ($(this).prop('checked')) {
+                            return $(this).attr("value");
+                        }
+                    }).get().join(',');
+                    if(termlist == ''){
+                        layer.alert('您还没有选择要提前还款的期次！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
+                    }else{
+                        self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: termlist }, function (data) {
+                            layer.closeAll();
+                            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney"});});
+                        },function (data) {
+                            layer.closeAll();
+                            layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                        });
                     }
-                }).get().join(',');
-                if(termlist == ''){
-                    layer.alert('您还没有选择要提前还款的期次！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
                 }else{
-                    self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: termlist }, function (data) {
-                        layer.closeAll();
-                        layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();window.location.reload();});
-                    },function (data) {
-                        layer.closeAll();
-                        layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
-                    });
+                    if($("#newterm").val() == ''){
+                        layer.alert('您还没有输入最新的还款期限！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
+                    }else{
+                        self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: $("#newterm").val() }, function (data) {
+                            layer.closeAll();
+                            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney"});});
+                        },function (data) {
+                            layer.closeAll();
+                            layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                        });
+                    }
                 }
+                
+                
         },
         selinptactive:function(e){
             // 仿下拉菜单
@@ -198,6 +232,29 @@
             }else{
                 self.selinptactiveClass ='selinptactive';
             }
+        },
+        caltool:function(){
+            var self = this;
+            var temp_amount='';
+            if (/[^\d]/.test($("#newterm").val())) {//替换非数字字符
+                temp_amount = $("#newterm").val().replace(/[^\d]/g, '');
+                $("#newterm").val(temp_amount);
+                
+            }
+            if($("#newterm").val() == ''){
+
+            }else{
+                var total = parseFloat(self.advanceDetail.capital);
+                var type = self.advanceDetail.repayType;
+                var inverstmentRate = self.advanceDetail.rate;
+                var inverstmentTerm = $("#newterm").val();
+                var fee = 0;//收益
+                var monthRate = parseFloat(inverstmentRate / 12 / 100);
+                fee = total * monthRate * inverstmentTerm;
+                self.fee = parseFloat(fee).toFixed(2);
+                // console.log();
+            }
+            
         }
     }
   }

@@ -67,7 +67,12 @@
                         <td v-if="repayType == ''"><span class="f-main">正常</span></td>
                         <td v-if="repayType ==2 && array.isPay == 1 || repayType ==3 && array.isPay == 1">{{array.paytime}}</td>
                         <td v-if="repayType ==2 && array.isPay == 0 || repayType ==3 && array.isPay == 0">未支付</td>
-                        <td v-if="repayType == 1"><router-link :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">发起申请</router-link></td>
+                        <td v-if="repayType == 1">
+                            <router-link v-if="array.status == null" :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">发起申请</router-link>
+                            <span v-if="array.status == 0">申请中</span>
+                            <span v-if="array.status == 1">审核通过</span>
+                            <span v-if="array.status == 2">未通过</span>
+                        </td>
                     </tr>
 
             </tbody>

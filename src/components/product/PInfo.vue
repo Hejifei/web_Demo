@@ -211,8 +211,10 @@
                                 <tr>
                                     <td>优惠政策</td>
                                     <td colspan="3">
+                                        <img src="../../common/stylus/0818new/Invest_redpackage.png"/>
                                         <span class="unuescolor" v-if="productDetail.is_reward == 0">红包不可用</span>
                                         <span class="canusecolor" v-if="productDetail.is_reward == 1">红包可用</span>，
+                                        <img src="../../common/stylus/0818new/Invest_Ratecoupon.png"/>
                                         <span class="unuescolor" v-if="productDetail.is_extraRate == 0">加息券不可用</span>
                                         <span class="canusecolor" v-if="productDetail.is_extraRate == 1">加息券可用</span>
                                     </td>
