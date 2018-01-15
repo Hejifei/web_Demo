@@ -2,10 +2,10 @@
     <div class="overview"  v-cloak>
         <div class="awardListC width25">
             <ul class="clearfix">
-                <li style="width:33.3%;" @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
-                <!-- <li @click="Select(1,1)"><a>待还列表</a></li> -->
-                <li style="width:33.3%;" @click="Select(2,1)"><a>已还列表</a></li>
-                <li style="width:33.3%;" @click="Select(3,1)"><a>已逾期列表</a></li>
+                <li @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
+                <li @click="Select(1,1)"><a>待还列表</a></li>
+                <li @click="Select(2,1)"><a>已还列表</a></li>
+                <li @click="Select(3,1)"><a>已逾期列表</a></li>
             </ul>
         </div>
         <div class="streamTypeC clearfix">
