@@ -2,7 +2,7 @@
     <div class="ytbBody">
         <div class="graph" style="padding:0;">
             申请提前还款
-            <router-link class="redBtn" style="margin-right:10px;" to="/account/returnMoney">返回</router-link>    
+            <router-link class="redBtn" style="margin-right:10px;" to="/account/returnMoney?repayType=1">返回</router-link>    
         </div>
         <div class="chge"></div>
         <div class="commissionDetailC">
@@ -12,16 +12,40 @@
                     <tr>
                         <td>项目名称</td>
                         <td>{{advanceDetail.title}}</td>
-                        <td>年化收益</td>
-                        <td>{{advanceDetail.rate}} %</td>
+                        <td>借款总额</td>
+                        <td>￥{{advanceDetail.capital}}</td>
                     </tr>
                     <tr>
+                        <td>预期年化收益</td>
+                        <td>{{advanceDetail.rate}} %</td>
+                        <td>借款期限</td>
+                        <td>{{advanceDetail.term}} 个月</td>
+                    </tr>
+                    <tr>
+                        <td>起息日期</td>
+                        <td>{{advanceDetail.investTime}}</td>
+                        <td>截止日期</td>
+                        <td>{{advanceDetail.returnTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>剩余期次</td>
+                        <td>{{advanceDetail.repayTerm}} 个月</td>
                         <td>还款方式</td>
                         <td v-if="advanceDetail.repayType == 0">每月付息，到期还本</td>
                         <td v-if="advanceDetail.repayType == 1">按月等额</td>
                         <td v-if="advanceDetail.repayType == 2">到期还本付息</td>
                         <td v-if="advanceDetail.repayType == 3">等额本息</td>
                         <td v-if="advanceDetail.repayType == 4">等额本金</td>
+                    </tr>
+                    <tr>
+                        <td>剩余本息</td>
+                        <td class="redtd">￥{{advanceDetail.repayMoney}}（￥{{advanceDetail.capital}}+￥{{advanceDetail.interest}} ）</td>
+                        <td>减免利息</td>
+                        <td class="redtd">￥{{advanceDetail.saveMoney}}</td>
+                    </tr>
+                    <tr>
+                        <td>待还总计</td>
+                        <td class="redtd">￥{{advanceDetail.repayAmount}}</td>
                         <td>是否申请提前还款</td>
                         <td v-if="advanceDetail.status == null">未申请</td>
                         <td v-if="advanceDetail.status == 0">申请中</td>
@@ -29,38 +53,15 @@
                         <td v-if="advanceDetail.status == 2">未通过</td>
                     </tr>
                     <tr>
-                        <td>待还本息</td>
-                        <td>{{advanceDetail.repayMoney}} 元</td>
-                        <td>借款服务费</td>
-                        <td>{{advanceDetail.serviceMoney}} 元</td>
-                    </tr>
-                    <tr>
-                        <td>待还本金</td>
-                        <td>{{advanceDetail.capital}} 元</td>
-                        <td>待还利息</td>
-                        <td>{{advanceDetail.interest}} 元</td>
-                    </tr>
-                    <tr>
-                        <td>借款期限</td>
-                        <td>{{advanceDetail.term}} 个月</td>
-                        <td>已还期数</td>
-                        <td>{{advanceDetail.repayedTerm}} 个月</td>
-                    </tr>
-                    <tr>
-                        <td>待还期数</td>
-                        <td>{{advanceDetail.repayTerm}} 个月</td>
-                        <td>发布时间</td>
-                        <td>{{advanceDetail.investTime}}</td>
-                    </tr>
-                    <tr>
-                        <td>最后一笔待还时间</td>
-                        <td>{{advanceDetail.returnTime}}</td>
-                        <td></td><td></td>
+                        <td>服务费</td>
+                        <td>￥{{advanceDetail.serviceMoney}}</td>
+                        <td>申请还款有效期</td>
+                        <td>{{advanceDetail.validit}} 天</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="ytbSelC">
+        <!-- <div class="ytbSelC">
             <div class="ytbSelline">
                 <div class="ytbfistLine" style="width:100%;"  v-if="advanceDetail.repayType != 2">
                     <span class="blodspan">还款期次</span>
@@ -84,11 +85,25 @@
 
                 </div>
             </div>
-        </div>
-        <div class="ytbBtnLine" v-if="advanceDetail.status == null">未申请>
+        </div> -->
+        <div class="ytbBtnLine" v-if="advanceDetail.status == null">
             <p>
                 <span class="logbox">
-                    <a class="btn confirmBtn redBtn" @click="moneyBackSel">确认</a>
+                    <a class="btn confirmBtn redBtn" @click="repayApply">提前还款申请</a>
+                </span>
+            </p>
+        </div>
+        <div class="ytbBtnLine" v-if="advanceDetail.status == 1">
+            <p>
+                <span class="logbox">
+                    <a class="btn confirmBtn redBtn" @click="advanceRepay">确认提前还款</a>
+                </span>
+            </p>
+        </div>
+        <div class="ytbBtnLine" v-if="advanceDetail.status == 2">
+            <p>
+                <span class="logbox">
+                    <a class="btn confirmBtn redBtn" @click="repayApply">再次申请提前还款</a>
                 </span>
             </p>
         </div>
@@ -117,9 +132,9 @@
             self.advanceDetail = data.data;
             self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,16);
             self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,16);
-            for(var i=1;i<=self.advanceDetail.repayTerm;i++){
-                self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
-            }
+            // for(var i=1;i<=self.advanceDetail.repayTerm;i++){
+            //     self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
+            // }
         }, '');
     },
     mounted:function(){
@@ -135,89 +150,67 @@
         //         self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
         //     }
         // }, '');
-        //还款管理全选
-        $(".ytbSelline").delegate("#selectall", 'click', function () {
-            if ($(this).prop("checked")) {
-                //全选
-                $("#selectalltext").text("取消全选")
-                $(".subCheckbox").prop("checked", true);
-            } else {
-                $("#selectalltext").text("全选")
-                $(".subCheckbox").prop("checked", false);
-            }
-            var termsel =[];
-            $(".subCheckbox").each(function () {
-                if ($(this).prop('checked')) {
-                    termsel.push($(this).val());
-                }
-            });
-            self.termsel = termsel;
-        })
-        $(".ytbSelline").delegate(".subCheckbox", "click", function () {
-            if ($("#selectall").prop("checked")) {
-                $("#selectalltext").text("全选");
-                $("#selectall").attr("checked", false);
-            } else {
-                var i = 0;
-                var termsel =[];
-                $(".subCheckbox").each(function () {
-                    if ($(this).prop('checked')) {
-                        termsel.push($(this).val());
-                        i++;
-                    }
-                });
-                self.termsel = termsel;
-                if ($(".subCheckbox").length == i) {
-                    $("#selectalltext").text("取消全选");
-                    $("#selectall").attr("checked", true);
-                }
-            }        
-        })
+        // //还款管理全选
+        // $(".ytbSelline").delegate("#selectall", 'click', function () {
+        //     if ($(this).prop("checked")) {
+        //         //全选
+        //         $("#selectalltext").text("取消全选")
+        //         $(".subCheckbox").prop("checked", true);
+        //     } else {
+        //         $("#selectalltext").text("全选")
+        //         $(".subCheckbox").prop("checked", false);
+        //     }
+        //     var termsel =[];
+        //     $(".subCheckbox").each(function () {
+        //         if ($(this).prop('checked')) {
+        //             termsel.push($(this).val());
+        //         }
+        //     });
+        //     self.termsel = termsel;
+        // })
+        // $(".ytbSelline").delegate(".subCheckbox", "click", function () {
+        //     if ($("#selectall").prop("checked")) {
+        //         $("#selectalltext").text("全选");
+        //         $("#selectall").attr("checked", false);
+        //     } else {
+        //         var i = 0;
+        //         var termsel =[];
+        //         $(".subCheckbox").each(function () {
+        //             if ($(this).prop('checked')) {
+        //                 termsel.push($(this).val());
+        //                 i++;
+        //             }
+        //         });
+        //         self.termsel = termsel;
+        //         if ($(".subCheckbox").length == i) {
+        //             $("#selectalltext").text("取消全选");
+        //             $("#selectall").attr("checked", true);
+        //         }
+        //     }        
+        // })
     },
     computed:{
-        selInText:function(){
-            if(this.termsel.length == 0){
-                return '请选择还款期次';
-            }else{
-                return '您选择的期次有：'+this.termsel;
-            }
-        }
     },
     methods: {
-        moneyBackSel:function() {
+        repayApply:function() {
                 var self = this;
-                if(self.advanceDetail.repayType != 2){
-                    var termlist = $('.subCheckbox').map(function () {
-                        if ($(this).prop('checked')) {
-                            return $(this).attr("value");
-                        }
-                    }).get().join(',');
-                    if(termlist == ''){
-                        layer.alert('您还没有选择要提前还款的期次！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
-                    }else{
-                        self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: termlist }, function (data) {
-                            layer.closeAll();
-                            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney"});});
-                        },function (data) {
-                            layer.closeAll();
-                            layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
-                        });
-                    }
-                }else{
-                    if($("#newterm").val() == ''){
-                        layer.alert('您还没有输入最新的还款期限！',{title: '操作提示',icon: 5},function(){layer.closeAll();});
-                    }else{
-                        self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget , value: $("#newterm").val() }, function (data) {
-                            layer.closeAll();
-                            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney"});});
-                        },function (data) {
-                            layer.closeAll();
-                            layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
-                        });
-                    }
-                }
-                
-                
+                self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget}, function (data) {
+                    layer.closeAll();
+                    layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=1"});});
+                },function (data) {
+                    layer.closeAll();
+                    layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                });
+        },
+        advanceRepay:function() {
+                var self = this;
+                self.$store.state._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
+                    layer.closeAll();
+                    layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=1"});});
+                },function (data) {
+                    layer.closeAll();
+                    layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                });
         },
         selinptactive:function(e){
             // 仿下拉菜单

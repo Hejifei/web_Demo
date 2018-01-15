@@ -2,10 +2,10 @@
     <div class="overview"  v-cloak>
         <div class="awardListC width25">
             <ul class="clearfix">
-                <li @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
-                <li @click="Select(1,1)"><a>待还列表</a></li>
-                <li @click="Select(2,1)"><a>已还列表</a></li>
-                <li @click="Select(3,1)"><a>已逾期列表</a></li>
+                <li style="width:33.3%;" @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
+                <!-- <li @click="Select(1,1)"><a>待还列表</a></li> -->
+                <li style="width:33.3%;" @click="Select(2,1)"><a>已还列表</a></li>
+                <li style="width:33.3%;" @click="Select(3,1)"><a>已逾期列表</a></li>
             </ul>
         </div>
         <div class="streamTypeC clearfix">
@@ -70,8 +70,10 @@
                         <td v-if="repayType == 1">
                             <router-link v-if="array.status == null" :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">发起申请</router-link>
                             <span v-if="array.status == 0">申请中</span>
-                            <span v-if="array.status == 1">审核通过</span>
-                            <span v-if="array.status == 2">未通过</span>
+                            <router-link v-if="array.status == 1" :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">审核通过</router-link>
+                            <router-link v-if="array.status == 2" :to="'/account/returnAdvance?id='+array.id" style="color: #6794d1;">再次申请</router-link>
+                            <!-- <span v-if="array.status == 1">审核通过</span>
+                            <span v-if="array.status == 2">未通过</span> -->
                         </td>
                     </tr>
 
@@ -110,6 +112,8 @@
         },
         mounted:function(){
             var self = this;
+            var repayTypeget = self.$store.state.getUrl(location.href).repayType;
+            self.repayType = repayTypeget == undefined ? '' : repayTypeget;
             laydate.render({
                 elem: '#begintime', //指定元素
                 format: 'yyyy-MM-dd',
@@ -181,9 +185,9 @@
                 $(".awardList_active").removeClass("awardList_active");
                 $(this).addClass("awardList_active");
             })
-
-
-            self.Select('', 1);
+            var li_index = self.repayType == '' ? 0 : self.repayType;
+            $(".awardListC ul li").eq(li_index).click();
+            // self.Select(self.repayType, 1);
             
         },
         methods: {

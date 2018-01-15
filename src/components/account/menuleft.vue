@@ -14,12 +14,18 @@
                             <router-link v-if="userInfo.status == '1'" to="/account/accountOpened"><img src="../../common/stylus/accounticon/myaccount_shimingselected.png" title="实名已认证"></router-link>
                         </li>
                         <li>
-                            <router-link v-if="userInfo.U_Mail == null || userInfo.U_Mail == 0" to="/account/emailChange">
+                            <!-- <router-link v-if="userInfo.U_Mail == null || userInfo.U_Mail == 0" to="/account/emailChange">
                                 <img src="../../common/stylus/accounticon/myaccount_youxiangnormal.png" title="邮箱未绑定" alt="">
                             </router-link>
                             <router-link v-if="userInfo.U_Mail == 1" to="/account/emailChange">
                                 <img src="../../common/stylus/accounticon/myaccount_youxiangselected.png" title="邮箱已绑定" alt="">
-                            </router-link>
+                            </router-link> -->
+                            <a v-if="userInfo.U_Mail == null || userInfo.U_Mail == 0">
+                                <img src="../../common/stylus/accounticon/myaccount_youxiangnormal.png" title="邮箱未绑定" alt="">
+                            </a>
+                            <a v-if="userInfo.U_Mail == 1">
+                                <img src="../../common/stylus/accounticon/myaccount_youxiangselected.png" title="邮箱已绑定" alt="">
+                            </a>
                         </li>
                         <li>
                             <a v-if="userInfo.mobileCheck == '0'" @click="PhoneChange">

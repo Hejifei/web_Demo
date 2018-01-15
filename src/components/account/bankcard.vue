@@ -6,7 +6,11 @@
             <h3>我的银行卡</h3>
             <div v-for="(bankcardInfo,index) in bankcardList" :key="index" class="bank_Card" :style="'background:url('+ bankcardInfo.bg +') no-repeat center top -8px;background-size:105% auto'">
                 <i class="bankcardDelete" v-on:click="delCard(bankcardInfo.bankId)">x</i>
-                <h3>{{bankcardInfo.name}}</h3>
+                <h3>{{bankcardInfo.name}} 
+                    <img v-if="bankcardInfo.isQP == 1" src="../../common/stylus/img/icon_QPcard.png" />
+                    <img v-if="bankcardInfo.isWD == 1" src="../../common/stylus/img/icon_WDcard.png" />
+                    <img v-if="bankcardInfo.isWD != 1" src="../../common/stylus/img/icon_wcard.png"  class="wcard"/>
+                </h3>
                 <span>储蓄卡</span>
                 <label><i>**** **** **** </i>{{bankcardInfo.bidCard}}</label>
             </div>

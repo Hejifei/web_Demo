@@ -113,12 +113,13 @@
 
 
     //Ajax提交增、改操作
-    ///FormId-表单Id，BtnId-提交按钮Id,Url-接口地址，Success-成功回调函数，Fail-失败回调函数,Ifrightshow--是否显示√
+    ///FormId-表单Id，BtnId-提交按钮Id,Url-接口地址，Success-成功回调函数，Fail-失败回调函数,Ifrightshow--是否显示√,ifErroralerttip--是否显示未填项错误提示
     ///类名 required--必填,int--正整数,password--密码（6-20位数字字母）,plus--正数,phone--手机号
-    const AjaxSumbit = function (that,successhref, Url, Success, Fail, Ifrightshow, FormId, BtnId) {
+    const AjaxSumbit = function (that,successhref, Url, Success, Fail, Ifrightshow, FormId, BtnId,IfErroralerttip) {
         var Form = FormId ? $(FormId) : $("#AjaxForm");
         var Btn = BtnId ? $(BtnId) : $("#SubmitBtn");
         var ifrightshow = Ifrightshow ? Ifrightshow : false;
+        var ifErroralerttip = IfErroralerttip ? IfErroralerttip :false;
         Url = APIURL+ Url;
         Form.find(".required").blur(function () {
             var Tip = $(this).parents(".form-group").find(".tip");
@@ -313,9 +314,11 @@
             Form.find("input").blur();
             Form.find("textarea").blur();
             var flag = true;
+            var testNoList=[];
             Form.find(".tip").each(function () {
                 if ($(this).text() != "" && !$(this).is(":hidden")) {
                     flag = false;
+                    testNoList.push($(this).attr('testNo'));
                 }
             })
             Form.find(".agreement").each(function () {
@@ -372,6 +375,10 @@
                         console.log('报错：' +err);
                     }
                 )
+            }else{
+                if(ifErroralerttip){
+                    layer.alert('您还有以下几题未答： '+testNoList,{title: '操作提示',icon: 5},function(){layer.closeAll();});
+                }
             }
             
         })
@@ -669,7 +676,7 @@
             setCookie('uuid',uuid,1000);
         }
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:'20180105','uuid': uuid},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20180115','uuid': uuid},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {

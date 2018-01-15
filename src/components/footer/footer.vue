@@ -64,12 +64,12 @@
             </div>
             <div class="wpright">
 		        <a href="https://ss.knet.cn/verifyseal.dll?sn=e15121632050061819xnpe000000&a=1&pa=0.6032720989052147" target="_blank"><img src="../../common/stylus/footkexin.png" /></a>
-                <a href="http://webscan.360.cn/index/checkwebsite/url/www.litongjinfu.com" target="_blank"><img border="0" src="../../common/stylus/foot360.png" /></a>
+                <a href="http://www.creditchina.gov.cn/xinyongxinxixiangqing/default.html?isEncryStr=1&encryStr=cXpzQ3I7cnlkdjA%3D%0A&name=%E8%8B%8F%E5%B7%9E%E5%88%A9%E9%80%9A%E9%87%91%E7%A0%96%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E6%9C%8D%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&isEncryStr=1" target="_blank"><img src="../../common/stylus/footcreditchina.png" /></a>
                 <!-- <a href="http://www.365sxt.com/enterpriseDetails/showCertificationInfo?enterpriseId=738897" target="_blank"  class="suxintong"></a> -->
                 <a href="../static/img/suxintong.png" target="_blank"  class="suxintong"></a>
                 <!-- <a href="../src/common/stylus/img/suxintong.png" target="_blank"  class="suxintong"></a> -->
-                <a href="http://www.creditchina.gov.cn/xinyongxinxixiangqing/default.html?isEncryStr=1&encryStr=cXpzQ3I7cnlkdjA%3D%0A&name=%E8%8B%8F%E5%B7%9E%E5%88%A9%E9%80%9A%E9%87%91%E7%A0%96%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E6%9C%8D%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&isEncryStr=1" target="_blank"><img src="../../common/stylus/footcreditchina.png" /></a>
-                <a href="https://sealsplash.geotrust.com/splash?&dn=www.litongjinfu.com" target="_blank"><img src="../../common/stylus/sslvalidenM.png" /></a>
+                <a href="http://webscan.360.cn/index/checkwebsite/url/www.litongjinfu.com" target="_blank"><img border="0" src="../../common/stylus/foot360.png" /></a>
+                <a href="https://myssl.com/www.litongjinfu.com?status=success#certificates" target="_blank"  class="suxintong" style="background:url(https://www.trustasia.com/res/images/trustasia-tab.png) no-repeat center center;background-size:contain;border:1px solid #ccc;"></a>
             </div>
         </div>
     </div>

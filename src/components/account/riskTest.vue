@@ -12,7 +12,7 @@
                     <li><label><input class="radio" name="year" type="radio" value="3" />C.51-60岁</label></li>
                     <li><label><input class="radio" name="year" type="radio" value="4" />D.高于60岁</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="1"></span>
             </li>
             <li class="form-group">
                 <h3>2、您家庭年收入为（折合人民币）？</h3>
@@ -23,7 +23,7 @@
                     <li><label><input class="radio" name="income" type="radio" value="4" />D.50万-100万元</label></li>
                     <li><label><input class="radio" name="income" type="radio" value="5" />E.100万元以上</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="2"></span>
             </li>
             <li class="form-group">
                 <h3>3、在您每年的家庭收入中，可用于金融投资（储蓄存款除外）的比例为？</h3>
@@ -33,7 +33,7 @@
                     <li><label><input class="radio" name="proportion" type="radio" value="3" />C.25%-50%</label></li>
                     <li><label><input class="radio" name="proportion" type="radio" value="4" />D.大于50%</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="3"></span>
             </li>
             <li class="form-group">
                 <h3>4、以下哪项更能说明您的投资经验？</h3>
@@ -43,7 +43,7 @@
                     <li><label><input class="radio" name="experience" type="radio" value="3" />C.资产均衡地分布于存款、国债、银行理财产品、托信产品、股票、基金等</label></li>
                     <li><label><input class="radio" name="experience" type="radio" value="4" />D.大部分投资于股票、基金、外汇等高风险产品，较少投资于存款、国债</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="4"></span>
             </li>
             <li class="form-group">
                 <h3>5、您有多少年投资股票、基金、外汇、金融衍生品等风险投资品的经验？</h3>
@@ -54,7 +54,7 @@
                     <li><label><input class="radio" name="bidRisk" type="radio" value="4" />D.5-8年</label></li>
                     <li><label><input class="radio" name="bidRisk" type="radio" value="5" />E.8年以上</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="5"></span>
             </li>
             <li class="form-group">
                 <h3>6、以下哪项描述最符合您的投资态度？</h3>
@@ -64,7 +64,7 @@
                     <li><label><input class="radio" name="attitude" type="radio" value="3" />C.寻求资金的较高收益和成长性，愿意为此承担有限本金损失</label></li>
                     <li><label><input class="radio" name="attitude" type="radio" value="4" />D.希望赚取高回报，愿意为此承担较大本金损失</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="6"></span>
             </li>
             <li class="form-group">
                 <h3>7、您当前期望的理财回报大概是？</h3>
@@ -75,7 +75,7 @@
                     <li><label><input class="radio" name="win" type="radio" value="4" />D.20-50%</label></li>
                     <li><label><input class="radio" name="win" type="radio" value="5" />E.50%以上</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="7"></span>
             </li>
             <li class="form-group">
                 <h3>8、您计划的投资期限是多久？</h3>
@@ -85,7 +85,7 @@
                     <li><label><input class="radio" name="term" type="radio" value="3" />C.3-5年</label></li>
                     <li><label><input class="radio" name="term" type="radio" value="4" />D.5年以上</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="8"></span>
             </li>
             <li class="form-group">
                 <h3>9、您的投资目的是？</h3>
@@ -94,7 +94,7 @@
                     <li><label><input class="radio" name="objective" type="radio" value="2" />B.资产稳健增长</label></li>
                     <li><label><input class="radio" name="objective" type="radio" value="3" />C.资产迅速增长</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="9"></span>
             </li>
             <li class="form-group">
                 <h3>10、您的投资出现何种程度的波动时，您会呈现明显的焦虑？</h3>
@@ -105,7 +105,7 @@
                     <li><label><input class="radio" name="bidWave" type="radio" value="4" />D.本金20%-50%的损失</label></li>
                     <li><label><input class="radio" name="bidWave" type="radio" value="5" />E.本金50%以上损失</label></li>
                 </ul>
-                <span class="tip"></span>
+                <span class="tip" testNo="10"></span>
             </li>
             <input class="moneyinput form-submit" v-model="sid" type="hidden" name="sid" />
             <input class="moneyinput form-submit" v-model="duration" type="hidden" name="duration" />
@@ -141,7 +141,7 @@
                 layer.alert(riskMsg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/baseInfo"});});
             },function(){
                 layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();});
-            })
+            },false,'#AjaxForm','#SubmitBtn',true)
         },
         methods: {
             riskTestSubmit:function(){

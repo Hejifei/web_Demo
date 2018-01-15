@@ -382,14 +382,14 @@
             self.$store.state._ajax(self,'/api/invest/findPlan', {}, function (data) {
                 self.autoBid = data.data.autoBid;
                 self.dangerType = data.data.autoBid.dangerType;
-                // if(self.dangerType == null){
-                //     layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
-                //         self.$router.push({path:"/account/riskTest"});
-                //         layer.closeAll();
-                //     },function(){
-                //         layer.closeAll();
-                //     });
-                // }
+                if(self.dangerType == null){
+                    layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+                        self.$router.push({path:"/account/riskTest"});
+                        layer.closeAll();
+                    },function(){
+                        layer.closeAll();
+                    });
+                }
                 self.userSortRank = data.data.userSortRank;
                 self.switch1Class = (data.data.autoBid.status == 0) ? 'close1' : 'open1';
                 self.switch2Class = (data.data.autoBid.status == 0) ? 'close2' : 'open2';
@@ -441,15 +441,23 @@
         methods:{
             on_offswitch: function () {
                 var self = this;
-                var self = this;
-                this.switch1Class = (this.switch1Class == 'close1') ? 'open1' : 'close1';
-                this.switch2Class = (this.switch2Class == 'close2') ? 'open2' : 'close2';
-                self.status = (this.switch1Class == 'close1') ? '0' : '1';
-                self.automaticBtnText = (this.switch1Class == 'close1') ? '开启' : '关闭';
-                if (this.switch1Class == 'close1' && self.autoBid.status == 1) {
-                    self.$store.state._ajax(self,'/api/invest/closePlan', {}, function (data) {
-                        layer.alert(data.msg,{title: '操作提示',icon: 6},function(){window.location.reload();});
+                if(self.dangerType == null){
+                    layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
+                        self.$router.push({path:"/account/riskTest"});
+                        layer.closeAll();
+                    },function(){
+                        layer.closeAll();
                     });
+                }else{
+                    this.switch1Class = (this.switch1Class == 'close1') ? 'open1' : 'close1';
+                    this.switch2Class = (this.switch2Class == 'close2') ? 'open2' : 'close2';
+                    self.status = (this.switch1Class == 'close1') ? '0' : '1';
+                    self.automaticBtnText = (this.switch1Class == 'close1') ? '开启' : '关闭';
+                    if (this.switch1Class == 'close1' && self.autoBid.status == 1) {
+                        self.$store.state._ajax(self,'/api/invest/closePlan', {}, function (data) {
+                            layer.alert(data.msg,{title: '操作提示',icon: 6},function(){window.location.reload();});
+                        });
+                    }
                 }
             },
             unautobidPlan: function () {
