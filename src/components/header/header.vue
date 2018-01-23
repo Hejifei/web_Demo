@@ -19,6 +19,10 @@
             </div>
         </div>
         <div class="topnav" style="background:#fff;">
+            <div class="newyear_topC">
+                <img src="../../common/stylus/img/newyear_top_left.png" class="newyear_top_left"/>
+                <img src="../../common/stylus/img/newyear_top_right.png" class="newyear_top_right"/>
+            </div>
             <div class="wp clearfix">
                 <div class="wp-ll publictopleft clearfix">
                     <span><img src="../../common/stylus/0818new/index_top_tel_icon.png" /></span>

@@ -204,6 +204,9 @@
         },
         advanceRepay:function() {
                 var self = this;
+                var index = layer.load(2, {
+                    shade: [0.2,'#000'] //0.1透明度的白色背景
+                });
                 self.$store.state._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
                     layer.closeAll();
                     layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=1"});});

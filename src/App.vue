@@ -32,6 +32,7 @@
                     <ul>
                       <li><router-link to="/service/platformdata">平台数据</router-link></li>
                       <li><router-link to="/service/ranking">创富排行</router-link></li>
+                      <li><router-link to="/service/FirORLasInvest">首投尾投</router-link></li>
                       <li><router-link to="/service/insurance">安全保障</router-link></li>
                       <li><router-link to="/service/bankDeposit">银行存管</router-link></li>
                       <li><router-link to="/about/aboutus">关于利通</router-link></li>

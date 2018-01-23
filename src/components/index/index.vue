@@ -138,7 +138,7 @@
         <div class="index_activeC">
             <div class="active_title">
                 <label>精彩活动</label>
-                <span>收益增值 财富不止</span>
+                <!-- <span>收益增值 财富不止</span> -->
             </div>
             <div class="new_index_newhandsC">
                 <div class="new_index_nhSon">
@@ -183,11 +183,13 @@
         <div class="index_activeC">
             <div class="active_title">
                 <label>散标/债权</label>
-                <span>自助投资 期限灵活</span>
+                <!-- <span>自助投资 期限灵活</span> -->
                 <router-link  class="normala" to="/product">查看更多<img src="../../common/stylus/0818new/index_goto_normal_btn.png"></router-link>
             </div>
-            <div class="index_newproductC">
-                <div class="newP_left">
+            <div class="index_newproductC" style="position:relative;">
+                <!-- <img src="../../common/stylus/img/newyear_4.png" style="position:absolute;left:-328.5px;width:388.5px;height:324px;z-index:1;" /> -->
+                <img src="../../common/stylus/img/newyear_3.png" style="position:absolute;left:-230px;top:0;" />
+                <div class="newP_left" style="z-index:999;position:relative;">
                     <h1><img src="../../common/stylus/img/newindex_productlogo.png" />生财有道</h1>
                     <ul>
                         <li><a @click="productlistChange(3,0)" class="prolistSel">利房宝<span>{{productType1val}}</span></a></li>
@@ -285,7 +287,7 @@
         <div class="index_activeC">
             <div class="active_title">
                 <label>平台保障</label>
-                <span>企业成熟 安全保障</span>
+                <!-- <span>企业成熟 安全保障</span> -->
                 <router-link  class="normala" to="/about/platform">查看更多<img src="../../common/stylus/0818new/index_goto_normal_btn.png"></router-link>
             </div>
             <div class="index_datainfoC clearfix">
@@ -319,7 +321,7 @@
         <div class="index_activeC">
             <div class="active_title">
                 <label>合作伙伴</label>
-                <span>一路有你 相知相依</span>
+                <!-- <span>一路有你 相知相依</span> -->
             </div>
             <div class="index_activityC clearfix">
                 <ul class="index_partnerlist clearfix">

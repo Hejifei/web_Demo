@@ -97,6 +97,7 @@ import platformdata2 from 'components/service/platformdata2';//平台数据
 import ranking from 'components/service/ranking';//创富排行
 import automaticBid from 'components/service/automaticBid';//自动投标专题
 import personalTailor from 'components/service/personalTailor';//私人定制专题
+import FirORLasInvest from 'components/service/FirORLasInvest';//首尾投专题
 import aboutus from 'components/about/aboutus';//关于我们
 import platform from 'components/about/platform';//平台原理
 import siteNotice from 'components/about/siteNotice';//网站公告
@@ -179,6 +180,7 @@ const routes = [
   {path: '/service/ranking',component: ranking,},
   {path: '/service/automaticBid',component: automaticBid,},
   {path: '/service/personalTailor',component: personalTailor,},
+  {path: '/service/FirORLasInvest',component: FirORLasInvest,},
   {path: '/about/aboutus',component: aboutus,},
   {path: '/about/platform',component: platform,},
   {path: '/about/siteNotice',component: siteNotice,},
