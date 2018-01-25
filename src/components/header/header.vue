@@ -1,19 +1,20 @@
 <template>
     <div class="hello">
         <div class="SignContactC" id="SignContactC" @click="SignContactChide($event)">
-            <div class="SignContact" id="SignContact">
+            <div class="SignContact clearfix" id="SignContact">
+                <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
                 <div class="sign_head"></div>
                 <div class="sign_body">
                     <div class="allscoreLine">
                         积分余额：{{userSignInfo.totalScore}}积分
-                        <router-link to="/account/integration" @click="modelClose">签到记录</router-link>
+                        <a to="/account/integration" @click="sign_newhref($event)">签到记录</a>
                     </div>
                     <div class="TodayScoreLine">
                         <span>+{{userSignInfo.score}}</span>积分
                     </div>
                     <div class="sign_content">{{userSignInfo.content}}</div>
                     <div class="sign_processC">
-                        <div class="sign_processline"><i></i></div>
+                        <div class="sign_processline"><i :style="{width:sign_process +'%'}"></i></div>
                         <div class="signDay">
                             <div class="everyDay" :class="{noShow:userSignInfo.num !=1}"><i>1</i>天</div>
                             <div class="everyDay" :class="{noShow:userSignInfo.num !=2}"><i>2</i>天</div>
@@ -34,19 +35,19 @@
                             <li class="row" v-for="(userSignli,index) in userSignList" :key="index">
                                 <div><img :src="userSignli.img"/><span>{{userSignli.title}}</span></div>
                                 <div v-if="userSignli.complete == 1" class="clr9">{{userSignli.rule}}</div>
-                                <router-link to="/login/registerPersonal" v-if="userSignli.target == 0 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
-                                <router-link to="/account/accountOpen" v-if="userSignli.target == 24 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
-                                <router-link to="/account/objectBookingDetails" v-if="userSignli.target == 21 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/login/registerPersonal" v-if="userSignli.target == 0 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                <a @click="sign_newhref($event)" to="/account/accountOpen" v-if="userSignli.target == 24 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                <a @click="sign_newhref($event)" to="/account/objectBookingDetails" v-if="userSignli.target == 21 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 风险评测 -->
-                                <router-link to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 意见反馈 -->
-                                <router-link to="/developing" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/developing" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 邀请好友 -->
-                                <router-link to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 好友首投 -->
-                                <router-link to="/account/friends" v-if="userSignli.target == 14 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 14 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 投资积分 -->
-                                <router-link to="/product" v-if="userSignli.target == 6 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <a @click="sign_newhref($event)" to="/product" v-if="userSignli.target == 6 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
                                 
                             </li>
                         </ul>
@@ -156,7 +157,8 @@ export default {
             is_sign:0,
             wechatul:0,
             userSignInfo:[],
-            userSignList:[]
+            userSignList:[],
+            sign_process:0
         }
     },
     created(){
@@ -223,6 +225,7 @@ export default {
             that.$store.state._ajax(that,'/api/index/userSign', {}, function (data) {
                 that.userSignInfo = data.data;  
                 that.userSignList = data.data.getList;
+                that.sign_process = 100*data.data.num/data.data.maxNum;
             }, function () {
 
             }, false);
@@ -251,6 +254,12 @@ export default {
         },
         modelClose: function () {
             $(".SignContactC").hide();
+        },
+        sign_newhref:function(e){
+            let self = this;
+            let newhref = e.target.getAttribute("to");
+            $(".SignContactC").hide();
+            self.$router.push({path:newhref});
         },
         wechatenter:function(){
             this.wechatul = 1;

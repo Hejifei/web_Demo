@@ -16,23 +16,10 @@
             <div class="dynamicC">
               <ul>
                 <li v-for="(bidDynamic,index) in bidDynamicList" :key="index">
-                  <p>{{bidDynamic.id}}成功投标 {{bidDynamic.title}} <span>{{bidDynamic.bidMoney}}</span> 元<i> {{bidDynamic.createTime}}</i></p>
+                  <router-link :to="'/product/PInfo?id='+bidDynamic.id">
+                    <p>{{bidDynamic.name}} 成功投标 {{bidDynamic.title}} <span>{{bidDynamic.bidMoney}}</span> 元<i> {{bidDynamic.createTime}}</i></p>
+                  </router-link>
                 </li>
-                <!-- <li><p>180****5601成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5602成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5603成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5604成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5605成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5606成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5607成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5608成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5609成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5610成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5611成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5612成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5613成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5614成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
-                <li><p>180****5615成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li> -->
               </ul>
             </div>
           </div>
@@ -220,13 +207,28 @@
         $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
         
         // 投资动态
-        setInterval(function(){
+        var timer1 = setInterval(function(){
           $('.dynamicC').find("ul:first").animate({
             marginTop: "-50px"
           }, 3000, function () {
             $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+            console.log(1111)
           });
         }, 3000);
+        // $('.dynamicC').hover(function(){
+        //   console.log('in')
+        //   clearInterval(timer1)
+        // },function(){
+        //   console.log('out')
+        //   var timer1 = setInterval(function(){
+        //     $('.dynamicC').find("ul:first").animate({
+        //       marginTop: "-50px"
+        //     }, 3000, function () {
+        //       $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+        //       console.log(1111)
+        //     });
+        //   }, 3000);
+        // })
       },
       methods: {
         listsort:function(event,_type){
