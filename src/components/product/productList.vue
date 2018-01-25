@@ -1,135 +1,159 @@
 <template>
   <div class="index_centerC">
     <div class="index_center projectListC">
-        <div class="awardListC">
-            <ul class="clearfix" >
-                <li :class="{awardList_active:listnum ==1}" @click='ProductListGet(1,1,"")'><a>散标列表</a></li>
-                <li :class="{awardList_active:listnum ==2}" @click='ProductListGet(1,2,"")'><a>债权转让</a></li>
-            </ul>
-        </div>
-        <div class="projuectListTopInfo">
-            <ul class="clearfix">
-                <li>
-                  <p>——累计成交总金额——</p>
-                  <p>
-                    <span class="iCountUp">
-                        <i-count-up
-                            :start="0"
-                            :end="totalMoney"
-                            :decimals="2"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                    </span>元</p></li>
-                <li>
-                  <p>——累计成交总笔数——</p>
-                  <p><span class="iCountUp">
-                        <i-count-up
-                            :start="0"
-                            :end="totalNum"
-                            :decimals="0"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                    </span>笔</p>
+      <!-- <p class="prolistP">出借有风险，投资需谨慎</p> -->
+      <div class="newPLC">
+        <div class="newPLC_left">
+          <label>产品列表</label>
+          <ul class="np_left_menuul">
+            <!-- <li :class="{np_left_liactive:listnum ==1}" @click='ProductListGet(1,1,"")'>散标投资（{{getNum.productsNum}}）</li> -->
+            <li :class="{np_left_liactive:listnum ==3}" @click='ProductListGet(1,3,"")'>利房宝（{{productInfo.home}}）</li>
+            <li :class="{np_left_liactive:listnum ==4}" @click='ProductListGet(1,4,"")'>利车宝（{{productInfo.car}}）</li>
+            <li :class="{np_left_liactive:listnum ==2}" @click='ProductListGet(1,2,"")' style="border-top:0;">债权转让（{{getNum.transferNum}}）</li>
+          </ul>
+          <div class="investDynamicC">
+            <h2>投资动态</h2>
+            <div class="dynamicC">
+              <ul>
+                <li v-for="(bidDynamic,index) in bidDynamicList" :key="index">
+                  <p>{{bidDynamic.id}}成功投标 {{bidDynamic.title}} <span>{{bidDynamic.bidMoney}}</span> 元<i> {{bidDynamic.createTime}}</i></p>
                 </li>
-                <li><p>——累计为用户赚取——</p>
-                  <p><span class="iCountUp">
-                        <i-count-up
-                            :start="0"
-                            :end="profit"
-                            :decimals="2"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                    </span>元</p></li>
-            </ul>
+                <!-- <li><p>180****5601成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5602成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5603成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5604成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5605成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5606成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5607成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5608成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5609成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5610成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5611成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5612成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5613成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5614成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li>
+                <li><p>180****5615成功投标 利车宝SD1804014 <span>20000</span>元<i>2017-12-17</i></p></li> -->
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="index_activityC projectListTab" style="position:relative;">
+        <div class="newPLC_right">
+          <div class="NoTypeLine">
+            <label>排序方式</label>
+            <ul v-if="listnum != 2">
+              <li>预计年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
+              <li>投资期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></li>
+              <li>投资金额<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></li>
+            </ul>
+            <ul v-if="listnum ==2">
+              <li>预计年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
+              <li>原本金<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></li>
+              <li>剩余期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></li>
+            </ul>
             <div class="listsearchC">
-                <input type="text" v-model="keywords" id="keywords" />
+                <input type="text" v-model="keywords" id="keywords" maxlength="10" />
                 <a class="redBtn" id="SearchBtn" @click='ProductListGet(1,listnum,"")'>
                   <span class="icon-search"></span>
                 </a>
             </div>
-            <table>
-                <thead>
-                    <tr v-if="listnum ==1">
-                        <td>借款标题</td>
-                        <td>年利率<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></td>
-                        <td>金额<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></td></td>
-                        <td>期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></td>
-                        <td>进度</td>
-                        <td></td>
-                    </tr>
-                    <tr v-else-if="listnum ==2">
-                        <td>借款标题</td>
-                        <td>年利率<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></td>
-                        <td>原本金<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></td>
-                        <td>转让金额</td>
-                        <td style="text-align:center;">剩余期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-if="listnum == 1 && projectlist_sblb.length >0" v-for="(sblist,index) in projectlist_sblb" :key='index'>
-                        <td :title="sblist.title">
-                          <router-link :to="'/product/PInfo?id='+sblist.id">
-                            <img :src="sblist.img"/> 
-                            {{sblist.title}} 
-                            <span title="此标的可使用红包" v-if="sblist.is_reward == 1" class="ptitlelogo">红包</span>
-                            <span title="此标的可使用加息券" v-if="sblist.is_extraRate == 1" class="ptitlelogo">加息券</span>
-                            <span title="此为新手专享标" v-if="sblist.is_new == 1" class="ptitlelogo">新手</span>
-                            <span title="此为私人定制" v-if="sblist.isCustomized == 1" class="ptitlelogo">私人</span>
-                          </router-link>
-                        </td>
-                        <td v-if="sblist.extra_rate == 0">{{sblist.base_rate}}%</td>
-                        <td v-if="sblist.extra_rate > 0">{{sblist.base_rate}}%<span class="fontS12">+{{sblist.extra_rate}}%</span></td>
-                        <td>￥{{sblist.money}}</td>
-                        <td v-if="sblist.termUnit == 1">{{sblist.term}}个月</td>
-                        <td v-if="sblist.termUnit == 2">{{sblist.term}}天</td>
-                        <td>
-                            <div class="percentage-text">{{sblist.progress}}%</div>
-                            <div class="outer"><span class="inner" v-bind:style="{width : sblist.progress + '%'}"></span></div>
-                        </td>
-                        <td>
-                            <router-link v-if="sblist.status == 1" :to="'/product/PInfo?id='+sblist.id">立即投资</router-link>
-                            <a v-if="sblist.status == 6" class="projectEndbtn">投资满额</a>
-                            <a v-if="sblist.status == 8" class="projectEndbtn">正在还款</a>
-                            <a v-if="sblist.status == 9" class="projectEndbtn">已还款</a>
-                            <a v-if="sblist.status == 10" class="projectEndbtn">已结束</a>
-                            <a v-if="sblist.status == 11" class="projectEndbtn">已失效</a>
-                            <a v-if="sblist.status == 13" class="projectEndbtn">出借结束</a>
-                            <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}开抢</router-link>
-                            <!-- <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">即将发布</router-link> -->
-                        </td>
-                    </tr>
-                    <tr v-if="listnum == 1 && projectlist_sblb.length ==0">
-                      <td colspan="7" style="text-align:center;">暂无数据!</td>
-                    </tr>
-                    <tr v-else-if="listnum ==2 && projectlist_zqzr.length >0" v-for="(sblist,index) in projectlist_zqzr" :key='index'>
-                        <td :title="sblist.title">
-                          <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id"><img :src="sblist.img" /> {{sblist.title}}</router-link>
-                        </td>
-                        <td>{{sblist.rate}}%</td>
-                        <td>￥{{sblist.self_money}}</td>
-                        <td>￥{{sblist.transfer_money}}</td>
-                        <td style="text-align:center;padding:0 20px;">{{sblist.transferTerm}}个月</td>
-                        <td>
-                          <router-link v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
-                          <a v-else class="projectEndbtn">转让结束</a>
-                          <!-- <router-link v-if="sblist.transfer_status == 3" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">再次转让</router-link> -->
-                        </td>
-                    </tr>
-                    <tr v-if="listnum == 2 && projectlist_zqzr.length ==0">
-                      <td colspan="6" style="text-align:center;">暂无数据!</td>
-                    </tr>
-                </tbody>
-            </table>
+          </div>
+          <div class="newprodtList">
+            <ul v-if="listnum != 2 && projectlist_sblb.length >0">
+              <li v-for="(sblist,index) in projectlist_sblb" :key='index'>
+                <h3 :title="sblist.title">
+                  <router-link :to="'/product/PInfo?id='+sblist.id">
+                    <img :src="sblist.img"/> 
+                    {{sblist.title}} 
+                    <span title="此标的可使用红包" v-if="sblist.is_reward == 1" class="ptitlelogo">红包</span>
+                    <span title="此标的可使用加息券" v-if="sblist.is_extraRate == 1" class="ptitlelogo">加息券</span>
+                    <span title="此为新手专享标" v-if="sblist.is_new == 1" class="ptitlelogo">新手</span>
+                    <span title="此为私人定制" v-if="sblist.isCustomized == 1" class="ptitlelogo">私人</span>
+                  </router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.status == 1" :to="'/product/PInfo?id='+sblist.id">立即投资</router-link>
+                    <a v-if="sblist.status == 6" class="projectingbtn projectEndbtn">投资满额</a>
+                    <a v-if="sblist.status == 8" class="projectingbtn projectEndbtn">正在还款</a>
+                    <a v-if="sblist.status == 9" class="projectingbtn projectEndbtn">已还款</a>
+                    <a v-if="sblist.status == 10" class="projectingbtn projectEndbtn">已结束</a>
+                    <a v-if="sblist.status == 11" class="projectingbtn projectEndbtn">已失效</a>
+                    <a v-if="sblist.status == 13" class="projectingbtn projectEndbtn">出借结束</a>
+                  <router-link  class="projectingbtn" v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}开抢</router-link>
+                </h3>
+                <div class="newprodInfo">
+                  <div class="newInfoSon">
+                    <label class="redtext" v-if="sblist.extra_rate == 0">{{sblist.base_rate}}<span class="fontS16">%</span></label>
+                    <label class="redtext" v-if="sblist.extra_rate > 0">{{sblist.base_rate}}<span class="fontS16">%</span><span class="fontS12">+</span>{{sblist.extra_rate}}<span class="fontS16">%</span></label>
+                    <p>预期年化</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label v-if="sblist.termUnit == 1">{{sblist.term}}<span class="fontS16">个月</span></label>
+                    <label v-if="sblist.termUnit == 2">{{sblist.term}}<span class="fontS16">天</span></label>
+                    <p>期限</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label>{{sblist.amount}}<span class="fontS16">元</span></label>
+                    <p>剩余金额</p>
+                  </div>
+                  <div class="newInfoSon2">
+                    <p>
+                      投资进度
+                      <i class="outer"><span class="inner" v-bind:style="{width : sblist.progress + '%'}"></span></i>
+                      {{sblist.progress}}%
+                    </p>
+                    <p>
+                      借款金额 
+                      <label>{{sblist.money}}<span class="fontS16">元</span></label>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul v-if="listnum != 2 && projectlist_sblb.length ==0"><p class="nodata">暂无数据!</p></ul>
+            <ul v-else-if="listnum ==2 && projectlist_zqzr.length >0">
+              <li v-for="(sblist,index) in projectlist_zqzr" :key='index'>
+                <h3 :title="sblist.title">
+                  <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id"><img :src="sblist.img" /> {{sblist.title}}</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
+                  <a v-else class="projectingbtn projectEndbtn">转让结束</a>
+                </h3>
+                <div class="newprodInfo">
+                  <div class="newInfoSon">
+                    <label class="redtext">{{sblist.base_rate}}<span class="fontS16">%</span></label>
+                    <p>预期年化</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label v-if="sblist.termUnit == 1">{{sblist.term}}<span class="fontS16">个月</span></label>
+                    <label v-if="sblist.termUnit == 2">{{sblist.term}}<span class="fontS16">天</span></label>
+                    <p>期限</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label>{{sblist.self_money}}<span class="fontS16">元</span></label>
+                    <p>原本金</p>
+                  </div>
+                  <div class="newInfoSon2">
+                    <p>
+                      转让金额 
+                      <label>{{sblist.transfer_money}}<span class="fontS16">元</span></label>
+                    </p>
+                    
+                    <!-- <router-link v-if="sblist.status == 1" :to="'/product/PInfo?id='+sblist.id">立即投资</router-link>
+                    <a v-if="sblist.status == 6" class="projectEndbtn">投资满额</a>
+                    <a v-if="sblist.status == 8" class="projectEndbtn">正在还款</a>
+                    <a v-if="sblist.status == 9" class="projectEndbtn">已还款</a>
+                    <a v-if="sblist.status == 10" class="projectEndbtn">已结束</a>
+                    <a v-if="sblist.status == 11" class="projectEndbtn">已失效</a>
+                    <a v-if="sblist.status == 13" class="projectEndbtn">出借结束</a>
+                    <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}开抢</router-link> -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul v-if="listnum == 2 && projectlist_zqzr.length ==0"><p class="nodata">暂无数据!</p></ul>
+          </div>
+          <div class="pages mypage clearfix">
+              <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
+          </div>
         </div>
-        <div class="pages mypage clearfix">
-            <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
-        </div>
+      </div>
     </div>
 </div>
 </template>
@@ -158,7 +182,10 @@
               decimal: '.',
               prefix: '',
               suffix: ''
-          }
+          },
+          getNum:[],
+          productInfo:[],
+          bidDynamicList:[]
         }
       },
       created() {
@@ -166,19 +193,25 @@
         // 非父子组件通信发送
         LTJF.$emit("txt",{header:true});
         //获取统计资金
-        this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
-          var statistics = data.data;
-          self.statistics = statistics;
-          self.totalMoney = parseFloat(statistics.totalMoney);
-          self.profit = parseFloat(statistics.profit);
-          self.totalNum = parseInt(statistics.totalNum);
- 
-          // self.numberChange(statistics.totalMoney,'totalMoney',309123);
-          // self.numberChange(statistics.profit,'profit',4334);
-          // self.numberChange(statistics.totalNum,'totalNum',25);
-        });
+        // this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
+        //   var statistics = data.data;
+        //   self.statistics = statistics;
+        //   self.totalMoney = parseFloat(statistics.totalMoney);
+        //   self.profit = parseFloat(statistics.profit);
+        //   self.totalNum = parseInt(statistics.totalNum);
+        // });
         this.ProductListGet(1, 1, '');
-        
+        // 重新获取各类标的数量
+        LTJF.$emit("NumberChage",1);
+        self.getNum = JSON.parse(localStorage.getNum);
+        self.productInfo = JSON.parse(localStorage.getNum).productInfo;
+        this.$store.state._ajax(self,'/api/product/bidDynamic', {num:10}, function (data) {
+          var bidDynamic = data.data;
+          for(var i = 0;i<bidDynamic.length;i++){
+            bidDynamic[i].createTime = bidDynamic[i].createTime.substr(0,16);
+          }
+          self.bidDynamicList = bidDynamic;
+        });
       },
       mounted:function(){
         let self = this;
@@ -186,6 +219,14 @@
         $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active");
         $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
         
+        // 投资动态
+        setInterval(function(){
+          $('.dynamicC').find("ul:first").animate({
+            marginTop: "-50px"
+          }, 3000, function () {
+            $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+          });
+        }, 3000);
       },
       methods: {
         listsort:function(event,_type){
@@ -206,7 +247,6 @@
         },
         ProductListGet:function (_page, _type, _sorting) {
           let self = this;
-          self.listnum = _type;
           self.$store.state._ajax(self,'/api/product/index',
           {
             page: _page,
@@ -216,7 +256,7 @@
           },
           function (data) {
             if (data.code == '1') {
-              if (_type == 1) {
+              if (_type != 2) {
                 let projectlist_sblb = data.data.data;
                 for (var i = 0; i < projectlist_sblb.length; i++) {
                   projectlist_sblb[i].investTime = (projectlist_sblb[i].investTime).substr(11,5);
@@ -227,6 +267,8 @@
               } else if (_type == 2) {
                 self.projectlist_zqzr = data.data.data;
               }
+              self.listnum = _type;
+
               //分页的重置
               if(data.data.data.length == 0){
                 $(".mypage").html("");

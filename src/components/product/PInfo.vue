@@ -568,8 +568,8 @@
                 });
             }else if(self.risk == 2){
                 layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
-                    self.moneyCheck();
                     layer.closeAll();
+                    self.moneyCheck();
                 },function(){
                     layer.closeAll();
                 });

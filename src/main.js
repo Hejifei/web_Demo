@@ -98,6 +98,8 @@ import ranking from 'components/service/ranking';//创富排行
 import automaticBid from 'components/service/automaticBid';//自动投标专题
 import personalTailor from 'components/service/personalTailor';//私人定制专题
 import FirORLasInvest from 'components/service/FirORLasInvest';//首尾投专题
+import refuseGlyh from 'components/service/refuseGlyh';//拒绝高利诱惑
+import integratRule from 'components/service/integratRule';//积分规则
 import aboutus from 'components/about/aboutus';//关于我们
 import platform from 'components/about/platform';//平台原理
 import siteNotice from 'components/about/siteNotice';//网站公告
@@ -181,6 +183,8 @@ const routes = [
   {path: '/service/automaticBid',component: automaticBid,},
   {path: '/service/personalTailor',component: personalTailor,},
   {path: '/service/FirORLasInvest',component: FirORLasInvest,},
+  {path: '/service/refuseGlyh',component: refuseGlyh,},
+  {path: '/service/integratRule',component: integratRule,},
   {path: '/about/aboutus',component: aboutus,},
   {path: '/about/platform',component: platform,},
   {path: '/about/siteNotice',component: siteNotice,},

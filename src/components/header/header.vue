@@ -2,18 +2,54 @@
     <div class="hello">
         <div class="SignContactC" id="SignContactC" @click="SignContactChide($event)">
             <div class="SignContact" id="SignContact">
-                <div class="SignContact_box">
-                    <div class="cancelmodelbtn" v-on:click="modelClose"><span class="icon-remove"></span></div>
-                    <div class="SignContact_body">
-                        <h1>每日签到赚积分</h1>
-                        <h3>积分余额：{{totalScore}}分</h3>
-                        <p style="color:#ffda5c">
-                            <!-- @*积分商城*@  -->
-                            &nbsp; 
-                        </p>
-                        <div id="calendar"></div>
-                        <a v-if="is_sign == 0" class="signBtn" v-on:click="SignToday">签到</a>
-                        <a v-if="is_sign == 1" class="signBtn signedBtn">已签到</a>
+                <div class="sign_head"></div>
+                <div class="sign_body">
+                    <div class="allscoreLine">
+                        积分余额：{{userSignInfo.totalScore}}积分
+                        <router-link to="/account/integration" @click="modelClose">签到记录</router-link>
+                    </div>
+                    <div class="TodayScoreLine">
+                        <span>+{{userSignInfo.score}}</span>积分
+                    </div>
+                    <div class="sign_content">{{userSignInfo.content}}</div>
+                    <div class="sign_processC">
+                        <div class="sign_processline"><i></i></div>
+                        <div class="signDay">
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=1}"><i>1</i>天</div>
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=2}"><i>2</i>天</div>
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=3}"><i>3</i>天</div>
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=4}"><i>4</i>天</div>
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=5}"><i>5</i>天</div>
+                            <div class="everyDay" :class="{noShow:userSignInfo.num !=6}"><i>6</i>天</div>
+                            <div class="everyDay lastDay"><i>7</i>天
+                                <div class="signaward">{{userSignInfo.maxScore}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more-list">
+                        <div class="more-title row">获取更多积分
+                            <div>积分规则</div>
+                        </div>
+                        <ul>
+                            <li class="row" v-for="(userSignli,index) in userSignList" :key="index">
+                                <div><img :src="userSignli.img"/><span>{{userSignli.title}}</span></div>
+                                <div v-if="userSignli.complete == 1" class="clr9">{{userSignli.rule}}</div>
+                                <router-link to="/login/registerPersonal" v-if="userSignli.target == 0 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <router-link to="/account/accountOpen" v-if="userSignli.target == 24 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <router-link to="/account/objectBookingDetails" v-if="userSignli.target == 21 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <!-- 风险评测 -->
+                                <router-link to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <!-- 意见反馈 -->
+                                <router-link to="/developing" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <!-- 邀请好友 -->
+                                <router-link to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <!-- 好友首投 -->
+                                <router-link to="/account/friends" v-if="userSignli.target == 14 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                <!-- 投资积分 -->
+                                <router-link to="/product" v-if="userSignli.target == 6 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</router-link>
+                                
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -118,7 +154,9 @@ export default {
             unreadMsg: '',
             totalScore: 0,
             is_sign:0,
-            wechatul:0
+            wechatul:0,
+            userSignInfo:[],
+            userSignList:[]
         }
     },
     created(){
@@ -181,32 +219,14 @@ export default {
         },
         SignNow: function () {
             var that = this;
-                that.$store.state.checklogin(that);
-                //签到的的模态框出现
-                //获取今日签到信息
-                var DateInsert = new Date();
-                that.$store.state._ajax(that,'/api/index/findScore', {}, function (data) {
-                    that.is_sign=data.data.is_sign == 1?1:0;
-                    //获取当月签到记录
-                    that.$store.state._ajax(that,'/api/index/signDetail', {}, function (data) {
-                        // //var signList = [{ "signDay": "09" }, { "signDay": "11" }, { "signDay": "12" }, { "signDay": "13" }, { "signDay": "15" }, { "signDay": "25" }];
-                        // console.log(data);
-                        // return;
-                        var signList = [];
-                        var signDetail = data.data.detail;
-                        if (signDetail.length > 0) {
-                            for (var i = 0 ; i < signDetail.length; i++) {
-                                signList.push({ "signDay": signDetail[i].createTime.substr(8, 2) })
-                            }
-                        }
-                        that.$store.state.calUtil.init(signList,"#calendar",DateInsert);
-                        that.totalScore = data.data.score == '.00' ? 0 : parseInt(data.data.score);
-                    }, function () {
-                        that.$store.state.calUtil.init([],"#calendar",DateInsert);
-                        that.totalScore = 0;
-                    }, false);
-                    $(".SignContactC").show();
-                }, '', false);
+            that.$store.state.checklogin(that);
+            that.$store.state._ajax(that,'/api/index/userSign', {}, function (data) {
+                that.userSignInfo = data.data;  
+                that.userSignList = data.data.getList;
+            }, function () {
+
+            }, false);
+            $(".SignContactC").show();
         },
         SignToday: function () {
             var that = this;
