@@ -2,7 +2,7 @@
     <div class="hello">
         <div class="SignContactC" id="SignContactC" @click="SignContactChide($event)">
             <div class="SignContact clearfix" id="SignContact">
-                <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
+                <div class="cancelmodelbtn" @click="modelClose"><span class="icon-remove"></span></div>
                 <div class="sign_head"></div>
                 <div class="sign_body">
                     <div class="allscoreLine">
@@ -29,7 +29,7 @@
                     </div>
                     <div class="more-list">
                         <div class="more-title row">获取更多积分
-                            <div>积分规则</div>
+                            <a to="/service/integratRule" @click="sign_newhref($event)" class="clrCornflower">积分规则</a>
                         </div>
                         <ul>
                             <li class="row" v-for="(userSignli,index) in userSignList" :key="index">
@@ -41,7 +41,7 @@
                                 <!-- 风险评测 -->
                                 <a @click="sign_newhref($event)" to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 意见反馈 -->
-                                <a @click="sign_newhref($event)" to="/developing" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                <a @click="sign_newhref($event)" to="/account/Feedback" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 邀请好友 -->
                                 <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</a>
                                 <!-- 好友首投 -->
@@ -57,8 +57,10 @@
         </div>
         <div class="topnav" style="background:#fff;">
             <div class="newyear_topC">
-                <img src="../../common/stylus/img/newyear_top_left.png" class="newyear_top_left"/>
-                <img src="../../common/stylus/img/newyear_top_right.png" class="newyear_top_right"/>
+                <div class="imgC">
+                    <img src="../../common/stylus/img/newyear_top_left.png" class="newyear_top_left"/>
+                    <img src="../../common/stylus/img/newyear_top_right.png" class="newyear_top_right"/>
+                </div>
             </div>
             <div class="wp clearfix">
                 <div class="wp-ll publictopleft clearfix">

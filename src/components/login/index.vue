@@ -47,8 +47,7 @@
                                     <span class="tip" style="right: 120px;"></span>
                                     <span class="code">
                                         <!-- <img id="codeimg" :src="codeimgurl" @click='numchange'> -->
-                                        <img id="codeimg" v-bind:src="apiurl +'/api/user/getImgVerify?sid='+sid+'&random='+numrandom" v-on:click="numchange">
-                                        <!-- @*<img id="codeimg" v-bind:src="apiurl +'/api/user/getImgVerify?random='+numrandom" v-on:click="numrandomChange">*@ -->
+                                        <img id="codeimg" v-bind:src="apiurl +'/api/user/getImgVerify?sid='+sid+'&random='+numrandom" v-on:click="numchange" ref="img">                                  
                                     </span>
                                     
                                 </span>
@@ -117,18 +116,20 @@
                     window.location.reload();
                 });
             })
+
+            //验证码获取失败重新获取sid
+            this.$refs.img.onerror = () => {
+                self.$store.state.getSID(self);
+            }
         },
         created() {   
             var self = this;
+            // self.$store.state.getSID(self);
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:false});
             self.apiurl = this.$store.state.APIURL;
             self.sid = localStorage.SID;
-            //二维码失败刷新界面
-            // $("img").error(function () {
-            //     //当图片加载失败时，你要进行的操作
-            //     window.location.reload();
-            // });
+            
 
             //检索用户名
             if (localStorage.ltjfUserPhone) {

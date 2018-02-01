@@ -161,7 +161,7 @@
                     </div>
                     <div class="nh_bottom">
                         <router-link v-if="newHandAcitvityInfo.status == 1" :to="'/product/PInfo?id='+newHandAcitvityInfo.id" class="indexact_joinbtn">立即投资</router-link>
-                        <router-link v-if="newHandAcitvityInfo.status == 15" :to="'/product/PInfo?id='+newHandAcitvityInfo.id" class="indexact_joinbtn">{{newHandAcitvityInfo.investTime}}开抢</router-link>
+                        <router-link v-if="newHandAcitvityInfo.status == 15" :to="'/product/PInfo?id='+newHandAcitvityInfo.id" class="indexact_joinbtn">{{newHandAcitvityInfo.investTime}}</router-link>
                         <a v-if="newHandAcitvityInfo.status != 1 && newHandAcitvityInfo.status != 15" class="activityenda">已结束</a>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
             <div class="index_newproductC" style="position:relative;">
                 <!-- <img src="../../common/stylus/img/newyear_4.png" style="position:absolute;left:-328.5px;width:388.5px;height:324px;z-index:1;" /> -->
                 <img src="../../common/stylus/img/newyear_3.png" style="position:absolute;left:-230px;top:0;" />
-                <div class="newP_left" style="z-index:999;position:relative;">
+                <div class="newP_left" style="z-index:9;position:relative;">
                     <h1><img src="../../common/stylus/img/newindex_productlogo.png" />生财有道</h1>
                     <ul>
                         <li><a @click="productlistChange(3,0)" class="prolistSel">利房宝<span>{{productType1val}}</span></a></li>
@@ -239,7 +239,7 @@
                                 <a v-if="sblist.status == 10" class="projectEndbtn">已结束</a>
                                 <a v-if="sblist.status == 11" class="projectEndbtn">已失效</a>
                                 <a v-if="sblist.status == 13" class="projectEndbtn">出借结束</a>
-                                <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}开抢</router-link>
+                                <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}</router-link>
                             </li>
                         </ul>
                     </div>
@@ -465,7 +465,11 @@ export default {
                 var newHandAcitvity = data.data;
                 newHandAcitvity.info.limitMoney = parseInt(newHandAcitvity.info.limitMoney);
                 newHandAcitvity.info.extra_rate = Number(newHandAcitvity.info.extra_rate);
-                newHandAcitvity.info.investTime = (newHandAcitvity.info.investTime).substr(11,5);
+                
+                var  investdate =self.$store.state.unixChange(new Date((newHandAcitvity.info.investTime).substr(0,10)));
+                var date = self.$store.state.unixChange(new Date());
+                newHandAcitvity.info.investTime =(date < investdate) ? "即将发布" : ((newHandAcitvity.info.investTime).substr(11,5)+'开抢');
+                // newHandAcitvity.info.investTime = (newHandAcitvity.info.investTime).substr(11,5);
                 self.newHandAcitvity = newHandAcitvity;
                 self.newHandAcitvityInfo = newHandAcitvity.info;
             });
@@ -514,7 +518,10 @@ export default {
                 var projectlist_sblb = data.data.data;
                 if(data.data.data.length > 0 && _type != 2){
                     for (var i = 0; i < projectlist_sblb.length; i++) {
-                        projectlist_sblb[i].investTime = (projectlist_sblb[i].investTime).substr(11,5);
+                        var  investdate =self.$store.state.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
+                        var date = self.$store.state.unixChange(new Date());
+                        projectlist_sblb[i].investTime =(date < investdate) ? "即将发布" : ((projectlist_sblb[i].investTime).substr(11,5)+'开抢');
+                        // projectlist_sblb[i].investTime = (projectlist_sblb[i].investTime).substr(11,5);
                         projectlist_sblb[i].progress = Math.floor(projectlist_sblb[i].progress);
                         projectlist_sblb[i].extra_rate = Number(projectlist_sblb[i].extra_rate);
                     }

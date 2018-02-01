@@ -31,13 +31,10 @@
                                     <span class="tip"></span>
                                 </div>
                                 <div class="ytbfistLine form-group">
-                                    <span class="blodspan">账户保留金额</span>
-                                    <input type="number" class="form-submit required" id="reserveMoney" name="reserveMoney"  onkeyup="this.value=this.value.replace(/\D/g,'')"  v-model="reserveMoney"  />
+                                    <span class="blodspan">最小投资金额</span>
+                                    <input type="text" class="form-submit required" id="minMoney" name="minMoney" placeholder="100元起"  onkeyup="this.value=this.value.replace(/\D/g,'')" v-model="minMoney"  />
                                     <span class="blodspan">元</span>
                                     <span class="tip"></span>
-                                    <input class="form-submit" type="hidden" name="type" />
-                                    <input class="form-submit" value="json" type="hidden" name="respType" id="respType" />
-                                    <input class="form-submit" type="hidden" name="ret" v-model="ret"/>
                                 </div>
                             </div>
                             <!-- @*<div class="ytbSelline clearfix">
@@ -75,6 +72,15 @@
                             </div>*@ -->
                             <div class="ytbSelline clearfix">
                                 <div class="ytbfistLine form-group">
+                                    <span class="blodspan">账户保留金额</span>
+                                    <input type="number" class="form-submit required" id="reserveMoney" name="reserveMoney"  onkeyup="this.value=this.value.replace(/\D/g,'')"  v-model="reserveMoney"  />
+                                    <span class="blodspan">元</span>
+                                    <span class="tip"></span>
+                                    <input class="form-submit" type="hidden" name="type" />
+                                    <input class="form-submit" value="json" type="hidden" name="respType" id="respType" />
+                                    <input class="form-submit" type="hidden" name="ret" v-model="ret"/>
+                                </div>
+                                <div class="ytbfistLine form-group">
                                     <span class="blodspan">产品期限</span>
                                     <select class="form-submit" id="Termrate" name="Termrate" v-on:change="Termratechange" v-model="Termrate">
                                         <option value="0~1" minTerm="0" maxTerm="1">1个月及以下</option>
@@ -87,6 +93,8 @@
                                     <input type="hidden" class="form-submit" id="minTerm" name="minTerm" v-model="minTerm" />
                                     <input type="hidden" class="form-submit" id="maxTerm" name="maxTerm" v-model="maxTerm"/>
                                 </div>
+                            </div>
+                            <div class="ytbSelline clearfix">
                                 <div class="ytbfistLine form-group">
                                     <span class="blodspan">投标状态</span>
                                     <select class="form-submit required" id="repeat" name="repeat" v-model="repeat">
@@ -95,19 +103,9 @@
                                     </select>
                                     <span class="tip"></span>
                                 </div>
-                            </div>
-                            <div class="ytbSelline clearfix">
                                 <div class="ytbfistLine form-group">
                                     <span class="blodspan">是否使用红包</span>
                                     <select class="form-submit" id="useReward" name="useReward" v-model="useReward">
-                                        <option value="0">不使用</option>
-                                        <option value="1">使用</option>
-                                    </select>
-                                    <span class="tip"></span>
-                                </div>
-                                <div class="ytbfistLine form-group">
-                                    <span class="blodspan">是否使用加息券</span>
-                                    <select class="form-submit" id="useExtraRate" name="useExtraRate" v-model="useExtraRate">
                                         <option value="0">不使用</option>
                                         <option value="1">使用</option>
                                     </select>
@@ -123,14 +121,21 @@
                                     <label class="ytb_sylIntro">%起</label>
                                     <span class="ytbSYbtn" @click="ytbsylChange('plus')">+</span>
                                     <span class="tip"></span>
+                                    <input class="form-submit" style="display:none;" id="maxRate" v-model="maxRate" name="maxRate" />
                                 </div>
+                                <div class="ytbfistLine form-group">
+                                    <span class="blodspan">是否使用加息券</span>
+                                    <select class="form-submit" id="useExtraRate" name="useExtraRate" v-model="useExtraRate">
+                                        <option value="0">不使用</option>
+                                        <option value="1">使用</option>
+                                    </select>
+                                    <span class="tip"></span>
+                                </div>
+                            </div>
+                            <div class="ytbSelline clearfix">
                                 <div class="ytbfistLine">
                                     <span  class="blodspan">您前面还有<label class="orderNum">{{userSortRank}}</label>个人</span>
                                 </div>
-                                <!-- @*<div class="ytbfistLine">
-                                    <i class="icon-info-sign redspan"></i>
-                                    当前参考率：<span class="redspan">6.80%</span>，此利率下平均等待交易时间<span class="redspan">10</span>天
-                                </div>*@ -->
                             </div>
                         </div>
                         <div class="ytbxieyiC">
@@ -350,13 +355,15 @@
                 minSysRate:0,
                 maxSysRate:0,
                 maxMoney: 0,
+                minMoney: 0,
                 reserveMoney: 0.00,
                 repeat:1,
                 useReward:1,
                 useExtraRate:1,
                 automaticBtnText:'开启',
                 autobid:'',
-                dangerType:''
+                dangerType:'',
+                maxRate:36
             }
         },
         created() {
@@ -401,6 +408,7 @@
                 self.Termrate = data.data.autoBid.minTerm + '~' + (data.data.autoBid.maxTerm > 12 ? 999 : data.data.autoBid.maxTerm);
                 self.minRate = (data.data.autoBid.minRate == null) ? self.minSysRate : data.data.autoBid.minRate;
                 self.maxMoney = data.data.autoBid.maxMoney;
+                self.minMoney = data.data.autoBid.minMoney;
                 self.reserveMoney = data.data.autoBid.reserveMoney; 
                 self.repeat = data.data.autoBid.repeat;
                 self.useReward = data.data.autoBid.useReward;

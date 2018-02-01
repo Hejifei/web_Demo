@@ -76,6 +76,7 @@
                             <router-link to="/account/baseInfo">基本设置</router-link>
                             <router-link to="/account/integration">我的积分</router-link>
                             <router-link to="/account/friends">我的好友</router-link>
+                            <router-link to="/account/Feedback">意见反馈</router-link>
                             <router-link to="/account/messageCenter">消息中心</router-link>
                         </div>
                     </li>
@@ -159,9 +160,9 @@
             //location.pathname
             $(".info a").each(function () {
                 if ($(this).attr("href").indexOf(self.$route.path) != '-1') {
-                    $(this).addClass("c");
-                    $(this).parent(".info").slideDown(200);
-                    $(this).parent(".info").siblings("span").addClass("selected");
+                    // $(this).addClass("c");
+                    // $(this).parent(".info").slideDown(200);
+                    // $(this).parent(".info").siblings("span").addClass("selected");
                 }
             })
         },

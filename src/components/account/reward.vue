@@ -215,7 +215,7 @@
                             pageCount: data.data.last_page,
                             current: parseInt(data.data.current_page),
                             backFn: function (p) {
-                                self.getawardList(_type, _keywords, p);
+                                self.getawardList(_type, _keywords, p,_index);
                             }
                         });
                     }

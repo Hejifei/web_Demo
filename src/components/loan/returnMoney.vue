@@ -29,14 +29,14 @@
                         <th>项目名称</th>
                         <th v-if="repayType == '' || repayType ==2 || repayType ==3">投资编号</th>
                         <th v-if="repayType == '' || repayType ==2 || repayType ==3">投资人账号</th>
-                        <th v-if="repayType != 1">收益</th>
+                        <th v-if="repayType != 1">利息</th>
                         <th v-if="repayType == 1">待还利息</th>
                         <th v-if="repayType != 1">本金</th>
                         <th v-if="repayType == 1">待还本金</th>
-                        <th v-if="repayType ==2 || repayType ==3">服务费</th>
+                        <th v-if="repayType == '' || repayType ==2 || repayType ==3">服务费</th>
                         <th v-if="repayType ==1">待还服务费</th>
-                        <th>还款金额</th>
-                        <th>还款日期</th>
+                        <th>应还金额</th>
+                        <th>应还日期</th>
                         <th v-if="repayType ==1">还款方式</th>
                         <th v-if="repayType == ''">状态</th>
                         <th v-if="repayType ==2 || repayType ==3">支付日期</th>
@@ -45,17 +45,17 @@
                 </thead>
                 <tbody>
                     <tr v-for="(array,index) in arrayList" :key="index">
-                        <td v-if="repayType == ''"><input class="Checkbox px subCheckbox" type="checkbox" name="subCheckbox" :value="array.id" :money="array.repayMoney" /></td>
+                        <td v-if="repayType == ''"><input class="Checkbox px subCheckbox" type="checkbox" name="subCheckbox" :value="array.id" :money="array.repayMoney" :serviceMoney="array.serviceMoney" /></td>
                         <td>
                             <router-link v-if="repayType != 1" :to="'/product/PInfo?id='+array.ppid" target="_blank" class="c-000">{{array.title}}</router-link>
                             <router-link v-if="repayType == 1" :to="'/product/PInfo?id='+array.id" target="_blank" class="c-000">{{array.title}}</router-link>
                         </td>
                         <td v-if="repayType == '' || repayType ==2 || repayType ==3">{{array.pid}}</td>
                         <td v-if="repayType == '' || repayType ==2 || repayType ==3"><span>{{array.mobile}}</span></td>
-                        <td>{{array.interest}}</td>
-                        <td>{{array.capital}}</td>
-                        <td v-if="repayType ==1 ||repayType ==2 || repayType ==3">￥{{array.serviceMoney}}</td>
-                        <td>{{array.repayMoney}}</td>
+                        <td>￥{{array.interest}}</td>
+                        <td>￥{{array.capital}}</td>
+                        <td v-if="repayType =='' ||repayType ==1 ||repayType ==2 || repayType ==3">￥{{array.serviceMoney}}</td>
+                        <td>￥{{array.repayMoney}}</td>
                         <td><span class="c-orange">{{array.returnTime}}</span></td>
                         <td v-if="repayType ==1">
                             <span v-if="array.repayType == 0">每月付息，到期还本</span>
@@ -150,6 +150,7 @@
                 //已选金额
                 var remoney = 0;
                 $('input[name="subCheckbox"]:checked').each(function () {
+                    remoney += Number($(this).attr("serviceMoney"));
                     remoney += Number($(this).attr("money"));
                 });
                 $("#lenth").text("￥" + remoney.toFixed(2))
@@ -175,6 +176,7 @@
                 //已选金额
                 var remoney = 0;
                 $('input[name="subCheckbox"]:checked').each(function () {
+                    remoney += Number($(this).attr("serviceMoney"));
                     remoney += Number($(this).attr("money"));
                 });
                 $("#lenth").text("￥" + parseFloat(remoney).toFixed(2))
@@ -215,6 +217,7 @@
                         for (var i = 0; i < applylist.length; i++) {
                             applylist[i].returnTime = (applylist[i].returnTime == null) ? '' : applylist[i].returnTime.substr(0, 10);
                             applylist[i].paytime = (applylist[i].paytime == null) ? '' : applylist[i].paytime.substr(0, 10);
+                            moneyAll += parseFloat(applylist[i].serviceMoney);
                             moneyAll += parseFloat(applylist[i].repayMoney);
                         }
                         //分页的重置

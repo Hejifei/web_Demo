@@ -158,7 +158,7 @@
                         <a v-if="productDetail.status == 10 && uid != null" class="redBtn buynowBtn graybtn">已结束</a>
                         <a v-if="productDetail.status == 11 && uid != null" class="redBtn buynowBtn graybtn">已失效</a>
                         <a v-if="productDetail.status == 13 && uid != null" class="redBtn buynowBtn graybtn">出借结束</a>
-                        <a v-if="productDetail.status == 15 && uid != null" class="redBtn buynowBtn graybtn" style="color:#fff;">{{productDetail.ready_time}} 开抢</a>
+                        <a v-if="productDetail.status == 15 && uid != null" class="redBtn buynowBtn graybtn" style="color:#fff;">{{productDetail.ready_time}}</a>
                         <div class="xieyiline"  v-if="uid != null">
                             <label v-if="productDetail.status == 1"><input class="required agreement" type="checkbox" checked />我已阅读并同意<a :href="loanxieyi" target="_blank">《借款及服务协议》</a></label>
                             <label v-if="productDetail.status != 1" style="height:46px;display:block;"></label>
@@ -395,7 +395,11 @@
                 //console.log(data.data)
                 var productdetail=data.data;
                 var ready_time = productdetail.investTime;
-                productdetail.ready_time = ready_time.substr(11,5);
+                // productDetail.ready_time
+                var investdate =self.$store.state.unixChange(new Date((ready_time).substr(0,10)));
+                var date = self.$store.state.unixChange(new Date());
+                ready_time =(date < investdate) ? "即将发布" : ((ready_time).substr(11,5)+' 开抢');
+                productdetail.ready_time = ready_time;
                 productdetail.investTime = productdetail.investTime.substr(0, 10);
                 productdetail.progress = Math.floor(productdetail.progress);
                 productdetail.extra_rate = Number(productdetail.extra_rate);

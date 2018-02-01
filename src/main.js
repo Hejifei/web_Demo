@@ -69,6 +69,7 @@ import baseInfo from 'components/account/baseInfo';
 import integration from 'components/account/integration';
 import friends from 'components/account/friends';
 import rewards from 'components/account/rewards';
+import Feedback from 'components/account/Feedback';//意见反馈
 import messageCenter from 'components/account/messageCenter';//消息中心
 import messageDetail from 'components/account/messageDetail';//消息详情
 import wthdrawals from 'components/account/wthdrawals';
@@ -152,6 +153,7 @@ const routes = [
       {path: '/account/integration',component: integration,},
       {path: '/account/friends',component: friends,},
       {path: '/account/rewards',component: rewards,},
+      {path: '/account/Feedback',component: Feedback,},
       {path: '/account/messageCenter',component: messageCenter,},
       {path: '/account/messageDetail',component: messageDetail,},
       {path: '/account/recharge',component: recharge,},

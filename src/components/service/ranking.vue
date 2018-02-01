@@ -10,7 +10,7 @@
                     <li><a @click="RankingListGet(5,2)">积分排行</a></li>
                 </ul>
             </div>
-            <div class="rankB_right">
+            <div class="rankB_right" style="position:relative;">
                 <table>
                     <tbody>
                         <tr v-for="(rankinglist,index) in rankingList" :key="index">
@@ -22,6 +22,11 @@
                             <td v-if="rankinglist.ROW_NUMBER == 3"><img src="../../common/stylus/img/rankingNum_3.png"/></td>
                             <td v-if="rankinglist.ROW_NUMBER > 3">{{rankinglist.ROW_NUMBER}}</td>
                         </tr>
+                        <tr v-if="rankingList.length == 0"><td colspan="">暂无数据！</td></tr>
+                    </tbody>
+                </table>
+                <table style="position:absolute;top:640px;">
+                    <tbody>
                         <tr class="selftr">
                             <td><img :src="userInfo.avatar"/>{{userInfo.name}}</td>
                             <!-- <td>您已成功获得 <img src="../../common/stylus/img/rankingNum_1.png"/></td> -->

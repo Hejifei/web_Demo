@@ -36,7 +36,7 @@
             <div class="awardListC width33">
                 <ul class="clearfix">
                     <li @click="projectTypeSel($event,3)" class="awardList_active">待审核项目</li>
-                    <li @click="projectTypeSel($event,1)">还款中项目</li>
+                    <li @click="projectTypeSel($event,1)">待收项目</li>
                     <li @click="projectTypeSel($event,2)">已结束项目</li>
                 </ul>
             </div>
@@ -75,7 +75,8 @@
                             <td>{{invest.bidMoney}}</td>
                             <td>{{invest.rate}}%</td>
                             <td>{{invest.totalProfit}}元</td>
-                            <td>{{invest.term}}月</td>
+                            <td v-if="invest.termUnit == 1">{{invest.term}}月</td>
+                            <td v-if="invest.termUnit == 2">{{invest.term}}天</td>
                             <td style="white-space:nowrap;"><span class="f-main" style="color:#646464">{{invest.repaymentTime}}</span></td>
                             <td v-if="type == 2 || type == 1"><a class="c-000" style="color:#6794d1" @click="readxieyi(invest.id)">查看</a></td>
                             <td v-if="type == 2 || type == 1"><router-link class="c-000" style="color:#6794d1" target="_blank" :to="'/product/receipt?id='+invest.id">查看</router-link></td>
