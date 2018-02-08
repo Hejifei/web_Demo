@@ -129,8 +129,8 @@
                         <div class="awardSelLine"  v-if="uid != null">
                             <span class="spanredpackage"></span>
                             <label>理财红包</label>
-                            <select v-if="redPackageList.length ==0" class="form-submit" name="vocherId" id="vocherId"  v-on:change="redpackageSel">
-                                <option reMoney ="0" minMoney='0' value="">暂无理财红包！</option>
+                            <select v-if="redPackageList.length ==0" class="form-submit" name="vocherId" id="vocherId"  v-on:change="redpackageSel" disabled>
+                                <option reMoney ="0" minMoney='0' value="">没有可用</option>
                             </select>
                             <select v-if="redPackageList.length !=0" class="form-submit" name="vocherId" id="vocherId"  v-on:change="redpackageSel">
                                 <option reMoney ="0" minMoney='0' selected value="">请选择红包</option>
@@ -140,8 +140,8 @@
                         <div class="awardSelLine"  v-if="uid != null">
                             <span class="spanRatecoupon"></span>
                             <label>加息券</label>
-                            <select v-if="CouponList.length ==0" class="form-submit" name="useRateId" id="useRateId" v-on:change="couponSel">
-                                <option reMoney="0" minMoney="0" value="">暂无加息券！</option>
+                            <select v-if="CouponList.length ==0" class="form-submit" name="useRateId" id="useRateId" v-on:change="couponSel" disabled>
+                                <option reMoney="0" minMoney="0" value="">没有可用</option>
                             </select>
                             <select v-if="CouponList.length !=0" class="form-submit" name="useRateId" id="useRateId" v-on:change="couponSel" style="margin-right:20px;">
                                 <option reMoney="0" minMoney="0" selected value="">请选择加息券</option>
@@ -364,6 +364,7 @@
             var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
+            console.log('id: ' + this.$route.params.id);
             self.sid = localStorage.SID;
             var idGet = this.$store.state.getUrl(location.href).id;
             self.productId = idGet;

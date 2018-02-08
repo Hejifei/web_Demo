@@ -1,9 +1,10 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
 //兼容IE
 import 'babel-polyfill';
 import 'eventsource-polyfill';
+import Vue from 'vue'
+
 
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
@@ -46,6 +47,7 @@ import redirect from 'components/index/redirect';//重定向界面
 import developing from 'components/index/developing';//开发中界面
 import productList from 'components/product/productList';
 import PInfo from 'components/product/PInfo';
+import Pinfo_order from 'components/product/Pinfo_order';//预约抢购确认投资界面
 import InvestConfirm from 'components/product/investConfirm';
 import transPInfo from 'components/product/transPInfo';
 import transInvestComfirm from 'components/product/transInvestComfirm';
@@ -83,6 +85,7 @@ import investlistTransfer from 'components/account/investlistTransfer';
 import personalTailorDetail from 'components/account/personalTailorDetail';//私人订制
 import transferApply from 'components/account/transferApply';//转让申请
 import followlist from 'components/account/followlist';//关注项目
+import orderRecord from 'components/account/orderRecord';//预约记录
 import fssTrans from 'components/account/fssTrans';//生利宝
 import userProjectinfo from 'components/account/userProjectinfo';//回执单
 import loan from 'components/loan/index';//我要出借
@@ -100,6 +103,7 @@ import automaticBid from 'components/service/automaticBid';//自动投标专题
 import personalTailor from 'components/service/personalTailor';//私人定制专题
 import FirORLasInvest from 'components/service/FirORLasInvest';//首尾投专题
 import refuseGlyh from 'components/service/refuseGlyh';//拒绝高利诱惑
+import special_Invite from 'components/service/special_Invite';//邀请好友专题
 import integratRule from 'components/service/integratRule';//积分规则
 import aboutus from 'components/about/aboutus';//关于我们
 import platform from 'components/about/platform';//平台原理
@@ -134,6 +138,7 @@ const routes = [
   {path: '/loan',component: loan,},
   {path: '/product',component: productList,},
   {path: '/product/PInfo',component: PInfo,},
+  {path: '/product/Pinfo_order',component: Pinfo_order,},
   {path: '/product/InvestConfirm',component: InvestConfirm,},
   {path: '/product/transPInfo',component: transPInfo,},
   {path: '/product/transInvestComfirm',component: transInvestComfirm,},
@@ -167,6 +172,7 @@ const routes = [
       {path: '/account/personalTailorDetail',component: personalTailorDetail,},
       {path: '/account/transferApply',component: transferApply,},
       {path: '/account/followlist',component: followlist,},
+      {path: '/account/orderRecord',component: orderRecord,},
       {path: '/account/fssTrans',component: fssTrans,},
       {path: '/account/applyRecord',component: applyRecord,},
       {path: '/account/loanManage',component: loanManage,},
@@ -186,6 +192,7 @@ const routes = [
   {path: '/service/personalTailor',component: personalTailor,},
   {path: '/service/FirORLasInvest',component: FirORLasInvest,},
   {path: '/service/refuseGlyh',component: refuseGlyh,},
+  {path: '/service/special_Invite',component: special_Invite,},
   {path: '/service/integratRule',component: integratRule,},
   {path: '/about/aboutus',component: aboutus,},
   {path: '/about/platform',component: platform,},

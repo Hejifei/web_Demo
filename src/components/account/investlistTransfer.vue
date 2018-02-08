@@ -38,10 +38,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="(transfer,index) in transferList" :key="index">
-                        <td v-if="iftransferList == true">
+                        <td v-if="iftransferList == true" style="padding:0;">
                             <router-link target="_blank" :to="'/product/PInfo?id='+transfer.p_id"  class="c-000">{{transfer.title}}</router-link>
                         </td>
-                        <td v-if="iftransferList == false">
+                        <td v-if="iftransferList == false" style="padding:0;">
                             <router-link target="_blank" :to="'/product/PInfo?id='+transfer.productID"  class="c-000">{{transfer.title}}</router-link>
                         </td>
                         <!-- @*<td v-if="iftransferList == true">{{transfer.repay_time}}</td>

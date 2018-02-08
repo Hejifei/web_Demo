@@ -10,7 +10,7 @@
             <li :class="{np_left_liactive:listnum ==3}" @click='ProductListGet(1,3,"")'>利房宝（{{productInfo.home}}）</li>
             <li :class="{np_left_liactive:listnum ==4}" @click='ProductListGet(1,4,"")'>利车宝（{{productInfo.car}}）</li>
             <li :class="{np_left_liactive:listnum ==2}" @click='ProductListGet(1,2,"")' style="border-top:0;">债权转让（{{getNum.transferNum}}）</li>
-            <li style="border-top:0;">预约抢购（0）</li>
+            <li :class="{np_left_liactive:listnum ==5}" @click='ProductListGet(1,5,"")' style="border-top:0;">预约抢购</li>
           </ul>
           <div class="investDynamicC">
             <!-- <img class="newyearimg" src="../../common/stylus/img/newyear_prolist1.png" /> -->
@@ -29,16 +29,16 @@
         <div class="newPLC_right">
           <div class="NoTypeLine">
             <label>排序方式</label>
-            <ul v-if="listnum != 2">
+            <ul>
               <li>项目规模<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></li>
               <li>预计年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
               <li>投资期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></li>
             </ul>
-            <ul v-if="listnum ==2">
+            <!-- <ul v-if="listnum ==2">
               <li>项目规模<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></li>
               <li>预计年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
               <li>投资期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></li>
-            </ul>
+            </ul> -->
             <div class="listsearchC">
                 <input type="text" v-model="keywords" id="keywords" maxlength="14" />
                 <a class="redBtn" id="SearchBtn" @click='ProductListGet(1,listnum,"")'>
@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="newprodtList">
-            <ul v-if="listnum != 2 && projectlist_sblb.length >0">
+            <ul v-if="listnum != 2  && listnum != 5 && projectlist_sblb.length >0">
               <li v-for="(sblist,index) in projectlist_sblb" :key='index'>
                 <h3 :title="sblist.title">
                   <router-link :to="'/product/PInfo?id='+sblist.id">
@@ -96,7 +96,8 @@
                 </div>
               </li>
             </ul>
-            <ul v-if="listnum != 2 && projectlist_sblb.length ==0"><p class="nodata">暂无数据!</p></ul>
+            <ul v-if="listnum != 2  && listnum != 5 && projectlist_sblb.length ==0"><p class="nodata">暂无数据!</p></ul>
+            <!-- 债权转让列表 -->
             <ul v-else-if="listnum ==2 && projectlist_zqzr.length >0">
               <li v-for="(sblist,index) in projectlist_zqzr" :key='index'>
                 <h3 :title="sblist.title">
@@ -135,6 +136,45 @@
               </li>
             </ul>
             <ul v-if="listnum == 2 && projectlist_zqzr.length ==0"><p class="nodata">暂无数据!</p></ul>
+            <!-- 预约抢购列表 -->
+            <ul v-else-if="listnum ==5 && projectlist_yyqg.length >0">
+              <li v-for="(sblist,index) in projectlist_yyqg" :key='index'>
+                <h3 :title="sblist.title">
+                  <router-link :to="'/product/Pinfo_order?id='+sblist.id"><img :src="sblist.img" /> {{sblist.title}}</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">确认预约</router-link>
+                  <a  v-if="sblist.reserveStatus != 1" class="projectingbtn projectEndbtn">立即预约</a>
+                </h3>
+                <div class="newprodInfo">
+                  <div class="newInfoSon">
+                    <label class="redtext">{{sblist.rate}}<span class="fontS16">%起</span></label>
+                    <p>预期年化</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label v-if="sblist.termUnit == 1">{{sblist.term}}<span class="fontS16">个月</span></label>
+                    <label v-if="sblist.termUnit == 2">{{sblist.term}}<span class="fontS16">天</span></label>
+                    <p>期限</p>
+                  </div>
+                  <div class="newInfoSon">
+                    <label>{{sblist.totalNum}}<span class="fontS16">人</span></label>
+                    <p>预约人数</p>
+                  </div>
+                  <div class="newInfoSon2">
+                    <label class="zrlabel"><span class="fontS16"></span>{{sblist.money}}</label>
+                    <p class="tc">预约金额</p>
+                    
+                    <!-- <router-link v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">确认预约</router-link>
+                    <a v-if="sblist.reserveStatus == 6" class="projectEndbtn">预约结束</a> -->
+                    <!-- <a v-if="sblist.status == 8" class="projectEndbtn">正在还款</a>
+                    <a v-if="sblist.status == 9" class="projectEndbtn">已还款</a>
+                    <a v-if="sblist.status == 10" class="projectEndbtn">已结束</a>
+                    <a v-if="sblist.status == 11" class="projectEndbtn">已失效</a>
+                    <a v-if="sblist.status == 13" class="projectEndbtn">出借结束</a>
+                    <router-link v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}开抢</router-link> -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul v-if="listnum == 5 && projectlist_yyqg.length ==0"><p class="nodata">暂无预约项目!</p></ul>
           </div>
           <div class="pages mypage clearfix">
               <div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>
@@ -156,6 +196,7 @@
           uid: "",
           projectlist_sblb: [],
           projectlist_zqzr: [],
+          projectlist_yyqg: [],
           statistics:[],
           keywords:'',
           listnum:1,
@@ -265,7 +306,7 @@
           },
           function (data) {
             if (data.code == '1') {
-              if (_type != 2) {
+              if (_type != 2 && _type != 5) {
                 let projectlist_sblb = data.data.data;
                 for (var i = 0; i < projectlist_sblb.length; i++) {
                   var investdate =self.$store.state.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
@@ -277,7 +318,10 @@
                 self.projectlist_sblb = projectlist_sblb;
               } else if (_type == 2) {
                 self.projectlist_zqzr = data.data.data;
+              } else if (_type == 5) {
+                self.projectlist_yyqg = data.data.data;
               }
+              
               self.listnum = _type;
 
               //分页的重置

@@ -65,6 +65,10 @@
                         //自动投标
                         self.$router.push({path:'/account/overview'});
                         break;
+                    case '19':
+                        //省心宝
+                        self.$router.push({path:'/account/orderRecord'});
+                        break;
                     default:
                         self.$router.push({path:'/'});
                         break;

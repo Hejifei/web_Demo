@@ -52,15 +52,17 @@
                 if (d.code == '-1' || _url == "/api/session/check" && d.code == 0) {
                     getSID(that);
                 } else if (d.code == '-3'|| _url == "/api/user/logout" && d.code == -1) {
-                    setTimeout(function () { 
-                        layer.closeAll();
-                        getSID(that,'/login')
-                        // that.$router.push({path:'/login'}); 
-                    }, 2000)
-                    layer.alert(d.msg, {title: '操作提示',icon: 5}, function () { 
-                        layer.closeAll();
-                        getSID(that,'/login')
-                    })
+                    // setTimeout(function () { 
+                    //     // layer.closeAll();
+                    //     getSID(that,'/login')
+                    //     // that.$router.push({path:'/login'}); 
+                    // }, 100)
+                    layer.msg(d.msg);
+                    getSID(that,'/login')
+                    // layer.alert(d.msg, {}, function () { 
+                    //     layer.closeAll();
+                    //     getSID(that,'/login')
+                    // })
                 } else {
                     d.code == '1' ? b(d) : c(d);
                 }
@@ -676,7 +678,7 @@
             setCookie('uuid',uuid,1000);
         }
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:'20180201','uuid': uuid},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20180206','uuid': uuid},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {

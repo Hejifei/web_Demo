@@ -195,6 +195,7 @@
                         <li><a @click="productlistChange(3,0)" class="prolistSel">利房宝<span>{{productType1val}}</span></a></li>
                         <li><a @click="productlistChange(4,1)">利车宝<span>{{productType2val}}</span></a></li>
                         <li><a @click="productlistChange(2,2)">债权转让<span>{{typesPNum.transferNum}}</span></a></li>
+                        <li><a @click="productlistChange(5,3)" style="padding-right: 65px;">预约抢购</a></li>
                     </ul>
                     <canvas id="waveC"></canvas>
                 </div>
@@ -281,7 +282,44 @@
                         </ul>
                     </div>
                 </div>
-
+                <div class="newP_right" v-if="type == 5">
+                    <div v-for="(sblist,index) in projectlist_sblb" v-if="index < 5"  :key="index" class="newP_detailC">
+                        <h3>
+                            <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">
+                                <img :src="sblist.img"/>  
+                                {{sblist.title}} 
+                                <!-- <span title="此标的可使用红包" v-if="sblist.is_reward == 1" >红包</span>
+                                <span title="此标的可使用加息券" v-if="sblist.is_extraRate == 1">加息券</span>
+                                <span title="此为新手专享标" v-if="sblist.is_new == 1">新手</span>
+                                <span title="此为私人定制" v-if="sblist.isCustomized == 1">私人</span>  -->
+                            </router-link>
+                        </h3>
+                        <ul>
+                            <li>
+                                <label class="redlabel"><span>{{sblist.rate}}</span>%起</label>
+                                <p>预计年化</p>
+                            </li>
+                            <li>
+                                <!-- <label><span>{{sblist.transferTerm}}</span>个月</label> -->
+                                <label v-if="sblist.termUnit == 1"><span>{{sblist.term}}</span>个月</label>
+                                <label v-if="sblist.termUnit == 2"><span>{{sblist.term}}</span>天</label>
+                                <p>期限</p>
+                            </li>
+                            <li>
+                                <label title="金额" style="text-align:center;"><span>{{sblist.totalNum}}</span>人</label>
+                                <p>预约人数</p>
+                            </li>
+                            <li>
+                                <label><span>{{sblist.money}}</span></label>
+                                <p>预约金额</p>
+                            </li>
+                            <li>
+                                <router-link v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">立即预约</router-link>
+                                <a v-if="sblist.reserveStatus != 1" class="projectEndbtn">立即预约</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="index_activeC">

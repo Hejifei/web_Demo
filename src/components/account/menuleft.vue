@@ -99,7 +99,9 @@
                             <router-link to="/account/investlistTransfer">债权转让</router-link>
                             <router-link to="/account/objectBookingDetails">自动投标</router-link>
                             <router-link to="/account/personalTailorDetail">私人定制</router-link>
+                            <router-link to="/account/orderRecord">预约记录</router-link>
                             <router-link to="/account/followlist">关注项目</router-link>
+
                             <router-link to="/account/fssTrans">生利宝</router-link>
                         </div>
                     </li>
