@@ -6,10 +6,10 @@
             <div class="SR_bodyC">
                 <h3><img src="../../common/stylus/img/special_regist_titlr_right.png" /> 活动详情 <img src="../../common/stylus/img/special_regist_title_left.png" /></h3>
                 <div class="SR_PC">
-                    <p>1.新用户注册得<span>888</span>元现金红包。</p>
-                    <p>2.可专享<span>10-12%</span>预期收益月/天标投资。</p>
-                    <p>3.共享积分/预约投资/首尾投/好友邀请等奖励。</p>
-                    <p>4.在“我的—我的奖券”中查看红包使用规则。</p>
+                    <p>1.新用户注册得<span>888元</span>现金红包。</p>
+                    <p>2.<span>可专享10-12%</span>预期收益新手标投资。</p>
+                    <p>3.可得积分/预约投资/首尾投/好友邀请等奖励。</p>
+                    <p>4.在“我的账户—我的奖券”中查看红包使用规则。</p>
                 </div>
                 <div class="SR_RPC">
                     <div>
