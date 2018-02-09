@@ -1,5 +1,37 @@
 <template>
     <div class="overview">
+        <div id="ContactC">
+            <div id="Contact">
+                <div class="Contact_box">
+                    <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
+                    <div class="Contact_head">
+                        收益详情
+                    </div>
+                    <div class="Contact_body">
+                        <router-link :to="'/product/PInfo?id='+productID" style="position:absolute;bottom:15px;font-size:12px;display:block;width: 100%;text-align:center;color:#fb5a5c;">点击查看标的详情</router-link>
+                        <div class="sqbody" style="height:296px;">
+                            <div class="sqbodyson">
+                                <table class="model_table" style=''>
+                                    <thead>
+                                        <tr>
+                                            <td>期次</td>
+                                            <td>应收日期</td>
+                                            <td>实收日期</td>
+                                            <td>应收本金</td>
+                                            <td>应收收益</td>
+                                            <td>应收总额</td>
+                                            <td>状态</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="graph">
             预约记录
         </div>
@@ -11,8 +43,8 @@
                         <td>借款标题</td>
                         <!-- <td>年利率</td> -->
                         <td>投资期限</td>
-                        <td>预约金额</td>
-                        <td>排队人数</td>
+                        <td style="padding:0;">已预约金额</td>
+                        <td>排队人次</td>
                         <td>预约时间</td>
                         <td>操作</td>
                     </tr>
@@ -40,7 +72,10 @@
                             <!-- "status": "1",//预约状态， 1预约中，2预约成功，3预约失败，4预约超时，5预约取消 -->
                             <!-- <a v-if="reserveLog.status == 1" class="graya">预约中</a> -->
                             <a v-if="reserveLog.status == 1" @click='reserveCancel(reserveLog.id)'>取消预约</a>
-                            <a v-if="reserveLog.status != 1" class="graya"></a>
+                            <router-link v-if="reserveLog.status == 2 && reserveLog.tenderStatus == 1" :to="'/product/PInfo?id='+reserveLog.productID">查看详情</router-link>
+                            <a v-if="reserveLog.status == 2 && reserveLog.tenderStatus == 2" @click="HuankuanDetail(reserveLog.tenderID,reserveLog.productID)">查看详情</a>
+                            <!-- <a v-if="reserveLog.status != 1 && reserveLog.status != 2" class="graya"></a> -->
+                            <span v-if="reserveLog.status == 3" :title="reserveLog.describe" class="sp_span">{{reserveLog.describe}}</span>
                         </td>
                     </tr>
                     <tr v-if="reserveLogList.length == 0"><td colspan="6" style="color:#323232;text-align:center;">暂无预约记录!</td></tr>
@@ -61,16 +96,26 @@
   export default {
     data () {
       return {
-        reserveLogList: []
+        reserveLogList: [],
+        productID:''
       }
     },
     created(){
         var self = this;
         //关注项目列表获取
         self.reserveLogListGet(1);
+        
     },
     mounted:function(){
-        
+        //模态框隐藏
+        $(".cancelmodelbtn").click(function () {
+            $("#ContactC").hide();
+        })
+        $("#ContactC").click(function (e) {
+            if (e.target.id == "ContactC" || e.target.id == "Model") {
+                $("#ContactC").hide();
+            }
+        })
     },
     methods: {
         reserveLogListGet: function(_page) {
@@ -111,7 +156,58 @@
             },function(){
                 layer.closeAll();
             });
-        }
+        },
+        HuankuanDetail:function(idget,productID) {
+                var self = this;
+                self.productID = productID;
+                //签到记录取
+                self.$store.state._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
+                    var investdetaillist = data.data.list;
+                    $(".model_table tbody").html("");
+                    var temp = "";
+                    if (investdetaillist.length == 0) {
+                        temp='<tr><td colspan="7">暂无数据</td></tr>'
+                    } else {
+                        for (var i = 0; i < investdetaillist.length; i++) {
+                            investdetaillist[i].repayTime = investdetaillist[i].repayTime.substr(0, 10);
+                            // investdetaillist[i].repayTime = _type == 3 ? '--' : investdetaillist[i].repayTime;
+                            investdetaillist[i].payTime = investdetaillist[i].payTime == null ? '--': investdetaillist[i].payTime.substr(0, 10);
+                            switch (investdetaillist[i].is_pay) {
+                                case '0':
+                                    investdetaillist[i].is_pay = "未还";
+                                    break;
+                                case '1':
+                                    investdetaillist[i].is_pay = "已还";
+                                    break;
+                                case '2':
+                                    investdetaillist[i].is_pay = "提前还款";
+                                    break;
+                                case '3':
+                                    investdetaillist[i].is_pay = "结束";
+                                    break;
+                                case '4':
+                                    investdetaillist[i].is_pay = "已返";
+                                    break;
+                            }
+                            temp += '<tr>'+
+                                        '<td>'+ (i+1) +'</td>' +
+                                        '<td>' + investdetaillist[i].repayTime + '</td>' +
+                                        '<td>' + investdetaillist[i].payTime + '</td>' +
+                                        '<td>' + investdetaillist[i].repayCapital + '</td>' +
+                                        '<td>' + investdetaillist[i].repayInterest + '</td>' +
+                                        '<td>' + investdetaillist[i].repayMoney + '</td>' +
+                                        '<td>' + investdetaillist[i].is_pay + '</td>' +
+                                '</tr>'
+                        }
+                    }
+                    $(".model_table tbody").html(temp);
+                    // $(".Contact_head").html(`收益详情(<router-link to="/product/PInfo?id=${productID}">点击查看标的详情</router-link>)`);
+                    // $(".Contact_head").html('收益详情(<a href="/product/PInfo?id='+productID+'">点击查看标的详情</a>)');
+                    
+                    self.investdetaillist = investdetaillist;
+                    $("#ContactC").show();
+                }, '');
+            },
     }
   }
 </script>

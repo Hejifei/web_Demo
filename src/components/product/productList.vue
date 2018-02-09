@@ -155,12 +155,12 @@
                     <p>期限</p>
                   </div>
                   <div class="newInfoSon">
-                    <label>{{sblist.totalNum}}<span class="fontS16">人</span></label>
-                    <p>预约人数</p>
+                    <label>{{sblist.totalNum}}<span class="fontS16"></span></label>
+                    <p>预约人次</p>
                   </div>
                   <div class="newInfoSon2">
                     <label class="zrlabel"><span class="fontS16"></span>{{sblist.money}}</label>
-                    <p class="tc">预约金额</p>
+                    <p class="tc">已预约金额</p>
                     
                     <!-- <router-link v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">确认预约</router-link>
                     <a v-if="sblist.reserveStatus == 6" class="projectEndbtn">预约结束</a> -->

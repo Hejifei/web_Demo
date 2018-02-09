@@ -20,7 +20,7 @@
                         <ul class="clearfix" style="margin-top:30px;">
                             <li>
                                 <p><span>{{productDetail.money}}</span></p>
-                                <p>预约金额</p>
+                                <p>已预约金额</p>
                             </li>
                             <li>
                                 <p><span>{{productDetail.rate}}</span>%</p>
@@ -35,7 +35,7 @@
                             </li>
                         </ul>
                         <div class="projectInfoLine" style="margin-top:30px;">
-                            <span><label>预约人数</label>{{productDetail.totalNum}}</span>
+                            <span><label>预约人次</label>{{productDetail.totalNum}}</span>
                             <span><label>最低预约金额</label>{{productDetail.minMoney}}</span>
                         </div>
                         <!-- <div class="projectInfoLine">

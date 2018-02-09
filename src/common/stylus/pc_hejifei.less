@@ -801,6 +801,11 @@ a:hover{text-decoration:none;}
                                                                                        .graya,.graya:hover{color: #646464;background-color:transparent;}
                                                                                        .projectEndbtn{color: #646464;}
                                                                                        .projectEndbtn:hover{background-color: #d7d7d7;}
+                                                                                       .sp_span{width:108px;display: inline-block;height: 30px;
+                                                                                        line-height: 30px;
+                                                                                        overflow:hidden; 
+                                                                                        white-space:nowrap;
+                                                                                        text-overflow:ellipsis;position: relative;top: 9px;}
                                                                  }
                                                                  tbody tr:nth-child(odd){background-color:#fafafa;}
                                                                  tbody tr:hover{background-color: #f5f5f5;}
@@ -2310,6 +2315,52 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         .SL_P{padding: 40px 40px;line-height: 60px;font-size: 30px;color: #646464;background: url(/static/img/Special_inviteC_pBG.png) no-repeat center center;background-size: 100% 100%;
             img{width:300px;height:300px;display: inline-block;}
             .top35{margin-top: 35px;}
+        }
+    }
+}
+// 注册专题
+.Special_registC{position: relative;border-bottom:1px solid #e0e0e0;}
+    .SR_topbanner{min-width: 1050px;height: 458px;background: url(/static/img/special_regist_topBG.png) no-repeat center center;background-color: #f74056;}
+    .SR_body{min-width: 1050px;
+        .SR_bodyC{width: 1050px;margin: auto;padding-top:50px;padding-bottom:50px;
+        h3{color: #fb5a5c;font-size: 40px;text-align: center;margin:50px 0;
+            img{margin: 0 80px}
+        }
+        .SR_PC{margin: 20px 0;
+            p{font-size: 32px;color:#646464;text-indent: 2em;line-height:55px;
+                span{color:@btn-red;margin: 0 5px;}
+            }
+            img{display: inline-block;vertical-align: bottom;margin-left:70px;}
+            label{display: inline-block;vertical-align: bottom;padding-top: 20px;
+                p:nth-child(1){margin-bottom:15px;}
+            }
+            .mg30{margin:30px 0;}
+        }
+        .SR_RPC{margin:20px 0;height:580px;
+            div{text-align: center;}
+            span{width: 189px;height:230px;display:inline-block;background:url(./img/special_regist_redpackage.png) no-repeat center center;color:#fdff52;font-size: 60px;margin:30px 20px;padding-top:85px;position:relative;
+                i{font-size: 30px;}
+            }
+            
+        }
+        .SR_Form{padding:50px 0;
+            .SR_Form_line{position: relative;text-align:center;padding:20px 0;
+                input{width:600px;height:80px;border-radius: 10px;font-size: 24px;color:#969696;padding-left: 120px;border: 1px solid #969696;}
+                .input_01{background: url(./img/special_regist_form_01.png) no-repeat  55px center;background-size:24px 42px;}
+                .input_02{background: url(./img/special_regist_form_02.png) no-repeat  55px center;background-size:34px 42px;}
+                .input_03{background: url(./img/special_regist_form_03.png) no-repeat  55px center;background-size:28px 42px;}
+                .input_04{background: url(./img/special_regist_form_04.png) no-repeat  55px center;background-size:40px 40px;}
+                .btna{width:600px;height:80px;display: inline-block;line-height: 80px;border-radius: 49.5px;font-size: 24px;color: #fff;background-color: @btn-red;}
+                label{display: block;margin:20px 0;font-size:20px;
+                    a{color: #498aeb;}
+                }
+                input[type='checkbox']{width: 15px;height:20px;}
+                .tip{left: 830px;top:80px;}
+                .getcodeBtn{position: absolute;right:225px;line-height: 80px;font-size: 24px;color: #498aeb;padding:0 20px;border-top-right-radius: 10px;border-bottom-right-radius: 10px;}
+            }
+        }
+        .SR_joinusC{color: #646464;font-size: 28px;text-align: center;margin-top:40px;
+            label:nth-child(1){margin-right: 50px;}
         }
     }
 }

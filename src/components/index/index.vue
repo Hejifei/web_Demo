@@ -306,12 +306,12 @@
                                 <p>期限</p>
                             </li>
                             <li>
-                                <label title="金额" style="text-align:center;"><span>{{sblist.totalNum}}</span>人</label>
-                                <p>预约人数</p>
+                                <label title="金额" style="text-align:center;"><span>{{sblist.totalNum}}</span></label>
+                                <p>预约人次</p>
                             </li>
                             <li>
                                 <label><span>{{sblist.money}}</span></label>
-                                <p>预约金额</p>
+                                <p>已预约金额</p>
                             </li>
                             <li>
                                 <router-link v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">立即预约</router-link>
