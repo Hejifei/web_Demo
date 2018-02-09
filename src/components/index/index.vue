@@ -319,6 +319,7 @@
                             </li>
                         </ul>
                     </div>
+                    <div v-if="projectlist_sblb.length == 0" style="font-size:20px;text-align:center;padding:20px 0;">暂无预约项目！</div>
                 </div>
             </div>
         </div>
