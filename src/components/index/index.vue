@@ -285,7 +285,7 @@
                 <div class="newP_right" v-if="type == 5">
                     <div v-for="(sblist,index) in projectlist_sblb" v-if="index < 5"  :key="index" class="newP_detailC">
                         <h3>
-                            <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">
+                            <router-link :to="'/product/Pinfo_order?id='+sblist.id">
                                 <img :src="sblist.img"/>  
                                 {{sblist.title}} 
                                 <!-- <span title="此标的可使用红包" v-if="sblist.is_reward == 1" >红包</span>
