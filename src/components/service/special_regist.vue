@@ -16,7 +16,7 @@
                         <span><i>￥</i>10</span>
                         <span><i>￥</i>30</span>
                         <span><i>￥</i>50</span>
-                        <span><i>￥</i>80</span>
+                        <span><i>￥</i>88</span>
                     </div>
                     <div>
                         <span><i>￥</i>100</span>
