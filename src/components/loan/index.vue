@@ -517,6 +517,8 @@
             LTJF.$emit("txt",{header:true});
             self.apiurl = self.$store.state.APIURL;
             self.sid = localStorage.SID;
+            // 从localStorage获取用户是否是企业或个人
+            self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
             self.$store.state.checklogin(self);   //验证是否登录
 
             //获取用户信息

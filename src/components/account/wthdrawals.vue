@@ -12,8 +12,12 @@
                 <span class="accountBalance"  v-cloak><label>{{accountInfo.useMoney}}</label>元</span>
                 <div class="rechargeline form-group">
                     <label>提现方式</label>
-                    <label class="rechargetypelab">快速提现<input type="radio" name="wType" value="1" checked class="rechargeMode"/></label>
-                    <label class="rechargetypelab rechargetypesel">普通提现<input type="radio" name="wType" value="2" class="rechargeMode" /></label>
+                    <!-- 个人 -->
+                    <label v-if="regType == 0" class="rechargetypelab">即时取现<input type="radio" name="wType" value="1" checked class="rechargeMode"/></label>
+                    <label v-if="regType == 0" class="rechargetypelab rechargetypesel">普通取现<input type="radio" name="wType" value="2" class="rechargeMode" /></label>
+                    <!-- 企业 -->
+                    <label v-if="regType == 1" class="rechargetypelab">快速提现<input type="radio" name="wType" value="1" checked class="rechargeMode"/></label>
+                    <label v-if="regType == 1" class="rechargetypelab rechargetypesel">普通提现<input type="radio" name="wType" value="2" class="rechargeMode" /></label>
                     <input class="form-submit required" type="hidden" name="wType" id="wType" value="2" />
                     <span class="tip"></span>
                 </div>
@@ -41,15 +45,16 @@
                     <a class="rechargeNow" id="SubmitBtn">确认提现</a>
                 </div>
                 <div class="explainarea WithdrawalsExplan">
-                    <p>1. 提现时间：全天24小时实时处理；</p>
-                    <p>2. 提现方式说明：</p>
+                    <p>1. 取现时间：全天24小时实时处理；</p>
+                    <p>2. 取现方式说明：</p>
                     <!-- <p>① 即时取现：支持工/招行，不论工作日与非工作日，均当天到账；</p> -->
-                    <p>① 快速提现（T+0）：工作日14:30前提交取现申请，当天到账；工作日14:30之后提交取现申请，以及非工作日提交取现申请，将顺延至下一个工作日到账；</p>
+                    <p v-if="regType == 0">① 即时取现：2小时内到账；</p>
+                    <p v-if="regType == 1">① 快速提现（T+0）：工作日14:30前提交取现申请，当天到账；工作日14:30之后提交取现申请，以及非工作日提交取现申请，将顺延至下一个工作日到账；</p>
                     <p>② 普通取现（T+1）：将在下一个工作日到账；</p>
                     <p>3. 国家法定节假日：国家法定节假日期间是否处理提现等事宜，具体以即时公告为准；</p>
                     <p>4. 请勿使用他人身份证进行实名认证，否则将导致无法提现；绑定的提现银行卡开户人需与实名认证信息一致；</p>
                     <p>5. 如果有任何疑问请随时咨询在线客服或致电服务热线400-606-1018；</p>
-                    <p>6.若充值金额没有及时到账，请随时咨询在线客服或致电服务热线400-606-1018；</p>
+                    <p>6. 若充值金额没有及时到账，请随时咨询在线客服或致电服务热线400-606-1018；</p>
 
                 </div>
             </div>
@@ -61,11 +66,17 @@
   export default {
     data () {
       return {
+        regType:0,
         sid: '',
         returndata: '',
         accountInfo: '',
         ret:''
       }
+    },
+    created(){
+        var self = this;
+        // 从localStorage获取用户是否是企业或个人
+        self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
     },
     mounted:function(){
         var self = this;
@@ -110,7 +121,16 @@
                 //$(form1 + " target = '_blank' " + form2).appendTo('body').submit();
                 $(form).appendTo('body').submit();
             }
-        },'', true)
+        },function(data){
+            if(data.code == 0){
+                    setTimeout(function(){layer.closeAll();self.$router.push({path:'/account/accountOpen'});}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll();self.$router.push({path:'/account/accountOpen'}); })
+                    
+            }else{
+                    setTimeout(function(){layer.closeAll();}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
+            }
+        }, true)
     },
     methods: {
     }

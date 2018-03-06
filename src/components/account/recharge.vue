@@ -106,7 +106,16 @@
                 var form = data.data.substr(start, end - start);
                 $(form).appendTo('body').submit();
             }
-        }, '', true)
+        }, function(data){
+            if(data.code == 0){
+                    setTimeout(function(){layer.closeAll();self.$router.push({path:'/account/accountOpen'});}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll();self.$router.push({path:'/account/accountOpen'}); })
+                    
+            }else{
+                    setTimeout(function(){layer.closeAll();}, 2000);
+                    layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
+            }
+        }, true)
     },
     methods: {
     }

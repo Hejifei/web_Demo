@@ -24,6 +24,7 @@
         <div class="Feedbacklist" v-if="feedbacktype == 1">
             <ul>
                 <li class="row" v-for="(feedback,index) in feedbacklist" :key="index"><label :title="feedback.content">{{feedback.content}}</label><span>{{feedback.createTime}}</span></li>
+                <li v-if="feedbacklist.length == 0" style="text-align:center;">您还没有提交过任何反馈！</li>
             </ul>
         </div>
     </div>
@@ -78,7 +79,9 @@
                             }
                         }
                         self.feedbacklist = feedbacklist;
-                    }, '', true);
+                    }, function(data){
+                        self.feedbacklist ='';
+                    }, true);
             }
         }
     }

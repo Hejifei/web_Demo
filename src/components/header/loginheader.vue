@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-      <div class="topnav" style="background:#fff;height:40px;width:100%;">
+      <div class="topnav" style="background:#fff;height:40px;line-height:40px;width:100%;">
         <div class="wp clearfix">
             <div class="fl wp-ll clearfix">
                 <span class="fl" style="padding:0 0;"><img src="../../common/stylus/img/index_top_tel_icon.png" /></span>

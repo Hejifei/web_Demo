@@ -20,7 +20,7 @@
         <div class="bodygrayBG">
         <div class="newsinfo-intro content">
             <ul class="partnerul">
-                <li>
+                <!-- <li>
                     <div class="fl" style="">
                         <img src="../../common/stylus/0818new/aboutus_partner_gzyh_img.png" alt="" />
                     </div>
@@ -28,7 +28,7 @@
                         <h3>贵州银行</h3>
                         <p>贵州银行股份有限公司于2012年10月11日正式挂牌开业，是以遵义市商业银行、六盘水市商业银行、安顺市商业银行为基础合并重组设立的省级地方法人金融机构，是贵州省委、省政府直接领导下的国有大型企业。截至2017年3月31日，贵州银行资产总额2521.82亿元，全行共有市州分行级机构9个、营业机构209个，实现了全省县域机构全覆盖。在中国银行业协会公布的《2016年中国前100家银行排名》中，贵州银行已跃居第61位。</p>
                     </div>
-                </li>
+                </li> -->
                 <li>
                     <div class="fl" style="">
                         <img src="../../common/stylus/img/partner_tdkj1.jpg" alt="" />

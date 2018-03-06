@@ -3,12 +3,12 @@
         <div class="bankDeposittopimg"></div>
         <!-- @*什么是银行存管*@ -->
         <div class="bankDepositC">
-            <div class="bankDepositBox" style="height:565px;">
-                <div class="bankDepTitleC">
+            <div class="bankDepositBox">
+                <!-- <div class="bankDepTitleC">
                     <h1>—— 拥抱合规 存管升级 ——</h1>
                     <p style="line-height:18px;">2017年5月9日，利通金服与贵州银行正式签署资金存管协议，这意味着利通金服平台将由原来的联合存管模式正式升级为直接存管模式，以保证符合监管要求。</p>
-                </div>
-                <div class="bankDepTitleline" style="top:-50px;">
+                </div> -->
+                <div class="bankDepTitleline">
                     <span>什么是银行存管<i></i></span>
                 </div>
                 <div class="bankDepInfo" style="top:-60px;">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <!-- @*合规进程 实时更新*@ -->
-        <div class="bankDepositC bankDepProcess">
+        <!-- <div class="bankDepositC bankDepProcess">
             <div class="bankDepositBox">
                 <div class="bankDepTitleline" style="top:55px;">
                     <span style="color:#fff;">合规进程 实时更新<i class="whitei"></i></span>
@@ -67,7 +67,7 @@
                     <p style="margin-top:0;color:#586B81;font-size:12px;">如有疑问请联系在线客服或拨打客服热线 400-606-1018</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 

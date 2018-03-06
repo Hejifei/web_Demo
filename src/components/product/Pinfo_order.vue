@@ -261,12 +261,12 @@
             let self = this;
             if (this.money <= 0) {
                 layer.alert("请输入正确的金额!",'',function(){layer.closeAll();});
-            } else if (this.money > parseFloat(this.accountInfo.useMoney)) {
-                layer.alert("你的余额不足以投资，请先充值!",'',function(){self.$router.push({path:'/account/recharge'});layer.closeAll(); setTimeout(function () { layer.closeAll();self.$router.push({path:'/account/recharge'}); }, 2000) });
+           // } else if (this.money > parseFloat(this.accountInfo.useMoney)) {
+           //     layer.alert("你的余额不足以投资，请先充值!",'',function(){self.$router.push({path:'/account/recharge'});layer.closeAll(); setTimeout(function () { layer.closeAll();self.$router.push({path:'/account/recharge'}); }, 2000) });
             } else if (this.money < parseFloat(this.productDetail.mini_money)  &&  parseFloat(this.productDetail.mini_money) < parseFloat(this.productDetail.amount)) {
                 layer.alert("投资金额不能低于最低限制!",'',function(){layer.closeAll();});
-            } else if (this.money > parseFloat(this.productDetail.amount)) {
-                layer.alert("投资金额不能大于剩余金额!",'',function(){layer.closeAll();});
+           // } else if (this.money > parseFloat(this.productDetail.amount)) {
+           //     layer.alert("投资金额不能大于剩余金额!",'',function(){layer.closeAll();});
             } else {
                 // self.$router.push({path:"/product/InvestConfirm?id=" + self.productId + "&money=" + self.money});
                 self.investConfirm();

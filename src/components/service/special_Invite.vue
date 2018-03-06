@@ -15,21 +15,23 @@
                         <img class="imgL_02" src="../../common/stylus/img/Special_inviteC_left_02.png"/>
                     </h3>
                     <div class="SL_P">
-                        <p>1、好友注册并认证返2元/人及100积分/人。</p>
-                        <p>2、首次充值≥100元好友与自己分别得2元/人。</p>
+                        <p>1、好友注册并认证返1元/人及100积分/人。</p>
+                        <p>2、首次充值≥100元好友与自己分别得1元/人。</p>
                         <p>3、好友首次投资≥1000元返200积分。</p>
                         <p>4、奖励金发放到个人账户，满50元可提现。</p>
-                        <p>5、好友有效邀请所得奖励金限80元/天。</p>
+                        <p>5、好友有效邀请所得奖励金限20元/天。</p>
                         <p>6、平台有权取消恶意刷奖用户的活动资格。</p>
                     </div>
+					<!--
                     <h3 class="SL_title">邀请好友</h3>
                     <div class="SL_P row">
-                        <img  :src="'https://pan.baidu.com/share/qrcode?w=512&h=512&url=https://cdn.litongjinfu.com/public/reg/regred/test.html?inviter='+userid"/>
+                        <img  :src="'https://pan.baidu.com/share/qrcode?w=512&h=512&url=https://cdn.litongjinfu.com/public/reg/regred/index.html?inviter='+userid"/>
                         <div style="display:inline-block;width:600px;">
                             <p class="top35">邀请专属二维码（邀请好友一起赚钱）。</p>
                             <p class="top35">获奖举例：邀请15人注册并充值100元可获得60元奖励金，好友可获得2元奖励金。</p>
                         </div>
                     </div>
+					-->
             </div>
         </div>
     </div>

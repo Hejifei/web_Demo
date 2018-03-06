@@ -63,8 +63,8 @@
             <li class="clearfix">
                 <img src="../../common/stylus/img/moneysafeProtece_img1.png" alt="Alternate Text" />
                 <div>
-                    <h3>贵州银行第三方存管</h3>
-                    <p>与贵州银行签订合作协议，用户资金与平台资金实行账户隔离，分账管理。</p>
+                    <h3>第三方银行存管</h3>
+                    <p>与存管银行签订合作协议，用户资金与平台资金实行账户隔离，分账管理。</p>
                 </div>
             </li>
             <li class="clearfix" style="padding: 30px 37px;">
