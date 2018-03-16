@@ -33,10 +33,28 @@
                                     :duration="2"
                                     :options="options"
                                 ></i-count-up><label>累计用户（位）</label></li>
-                        <li><span>100</span><label>累计交易笔数</label></li>
-                        <li><span>100</span><label>借贷余额（万元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="bidNum"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计交易笔数</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="SumR_AllMoney"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
                         <li><span>100</span><label>借贷剩余笔数</label></li>
-                        <li><span>100</span><label>预期笔数</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="OverdueCount"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>逾期笔数</label></li>
                     </ul>
                 </div>
                 <div class="pf_dataC">
@@ -68,31 +86,85 @@
                         <img src="../../common/stylus/img/platformdata_jyxx.png"/>经营信息
                     </h1>
                     <ul>
-                        <li><span>100</span><label>累计出借人数</label></li>
-                        <li><span>100</span><label>累计借款人数</label></li>
-                        <li><span>100</span><label>当期累计出借人数</label></li>
-                        <li><span>100</span><label>当期累计借款人数</label></li>
-                        <li><span>100</span><label>前十大借款人待还金额占比</label></li>
-                        <li><span>100</span><label>最大单一借款人待还金额占比</label></li>
-                        <li><span>100</span><label>关联关系借款金额（元）</label></li>
-                        <li><span>100</span><label>关联关系借款笔数</label></li>
-                        <li><span>100</span><label>逾期金额（元）</label></li>
-                        <li><span>100</span><label>逾期笔数</label></li>
-                        <li><span>100</span><label>逾期90天（不含）以上金额（元）</label></li>
-                        <li><span>100</span><label>逾期90天（不含）以上笔数</label></li>
-                        <li><span>100</span><label>累计代偿金额</label></li>
-                        <li><span>100</span><label>累计代偿笔数</label></li>
+                        <li><span>{{manageInfo.SumInvestUsers}}</span><label>累计出借人数</label></li>
+                        <li><span>{{manageInfo.SumLoanUsers}}</span><label>累计借款人数</label></li>
+                        <li><span>{{manageInfo.NonInvestCount}}</span><label>当前累计出借人数</label></li>
+                        <li><span>{{manageInfo.NonRepaymentCount}}</span><label>当前累计借款人数</label></li>
+                        <li><span>{{manageInfo.Top10LoanPercent}}%</span><label>前十大借款人待还金额占比</label></li>
+                        <li><span>{{manageInfo.MaxLoanPercent}}%</span><label>最大单一借款人待还金额占比</label></li>
+                        <li><span>{{manageInfo.RelationLoanMoney}}</span><label>关联关系借款金额（元）</label></li>
+                        <li><span>{{manageInfo.RelationLoanCount}}</span><label>关联关系借款笔数</label></li>
+                        <li><span>{{manageInfo.OverdueMoney}}</span><label>逾期金额（元）</label></li>
+                        <li><span>{{manageInfo.OverdueCount}}</span><label>逾期笔数</label></li>
+                        <li><span>{{manageInfo.OverdueMoney90}}</span><label>逾期90天（不含）以上金额（元）</label></li>
+                        <li><span>{{manageInfo.OverdueCount90}}</span><label>逾期90天（不含）以上笔数</label></li>
+                        <li><span>{{manageInfo.PayOverdueMoney}}</span><label>累计代偿金额</label></li>
+                        <li><span>{{manageInfo.PayOverdueCount}}</span><label>累计代偿笔数</label></li>
                         <li><p>...</p></li>
                     </ul>
                 </div>
                 <div class="pf_dataC">
                     <h1>
                         <img src="../../common/stylus/img/platformdata_fygl.png"/>收费标准
-                        <a>借款客户</a>
+                        <!-- <a>借款客户</a>
                         <a>投资客户</a>
-                        <a class="activea">全体客户</a>
+                        <a class="activea">全体客户</a> -->
                     </h1>
-                    
+                    <table cellspacing="0">
+                        <tbody><tr>
+                            <th>分类</th>
+                            <th>服务项目</th>
+                            <th>收费标准</th>
+                        </tr>
+                        <tr>
+                            <td>充值手续费</td>
+                            <td>客户用银行卡向本人在利通金服平台的账户充值时产生的手续费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">提现手续费</td>
+                            <td class="centertd"><strong>取现方式</strong></td>
+                            <td class="centertd"><strong>手续费收费标准</strong></td>
+                        </tr>
+                        <!-- <tr> -->
+                            <!-- <td>即时取现</td> -->
+                            <!-- <td >按取现金额的 0.5‰+2 元/笔</td> -->
+                        <!-- </tr> -->
+                        <tr>
+                            <td class="centertd">快速取现</td>
+                            <td class="centertd">按取现金额的 0.5‰+2 元/笔</td>
+                        </tr>
+                        <tr>
+                            <td class="centertd">一般取现</td>
+                            <td class="centertd">2 元/笔</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">当日转入或当日充值的资金选择使用“快速取现”：按取现费的 0.5‰+2 元/笔收取。 如在节假日前一个工作日使用，另按照取现费的 0.5‰*（节假日天数+1）+2 元/笔。</td>
+                        </tr>
+                        <tr>
+                            <td>投资端居间服务费</td>
+                            <td>在取得投资收益时，投资人向利通金服缴纳一定费用作为平台的居间服务费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td>投资端账户管理费</td>
+                            <td>利通金服为投资客户提供日常账户管理服务而收取的账户管理费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td>债权转让手续费</td>
+                            <td>在债权转让成功时，转让方、受让方向利通金服缴纳的转让手续费。</td>
+                            <td>
+                                转让方：转让金额的2%<br>受让方：暂不收取
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>借款利率</td>
+                            <td>借款客户在利通金服成功申请借款后，向借出人支付的借款利率。</td>
+                            <td>年利率最高不超过24%</td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
@@ -115,6 +187,9 @@
                 totalUser:0,
                 totalMoney:0,
                 profit:0,
+                bidNum:0,
+                OverdueCount:0,
+                SumR_AllMoney:0,
                 options: {
                     useEasing: true,
                     useGrouping: true,
@@ -122,7 +197,9 @@
                     decimal: '.',
                     prefix: '',
                     suffix: ''
-                }
+                },
+                manageInfo:{}
+                
             }
         },
         created(){
@@ -130,6 +207,12 @@
             LTJF.$emit("txt",{header:true});
             var self = this;
             this.$store.state._ajax(self,'/api/statistics/platformdata', {}, function (data) {
+                let manageInfo = data.data.manageInfo
+                self.manageInfo = data.data.manageInfo;
+                self.bidNum = parseInt(manageInfo.bidNum);
+                self.SumR_AllMoney = parseFloat(manageInfo.SumR_AllMoney);
+                self.OverdueCount = parseInt(manageInfo.OverdueCount);
+
                 let statistics = data.data.totalData;
                 statistics.totalMoney = parseInt(statistics.totalMoney);
                 statistics.profit = parseInt(statistics.profit);

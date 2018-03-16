@@ -116,11 +116,12 @@
                             </div>
                             <div class="ytbBtnLine">
                                 <p>
-                                    <span class="logbox" v-show="status == 0" >
+                                    <span class="logbox" v-if="status == 0" >
                                         <a class="btn confirmBtn redBtn" id="SubmitBtn">确认并开启</a>
                                     </span>
-                                    <span class="logbox" v-show="status == 1">
-                                        <a v-on:click="on_offswitch" class="btn confirmBtn redBtn">关闭</a>
+                                    <span class="logbox" v-if="status == 1">
+                                        <a class="btn confirmBtn redBtn" id="SubmitBtn">提交修改</a>
+                                        <a v-on:click="on_offswitch" class="btn confirmBtn graybtn">关闭</a>
                                     </span>
                                 </p>
                             </div>
