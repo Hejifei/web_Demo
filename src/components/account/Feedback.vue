@@ -1,11 +1,13 @@
 <template>
     <div class="overview">
+        <div class="graph">意见反馈</div>
         <div class="awardListC">
             <ul class="clearfix">
-                <li :class="{awardList_active:feedbacktype ==0}" @click="feedbacktypeChange(0)">意见反馈</li>
+                <li :class="{awardList_active:feedbacktype ==0}" @click="feedbacktypeChange(0)">反馈信息</li>
                 <li :class="{awardList_active:feedbacktype ==1}" @click="feedbacktypeChange(1)">历史反馈</li>
             </ul>
         </div>
+        <div class="chgenew"></div>
         <!-- 意见反馈 -->
         <div class="feedbackBubmitC" v-if="feedbacktype == 0">
             <div class="tip_line row">

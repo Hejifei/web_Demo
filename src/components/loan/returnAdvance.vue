@@ -1,10 +1,10 @@
 <template>
-    <div class="ytbBody">
+    <div class="ytbBody overview">
         <div class="graph" style="padding:0;">
             申请提前还款
-            <router-link class="redBtn" style="margin-right:10px;" to="/account/returnMoney?repayType=1">返回</router-link>    
+            <router-link class="newredBtn" to="/account/returnMoney?repayType=1">返回</router-link>    
         </div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="commissionDetailC">
             <table>
                 <tbody>
@@ -23,13 +23,13 @@
                     </tr>
                     <tr>
                         <td>起息日期</td>
-                        <td>{{advanceDetail.investTime}}</td>
+                        <td>{{advanceDetail.repaymentTime}}</td>
                         <td>截止日期</td>
                         <td>{{advanceDetail.returnTime}}</td>
                     </tr>
                     <tr>
                         <td>剩余期次</td>
-                        <td>{{advanceDetail.repayTerm}} 个月</td>
+                        <td>{{advanceDetail.repayTerm}} 期</td>
                         <td>还款方式</td>
                         <td v-if="advanceDetail.repayType == 0">每月付息，到期还本</td>
                         <td v-if="advanceDetail.repayType == 1">按月等额</td>
@@ -130,8 +130,9 @@
         //提前还款详情
         self.$store.state._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
             self.advanceDetail = data.data;
-            self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,16);
-            self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,16);
+            self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,10);
+            self.advanceDetail.repaymentTime=self.advanceDetail.repaymentTime.substr(0,10);
+            self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,10);
             // for(var i=1;i<=self.advanceDetail.repayTerm;i++){
             //     self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
             // }

@@ -19,30 +19,30 @@
 
 .pageDetail {
     /*float: left;*/
-    line-height: 30px;
+    line-height: 28px;
     padding: 15px 20px 15px 5px;
     color:#999;
     font-size:12px;
     display:inline-block;
 }
 .pageDetail input{width:40px;height:30px;line-height:20px;text-align:center;margin:0 4px;font-size:12px;}
-.pageDetail button{line-height:30px;padding:0 10px;text-align:center;margin:0 4px;font-size:12px;border:0;background-color:#eb494b;color:#fff;border-radius:3px;cursor:pointer;}
+.pageDetail button{line-height:28px;padding:0 10px;text-align:center;margin:0 4px;font-size:12px;border:0;background-color:#eb494b;color:#fff;border-radius:3px;cursor:pointer;}
 .pageDetail button:active{background-color:#bf0d0e;}
 .tcdPageCode a {
     text-decoration: none;
     font-size: 12px;
-    color: #fff;
+    color: #323232;
     display: inline-block;
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
     min-width:30px;
     text-align: center;
     /*padding: 0 15px;*/
-    border: 0px solid #ddd;
+    border: 1px solid #d7d7d7;
     margin: 0 4px;
     border-radius: 3px;
     vertical-align: middle;
-    background-color:#eb494b
+    background-color:#fff
 }
 
 .lastpage {
@@ -51,7 +51,7 @@
 
 .tcdPageCode a:hover {
     text-decoration: none;
-    background-color:#bf0d0e;
+    background-color:#d7d7d7;
     color:#fff;
     border: 0;
 }
@@ -59,14 +59,14 @@
 .tcdPageCode span.current {
     display: inline-block;
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
     min-width: 30px;
     text-align: center;
     /*padding: 0 10px;*/
     margin: 0 2px;
-    color: #fff;
-    background-color: #e0e0e0;
-    border: 0px solid #fff;
+    color: #323232;
+    background-color: #d7d7d7;
+    border: 1px solid #d7d7d7;
     border-radius: 3px;
     vertical-align: middle;
     font-size: 12px;
@@ -75,14 +75,14 @@
 .tcdPageCode span.disabled {
     display: inline-block;
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
     min-width: 30px;
     text-align: center;
     /*padding: 0 15px;*/
     margin: 0 2px;
-    color: #fff;
-    background: #eb494b;
-    border: 0px solid #bfbfbf;
+    color: #323232;
+    background: #fff;
+    border: 1px solid #d7d7d7;
     border-radius: 3px;
     vertical-align: middle;
     font-size: 12px;

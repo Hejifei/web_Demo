@@ -20,9 +20,9 @@
         <div class="bodygrayBG">
             <div class="rightmain-c ">
                 <div class="newsinfo-intro content">
-                    <div class="graph">员工福利</div>
-                    <div class="chge"></div>
-                    <div class="aboutcon clearfix">
+                    <div class="graph pad30">员工福利</div>
+                    <div class="chgenew"></div>
+                    <div class="aboutcon clearfix" style="width:1000px;">
                         <div class="fl newsinfo-l">
                             <img src="../../common/stylus/0818new/welfare_card_img.png" alt="" />
                         </div>

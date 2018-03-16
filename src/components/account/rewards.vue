@@ -7,9 +7,9 @@
 奖励金账户是平台新上线的奖励资金存放功能，所有在平台获取的奖励（签到奖励、邀请奖励
 活动奖励、其他奖励等）均会发放至奖励金账户，如果用户需要使用这笔资金，需手动从奖励
 金账户中将资金转出至账户余额，在后台审核通过后发放至余额账户。" class="icon-info-sign"></span>
-            <a class="redBtn" v-on:click="outtoBalance">转出至余额</a>
+            <a class="newredBtn" v-on:click="outtoBalance">转出至余额</a>
         </div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <!-- @*我的奖励金*@ -->
         <div class="commissionGetC">
             <ul class="mypointsul clearfix">
@@ -33,7 +33,7 @@
             <!-- @*<p>奖励金余额</p>
             <span><label>{{reward}}</label>元</span>*@ -->
         </div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="commissionDetailC">
             <p>奖励金明细</p>
             <table>
@@ -55,7 +55,9 @@
                         <td v-if="award.status == 1">已审核</td>
                         <td v-if="award.status == 2">处理中</td>*@ -->
                     </tr>
-                
+                    <tr v-if="arrlist.length == 0">
+                        <td colspan="6">您还没有获得任何奖励金！</td>
+                    </tr>
                 </tbody>
             </table>
             <div class="pages mypage clearfix">

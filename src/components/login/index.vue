@@ -10,7 +10,7 @@
                 <input type="password" style="width:0;height:0;"/>
                 </div>
                 <div class="loginbody registerBG" style="margin:0;width:100%;">
-                    <div style="width:1050px;height:450px;"  class="clearfix">
+                    <div style="width:1200px;height:450px;"  class="clearfix">
                         <div class="login-form fr" style="width:362px;height:395px;padding-top:0;border-top:1px solid #d8d8d8;margin-bottom: 0;margin-left:40px;">
                             <div class="login-title clearfix">
                                 <div class="login-title">
@@ -90,7 +90,7 @@
         },
         mounted:function(){
             var self = this;
-            self.numrandom = Math.random();
+            
             //提交登陆申请
             this.$store.state.AjaxSumbit(this,"/", "/api/user/login", function (j) {
                 localStorage.uid = j.data.id;
@@ -113,7 +113,12 @@
                 }
                 layer.alert(j.msg,{title: '操作提示',icon: 5},function(){
                     layer.closeAll();
-                    window.location.reload();
+                    if(j.code == 1001){
+                        self.$store.state.getSID(self);
+                    }else{
+                        window.location.reload();
+                    }
+                    
                 });
             })
 
@@ -124,12 +129,11 @@
         },
         created() {   
             var self = this;
-            // self.$store.state.getSID(self);
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:false});
             self.apiurl = this.$store.state.APIURL;
             self.sid = localStorage.SID;
-            
+            self.numrandom = Math.random();
 
             //检索用户名
             if (localStorage.ltjfUserPhone) {

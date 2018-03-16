@@ -1,6 +1,7 @@
 <template>
     <div class="overview">
-        <div class="awardListC width25">
+        <div class="graph">借款管理</div>
+        <div class="awardListC">
             <ul class="clearfix">
                 <li @click="Select(1,1)" class="awardList_active"><a>已发布的借款</a></li>
                 <li @click="Select(2, 1)"><a>待审核的借款</a></li>
@@ -8,11 +9,12 @@
                 <li @click="Select(4, 1)"><a>已结束的借款</a></li>
             </ul>
         </div>
-        <div class="streamTypeC clearfix">
+        <div class="chgenew"></div>
+        <div class="streamTypeC">
             <label class="introlab">借款日期</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a class="redBtn" @click="Select(state,1)">搜索</a>
         </div>
         <div class="content-rowlist" style="display:block">

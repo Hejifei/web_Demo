@@ -7,7 +7,7 @@
                 <span class="firsttitle">专注房产、车辆抵质押借款服务</span>
             </h1>
              <img src="../../common/stylus/img/mvc_mvp2.png" alt="Alternate Text" style="height:auto;width:auto;margin:auto;display:block;margin-bottom:35px;" />
-             <p style="padding:0 23px;">利通金服符合监管要求，资产端持续专注于物权归属明确、流通性强易变现、市场规模巨大的房产抵押借款和车辆抵质押借款服务。</p>
+             <p style="padding:0 53px;text-align:center;">利通金服符合监管要求，资产端持续专注于物权归属明确、流通性强易变现、市场规模巨大的房产抵押借款和车辆抵质押借款服务。</p>
         </div>
     </div>
     <div class="box_shaow" style="height:auto;background-color:#eee;">
@@ -67,7 +67,7 @@
                     <p>与存管银行签订合作协议，用户资金与平台资金实行账户隔离，分账管理。</p>
                 </div>
             </li>
-            <li class="clearfix" style="padding: 30px 37px;">
+            <li class="clearfix" style="padding: 30px 87px;">
                 <img src="../../common/stylus/img/moneysafeProtece_img2.png" alt="Alternate Text" style="width:86px;" />
                 <div>
                     <h3>权限管理限制  </h3>
@@ -81,7 +81,7 @@
                      <p>在资金进出前必须进行实名认证。</p>
                 </div>
             </li>
-            <li class="clearfix" style="padding: 30px 37px;">
+            <li class="clearfix" style="padding: 30px 87px;">
                 <img src="../../common/stylus/img/moneysafeProtece_img4.png" alt="Alternate Text" style="width:86px;height:auto;margin-top:15px;" />
                 <div>
                      <h3>提现验证  </h3>
@@ -182,9 +182,9 @@
     .box_shaow-1 .guaranteer-3 ul li img{width:70px;}
     .box_shaow-1 .guaranteer-3 ul li div{width:270px;}
     .wangluojiaoyi ul li{padding: 0 53px 20px;}
-    .box_shaow .guaranteer-2 .fengkongsafeUl li{width:347px;height:177px;}
-    .box_shaow .guaranteer-2 .fengkongsafeUl li:nth-child(odd){margin-right:333px;}
-    .fengkongProcessul{width: 900px !important;height: 40px !important;list-style:none;background:url(../../common/stylus/img/fengkongProcessul.png) no-repeat center center;background-size:100% 100%;margin:0 75px 0 !important;}
+    .box_shaow .guaranteer-2 .fengkongsafeUl li{width:397px;height:177px;}
+    .box_shaow .guaranteer-2 .fengkongsafeUl li:nth-child(odd){margin-right:383px;}
+    .fengkongProcessul{width: 1100px !important;height: 40px !important;list-style:none;background:url(../../common/stylus/img/fengkongProcessul.png) no-repeat center center;background-size:100% 100%;margin:0 50px 0 !important;}
     .fengkongProcessul li{float:left;padding:0 !important;line-height:40px;width:12.5% !important; color:#333;font-size:16px;}
     .box_shaow-2 .guaranteer-4 ul li{width:auto;height:auto;padding: 15px 20px;}
     .box_shaow-2 .guaranteer-4 ul li div{width:85%;}

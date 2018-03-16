@@ -1,6 +1,7 @@
 <template>
     <div class="overview"  v-cloak>
-        <div class="awardListC width25">
+        <div class="graph">还款管理</div>
+        <div class="awardListC">
             <ul class="clearfix">
                 <li @click="Select('',1)" class="awardList_active"><a>近10天待付本息</a></li>
                 <li @click="Select(1,1)"><a>待还列表</a></li>
@@ -8,11 +9,12 @@
                 <li @click="Select(3,1)"><a>已逾期列表</a></li>
             </ul>
         </div>
-        <div class="streamTypeC clearfix">
+        <div class="chgenew"></div>
+        <div class="streamTypeC">
             <label v-show="repayType != 1" class="introlab">还款日期：</label>
-            <input v-show="repayType != 1" class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input v-show="repayType != 1" class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span v-show="repayType != 1" class="spanbetweeninput">~</span>
-            <input v-show="repayType != 1" class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input v-show="repayType != 1" class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a v-show="repayType != 1" class="redBtn" @click="Select(repayType, 1)">搜索</a>
             <a v-if="repayType == ''" class="redBtn" @click="moneyBackAll()">当页全部还款</a>
             <a v-if="repayType == ''" class="redBtn" @click="moneyBackSel()">选定项还款</a>

@@ -1,7 +1,7 @@
 <template>
     <div class="overview" id="mydiv"  v-cloak>
         <div class="graph">资金流水</div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="streamTypeC clearfix">
             <label class="introlab">类型：</label>
             <ul class="clearfix">
@@ -20,11 +20,11 @@
                 <li @click="investListGet(32, 1)"><label>汇付对账出账<input type="radio" name="seltranstype" value="" /></label></li> -->
             </ul>
         </div>
-        <div class="streamTypeC clearfix">
+        <div class="streamTypeC">
             <label class="introlab">交易时间：</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a class="redBtn" @click="investListGet(type)">搜索</a>
         </div>
         <div class="content-rowlist" style="">

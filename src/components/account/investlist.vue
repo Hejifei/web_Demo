@@ -33,18 +33,20 @@
         </div>
 
         <div class="overview"  v-cloak>
-            <div class="awardListC width33">
+            <div class="graph">历史投资</div>
+            <div class="awardListC">
                 <ul class="clearfix">
                     <li @click="projectTypeSel($event,3)" class="awardList_active">待审核项目</li>
                     <li @click="projectTypeSel($event,1)">待收项目</li>
                     <li @click="projectTypeSel($event,2)">已结束项目</li>
                 </ul>
             </div>
-            <div class="streamTypeC clearfix">
+            <div class="chgenew"></div>
+            <div class="streamTypeC">
                 <label class="introlab">投资日期：</label>
-                <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+                <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
                 <span class="spanbetweeninput">~</span>
-                <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+                <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
                 <a class="redBtn" @click="search">搜索</a>
             </div>
             <div class="content-rowlist" style="display:block">
@@ -68,9 +70,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(invest,index) in investList" :key="index">
-                            <td style="width:130px;">
-                                <router-link target="_blank" :to="'/product/PInfo?id='+invest.productID"  class="c-000">{{invest.title}}</router-link>
-                            </td>
+                            <td><router-link target="_blank" :to="'/product/PInfo?id='+invest.productID"  class="c-000">{{invest.title}}</router-link></td>
                             <td style="white-space:nowrap;">{{invest.createTime}}</td>
                             <td>{{invest.bidMoney}}</td>
                             <td>{{invest.rate}}%</td>

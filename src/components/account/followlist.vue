@@ -4,7 +4,7 @@
             关注项目
         </div>
         <div class="chge"></div>
-        <div class="index_activityC usercollecTab clearfix">
+        <div class="index_activityC usercollecTab wid900">
             <table v-if="followList.length != 0">
                 <thead>
                     <tr>

@@ -19,7 +19,7 @@
               <ul>
                 <li v-for="(bidDynamic,index) in bidDynamicList" :key="index">
                   <router-link :to="'/product/PInfo?id='+bidDynamic.id">
-                    <p>{{bidDynamic.name}} 成功投标 {{bidDynamic.title}} <span>{{bidDynamic.bidMoney}}</span> 元<i> {{bidDynamic.createTime}}</i></p>
+                    <p>用户：<span>{{bidDynamic.name}}</span> 投资项目： <span>{{bidDynamic.title}}</span> <span>{{bidDynamic.bidMoney}}</span> 元<i class="datei"> {{bidDynamic.createTime}}</i></p>
                   </router-link>
                 </li>
               </ul>

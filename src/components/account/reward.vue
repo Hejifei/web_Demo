@@ -1,71 +1,71 @@
 <template>
     <div class="overview">
+        <div class="graph">我的奖券</div>
         <div class="awardListC">
             <ul class="clearfix">
-                <li @click="getawardList(1, 0, 1,0)" class="awardList_active">我的红包</li>
-                <li @click="getawardList(2, 0, 1,1)">我的加息券</li>
+                <li @click="getawardList(1, 0, 1,0)" class="awardList_active">红包</li>
+                <li @click="getawardList(2, 0, 1,1)">加息券</li>
             </ul>
         </div>
+        <div class="chgenew"></div>
         <!-- @*红包列表*@ -->
         <div class="awardsonlistC"  v-cloak>
             <ul class="awardsonlist clearfix">
+                <label>红包状态：</label>
                 <li class="awardsonlist_active" @click="getawardList(1, 0, 1,0)">未使用</li>
                 <li @click="getawardList(1, 1, 1,0)">已使用</li>
                 <li @click="getawardList(1, 2, 1,0)">已过期</li>
             </ul>
-            <div class="chge"></div>
+            
             <div class="awardDetailListC">
                 <!-- @*未使用红包列表*@ -->
                 <div class="awardDetailList">
                     <div class="awardoutC" v-if="keywords == 0 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key='index'>
-                        <div class="awardDetC awardUnused">
-                            <div class="awardValue">
-                                ￥<label>{{award.money}}</label>
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont"><i>￥</i>{{award.money}}</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail" v-html="award.content"></div>
+                        <div class="award_Info_right"><router-link to="/product">立即使用</router-link></div>
                     </div>
                     <div v-if="keywords == 0 && awardInfo.length == 0" class="havenoaward"><em>暂无未使用红包</em></div>
                 </div>
                 <!-- @*已使用红包列表*@ -->
                 <div class="awardDetailList">
                     <div class="awardoutC" v-if="keywords == 1 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
-                        <div class="awardDetC awardUsed">
-                            <div class="awardValue">
-                                ￥<label>{{award.money}}</label>
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont"><i>￥</i>{{award.money}}</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail grayrouteDetail" v-html="award.content"></div>
+                        <div class="award_Info_right awdused"><a to="/product">已使用</a></div>
                     </div>
                     <div v-if="keywords == 1 && awardInfo.length == 0" class="havenoaward"><em>暂无已使用红包</em></div>
                 </div>
                 <!-- @*已过期红包列表*@ -->
                 <div class="awardDetailList">
                     <div class="awardoutC" v-if="keywords == 2 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
-                        <div class="awardDetC awardExpired">
-                            <div class="awardValue">
-                                ￥<label>{{award.money}}</label>
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont"><i>￥</i>{{award.money}}</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail grayrouteDetail" v-html="award.content"></div>
+                        <div class="award_Info_right awdused"><a to="/product">已过期</a></div>
                     </div>
                     <div v-if="keywords == 2 && awardInfo.length == 0" class="havenoaward"><em>暂无已过期红包</em></div>
                 </div>
@@ -74,6 +74,7 @@
         <!-- @*加息券列表*@ -->
         <div class="awardsonlistC"  v-cloak>
             <ul class="awardsonlist clearfix">
+                <label>加息券状态：</label>
                 <li @click="getawardList(2, 0, 1,1)" class="awardsonlist_active">未使用</li>
                 <li @click="getawardList(2, 1, 1,1)">已使用</li>
                 <li @click="getawardList(2, 2, 1,1)">已过期</li>
@@ -82,55 +83,52 @@
             <div class="awardDetailListC">
                 <!-- @*未使用加息券列表*@ -->
                 <div class="awardDetailList">
-                    <div class="awardoutC" v-if="keywords == 0 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
-                        <div class="awardDetC awardUnused">
-                            <div class="awardValue">
-                                <label>息</label>+{{award.money}}%
+                    <div class="awardoutC jxqC" v-if="keywords == 0 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont">{{award.money}}%</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail" v-html="award.content">11</div>
+                        <div class="award_Info_right"><router-link to="/product">立即使用</router-link></div>
                     </div>
                     <div class="havenoaward" v-if="keywords == 0 && awardInfo.length == 0"><em>暂无未使用加息券</em></div>
                 </div>
                 <!-- @*已使用加息券列表*@ -->
                 <div class="awardDetailList">
-                    <div class="awardoutC" v-if="keywords == 1 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
-                        <div class="awardDetC awardUsed">
-                            <div class="awardValue">
-                                <label>息</label>+{{award.money}}%
+                    <div class="awardoutC jxqC" v-if="keywords == 1 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont">{{award.money}}%</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail grayrouteDetail" v-html="award.content"></div>
+                        <div class="award_Info_right awdused"><a to="/product">已使用</a></div>
                     </div>
                     <div class="havenoaward" v-if="keywords == 1 && awardInfo.length == 0"><em>暂无已使用加息券</em></div>
                 </div>
                 <!-- 期加息券列表 -->
                 <div class="awardDetailList">
-                    <div class="awardoutC" v-if="keywords == 2 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
-                        <div class="awardDetC awardExpired">
-                            <div class="awardValue">
-                                <label>息</label>+{{award.money}}%
+                    <div class="awardoutC jxqC" v-if="keywords == 2 && awardInfo.length != 0" v-for="(award,index) in awardInfo" :key="index">
+                        <div class="award_Info_left">
+                            <div class="awdinfoL_top">
+                                <div class="DinFont">{{award.money}}%</div>
+                                <div class="tr">
+                                    <p class="grayDarkColor">{{award.source}}</p><p>{{award.title}}</p>
+                                </div>
                             </div>
-                            <div class="awardUseInfo">
-                                <h3>{{award.title}}</h3>
-                                <label>有效期：{{award.beginTime}}~{{award.endTime}}</label>
-                                <label>来源：{{award.source}}</label>
-                                <label class="routeLab">使用规则<span class="icon-angle-down"></span></label>
-                            </div>
+                            <div class="awdinfoL_mid" v-html="award.content"></div>
+                            <div class="awdinfoL_btm">有效期：{{award.beginTime}}~{{award.endTime}}</div>
                         </div>
-                        <div class="routeDetail grayrouteDetail" v-html="award.content"></div>
+                        <div class="award_Info_right awdused"><a to="/product">已过期</a></div>
                     </div>
                     <div class="havenoaward" v-if="keywords == 2 && awardInfo.length == 0"><em>暂无已过期加息券</em></div>
                 </div>

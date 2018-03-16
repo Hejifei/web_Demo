@@ -19,8 +19,8 @@
         </div>
         <div class="bodygrayBG">
             <div class="newsinfo-intro content">
-                <div class="graph">新闻动态</div>
-                <div class="chge"></div>
+                <div class="graph pad30">新闻动态</div>
+                <div class="chgenew"></div>
                 <ul class="newslist">
                     <li class="clearfix" v-for="(news,index) in newsList" :key="index">
                         <i class="ico"></i>

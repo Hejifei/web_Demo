@@ -87,7 +87,7 @@
              }
 }
 /*预约投标-预约成功*/
-.ytbBody{background-color:#fff;border-radius:4px;padding:0 30px 20px;
+.ytbBody{background-color:#fff;border-radius:4px;
     .confirmBtn{padding: 10px 50px;font-size: 16px;}
     h1{line-height:55px;text-align:center;position:relative;font-size:18px;
        a{position:absolute;top:15px;left:0;background:url(logbox-z.png) no-repeat center center;background-size:100% 100%;font-size:12px;color:#fce8e0;text-decoration: none;line-height: 25px;text-align: center;display: block;width: 70px;border-radius: 3px;height: 25px;}
@@ -104,7 +104,7 @@
                          .redtext{color: @btn-red;}
                          .ytb_sylIntro{position:absolute;left:193px;}
                          .specialLab{font-weight:bold;}
-                         .orderNum{padding:0 35px;}
+                         .orderNum{padding:0 8px;color:@btn-red;}
                          a{cursor:pointer;color:#3a84cf;margin-left:20px;text-decoration:underline;}
                          .selinpt{position: relative;display: inline-block;margin:0 5px;border-radius:4px;padding:0 5px;color:#000;width:200px;height:32px;line-height:26px;border:1px solid #d1d1d1;cursor: pointer;;
                             i{display: block;height: 22px;overflow: hidden;width:80%;white-space:nowrap;text-overflow:ellipsis;}
@@ -396,7 +396,7 @@
             }
         }
 }
-.SignContactC{display:none;position:fixed;width:100%;min-width:1000px;height:100vh;left:0;top:0;background:rgba(0,0,0,.5);z-index:99;
+.SignContactC{display:none;position:fixed;width:100%;min-width:1200px;height:100vh;left:0;top:0;background:rgba(0,0,0,.5);z-index:99;
     .SignContact{position:absolute ;top:0;left:0;bottom:0;right:0;overflow:hidden;margin:auto;width:484px;height:775px;
         .sign_head{position: relative;width:478px;height:305px;margin:auto;background:url(/static/img/sign_topBG.png) no-repeat center bottom;background-size: cover;z-index:999999;}                       
         .sign_body{height:450px;width:410px;margin:auto;background-color: #fff;position: relative;top:-20px;padding-top:20px;z-index:1;
@@ -446,8 +446,8 @@
 
 .bankDeposittopimg{width:100%;background:url(/static/img/bankDeposittop.png) no-repeat center center;background-size:cover;min-width:1200px;}
 .bankDeposittopimg::before {content: "";display: inline-block;padding-bottom: 24.1%;width: 0;vertical-align: middle;}
-.bankDepositC{background-color:#F0F0F0;min-width:1050px;padding:30px 0;
-              .bankDepositBox{width:1000px;margin:auto;position:relative;
+.bankDepositC{background-color:#F0F0F0;min-width:1200px;padding:30px 0;
+              .bankDepositBox{width:1200px;margin:auto;position:relative;
                               .bankDepTitleC{padding:10px 75px 60px;background:url(./bankDepTitleC.png) no-repeat center center;background-size:100% 100%;position:relative;top:-100px;border-radius:14px;
                                              h1{color: #323232;font-size: 24px;display: block;text-align: center;line-height: 60px;}
                                              p{color: #646464;font-size: 14px;font-family: 微软雅黑;text-align:center;margin-top:20px;}
@@ -590,7 +590,7 @@
 .top_wechata:hover{background:url('index_top_wechat_icon_highlight.png') no-repeat left center;background-size:cover;}
 .top_appa{background:url('index_top_mobile_icon_normal.png') no-repeat left center;background-size:cover;}
 .top_appa:hover{background:url('index_top_mobile_icon_highlignt.png') no-repeat left center;background-size:cover;}
-.footerMenuC{width:364px;float:left;position:relative;font-size:0;
+.footerMenuC{width:34%;float:left;position:relative;font-size:0;
     title{display: inline-block;width: 33.3%;text-align: left;padding: 20px 0;font-size: 14px;color: #646464;padding-left: 15px;}
     ul{list-style:none;
         li{width:33.3%;float:left;text-align:left;margin-bottom:25px;
@@ -654,14 +654,14 @@
 }
 a{cursor:pointer;text-decoration:none;}
 a:hover{text-decoration:none;}
-.index_centerC{background-color:#f0f0f0;width:100%;min-width:1050px;
-    .index_center{width:1050px;margin:auto;padding:10px 0;
+.index_centerC{background-color:#f0f0f0;width:100%;min-width:1200px;
+    .index_center{width:1200px;margin:auto;padding:10px 0;
         .prolistP{text-align: right;color: #646464;font-size: 14px;padding-bottom: 20px;}
-        .newPLC{width: 1050px;margin: auto;font-size:0;
-            .newPLC_left{width:200px;display: inline-block;vertical-align: top;
+        .newPLC{width: 1200px;margin: auto;font-size:0;
+            .newPLC_left{width:250px;display: inline-block;vertical-align: top;
                 label{display: block;color: #646464;font-size: 18px;font-weight: bold;height: 65px;line-height: 65px;background-color: #fff;border-bottom: 1px dashed #e0e0e0;text-align: center;border-top-left-radius:4px;border-top-right-radius:4px;border-top:1px solid @btn-red;}
                 .np_left_menuul{list-style: none;color: #646464;font-size: 16px;margin-bottom:15px;
-                    li{height: 65px;line-height: 65px;background-color: #fff;border-bottom: 1px dashed #e0e0e0;text-align: left;padding-left: 55px;}
+                    li{height: 65px;line-height: 65px;background-color: #fff;border-bottom: 1px dashed #e0e0e0;text-align: left;padding-left: 80px;}
                     li:nth-child(4){border-bottom: 0;border-bottom-left-radius:4px;border-bottom-right-radius:4px;}
                     li:hover,li:active,.np_left_liactive{background-color: @btn-red;color: #fff;cursor: pointer;}
                 }
@@ -670,17 +670,19 @@ a:hover{text-decoration:none;}
                     h2{display:block;font-size: 16px;font-weight: normal;color: @btn-red;text-align: center;line-height: 45px;border-bottom: 1px dashed #ccc;}
                     .dynamicC{height:200px;overflow:hidden;margin:20px 0;
                         ul{list-style: none;
-                            li{font-size: 12px;
+                            li{font-size: 14px;
                                 p{font-size: 12px;position: relative;padding:5px 6px;line-height:20px;
-                                    span{color:@btn-red;}
-                                    i{display: inline-block;position: absolute;bottom: 5px;right: 10px;}
+                                    span{color:@btn-red;display: inline;}
+                                    // i:nth-child(1){display:inline-block;margin:0 2px;}
+                                    .datei{display:inline-block;position: absolute;bottom: 5px;right: 10px;}
+                                    
                                 }
                             }
                         }
                     }
                 }
             }
-            .newPLC_right{width:835px;display: inline-block;vertical-align: top;margin-left:15px;
+            .newPLC_right{width:935px;display: inline-block;vertical-align: top;margin-left:15px;
                 .NoTypeLine{border-top-left-radius:4px;border-top-right-radius:4px;border-top:1px solid @btn-red;line-height:45px;background-color:#fff;font-size:0;position: relative;
                     label{font-size: 12px;color: #323232;width: 80px;display: inline-block;vertical-align: top;text-align: center;}
                     ul{list-style: none;display: inline-block;height: 45px;vertical-align: top;
@@ -746,7 +748,7 @@ a:hover{text-decoration:none;}
                              }
                }
 }
-.index_activityC{width:1050px;
+.index_activityC{width:1200px;
                                                              .index_activityLC{width:410px;margin-right:30px;display:inline-block;float:left;}
                                                              .index_activityRC{width:560px;display:inline-block;float:left;background-color:#fff;border-radius:8px;height:270px;
                                                                                ul{padding:50px 0 20px;list-style:none;
@@ -774,7 +776,7 @@ a:hover{text-decoration:none;}
                                                                                 img{width:100%;height:auto;}
                                                              }
                                                              table{border-radius:2px;background-color:#fff;
-                                                                 td{padding:0 20px;line-height: 68px;border-right: 1px solid #ebebeb;text-align:center;color:@text-lightergray;font-size:14px;}
+                                                                 td{padding:0 20px;line-height: 60px;border-right: 1px solid #ebebeb;text-align:center;color:@text-lightergray;font-size:14px;}
                                                                  thead{background-color:#fff;
                                                                        td:nth-child(1){width: 310px;}
                                                                        td:nth-child(2){width: 140px;}
@@ -784,7 +786,7 @@ a:hover{text-decoration:none;}
                                                                        td:nth-child(6){width: 125px;text-align:center;border-right:0;padding:0;
                                                                     }
                                                                  }
-                                                                 tbody td:nth-child(1){color:@btn-red;text-align:left;padding:0 0 0 5px;
+                                                                 tbody td:nth-child(1){color:@btn-red;text-align:left;
                                                                                        a{display:block;}
                                                                                        img{width:20px;margin-right:5px;}
                                                                  }
@@ -807,7 +809,7 @@ a:hover{text-decoration:none;}
                                                                                         white-space:nowrap;
                                                                                         text-overflow:ellipsis;position: relative;top: 9px;}
                                                                  }
-                                                                 tbody tr:nth-child(odd){background-color:#fafafa;}
+                                                                 tbody tr:nth-child(even){background-color:#f5f5f5;}
                                                                  tbody tr:hover{background-color: #f5f5f5;}
                                                              }
                                                              .tb_p0 td{padding:0 !important;}
@@ -819,10 +821,13 @@ a:hover{text-decoration:none;}
                                                                                 }
                                                              }
                                             }
-.usercollecTab{width:847px;padding:20px 0;
+.wid900{width:900px;}                                          
+.usercollecTab{padding:20px 0;
                /*td{padding:0 10px !important;}*/
                td{border-right:0 !important;}
-               table thead td:nth-child(1) {width: 190px;}
+               table thead {background-color: #f5f5f5;}
+               table thead td{line-height: 45px;}
+               table thead td:nth-child(1) {width: 210px;}
                table thead td:nth-child(2) {width: 100px;}
                table thead td:nth-child(3) {width: 100px;}
                table thead td:nth-child(5) {width: 160px;}
@@ -835,13 +840,15 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                .headimg{width:70px;height:70px;border-radius:50%;}
                .checkinBtn{color:#fff;background-color:@btn-red;margin:10px 0;line-height:25px;padding:0 20px;display:inline-block;border-radius:4px;font-size: 12px;}
                .iconul{list-style:none;text-align:center;padding:5px 0;
-                       li{width:28px;height:28px;display:inline-block;margin:2px 5px;}
+                    li{width:28px;height:22px;display:inline-block;margin:5px 4px;
+                        // img{width:15px;height:15px;}
+                    }
                }
 }
 .userInfoTableC{position:relative;padding:0 5px 0 15px;
                 table tbody{line-height:70px;
-                    tr{position:relative;height:70px;
-                               td{padding:25px 15px;font-size:12px;line-height:20px;vertical-align: middle;}
+                    tr{position:relative;line-height:60px;
+                               td{padding:0 15px;font-size:12px;vertical-align: middle;}
                                td:nth-child(1){font-size:14px;color:#333;text-align:left;display:inline-block;position:relative;
                                                .squareSpan{width:8px;height:8px;display:inline-block;margin-right:8px;position:relative;top:-1px;}
                                }
@@ -849,7 +856,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                                td:nth-child(3){font-size:14px;color:#333;text-align:right;width:16%;}
                                td:nth-child(4){text-align:right;}
                                td:nth-child(5){text-align:right;color:@btn-red;width:190px;padding-right:50px;}
-                               td:nth-child(1):after{content:"";background:url(uplan_xian.png) no-repeat center center;background-size:100% 100%;width:808px;height:2px;position:absolute;bottom:0;left:-20px;}
+                               td:nth-child(1):after{content:"";width:900px;height:2px;position:absolute;bottom:0;left:-20px;border-bottom:1px dashed #f0f0f0;}
                                .jiekuantd{color:#3a84cf !important;}
                                .tixianbtn{color:@btn-red;line-height:25px;display:inline-block;padding:0 30px;border:1px solid @btn-red;border-radius:4px;margin-right:20px;}
                                .chongzhibtn{color:@btn-red;line-height:25px;display:inline-block;padding:0 30px;border:1px solid @btn-red;border-radius:4px;margin-right:35px;}
@@ -885,24 +892,56 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                 }
 }
 /*我的奖励*/
-.awardListC ul{list-style:none;
-               li{width:50%;float:left;text-align:center;line-height:60px;color:#323232;font-size:18px;cursor:pointer;font-family:'Microsoft YaHei';font-weight:bold;background-color:@bg_lightergray;border-top:2px solid @bg_lightergray;
+.awardListC ul{list-style:none;display:inline-block;
+               li{display: inline-block;text-align:center;line-height:45px;color:#646464;font-size:16px;cursor:pointer;font-family:'Microsoft YaHei';margin-right:80px;
                   a{display:block;}
                   a:hover{color:#323232;}
                }
-               .awardList_active{border-color:@btn-red;background-color:#fff;}
+               .awardList_active{border-bottom:2px solid @btn-red;}
+}
+.awardListC .oldul{display: block;font-size:0;
+    li{margin:0;display:inline-block;vertical-align: top;line-height: 60px;}
 }
 .width25 ul li{width:25%;}
 .width33 ul li{width:33.33%;}
+.width50 ul li{width:50%;}
 .awardsonlistC{padding-bottom:20px;
-               .awardsonlist{list-style:none;padding-left:15px;
-                             li{line-height:40px;padding:0 15px;float:left;font-size:12px;cursor:pointer;}
-                             .awardsonlist_active{color:@btn-red;}
+               .awardsonlist{list-style:none;line-height:60px;
+                            label{font-size:14px;}
+                             li{padding:0 10px;display:inline-block;font-size:14px;cursor:pointer;height:25px;line-height:25px;border-radius: 3px;}
+                             .awardsonlist_active{background-color: #e7e7e7;}
                }
                .awardDetailListC{
-                .awardDetailList{display:none;text-align:center;
-
-                                 .awardDetC{width:606px;display:inline-block;margin-top:20px;position:relative;
+                .awardDetailList{display:none;text-align:left;
+                    .awardoutC{font-size:0;display:inline-block;margin-top:20px;position:relative;border:1px solid #e8e8e8;
+                        .award_Info_left{width:380px;height:190px;display:inline-block;vertical-align: top;padding:5px 10px 5px 50px;
+                            .awdinfoL_top{text-align: left;font-size:0;
+                                .DinFont{font-size: 52px;font-weight: bold;padding-left: 12px;color:@btn-red;display:inline-block;position:relative;vertical-align: top;
+                                    i{font-size: 24px;position: absolute;top:10px;left:-10px;font-weight: normal;}
+                                }
+                                .tr{padding-top: 17px;line-height: 20px;margin-left: 10px;display:inline-block;vertical-align: top;
+                                    p{line-height: 22px;color: #323232;font-size: 16px;}
+                                    .grayDarkColor {color: #969696;font-size: 12px;}
+                                }
+                            }
+                            .awdinfoL_mid{font-size: 12px;color:#969696;text-align:left;line-height: 20px;}
+                            .awdinfoL_btm{font-size: 14px;color:@btn-red;text-align:left;line-height: 30px;}
+                        }
+                        .award_Info_right{width:55px;height:190px;display:inline-block;vertical-align: top;
+                            a{display: table-cell;word-break: break-all;height:190px;letter-spacing: 14px;padding: 0px 0 0 14px;;background-color: @btn-red;color: #fff;letter-spacing: 14px;font-size: 14px;text-align: center;vertical-align: middle;}
+                        }
+                        .awdused a{background-color: #e0e0e0;color:#fff;cursor:default;}
+                    }
+                    .awardoutC:nth-child(odd){margin-right:20px;}
+                    .jxqC{
+                        .award_Info_left{height:210px;}
+                        .award_Info_right{height:210px;
+                            a{height:210px}
+                        }
+                    }
+                                 .awardDetC{width:450px;height:190px;display:inline-block;margin-top:20px;position:relative;border:1px solid #e8e8e8;display:inline-block;
+                                            
+                                    
                                             .awardValue{width:143px;height:126px;float:left;line-height:126px;color:@btn-red;text-align:left;font-size:20px;padding-left:30px;position:relative;
                                                         label{font-size:45px;font-weight:bold;}
                                                         span{position:absolute;bottom:20px;font-size:12px;line-height:20px;padding-left:10px;color:#666;}
@@ -952,7 +991,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                                                      h3{color:#f4f4f4;}
                                                  }
                                  }
-                                 .havenoaward{width: 178px;height: 145px;display:inline-block;margin: 160px auto;margin-bottom: 0;background: url(0818new/personal_account_award_noredbag_img.png) no-repeat;position:relative;
+                                 .havenoaward{width: 178px;height: 145px;margin: 160px auto;margin-bottom: 0;background: url(0818new/personal_account_award_noredbag_img.png) no-repeat;position:relative;
                                               em{position:absolute;color:#969696;font-size:14px;left:40px;bottom:0}
                                  }
                 }
@@ -960,28 +999,44 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
             }
 }
 .awardsonlistC:nth-child(3){display:none;}
-.commissionGetC{padding:15px 30px;
+.commissionGetC{padding:15px 0;
                 p{color:#666;font-size:14px;}
-                span{color:@btn-red;font-size:14px;
+                span{color:@btn-red;font-size:14px;position: relative;
                      label{font-size:28px;margin-right:5px;}
+                     a{display: inline-block;width: 120px;color:#498aeb;font-size: 12px;position: absolute;bottom:0;left:100px;}
                 }
 }
-.commissionDetailC{padding:15px 30px;
-                   p{color:#666;font-size:14px;margin-bottom:10px;}
+.commissionDetailC{padding:10px 0;
+                   p{color:#323232;font-size:16px;line-height: 60px;
+                        .getmore{color: @btn-red;}
+                        .bluetip{color:#498aeb;margin-left: 30px;}
+                    }
+                   .zzcline{line-height: 50px;position: relative;
+                       label{color: @btn-red;font-size: 24px;display: inline-block;}
+                       a{float: right;font-size: 16px;width: 100px;line-height:35px;display: inline-block;margin-left: 45px;position: relative;top:10px;}
+                       .whiteBtn{text-align: center;cursor: pointer;border-radius: 3px;border: 1px solid #ccc;line-height:33px;}
+                    }
+                   .zhzl_ulC{
+                       ul{list-style: none;
+                            li{font-size: 14px;color: #646464;display: inline-block;line-height: 50px;margin-right: 35px;}
+                        }
+                   }
                    table{width: 100%;border-collapse: collapse;border-spacing: 0;
                             td{font-size:14px;text-align:center;}
-                            thead td{height: 40px;line-height: 40px;color: #848484;}
-                            tbody td{height: 40px;line-height: 40px;color: #333;}
+                            thead td{height: 40px;line-height: 45px;color: #646464;}
+                            tbody td{line-height: 60px;color: #323232;padding:0 20px;}
                             tbody .redtd{color: @btn-red;}
-                            thead tr{background-color:@pink_normal;}
-                            tbody tr:nth-child(even){background-color:@pink_light;}}
+                            thead tr{background-color:#f5f5f5;}
+                            tbody tr:nth-child(even){background-color:#f5f5f5;}}
 }
 .pointsTableC table{
     thead tr{
         td:nth-child(1){padding-left:80px;}
         td:nth-child(3){padding-right:80px;}
     }
-    td{width:33%;padding:0 30px;}
+    td{width:33%;padding:0 30px;
+        .hrefa{color: @btn-red;padding:0 10px;}
+    }
     td:nth-child(1){text-align:left;}
     td:nth-child(3){text-align:right;padding-right:90px;}
 }
@@ -991,10 +1046,10 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 .rechargeC{padding:10px 0;
            .balancetitle{color:#333;font-size:14px;text-align:center;font-weight:bold;}
-           .accountBalance{color:@btn-red;font-size:14px;text-align:center;display:block;padding-bottom:5px;
-                           label{font-size:30px;font-weight:bold;margin-right:5px;}
+           .accountBalance{color:#646464;font-size:14px;display:inline-block;line-height: 45px;
+                           label{font-size:14px;font-weight:normal;margin-right:5px;color:@btn-red;}
            }
-           .rechargeline{padding:10px 0  5px 240px;line-height:30px;font-size:14px;
+           .rechargeline{padding:25px 0  5px 0;line-height:30px;font-size:14px;
                          label:nth-child(1){width:60px;display:inline-block;margin-right:5px;color:#323232;
                                             span{display:inline-block;width:100%;}
                          }
@@ -1028,27 +1083,27 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                          .rechargeNow{line-height:35px;width:180px;display:inline-block;background-color:@btn-red;border-radius:3px;text-align:center;color:#fff;font-size:16px;margin-top:10px;}
                          .rechargeNow:active{background-color: #bf0d0e;}
                          input{-webkit-box-shadow: 0 0 0px 1000px #fff inset;}
-                         .tip{top:16px;left:510px;}
+                         .tip{top:30px;left:300px;}
                          
            }
-           .explainarea{padding:40px 30px 0 120px;
+           .explainarea{padding:40px 30px 0 0;
                                       p{color:#999;font-size:12px;line-height:22px;}
             }
-           .WithdrawalsExplan{padding:0px 5px 0 30px;}
+           .WithdrawalsExplan{padding:30px 5px 0 0;}
 }
 .EditrechargeC{padding:60px 0 10px 0;
-               .rechargeline{padding:10px 0  15px 240px;}
+               .rechargeline{padding:10px 0  15px 0;}
 
 }
 .oklogo{width:25px !important;height:20px;display:inline-block;background:url(0818new/yes.png) no-repeat right center;background-size:50%;}
 .bankManageC{padding:0 0 10px 0;
-             h3{font-size:14px;color:@btn-red;padding:0 30px;line-height:45px;float:left;display:block;width:100%;}
-             .bank_Card{width:310px;height:120px;display:inline-block;margin-left:30px;margin-bottom:20px;padding:17px 40px 10px 70px;float:left;position:relative;border-radius:10px;
-                        h3{line-height:25px;padding:0;color:#fff;font-size:16px;font-weight:normal;clear:both;
+             h3{font-size:14px;color:@btn-red;line-height:45px;float:left;display:block;width:100%;}
+             .bank_Card{width:345px;height:172.5px;display:inline-block;margin:10px 50px;padding:27px 40px 10px 70px;display: inline-block;position:relative;border-radius:10px;
+                        h3{line-height:25px;padding:0;color:#fff;font-size:24px;font-weight:normal;clear:both;
                             img{position: relative;top:0;left:10px;display: inline-block;width:52px;height:12px;margin-right:6px;}
                             .wcard{width:38px;}
                         }
-                        span{display:block;line-height:15px;color:#fff;font-size:12px;margin-top:20px;}
+                        span{display:block;line-height:15px;color:#fff;font-size:12px;margin-top:50px;}
                         label{display:block;text-align-last:justify;font-size:18px;font-weight:normal;color:#fff;margin-top:18px;letter-spacing:1px;
                               i{position:relative;top:3px;font-weight:normal;}
                         }
@@ -1058,42 +1113,43 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
              }
              .bank_CMB{background:url(0818new/CMB.png) no-repeat center center;background-size:cover;}
              .bank_BOC{background:url(0818new/BOC.png) no-repeat center center;background-size:cover;}
-             .bankaddnew{background:url(0818new/banknewadd.png) no-repeat center center;background-size:cover;padding:50px 0 0 0;
+             .bankaddnew{background:url(0818new/banknewadd.png) no-repeat center center;background-size:cover;padding:90px 0 0 0;
                          label{color:#999;text-align-last:center;font-size:14px;letter-spacing:0;}
              }
 }
-.streamTypeC{padding:15px 30px;line-height:25px;
-             .introlab{display:inline-block;width:75px;float:left;font-size:14px;}
-             ul{list-style:none;display:inline-block;float:left;
-                li{padding:0 10px;margin-right:16px;float:left;border-radius:3px;font-size:14px;
-                   label{display:block;text-align:center;cursor:pointer;}
+.streamTypeC{line-height:60px;font-size:0;
+             .introlab{width:75px;font-size:14px;vertical-align: middle;}
+             ul{list-style:none;display:inline-block;vertical-align: middle;
+                li{padding:0 10px;margin-right:16px;display:inline-block;border-radius: 15px;font-size:14px;line-height: 25px;vertical-align: middle;
+                   label{text-align:center;cursor:pointer;}
                    input{display:none;}
                 }
                 .streamtypesel{background-color:@btn-red;color:#fff;}
              }
-             .dateselinput{width: 140px;font-family: 微软雅黑;text-align: left;height: 25px;line-height: 25px;}
-             .spanbetweeninput{display:inline-block;float:left;margin:0 10px;}
-             a{padding:0 20px;margin-left:20px;line-height:25px;font-size: 12px;}
-             p{display:inline-block;color:#666;font-size:14px;padding-top:5px;}
+             .dateselinput{width: 140px;font-family: 微软雅黑;text-align: left;height: 25px;line-height: 25px;vertical-align: middle;}
+             .spanbetweeninput{margin:0 10px;font-size: 14px;color:#323232;vertical-align: middle;}
+             a{padding:0 20px;margin-left:20px;line-height:25px;font-size: 12px;border-radius: 15px;vertical-align: middle;}
+             p{display:inline-block;color:#666;font-size:14px;padding-top:5px;vertical-align: middle;}
 }
 /*站内信*/
 .letterFromwebC{
     ul{list-style:none;
-       li{display:block;line-height:20px;padding:25px 30px;font-size:14px;position:relative;height:70px;
-          label{color:@text-lightblack;font-weight:bold;margin-right:30px;display:inline-block;float:left;
+       li{display:block;line-height:60px;font-size:0;position:relative;padding:0 15px;
+        img{margin-right:30px;}
+          label{color:@text-lightblack;font-weight:bold;margin-right:30px;display:inline-block;font-size:14px;vertical-align: top;
                 input{margin-right:8px;}
           }
-          a{
-              label{color:@text-lightblack;width:460px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-weight:bold;}
+          a{font-size:16px;vertical-align: top;cursor: pointer;display:inline-block;
+              label{color:@text-lightblack;width:550px;display:inline-block;margin-right:20px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-weight:bold;}
               span{float:right;color:@text-lightgray;display:inline-block;position:relative;}
-              span i{color:@btn-red;font-size:0.5rem;margin-left:10px;position:relative;top:-2px;}
+            //   span i{color:@btn-red;font-size:0.5rem;margin-left:10px;position:relative;top:-2px;}
           }
           .letterreaded{
               label{color:@text-lightgray;font-weight:normal;}
               span i{color:@text-lightgray;}
           }
        }
-       li:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;background:url('uplan_xian.png') no-repeat center center;background-size:cover;}
+       li:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;border-bottom:1px dashed #f0f0f0;}
     }
 }
 .letterwebFooter{padding:20px 30px;position:relative;
@@ -1116,7 +1172,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 .textcolorgray{color:@text-lightergray !important;}
 .graybg{background-color:#f0f0f0;}
 .huizhidantitle{text-align:center;
-                a{float:left;font-size:14px;padding: 0 20px;line-height: 35px;margin-top:12.5px;font-weight:normal;
+                a{float:left;font-size:14px;padding: 0 20px;line-height: 35px;font-weight:normal;
                   span{font-weight:normal;display:inline-block;margin-right:3px;}
                 }
 }
@@ -1186,7 +1242,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
   display: none;
 }
 .projectInfoC{background-color:#fff;margin-bottom:20px;border-radius:8px;}
-.projectInfo_headleft{width:610px;display:inline-block;float:left;
+.projectInfo_headleft{width:710px;display:inline-block;float:left;
                       ul{list-style:none;
                         li{width:20%;display:inline-block;padding:30px 0 20px 30px;float:left;
                             p:nth-child(1){font-size:16px;color:#646464;
@@ -1214,7 +1270,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                                         }
                       }                   
 }
-.projectInfo_headright{width:440px;display:inline-block;float:left;padding:20px 40px;border-left:2px solid #f0f0f0;
+.projectInfo_headright{width:490px;display:inline-block;float:left;padding:20px 40px;border-left:2px solid #f0f0f0;
                        .projectmoneyleft{font-size:16px;color:#969696;line-height:30px;padding-bottom:10px;position: relative;
                                          span{color:@btn-red;font-size:32px;margin:0 5px;}
                                          label{color:#646464;font-size:14px;}
@@ -1285,8 +1341,10 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                    }
                    .projectDetailC:nth-child(1){display:block;}
 }
-.graph .redBtn{float:right;line-height:30px;padding:0 10px;position:relative;top:15px;font-size:16px;min-width:80px;text-align:center;font-weight:normal;}
+.graph .newredBtn{float:right;line-height:30px;padding:0 10px;position:relative;top:25px;font-size:16px;min-width:80px;text-align:center;font-weight:normal;color:@btn-red;}
+.graph .redBtn{float:right;line-height:30px;padding:0 10px;position:relative;top:25px;font-size:16px;min-width:80px;text-align:center;font-weight:normal;background-color:@btn-red;color:#fff;}
 .graph .followed{background-color:#d7d7d7;}
+.pad30{padding:0 30px;}
 .graph .followed:active{background-color:#969696;}
 .headtopbtn{border:1px solid #eb494b;background:none;background-color:#eb494b;color:#fff;width:60px;line-height:20px;text-align:center;text-decoration:none;
             img{padding-bottom:2px;padding-right:5px;}
@@ -1295,13 +1353,13 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 .headtopbtn2{width:80px;color:#eb494b;background:none;text-decoration:none;border:1px solid #eb494b;background-color:#fff;width:80px;line-height:20px;text-align:center;text-decoration:none;
              img{padding-bottom:2px;padding-right:3px;}
 }
-.AboutUSC{width:100%;min-width:1050px;
+.AboutUSC{width:100%;min-width:1200px;
           .bannerBG{width:100%;height:394px;background:url('/static/img/About-Us_top.jpg') no-repeat center center;position:relative;text-align:center;
-                    .aboutUsheadTitle{width:1050px;margin:auto;padding-top:70px;text-shadow: 0 5px 5px rgba(50, 50, 50, 0.5);
+                    .aboutUsheadTitle{width:1200px;margin:auto;padding-top:70px;text-shadow: 0 5px 5px rgba(50, 50, 50, 0.5);
                                       h1{font-size:114px;font-weight:normal;text-align:left;color:#fff;line-height:120px;padding:0 20px;}
                                       h3{font-size:60px;font-weight:normal;color:#fff;line-height:60px;}
                     }
-                    ul{list-style:none;width:1050px;display:inline-block;position:absolute;bottom:0;left:0;right:0;margin:auto;background-color:rgba(255,255,255,0.7);
+                    ul{list-style:none;width:1200px;display:inline-block;position:absolute;bottom:0;left:0;right:0;margin:auto;background-color:rgba(255,255,255,0.7);
                        li{width:11.11%;float:left;line-height:45px;font-weight:600;
                           a{display:block;color:@btn-red;font-size:16px;font-weight: normal;}
                        }
@@ -1326,7 +1384,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
        div:nth-child(1){width: 120px;height: 100px;margin-top:10px;border: 0;float:left;text-align:center;
                         img{max-width:53px;max-height:53px;margin:30px auto;}
        }
-       div:nth-child(2){width:900px;padding-left:120px;
+       div:nth-child(2){width:1100px;padding-left:120px;
            h3{font-size:16px;line-height:40px;}
            p{text-indent: 2em;}
        }
@@ -1406,7 +1464,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     a{line-height:30px;padding:0 30px;margin-top:40px;}
 }
 /*借款中心*/
-.LoanC{width:100%;min-width:1000px;
+.LoanC{width:100%;min-width:1200px;
        .loanHead{width: 100%;height: 394px;background: url('/static/img/lend_top_banner_icon.jpg') no-repeat center center;position: relative;text-align: center;padding-top:50px;
                  h1{font-size:44px;color:#fff;font-weight:normal;text-shadow: 0 5px 5px rgba(50, 50, 50, 0.5);}
                  .loanHd_imgul{width:520px;margin:auto;list-style:none;margin-top:40px;
@@ -1416,7 +1474,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                                }
                                li:nth-child(4){margin-right:0;}
                  }
-                 .loanHe_menuul{list-style: none;width: 1050px;display: inline-block;position: absolute;bottom: 0;left: 0;right: 0;margin: auto;background-color: rgba(255, 255, 255, 0.5);
+                 .loanHe_menuul{list-style: none;width: 1200px;display: inline-block;position: absolute;bottom: 0;left: 0;right: 0;margin: auto;background-color: rgba(255, 255, 255, 0.5);
                                 li{width:16.66%;float:left;line-height:55px;color:#323232;font-size:14px;cursor:pointer;
                                    img{width:28px;height:22px;margin-right:10px;}
                                 }
@@ -1424,12 +1482,12 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                  .loanHe_menuul_active{background-color:#fff;}
        }
        .loanBody{width:100%;background-color:#f0f0f0;
-                 .loanbodyC{width:1050px;margin:auto;
+                 .loanbodyC{width:1200px;margin:auto;
                             .infoTypeC{padding:0 0 30px 0;}
                             .loanerInfoC{padding:20px 30px;border-bottom:1px solid #e5e4e2;background-color:#fff;
                                          h3{font-size:16px;color:#323232;font-weight:normal;}
                                          .loanerInfowriteC{padding:5px 0;padding-left:28px;
-                                             .infoC{width:218px;display:inline-block;font-size:0;padding:5px 0;position:relative;float:left;
+                                             .infoC{width:268px;display:inline-block;font-size:0;padding:5px 0;position:relative;float:left;
                                                     label{display:block;line-height:36px;color:#646464;font-size:14px;
                                                           span{color:@btn-red;margin-right:5px;}
                                                     }
@@ -1446,11 +1504,11 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                                                            padding-right: 30px;  
                                                     }
                                                     select::-ms-expand { display: none; }
-                                                    .codeInput{width:95px;display:inline-block}
-                                                    .codespan{width:95px;margin-left:8px;height:32px;display:inline-block;
-                                                              img{width:100%;}
+                                                    .codeInput{width:130px;display:inline-block}
+                                                    .codespan{width:130px;margin-left:8px;height:32px;display:inline-block;overflow: hidden;
+                                                              img{width:100%;position: relative;top:-5px;}
                                                     }
-                                                    .tip{line-height:32px;height:32px;width:100px;display:inline-block;position:absolute;left:218px;top:41px;color:@btn-red;font-size:12px;padding-left:5px;}
+                                                    .tip{line-height:32px;height:32px;width:100px;display:inline-block;position:absolute;left:268px;top:41px;color:@btn-red;font-size:12px;padding-left:5px;}
                                              }
                                              .infoC:nth-child(3n+1),.infoC:nth-child(3n+2){margin-right:118px;}
                                          }
@@ -1570,7 +1628,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
              span{margin-left:5px;}
 }
 .getmoreBank:after{content:'';width:100%;height:1px;position:absolute;border-bottom:1px solid @btn-red;left:0;bottom:15px;}
-.banklimitimg{margin:10px 5%;width:90%;}
+.banklimitimg{margin:20px 8%;}
 .transferApplyipt{line-height:30px;font-size:16px;color:@btn-red;width:100px;border:none;border-bottom:1px solid #ccc;padding:0 5px;}
 .transferApplyBtnline{text-align:center;line-height:35px;padding-top:40px;
                       a{font-size:16px;padding:0 60px;}
@@ -1641,9 +1699,9 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 .ptitlelogo{height:20px;line-height:18px;display:inline-block;padding:0 5px;background-color:#fff;border-radius:4px;color:@btn-red;font-size:0.6rem;margin-right: 1px;cursor:pointer;border:1px solid @btn-red;}
 /*平台数据*/
-.PF_topbanner{min-width:1000px;height:394px;background:url(/static/img/platformdata_banner.png) no-repeat center center;background-size:cover;}
+.PF_topbanner{min-width:1200px;height:394px;background:url(/static/img/platformdata_banner.png) no-repeat center center;background-size:cover;}
 .PF_outC{background-color:#def6ff;}
-.PFbody{width:1000px;margin:auto;padding:20px 0;
+.PFbody{width:1200px;margin:auto;padding:20px 0;
         .PFTitle{width:296px;height:65px;margin:50px auto;border-radius:32.5px;background-color:#0dafff;color:#fff;font-size:36px;font-weight:normal;text-align:center;line-height:65px;}
         .PFzlC{text-align:center;
             .zlDetail{width:397px;height:188px;display:inline-block;border-radius:30px;padding:35px 0;margin-bottom:50px;
@@ -1715,6 +1773,10 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 // 账户中心左侧菜单选中效果
 .leftmenu .info .router-link-exact-active{color: @btn-red;}
+.slider_left_erweimaC{text-align: center;margin:60px 0;
+    img{width: 125px;height: 125px;margin:10px 0;}
+    p{text-align: center;font-size: 14px;margin:5px 0;}
+}
 
 .calculatorBody table{border: 1px solid #e6e6e6;
     td,th{border: 0;font-size: 14px;height: 58px;line-height: 58px;text-align: center;}
@@ -1723,7 +1785,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     .redtd{color: @btn-red;}
     tr{border-bottom: 1px solid #e6e6e6;}
 }
-.index_datainfoC_top{width: 1050px;margin: auto;
+.index_datainfoC_top{width: 1200px;margin: auto;
     ul{list-style: none;font-size: 0;
         li{width: 25%;display: inline-block;vertical-align: top;font-size: 16px;padding:25px 0 30px 0;position: relative;
             img{display: block;margin: auto;border-radius: 50%;}
@@ -1835,14 +1897,14 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         }
     }
 }
-.footerErweimaC{width: 323px;height: 189px;display: inline-block;font-size: 0;vertical-align:top;padding-left:32px;position: relative;padding-top:30px;
+.footerErweimaC{width: 33%;height: 189px;display: inline-block;font-size: 0;vertical-align:top;padding-left:68px;position: relative;padding-top:30px;
     .footer_son{display: inline-block;text-align:center;margin-right: 32px;vertical-align:top;font-size:14px;
         p{padding: 0;font-size: 0.8em;color: #323232;font-family: "Microsoft YaHei";display: block;text-align: center;}
     }
     .footer_son:nth-child(2){margin-right: 0;}
 }
 .footerErweimaC::after{content:"";width:1px;height:75%;border-left:1px solid @text-lightgraylow;position:absolute;top:8%;right:0;}
-.footerKefu{width: 355px;height: 189px;display: inline-block;text-align: center;
+.footerKefu{width: 33%;height: 189px;display: inline-block;text-align: center;
     label{display: block;text-align: center;font-size: 24px;color: @btn-red;padding: 5px 0;}
     span{color: #969696;font-size: 12px;}
     .footer_iconC{padding: 10px 0;
@@ -1859,10 +1921,10 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     }
 }
 
-.rankingC{width: 100%;min-width: 1050px;background-color: #f0f0f0;padding-bottom: 30px;}
+.rankingC{width: 100%;min-width: 1200px;background-color: #f0f0f0;padding-bottom: 30px;}
 .rankingHead{width: 100%;height: 394px;background: url(/static/img/ranking_banner.png) no-repeat center center;position: relative;}
-.rankingBody{width: 1050px;position: relative;margin:30px auto 0 auto;border-radius: 10px;background-color: #fff;font-size: 0;
-    .rankB_left{width: 305px;height: 704px;display: inline-block;vertical-align: top;border-top-left-radius: 10px;border-top-right-radius: 10px;
+.rankingBody{width: 1200px;position: relative;margin:30px auto 0 auto;border-radius: 10px;background-color: #fff;font-size: 0;
+    .rankB_left{width: 335px;height: 704px;display: inline-block;vertical-align: top;border-top-left-radius: 10px;border-top-right-radius: 10px;
         background: -webkit-linear-gradient(#81c7ff, #498aeb); /* Safari 5.1 - 6.0 */ 
         background: -o-linear-gradient(#81c7ff, #498aeb); /* Opera 11.1 - 12.0 */  
         background: -moz-linear-gradient(#81c7ff, #498aeb); /* Firefox 3.6 - 15 */  
@@ -1875,7 +1937,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
             li a:hover,li a:active,.rankingSel{width: 226px;background-color: #fff;color: #498aeb;}
         }
     }
-    .rankB_right{width: 745px;display: inline-block;vertical-align: top;
+    .rankB_right{width: 865px;display: inline-block;vertical-align: top;
         table{border-top-right-radius: 10px;
             tr{line-height: 64px;font-size: 14px;color: #646464;
                 td{padding: 0 30px;}
@@ -1994,8 +2056,8 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 
 // 新的首页中间新手专区样式
 .new_index_newhandsC{font-size: 0;
-    .new_index_nhSon{width: 320px;height: 196px;display: inline-block;vertical-align: top;margin-right: 45px;border-radius:8px;
-        .nh_top{height: 138px;
+    .new_index_nhSon{width: 32%;display: inline-block;vertical-align: top;margin-right: 2%;border-radius:8px;
+        .nh_top{height: 165.6px;
             h1{font-size: 24px;text-align: center;color: #fff;line-height: 50px;}
             ul{list-style: none;margin-top:25px;
                 li{width: 33%;display: inline-block;vertical-align: top;text-align: center;color:#fff;border-right:1px solid #fff;
@@ -2038,7 +2100,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         }
         #waveC{width: 300px;height: 210px;position: absolute;left: 0px;bottom: 0;opacity: 1;border-bottom-left-radius: 10px;}
     }
-    .newP_right{width:750px;height: 704px;display: inline-block;vertical-align: top;background-color: #fff;border-top-right-radius: 10px;border-bottom-right-radius: 10px;
+    .newP_right{width:900px;height: 704px;display: inline-block;vertical-align: top;background-color: #fff;border-top-right-radius: 10px;border-bottom-right-radius: 10px;
         .newP_detailC{height: 141px;border-bottom: 1px solid #ebebeb;padding: 20px 20px;
             h3{color: #646464;font-size: 16px;line-height:35px;
                 a{display: block;}
@@ -2046,27 +2108,27 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
                 span{font-size: 12px;color: @btn-red;line-height: 20px;display: inline-block;padding: 0 5px;border-radius: 4px;font-size: 12px;font-weight: normal;margin-left:8px;border: 1px solid @btn-red;}
             }
             ul{list-style: none;padding:20px 0 10px 0;
-                li{width: 13%;display: inline-block;vertical-align: top;font-size:0;text-align:center;
+                li{width: 10%;display: inline-block;vertical-align: top;font-size:0;text-align:center;
                     label{line-height:30px;height:30px;display: block;font-size:16px;color:#646464;position: relative;
                         span{font-size:20px;}
-                        .processC{width: 100px;height:8px;display: inline-block;border-radius: 4px;background-color: #e8e8e8;position: absolute;top:12px;left:30px;
+                        .processC{width: 100px;height:8px;display: inline-block;border-radius: 4px;background-color: #e8e8e8;position: absolute;top:12px;left:80px;
                             i{height:8px;display: block;width: 0;border-radius: 4px;background-color: @btn-red;}
                         }
                         .processText{width:35px;position:absolute;top: 0;right: 25px;text-align: right;font-size: 12px;}
                     }
                     .redlabel{color:@btn-red;}
                     p{color: #969696;font-size: 14px;}
-                    a{line-height: 32px;width:94px;display: inline-block;font-size: 12px;color: @btn-red;border:1px solid @btn-red;border-radius: 4px;}
+                    a{line-height: 32px;width:94px;display: inline-block;font-size: 12px;color: @btn-red;border:1px solid @btn-red;border-radius: 4px;text-align: center;}
                     a:hover{color: #fff;background-color: @btn-red;}
                     .projectEndbtn{color:#646464;border:1px solid #d7d7d7;}
                     .projectEndbtn:hover{color:#fff;background-color: #d7d7d7;}
                 }
-                li:nth-child(1){width: 20%;text-align: left;}
+                li:nth-child(1){width: 23%;text-align: left;}
                 li:nth-child(3){width: 22%;text-align: right;
                     p{text-align: center;}
                 }
-                li:nth-child(4){width: 29%;}
-                li:nth-child(5){width: 16%;}
+                li:nth-child(4){width: 30%;}
+                li:nth-child(5){width: 15%;text-align: right;}
             }
         }
         .newP_detailC:nth-child(1){border-top-right-radius: 10px;}
@@ -2076,7 +2138,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 }
 // 回款日历
 .calendarC{margin: 0 30px;box-shadow: 0px 0px 10px #ccc;padding:10px 0;font-size: 0;}
-.calendar_left{width:55%;display: inline-block;border-right: 1px solid #f0f0f0;vertical-align: top;}
+.calendar_left{width:50%;display: inline-block;border-right: 1px solid #f0f0f0;vertical-align: top;}
 .calendar_left_text{
     div{display: inline-block;vertical-align: top;font-size:14px;padding:20px 0;
         label{}
@@ -2114,9 +2176,9 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     .currentdate.Selecteddate::before{background-color: #498aeb;border: 2px solid #498aeb;}
     .end.currentdate{}
 }
-.calendar_right{width: 45%;display:inline-block;vertical-align: top;
+.calendar_right{width: 50%;display:inline-block;vertical-align: top;
     .dayListC{height: 390px;overflow: auto;padding:20px 0;
-        .norepayimg{display: block;width: 75%;opacity: 0.5;margin:70px auto;}
+        .norepayimg{display: block;width: 75%;opacity: 0.5;margin:85px auto 20px;}
         a{font-weight: normal;padding:0 20px;font-size: 14px;line-height:25px;display: block;color:#323232;
             img{width: 20px;height: 20px;margin-right: 5px;}
             label{float: right;font-size: 12px;color:#969696;
@@ -2138,7 +2200,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 
 // 平台数据new
 .pf_newOutC{background-color: #f5f6f8;width:100%;
-    .pf_newBody{width: 1050px;margin: auto;padding:20px 0;}
+    .pf_newBody{width: 1200px;margin: auto;padding:20px 0;}
 }
 .pf_dataC{margin-bottom: 40px;background-color: #fff;position: relative;
     h1{font-size: 24px;color: #646464;padding:0 35px;line-height:80px;border-bottom:1px solid #e0e0e0;font-weight:normal;
@@ -2213,8 +2275,8 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 .newyear_topC{width: 100%;height: 36px;margin: auto;background:url(/static/img/newyear_top.png) no-repeat center top;position: relative;
     .imgC{position: absolute;top:0;left: 50%;z-index: 9;width:0px;height: 0px;}
     img{position: absolute;top: 0;left: 50%; }
-    .newyear_top_left{left: -675px;}
-    .newyear_top_right{left: 548px;top:25px;}
+    .newyear_top_left{left: -775px;}
+    .newyear_top_right{left: 648px;top:25px;}
 }
 
 // 拒绝高息诱惑
@@ -2255,7 +2317,7 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
     }
 }
 // 意见反馈
-.feedbackBubmitC{padding:15px 30px;
+.feedbackBubmitC{padding:20px 0;
     .tip_line{font-size: 14px;}
     textarea{width: 100%;height:200px;margin:15px 0;resize: none;line-height: 30px;
         padding: 10px 10px;
@@ -2281,18 +2343,20 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         margin:50px auto 0 auto;
         font-size: 16px;}
 }
-.Feedbacklist{padding: 15px 30px;
+.Feedbacklist{padding: 0 0;
     ul{list-style: none;
-        li{display: block;line-height: 20px;padding: 25px 0;font-size: 14px;position: relative;height: 70px;border-bottom:1px dashed #e0e0e0;
-            label{color: #646464;
-                width: 560px;
+        li{display: block;padding: 20px 0;font-size: 0;position: relative;border-bottom:1px dashed #e0e0e0;
+            label{color: #646464;vertical-align: top;
+                width: 720px;
+                line-height: 20px;
                 display: inline-block;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                font-weight: bold;}
-            span{float: right;
+                font-weight: bold;font-size: 14px;}
+            span{float: right;vertical-align: top;
                 color: #969696;
+                line-height: 20px;font-size: 14px;
                 display: inline-block;
                 position: relative;}
         }
@@ -2364,4 +2428,9 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
         }
     }
 }
+.chgenew{border-bottom: 1px dashed #f0f0f0;}
+.pslBodyC{background: #fafafa;border-radius: 10px;}
+
+
+
 

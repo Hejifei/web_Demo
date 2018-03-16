@@ -1,6 +1,7 @@
 <template>
     <div class="overview">
-        <div class="awardListC width25">
+        <div class="graph">债权转让</div>
+        <div class="awardListC">
             <ul class="clearfix">
                 <li class="awardList_active" @click="getTransferlist(1)"><a>可转让债权</a></li>
                 <li @click="investListGet(1,5)"><a>转让中债权</a></li>
@@ -8,19 +9,20 @@
                 <li @click="investListGet(1,8)"><a>转让失败债权</a></li>
             </ul>
         </div>
+        <div class="chgenew"></div>
         <div class="streamTypeC clearfix">
             <label v-if="search == ''" class="introlab">投资日期：</label>
             <label v-if="search == 5 || search == 7 || search == 8" class="introlab">转让日期：</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a class="redBtn" v-on:click='searchnow'>搜索</a>
         </div>
         <div class="content-rowlist" style="display:block">
             <table class="table  table-bg table-border table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th style="width:100px;">项目名称</th>
+                        <th>项目名称</th>
                         <th>起息日期</th>
                         <th>转让日期</th>
                         <th v-if="iftransferList == true">投资金额</th>

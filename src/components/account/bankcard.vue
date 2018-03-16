@@ -1,10 +1,10 @@
 <template>
     <div class="overview" v-cloak>
         <div class="graph">银行卡</div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="bankManageC clearfix">
             <h3>我的银行卡</h3>
-            <div v-for="(bankcardInfo,index) in bankcardList" :key="index" class="bank_Card" :style="'background:url('+ bankcardInfo.bg +') no-repeat center top -8px;background-size:105% auto'">
+            <div v-for="(bankcardInfo,index) in bankcardList" :key="index" class="bank_Card" :style="'background:url('+ bankcardInfo.bg +') no-repeat center center;background-size:cover;'">
                 <i class="bankcardDelete" v-on:click="delCard(bankcardInfo.bankId)">x</i>
                 <h3>{{bankcardInfo.name}} 
                     <img v-if="bankcardInfo.isQP == 1" src="../../common/stylus/img/icon_QPcard.png" />

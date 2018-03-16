@@ -7,12 +7,12 @@
             </ul>
         </div>*@ -->
         <div class="graph">申请记录</div>
-        <div class="chge"></div>
-        <div class="streamTypeC clearfix">
+        <div class="chgenew"></div>
+        <div class="streamTypeC">
             <label class="introlab">申请日期：</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a class="redBtn" @click="Select(1)">搜索</a>
         </div>
         <div class="content-rowlist">

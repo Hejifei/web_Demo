@@ -2,13 +2,13 @@
     <div  class="overview">
         <div class="graph">
             生利宝
-            <a class="redBtn" v-on:click="gotoSLB">进入生利宝</a>
+            <a class="newredBtn" v-on:click="gotoSLB">进入生利宝</a>
             <!-- @*<a class="redBtn" href="/Member/Invest/FssTransList" style="margin-right:15px;">历史交易</a>*@ -->
         </div>
-        <div class="chge"></div>
-        <div class="content-rowlist" style="margin-top:20px">
+        <div class="chgenew"></div>
+        <div class="content-rowlist">
             <div class="bloom">
-                <div>
+                <div class="clearfix">
                     <span class="fl"></span>
                     <h3 class="fl">收益计算规则</h3>
                 </div>
@@ -87,9 +87,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .m-rightmain .content-rowlist .bloom div {
-    width: 700px;
-    height: 30px;
-    margin-bottom: 20px;
+    /* width: 700px;
+    height: 30px; */
+    
     font-size: 16px;
 }
 .m-rightmain .content-rowlist .bloom div span {
@@ -98,16 +98,19 @@
     background-color: #eb494b;
     background-size: 100% 100%;
     display: block;
-    margin: 7px 11px 0 0;
+    margin: 25px 20px 0 0;
 }
 .m-rightmain .content-rowlist .bloom div h3 {
-    font-size: 24px;
+    font-size: 16px;
     color: #323232;
     font-weight: normal;
+    line-height: 60px;
 }
 .m-rightmain .content-rowlist .bloom p {
-    font-size: 16px;
+    font-size: 14px;
     color: #969696;
+    text-align: left;
     text-indent: 2em;
+    line-height: 30px;
 }
 </style>

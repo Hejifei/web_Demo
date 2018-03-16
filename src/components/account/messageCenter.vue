@@ -1,17 +1,19 @@
 <template>
     <div class="overview">
         <div class="graph">消息中心</div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="letterFromwebC">
             <ul v-if="messagelist.length > 0">
                 <li v-for="(message,index) in messagelist" :key="index"   v-bind:class="{letterreaded: message.isRead ==1}">
+                    <img v-if="message.isRead ==0" src="../../common/stylus/img/mail_unread.png" />
+                    <img v-else-if="message.isRead ==1" src="../../common/stylus/img/mail_readed.png" />
                     <label>{{message.title}}</label>
-                    <router-link class="clearfix cursor" :class="{letterreaded:message.isRead}" :to="'/account/messageDetail?id='+message.id">
+                    <router-link class="cursor" :class="{letterreaded:message.isRead}" :to="'/account/messageDetail?id='+message.id">
                         <label :title="message.content">{{message.content}}</label>
                         <span>
                             {{message.time}}
-                            <i v-if="message.isRead ==0" class="icon-circle" ></i>
-                            <i v-else-if="message.isRead ==1" style="width:6.86px;height:1px;display:inline-block;"></i>
+                            <!-- <i v-if="message.isRead ==0" class="icon-circle" ></i>
+                            <i v-else-if="message.isRead ==1" style="width:6.86px;height:1px;display:inline-block;"></i> -->
                         </span>
                     </router-link>
                 </li>

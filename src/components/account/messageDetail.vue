@@ -1,7 +1,9 @@
 <template>
-    <div class="content-rowlist">
+    <div class="overview">
         <div class="newsinfo-title">
-            <h2>{{messageDetail.title}}</h2>
+            <h2>{{messageDetail.title}}
+                <a class="back" href="javascript:history.go(-1);">返回</a>
+            </h2>
             <div class="newsinfo-time">发布时间：{{messageDetail.time}}</div>
         </div>
         <div class="newsinfo-intro" style="text-indent:2em ">
@@ -33,13 +35,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-    .content-rowlist {
+    /* .content-rowlist {
         padding: 20px 30px;
-    }
+    } */
     .m-rightmain .newsinfo-title {
-        margin-bottom: 10px;
-        padding: 0px 0 20px;
         text-align: center;
+    }
+    .m-rightmain .newsinfo-title .back{
+        float: right;
+        color: #fb5a5c;
+        font-size: 16px;
     }
     .m-rightmain .newsinfo-title h2 {
         font-weight: 400;
@@ -53,8 +58,9 @@
     .m-rightmain .newsinfo-title .newsinfo-time {
         line-height: 18px;
         color: #969696;
-        padding: 5px 0;
+        padding: 15px 0 0 0;
         text-align: right;
+        font-size: 14px;
     }
     .m-rightmain .newsinfo-intro {
         text-indent: 2em;

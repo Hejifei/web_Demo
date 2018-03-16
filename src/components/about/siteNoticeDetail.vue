@@ -19,8 +19,8 @@
         </div>
         <div class="bodygrayBG">
             <div class="newsinfo-intro content">
-                <div class="graph">{{noticeDetail.title}}</div>
-                <div class="chge"></div>
+                <div class="graph pad30">{{noticeDetail.title}}</div>
+                <div class="chgenew"></div>
                 <div class="recruitTip">{{noticeDetail.time}}</div>
                 <div class="newsDEtail" v-html="noticeDetail.content" ></div>
             </div>

@@ -114,8 +114,8 @@
                 </div>
             </div>
             <div class="projectDetailBody">
-                <div class="awardListC">
-                    <ul class="clearfix">
+                <div class="awardListC width50">
+                    <ul class="oldul">
                         <li @click="projectInfoSel($event,0)" class="awardList_active">项目详情</li>
                         <li @click="projectInfoSel($event,1)" >回款计划</li>
                     </ul>

@@ -1,14 +1,16 @@
 <template>
     <div class="overview">
+        <div class="graph">授权待收</div>
         <div class="awardListC">
             <ul class="clearfix">
                 <li @click="Select(1, 1)" class="awardList_active"><a>未授权</a></li>
                 <li @click="Select(2, 1)"><a>已授权</a></li>
             </ul>
         </div>
-        <div class="streamTypeC clearfix">
+        <div class="chgenew"></div>
+        <div class="streamTypeC row">
             <label class="introlab">授权：</label>
-            <a class="redBtn fr" @click="moneyBackSel">选定项授权</a>
+            <a v-if='arrayList.length != 0' class="redBtn" @click="moneyBackSel" style="position:relative;top:18px;">选定项授权</a>
             <!-- @*<a class="redBtn fr">全部授权</a>*@ -->
         </div>
         <div class="chge"></div>

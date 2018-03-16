@@ -5,22 +5,35 @@
         </form>
         <input type="password" style="width:0;height:0;float:left;visibility:hidden" />
         <div class="overview">
-            <div class="graph">提现</div>
-            <div class="chge"></div>
+            <div class="graph">我要提现</div>
             <div class="rechargeC" id="AjaxForm"  action="" method="POST" target="_blank" v-cloak>
-                <p class="balancetitle">账户余额</p>
+                <div class="awardListC row">
+                <ul class="clearfix form-group">
+                    <li :class="{awardList_active:Rechargetype == 0}" @click="typeChange(0)">
+                        <!-- <label class="rechargetypelab">快捷充值<input type="radio" name="payType" value="1" checked class="rechargeMode" style="display:none;" /></label> -->
+                        <label v-if="regType == 0" class="rechargetypelab">即时取现<input type="radio" name="wType" value="1" checked class="rechargeMode" style="display:none;"/></label>
+                        <label v-if="regType == 1" class="rechargetypelab">快速提现<input type="radio" name="wType" value="1" checked class="rechargeMode" style="display:none;"/></label>
+                    </li>
+                    <li :class="{awardList_active:Rechargetype == 1}" @click="typeChange(1)">
+                        <label v-if="regType == 0" class="rechargetypelab rechargetypesel">普通取现<input type="radio" name="wType" value="2" class="rechargeMode" style="display:none;" /></label>
+                        <label v-if="regType == 1" class="rechargetypelab rechargetypesel">普通提现<input type="radio" name="wType" value="2" class="rechargeMode" style="display:none;" /></label>
+                        <input class="form-submit required" type="hidden" name="wType" id="wType" value="2" />
+                    </li>
+                </ul>
+                <span class="accountBalance"  v-cloak>账户余额：<label>{{accountInfo.useMoney}}元</label></span>
+            </div>
+            <div class="chgenew"></div>
+                <!-- <p class="balancetitle">账户余额</p>
                 <span class="accountBalance"  v-cloak><label>{{accountInfo.useMoney}}</label>元</span>
                 <div class="rechargeline form-group">
                     <label>提现方式</label>
-                    <!-- 个人 -->
                     <label v-if="regType == 0" class="rechargetypelab">即时取现<input type="radio" name="wType" value="1" checked class="rechargeMode"/></label>
                     <label v-if="regType == 0" class="rechargetypelab rechargetypesel">普通取现<input type="radio" name="wType" value="2" class="rechargeMode" /></label>
-                    <!-- 企业 -->
                     <label v-if="regType == 1" class="rechargetypelab">快速提现<input type="radio" name="wType" value="1" checked class="rechargeMode"/></label>
                     <label v-if="regType == 1" class="rechargetypelab rechargetypesel">普通提现<input type="radio" name="wType" value="2" class="rechargeMode" /></label>
                     <input class="form-submit required" type="hidden" name="wType" id="wType" value="2" />
                     <span class="tip"></span>
-                </div>
+                </div> -->
                 <!-- @*<div class="rechargeline form-group">
                     <label>选择银行</label>
                     <select class="form-submit required">
@@ -34,7 +47,7 @@
                     <label>提现金额</label>
                     <input class="moneyinput form-submit required" name="money" autocomplete="off" type="number"/>
                     元
-                    <span class="tip" style="left:520px;"></span>
+                    <span class="tip"></span>
                     <input class="moneyinput form-submit" type="hidden" name="type" />
                     <input class="moneyinput form-submit" value="json" type="hidden" name="respType" id="respType" />
                     <input class="moneyinput" v-model="sid" type="hidden" name="sid" />
@@ -70,7 +83,8 @@
         sid: '',
         returndata: '',
         accountInfo: '',
-        ret:''
+        ret:'',
+        Rechargetype:1
       }
     },
     created(){
@@ -103,8 +117,8 @@
 
         //提现方式选择
         $(".rechargetypelab").click(function () {
-            $(".rechargetypesel").removeClass("rechargetypesel");
-            $(this).addClass("rechargetypesel")
+            // $(".rechargetypesel").removeClass("rechargetypesel");
+            // $(this).addClass("rechargetypesel")
             $("#wType").val($("input[name='wType']:checked").val());
         })
 
@@ -133,6 +147,9 @@
         }, true)
     },
     methods: {
+        typeChange:function(type){
+            this.Rechargetype = type;
+        }
     }
   }
 </script>

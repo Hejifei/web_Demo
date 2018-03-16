@@ -19,8 +19,8 @@
         </div>
         <div class="bodygrayBG">
             <div class="newsinfo-intro content">
-                <div class="graph">网站公告</div>
-                <div class="chge"></div>
+                <div class="graph pad30">网站公告</div>
+                <div class="chgenew"></div>
                 <ul class="newslist">
                     <li class="clearfix" v-for="(noticelist,index) in noticeList" :key="index">
                         <i class="ico"></i>

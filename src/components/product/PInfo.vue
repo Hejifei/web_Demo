@@ -55,7 +55,7 @@
     <div class="index_centerC">
         <div class="index_center projectListC">
             <div class="projectInfoC">
-                <div class="graph">
+                <div class="graph pad30">
                     <img :src="productDetail.img"/>
                     {{productDetail.title}}
                     <span title="此标的可使用红包" v-if="productDetail.is_reward == 1" class="ptitlelogo">红包</span>
@@ -174,7 +174,7 @@
             </div>
             <div class="projectDetailBody">
                 <div class="awardListC width33">
-                    <ul class="clearfix">
+                    <ul class="oldul">
                         <li @click="projectInfoSel($event,0)" class="awardList_active">项目详情</li>
                         <li @click="projectInfoSel($event,1)" >投资记录({{investPnum}})</li>
                         <li @click="projectInfoSel($event,2)" >回款计划</li>

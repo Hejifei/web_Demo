@@ -1,7 +1,7 @@
 <template>
     <div class="overview">
         <div class="graph">基本设置</div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="userInfoTableC"  v-cloak>
             <div id="AjaxForm">
                 <input type="hidden" name="sid" :value="sid" />
@@ -40,7 +40,7 @@
                     <tr>
                         <td><span class="squareSpan"></span> 绑定手机</td>
                         <td>可及时获取账户变动通知</td>
-                        <td>手机号</td>
+                        <td>{{accountInfo.mobile}}</td>
                         <td><span class="icon-ok-sign  tdgreen"><label>已绑定</label></span></td>
                         <!-- @*<td><a href="/Member/Account/EditMobile">修改</a></td>*@
                         @*<td><a href="/Default/Developing">修改</a></td>*@ -->
@@ -55,13 +55,13 @@
                         @*<td><a href="/Default/Developing">立即绑定</a></td>*@ -->
                         <td>--</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><span class="squareSpan"></span> 登录密码</td>
-                        <td>上次登录时间2017-07-19</td>
+                        <td>保障资金安全，请定期更换交易密码,建议您交易密码区别于登录密码</td>
                         <td>--</td>
                         <td><span class="icon-ok-sign  tdgreen"><label>已设置</label></span></td>
                         <td><router-link to="/account/pswReset">修改</router-link></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td><span class="squareSpan"></span> 风险评测</td>
                         <td>了解个人的风险承受能力</td>
@@ -71,6 +71,28 @@
                         <td v-else><span class="icon-ok-sign  tdgreen"><label>已评测</label></span></td>
                         <td v-if="accountInfo.dangerType == '0'"><router-link to="/account/riskTest">立即评测</router-link></td>
                         <td v-else><router-link to="/account/riskTest">再次评测</router-link></td>
+                    </tr>
+                    <tr>
+                        <td><span class="squareSpan"></span> 自动投标</td>
+                        <td>自动复投&nbsp;&nbsp;便捷投资操作</td>
+                        <td>--</td>
+                        <td><span class="icon-ok-sign  tdgreen"><label>已开启</label></span></td>
+                        <td><router-link to="/account/objectBookingDetails">修改</router-link></td>
+                    </tr>
+                    <tr>
+                        <td><span class="squareSpan"></span> 私人订制</td>
+                        <td>项目专属投资 为您量身订制</td>
+                        <td>--</td>
+                        <td>
+                            <span v-if="accountInfo.customized == 99" class="icon-remove-sign  tdgray"><label>未开启</label></span>
+                            <span v-if="accountInfo.customized == 0" class="icon-ok-sign  tdgreen"><label>申请中</label></span>
+                            <span v-if="accountInfo.customized == 1" class="icon-ok-sign  tdgreen"><label>已开启</label></span>
+                            <span v-if="accountInfo.customized == 2" class="icon-ok-sign  tdgreen"><label>审核不通过</label></span>
+                        </td>
+                        <td>
+                            <router-link v-if="accountInfo.customized == 99" to="/account/personalTailorDetail">去开启</router-link>
+                            <router-link v-if="accountInfo.customized != 99" to="/account/personalTailorDetail">修改</router-link>
+                        </td>
                     </tr>
                     <!-- @*<tr>
                         <td><span class="squareSpan"></span> 芝麻信用</td>

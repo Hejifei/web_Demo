@@ -19,8 +19,8 @@
         </div>
         <div class="bodygrayBG">
             <div class="newsinfo-intro content">
-                <div class="graph">新手入门</div>
-                <div class="chge"></div>
+                <div class="graph pad30">新手入门</div>
+                <div class="chgenew"></div>
                 <ul class="newhandsList">
                     <li>
                         <div class="listTitle">

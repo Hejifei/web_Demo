@@ -2,15 +2,16 @@
     <div class="overview">
         <div class="graph">
             我的好友 
-            <i>小伙伴就在身边？<br />赶紧扫一扫您的专属推荐二维码</i>
-            <img class="inviteFriendsImg" :src="'https://pan.baidu.com/share/qrcode?w=512&h=512&url=https://cdn.litongjinfu.com/public/reg/regred/index.html?inviter='+userid" />
+            <router-link class="newredBtn" to="/product">邀请好友</router-link>
+            <!-- <i>小伙伴就在身边？<br />赶紧扫一扫您的专属推荐二维码</i>
+            <img class="inviteFriendsImg" :src="'https://pan.baidu.com/share/qrcode?w=512&h=512&url=https://cdn.litongjinfu.com/public/reg/regred/index.html?inviter='+userid" /> -->
         </div>
-        <div class="chge"></div>
-        <div v-if="friendsNum>0" class="commissionGetC" v-cloak style="padding: 15px 30px 0 30px;">
-            <span style="color:#666;font-weight:bold;">已邀请人数<span style="color:#eb494b;margin:0 5px;font-size:22px;font-weight:normal;">{{friendsNum}}</span>位</span>  
-        </div>
+        <div class="chgenew"></div>
         <div class="commissionDetailC pointsTableC friendsTableC">
-            <p>好友列表</p>
+            <p>
+                好友列表
+                <span class="bluetip" v-if="friendsNum>0">(已邀请人数 {{friendsNum}} 位)</span>  
+            </p>
             <table>
                 <thead>
                     <tr>
@@ -40,6 +41,9 @@
                         <td v-if="friend.isUserAccount == 1 && friend.isInvest  == 0">未投资</td>
                         <td v-if="friend.isUserAccount == 1 && friend.isInvest  == 1">已投资</td>
                         <td><a class="redBtn graybtn">{{friend.remindTitle}}</a></td>
+                    </tr>
+                    <tr v-if="List.length == 0">
+                        <td colspan="5">您还没有好友，快去<router-link class="hrefa" to="/product">邀请好友</router-link>注册吧！</td>
                     </tr>
                 </tbody>
             </table>

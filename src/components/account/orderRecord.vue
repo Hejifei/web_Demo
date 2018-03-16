@@ -35,8 +35,8 @@
         <div class="graph">
             预约记录
         </div>
-        <div class="chge"></div>
-        <div class="index_activityC usercollecTab clearfix">
+        <div class="chgenew"></div>
+        <div class="index_activityC usercollecTab wid900">
             <table>
                 <thead>
                     <tr>
@@ -49,7 +49,7 @@
                         <td>操作</td>
                     </tr>
                 </thead>
-                <tbody class="tb_p0">
+                <tbody>
                     <tr v-for="(reserveLog,index) in reserveLogList" :key="index">
                         <td>
                             <router-link :to="'/product/Pinfo_order?id='+reserveLog.reserveID" target="_blank">

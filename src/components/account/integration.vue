@@ -2,14 +2,17 @@
     <div class="overview">
         <div class="graph">
             我的积分
-            <a class="redBtn" @click="developing">积分商城</a>
+            <a class="newredBtn" @click="developing">积分商城</a>
         </div>
-        <div class="chge"></div>
+        <!-- <div class="chge"></div> -->
         <div class="commissionGetC"  v-cloak>
             <ul class="mypointsul clearfix">
                 <li>
                     <p>可用积分</p>
-                    <span><label>{{allScore.availableScore}}</label></span>
+                    <span>
+                        <label>{{allScore.availableScore}}</label>
+                        <router-link to="/service/integratRule">(如何赚取更多积分)</router-link>
+                    </span>
                 </li>
                 <li>
                     <p>累计使用</p>
@@ -25,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div class="chge"></div>
+        <div class="chgenew"></div>
         <div class="commissionDetailC pointsTableC">
             <p>积分明细</p>
             <table>

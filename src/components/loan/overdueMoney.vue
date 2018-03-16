@@ -1,16 +1,18 @@
 <template>
     <div class="overview"  v-cloak>
+        <div class="graph">逾期管理</div>
         <div class="awardListC">
             <ul class="clearfix">
                 <li @click="Select(' ', 1)" class="awardList_active"><a>未处理逾期</a></li>
                 <li @click="Select(1, 1)"><a>已处理逾期</a></li>
             </ul>
         </div>
+        <div class="chgenew"></div>
         <div class="streamTypeC clearfix">
             <label class="introlab">创建日期：</label>
-            <input class="laydate-icon fl input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
+            <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
-            <input class="laydate-icon fl input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
+            <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
             <a class="redBtn" @click="Select(overdueType,1)">搜索</a>
         </div>
         <div class="content-rowlist" style="display:block">

@@ -19,8 +19,8 @@
         </div>
         <div class="bodygrayBG">
             <div class="newsinfo-intro content">
-                <div class="graph">招贤纳士</div>
-                <div class="chge"></div>
+                <div class="graph pad30">招贤纳士</div>
+                <div class="chgenew"></div>
                 <div class="recruitTip">应聘简历请投递至<span>shijm@litonggroup.com.cn</span>,请注明应聘职位！</div>
                 <div class="aboutcon" style="margin-top:0;">
                     <ul class="recruitList">

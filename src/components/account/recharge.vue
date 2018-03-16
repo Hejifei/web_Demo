@@ -1,16 +1,28 @@
 <template>
     <div class="overview">
-        <div class="graph">充值</div>
-        <div class="chge"></div>
+        <div class="graph">我要充值</div>
         <div class="rechargeC" id="AjaxForm"  v-cloak>
-            <p class="balancetitle">账户余额</p>
-            <span class="accountBalance"  v-cloak><label>{{accountInfo.useMoney}}</label>元</span>
+            <div class="awardListC row">
+                <ul class="clearfix form-group">
+                    <li :class="{awardList_active:Rechargetype == 0}" @click="typeChange(0)"><label class="rechargetypelab">快捷充值<input type="radio" name="payType" value="1" checked class="rechargeMode" style="display:none;" /></label></li>
+                    <li :class="{awardList_active:Rechargetype == 1}" @click="typeChange(1)">
+                        <label v-if="regType == 0" class="rechargetypelab rechargetypesel">个人网银<input type="radio" name="payType" value="2" class="rechargeMode" style="display:none;" /></label>
+                        <label v-if="regType == 1" class="rechargetypelab rechargetypesel">企业网银<input type="radio" name="payType" value="3" class="rechargeMode" style="display:none;" /></label>
+                        <input v-if="regType == 0" class="form-submit required" type="hidden" name="payType" id="payType" value="2" />
+                        <input v-if="regType == 1" class="form-submit required" type="hidden" name="payType" id="payType" value="3" />
+                    </li>
+                </ul>
+                <span class="accountBalance"  v-cloak>账户余额：<label>{{accountInfo.useMoney}}元</label></span>
+            </div>
+            <div class="chgenew"></div>
+            <!-- <p class="balancetitle">账户余额</p> -->
+            
             <!-- @*<div class="rechargeline">
                 <label>充值方式</label>
                 <label class="rechargetypelab rechargetypesel">快捷充值<input type="checkbox" class="rechargeMode"/></label>
                 <label class="rechargetypelab">网银充值<input type="checkbox" class="rechargeMode" /></label>
             </div>*@ -->
-            <div class="rechargeline form-group">
+            <!-- <div class="rechargeline form-group">
                 <label>充值方式</label>
                 <label class="rechargetypelab">快捷充值<input type="radio" name="payType" value="1" checked class="rechargeMode" /></label>
                 <label v-if="regType == 0" class="rechargetypelab rechargetypesel">个人网银<input type="radio" name="payType" value="2" class="rechargeMode" /></label>
@@ -18,12 +30,12 @@
                 <input v-if="regType == 0" class="form-submit required" type="hidden" name="payType" id="payType" value="2" />
                 <input v-if="regType == 1" class="form-submit required" type="hidden" name="payType" id="payType" value="3" />
                 <span class="tip"></span>
-            </div>
+            </div> -->
             <div class="rechargeline form-group">
                 <label>充值金额</label>
                 <input class="moneyinput form-submit required" type="number" name="money" />
                 元
-                <span class="tip" style="left:520px;"></span>
+                <span class="tip"></span>
                 <input class="moneyinput form-submit" type="hidden" name="type" />
                 <input class="moneyinput form-submit" value="json" type="hidden" name="respType" id="respType" />
                 <input class="moneyinput" v-model="sid" type="hidden" name="sid" />
@@ -68,7 +80,8 @@
         bankcardList: '',
         banklistshow: false,
         regType:'',
-        ret:''
+        ret:'',
+        Rechargetype:1
       }
     },
     mounted:function(){
@@ -88,14 +101,7 @@
 
         //充值方式选择
         $(".rechargetypelab").click(function () {
-            $(".rechargetypesel").removeClass("rechargetypesel");
-            $(this).addClass("rechargetypesel")
             $("#payType").val($("input[name='payType']:checked").val());
-            if ($('input[name="payType"]:checked ').val() == 1) {
-                self.banklistshow = true;
-            } else {
-                self.banklistshow = false;
-            }
         })
 
         //提交充值申请
@@ -118,6 +124,9 @@
         }, true)
     },
     methods: {
+        typeChange:function(type){
+            this.Rechargetype = type;
+        }
     }
   }
 </script>

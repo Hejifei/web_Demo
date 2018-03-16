@@ -3,11 +3,11 @@
         <div class="wp clearfix">
             <div class="overview">
                 <div class="graph huizhidantitle">
-                    <router-link to="/account/investlist" class="redBtn" style="top:0;"><span class="icon-angle-left"></span>返回</router-link>
+                    <router-link to="/account/investlist" class="newredBtn" >返回</router-link>
                     投资回执单
                 </div>
                 <div class="receipt">
-                    <div class="chge"></div>
+                    <div class="chgenew"></div>
                     <ul>
                         <li class="ltv1">
                             <span style="margin-left:20px;margin-right:40px">投资金额：<em style="color:#eb494b">{{userProjectinfo.payInfo.money}}元</em></span>
