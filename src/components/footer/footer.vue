@@ -69,7 +69,7 @@
                 <a href="../static/img/suxintong.png" target="_blank"  class="suxintong"></a>
                 <!-- <a href="../src/common/stylus/img/suxintong.png" target="_blank"  class="suxintong"></a> -->
                 <a href="http://webscan.360.cn/index/checkwebsite/url/www.litongjinfu.com" target="_blank"><img border="0" src="../../common/stylus/foot360.png" /></a>
-                <a href="https://myssl.com/www.litongjinfu.com?status=success#certificates" target="_blank"  class="suxintong" style="background:url(https://www.trustasia.com/res/images/trustasia-tab.png) no-repeat center center;background-size:contain;border:1px solid #ccc;"></a>
+                <a href="https://myssl.com/www.litongjinfu.com?status=success#certificates" target="_blank"  class="suxintong yzcx" style=""></a>
             </div>
         </div>
     </div>
@@ -93,5 +93,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+    .yzcx{background:url('../../common/stylus/img/trustasia-logo.png') no-repeat center center;
+    background-size:contain;border:1px solid #ccc;}
 </style>

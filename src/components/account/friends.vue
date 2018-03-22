@@ -2,7 +2,7 @@
     <div class="overview">
         <div class="graph">
             我的好友 
-            <router-link class="newredBtn" to="/product">邀请好友</router-link>
+            <router-link class="newredBtn" to="/service/special_regist">邀请好友</router-link>
             <!-- <i>小伙伴就在身边？<br />赶紧扫一扫您的专属推荐二维码</i>
             <img class="inviteFriendsImg" :src="'https://pan.baidu.com/share/qrcode?w=512&h=512&url=https://cdn.litongjinfu.com/public/reg/regred/index.html?inviter='+userid" /> -->
         </div>

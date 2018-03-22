@@ -96,8 +96,8 @@ import returnAdvance from 'components/loan/returnAdvance';//提前还款申请
 import overdueMoney from 'components/loan/overdueMoney';//逾期管理
 import insurance from 'components/service/insurance';//安全保障
 import bankDeposit from 'components/service/bankDeposit';//银行存管
+import platformdataold from 'components/service/platformdataold';//平台数据旧
 import platformdata from 'components/service/platformdata';//平台数据
-import platformdata2 from 'components/service/platformdata2';//平台数据
 import ranking from 'components/service/ranking';//创富排行
 import automaticBid from 'components/service/automaticBid';//自动投标专题
 import personalTailor from 'components/service/personalTailor';//私人定制专题
@@ -186,8 +186,8 @@ const routes = [
   {path: '/userProjectinfo',component: userProjectinfo,},
   {path: '/service/insurance',component: insurance,},
   {path: '/service/bankDeposit',component: bankDeposit,},
-  {path: '/service/platformdata1',component: platformdata,},
-  {path: '/service/platformdata',component: platformdata2,},
+  {path: '/service/platformdataold',component: platformdataold,},
+  {path: '/service/platformdata',component: platformdata,},
   {path: '/service/ranking',component: ranking,},
   {path: '/service/automaticBid',component: automaticBid,},
   {path: '/service/personalTailor',component: personalTailor,},

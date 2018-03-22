@@ -364,7 +364,7 @@
             </div>
             <div class="index_activityC clearfix">
                 <ul class="index_partnerlist clearfix">
-                    <li><a target="_blank" href="http://www.bgzchina.com/"><img title="贵州银行" src="../../common/stylus/img/gzyh.png" /></a></li>
+                    <!-- <li><a target="_blank" href="http://www.bgzchina.com/"><img title="贵州银行" src="../../common/stylus/img/gzyh.png" /></a></li> -->
                     <li><a target="_blank" href="https://www.tongdun.cn"><img title="同盾科技" src="../../common/stylus/img/tdkj.png" /></a></li>
                     <li><a target="_blank" href="http://www.chinapnr.com/"><img title="汇付天下" src="../../common/stylus/img/hftx.png" /></a></li>
                     <li><a target="_blank" href="http://www.pycredit.cn"><img title="鹏元征信" src="../../common/stylus/img/pyzx.png" /></a></li>

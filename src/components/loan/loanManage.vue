@@ -11,7 +11,7 @@
         </div>
         <div class="chgenew"></div>
         <div class="streamTypeC">
-            <label class="introlab">借款日期</label>
+            <label class="introlab">借款日期：</label>
             <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
             <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">

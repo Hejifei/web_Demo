@@ -4,7 +4,7 @@
         <div class="overview" style="padding-top:0;">
             <div id="zdtbC" >
                 <!-- @*预约标的*@ -->
-                <div class="mainwp-tab">
+                <div class="mainwp-tab" v-cloak>
                     <div class="ordertable cardform" id="AjaxForm" >
                         <div class="ytbBody">
                             <!-- <h1 style="text-align:left;position:relative;" class="row">

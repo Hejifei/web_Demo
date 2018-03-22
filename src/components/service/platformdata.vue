@@ -1,88 +1,179 @@
 <template>
     <div class="hello">
-        <div class="PF_topbanner"></div>
-<div class="PF_outC">
-    <div class="PFbody">
-        <!-- @*数据总览*@ -->
-        <div class="PFTitle">数据总览</div>
-        <div class="PFzlC">
-            <div class="zlDetail">
-                <span>平台安全运营（天）</span>
-                <span class="iCountUp">
-                    <i-count-up
-                            :start="0"
-                            :end="platformTime"
-                            :decimals="0"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                </span>
-            </div>
-            <div class="zlDetail">
-                <span>累计用户（人）</span>
-                 <span class="iCountUp">
-                    <i-count-up
-                            :start="0"
-                            :end="totalUser"
-                            :decimals="0"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                </span>
-            </div>
-            <div class="zlDetail">
-                <span>累计交易总额（元）</span>
-                 <span class="iCountUp">
-                    <i-count-up
-                            :start="0"
-                            :end="totalMoney"
-                            :decimals="2"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                </span>
-            </div>
-            <div class="zlDetail">
-                <span>累计为用户赚取收益（元）</span>
-                 <span class="iCountUp">
-                    <i-count-up
-                            :start="0"
-                            :end="profit"
-                            :decimals="2"
-                            :duration="2"
-                            :options="options"
-                        ></i-count-up>
-                </span>
-            </div>
-        </div>
-
-        <!-- @*每月交易额*@ -->
-        <div class="PFTitle">每月交易额</div>
-        <div class="pfTMC" id="pfTMC"></div>
-
-        <!-- @*投资数据*@ -->
-        <div class="PFTitle">投资数据</div>
-        <div class="pfTMC">
-            <div class="halfdiv" id="PTdistribution"></div>
-            <div class="halfdiv" id="PTermdistribution"></div>
-        </div>
-        <div class="pfTMC">
-            <div class="halfdiv" id="PAgedistribution"></div>
-            <div class="halfdiv" id="">
-                <h3>单笔投资分布</h3>
-                <div class="PTimeDistriC">
-                    <div v-for="(singleBidson,index) in singleBid" :key="index" class="ptdprocessLine"><p>{{singleBidson.name}}</p><div class="ptdProcessC"><i class="ptdProcess" :title="singleBidson.name+'：'+singleBidson.value+'单'" :style="{width:+singleBidson.percent+'%'}"></i></div><span>{{singleBidson.percent}}%</span></div>
-                   
+        <div class="pf_newOutC">
+            <div class="pf_newBody">
+                <div class="pf_dataC">
+                    <h1><img src="../../common/stylus/img/platformdata_ptsj.png"/>平台数据</h1>
+                    <ul>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="totalMoney"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计交易总额（元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="profit"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="platformTime"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>平台安全运营（天）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="totalUser"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计用户（位）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="bidNum"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计交易笔数（笔）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="SumR_AllMoney"
+                                    :decimals="2"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="SumR_AllMoneyCount"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>借贷剩余笔数（笔）</label></li>
+                        <li><i-count-up
+                                    :start="0"
+                                    :end="OverdueCount"
+                                    :decimals="0"
+                                    :duration="2"
+                                    :options="options"
+                                ></i-count-up><label>逾期笔数（笔）</label></li>
+                    </ul>
+                </div>
+                <div class="pf_dataC">
+                    <h1><img src="../../common/stylus/img/platformdata_ydjyze.png"/>月度交易总额</h1>
+                    <div class="echarts_ydjyze" id="echarts_ydjyze"></div>
+                </div>
+                <div class="pf_dataC">
+                    <h1><img src="../../common/stylus/img/platformdata_tzsj.png"/>投资数据</h1>
+                    <div class="echarts_3">
+                        <div class="echarts_son" id="echarts_newcplx"></div>
+                        <div class="echarts_son" id="echarts_newbdqx"></div>
+                        <div class="echarts_son" id="echarts_newtzrnlbl"></div>
+                    </div>
+                </div>
+                <div class="pf_dataC">
+                    <div class="echarts_3">
+                        <div class="echarts_son" id="echarts_newtzrxb"></div>
+                        <div class="echarts_son" id="echarts_newyhzd"></div>
+                        <div class="echarts_son">
+                            <h3>单笔投资分布</h3>
+                            <div class="PTimeDistriC">
+                                <div v-for="(singleBidson,index) in singleBid" :key="index" class="ptdprocessLine"><p>{{singleBidson.name}}</p><div class="ptdProcessC"><i class="ptdProcess" :title="singleBidson.name+'：'+singleBidson.value+'单'" :style="{width:+singleBidson.percent+'%'}"></i></div><span>{{singleBidson.percent}}%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pf_dataC">
+                    <h1>
+                        <img src="../../common/stylus/img/platformdata_jyxx.png"/>经营信息
+                    </h1>
+                    <ul>
+                        <li><span>{{manageInfo.SumInvestUsers}}</span><label>累计出借数量（人）</label></li>
+                        <li><span>{{manageInfo.SumLoanUsers}}</span><label>累计借款数量（人）</label></li>
+                        <li><span>{{manageInfo.NonInvestCount}}</span><label>当前累计出借数量（人）</label></li>
+                        <li><span>{{manageInfo.NonRepaymentCount}}</span><label>当前累计借款数量（人）</label></li>
+                        <li><span>{{manageInfo.Top10LoanPercent}}%</span><label>前十大借款人待还金额占比</label></li>
+                        <li><span>{{manageInfo.MaxLoanPercent}}%</span><label>最大单一借款人待还金额占比</label></li>
+                        <li><span>{{manageInfo.RelationLoanMoney}}</span><label>关联关系借款金额（元）</label></li>
+                        <li><span>{{manageInfo.RelationLoanCount}}</span><label>关联关系借款笔数（笔）</label></li>
+                        <li><span>{{manageInfo.OverdueMoney}}</span><label>逾期金额（元）</label></li>
+                        <li><span>{{manageInfo.OverdueCount}}</span><label>逾期笔数（笔）</label></li>
+                        <li><span>{{manageInfo.OverdueMoney90}}</span><label>逾期90天（不含）以上金额（元）</label></li>
+                        <li><span>{{manageInfo.OverdueCount90}}</span><label>逾期90天（不含）以上笔数（笔）</label></li>
+                        <li><span>{{manageInfo.PayOverdueMoney}}</span><label>累计代偿金额</label></li>
+                        <li><span>{{manageInfo.PayOverdueCount}}</span><label>累计代偿笔数（笔）</label></li>
+                        <li><p>...</p></li>
+                    </ul>
+                </div>
+                <div class="pf_dataC">
+                    <h1>
+                        <img src="../../common/stylus/img/platformdata_fygl.png"/>收费标准
+                        <!-- <a>借款客户</a>
+                        <a>投资客户</a>
+                        <a class="activea">全体客户</a> -->
+                    </h1>
+                    <table cellspacing="0">
+                        <tbody><tr>
+                            <th>分类</th>
+                            <th>服务项目</th>
+                            <th>收费标准</th>
+                        </tr>
+                        <tr>
+                            <td>充值手续费</td>
+                            <td>客户用银行卡向本人在利通金服平台的账户充值时产生的手续费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">提现手续费</td>
+                            <td class="centertd"><strong>取现方式</strong></td>
+                            <td class="centertd"><strong>手续费收费标准</strong></td>
+                        </tr>
+                        <!-- <tr> -->
+                            <!-- <td>即时取现</td> -->
+                            <!-- <td >按取现金额的 0.5‰+2 元/笔</td> -->
+                        <!-- </tr> -->
+                        <tr>
+                            <td class="centertd">快速取现</td>
+                            <td class="centertd">按取现金额的 0.5‰+2 元/笔</td>
+                        </tr>
+                        <tr>
+                            <td class="centertd">一般取现</td>
+                            <td class="centertd">2 元/笔</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">当日转入或当日充值的资金选择使用“快速取现”：按取现费的 0.5‰+2 元/笔收取。 如在节假日前一个工作日使用，另按照取现费的 0.5‰*（节假日天数+1）+2 元/笔。</td>
+                        </tr>
+                        <tr>
+                            <td>投资端居间服务费</td>
+                            <td>在取得投资收益时，投资人向利通金服缴纳一定费用作为平台的居间服务费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td>投资端账户管理费</td>
+                            <td>利通金服为投资客户提供日常账户管理服务而收取的账户管理费。</td>
+                            <td>暂不收取</td>
+                        </tr>
+                        <tr>
+                            <td>债权转让手续费</td>
+                            <td>在债权转让成功时，转让方、受让方向利通金服缴纳的转让手续费。</td>
+                            <td>
+                                转让方：转让金额的2%<br>受让方：暂不收取
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>借款利率</td>
+                            <td>借款客户在利通金服成功申请借款后，向借出人支付的借款利率。</td>
+                            <td>年利率最高不超过24%</td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
-        <div class="pfTMC">
-            <div class="halfdiv" id="PSexdistribution"></div>
-            <div class="halfdiv" id="PFTerminaldstbtion"></div>
-        </div>
-    </div>
-</div>
-        
     </div>
 </template>
 
@@ -102,6 +193,10 @@
                 totalUser:0,
                 totalMoney:0,
                 profit:0,
+                bidNum:0,
+                OverdueCount:0,
+                SumR_AllMoneyCount:0,
+                SumR_AllMoney:0,
                 options: {
                     useEasing: true,
                     useGrouping: true,
@@ -109,21 +204,23 @@
                     decimal: '.',
                     prefix: '',
                     suffix: ''
-                }
+                },
+                manageInfo:{}
+                
             }
         },
         created(){
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             var self = this;
-            //获取统计资金
-            // this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
-            //     let statistics = data.data;
-            //     statistics.totalMoney = parseInt(statistics.totalMoney);
-            //     statistics.profit = parseInt(statistics.profit);
-            //     self.statistics = statistics;
-            // });
             this.$store.state._ajax(self,'/api/statistics/platformdata', {}, function (data) {
+                let manageInfo = data.data.manageInfo
+                self.manageInfo = data.data.manageInfo;
+                self.bidNum = parseInt(manageInfo.bidNum);
+                self.SumR_AllMoney = parseFloat(manageInfo.SumR_AllMoney);
+                self.OverdueCount = parseInt(manageInfo.OverdueCount);
+                self.SumR_AllMoneyCount = parseInt(manageInfo.SumR_AllMoneyCount);
+
                 let statistics = data.data.totalData;
                 statistics.totalMoney = parseInt(statistics.totalMoney);
                 statistics.profit = parseInt(statistics.profit);
@@ -146,11 +243,84 @@
                 }
                 self.singleBid = singleBid;
 
+                //月度交易总额折线图
+                var ydjqze_xAxis=[];
+                var ydjqze_series=[];
+                for(var i= 0;i<self.platformdata.transaction.length;i++){
+                    ydjqze_xAxis.push(self.platformdata.transaction[i].date);
+                    ydjqze_series.push(parseFloat(self.platformdata.transaction[i].money /10000).toFixed(2));
+                }
+                var echarts_ydjyze = echarts.init(document.getElementById('echarts_ydjyze'));
+                var optionTecharts_ydjyze = {
+                    title: {
+                        show: true,
+                        text: '每月交易额',
+                        x: 'center',
+                        y: '360px',
+                        textStyle: {
+                            //文字颜色
+                            color: '#646464',
+                            //字体风格,'normal','italic','oblique'
+                            fontStyle: 'normal',
+                            //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                            fontWeight: 'normal',
+                            //字体系列
+                            fontFamily: 'sans-serif',
+                            //字体大小
+                            fontSize: 12
+                        }
+                    },
+                    grid: {  
+                        left: '2%',  
+                        right: '5%',
+                        bottom: '15%',
+                        top: '10%',
+                        containLabel: true  
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['单位:万元']
+                    },
+                    xAxis: {
+                        data:ydjqze_xAxis,
+                    },
+                    yAxis: {
+                        axisTick: {
+                            show: false
+                        }
+                    },
+                    series: [{
+                        name: '交易额',
+                        type: 'line',
+                        //设置柱体颜色  
+                        itemStyle:{  
+                            normal: {
+                                color: '#498aeb',
+                                label: {
+                                    show: true,
+                                    position: 'top',
+                                    textStyle: {
+                                        color: '#fb5a5c',
+                                        fontSize: 12
+                                    },
+                                    formatter: function (val){
+                                        return val.data + "万元"
+                                    }
+                                }
+                            }
+                        },
+                        barWidth: 60,//柱图宽度
+                        data: ydjqze_series
+
+                    }]
+                };
+                echarts_ydjyze.setOption(optionTecharts_ydjyze);
+
                 //投资人性别比例
-                self.pieChart("PSexdistribution", '#fff',
+                self.pieChart("echarts_newtzrxb", '#fff',
                     {
                         text: "投资人性别比例",
-                        subtext: "", x: "center", y: '25px',
+                        subtext: "", x: "center", y: 'center',
                         textStyle: {
                             //文字颜色
                             color: '#323232',
@@ -161,26 +331,25 @@
                             //字体系列
                             fontFamily: 'sans-serif',
                             //字体大小
-                            fontSize: 24
+                            fontSize: 18
                         }
                     },
-                    {
-                        show: true, data: ["女性", "男性"], orient: 'vertical', x: '20px', y: '20px',
-                    },
+                    { show: true, data: ['女性','男性'], orient: 'vertical', x: 'center', y: '310px' },
                     {
                         name: '投资人性别比例',
                         type: 'pie',
-                        radius: '70%',
-                        center: ['50%', '55%'],
-                        color: ["#fe7228", "#498bec"],
+                        radius: ['50%', '60%'],
+                        center: ['50%', '50%'],
+                        color: ["#fb5a5c", "#498aeb"],
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         data: [
-                            { value: self.platformdata.bidProportion.sex.女, name: '女性：'+self.platformdata.bidProportion.sex.女 },
-                            { value: self.platformdata.bidProportion.sex.男, name: '男性：'+self.platformdata.bidProportion.sex.男 }
+                            { value: self.platformdata.bidProportion.sex.女, name: '女性'},
+                            { value: self.platformdata.bidProportion.sex.男, name: '男性'}
                         ],
                         itemStyle: {
                             normal:{
                                 label: {
+                                    show: false,
                                     position: 'inner',
                                     textStyle: {
                                         fontSize: '20',
@@ -194,84 +363,6 @@
                         }
                     })
 
-                //用户终端分布
-                self.pieChart("PFTerminaldstbtion", '#fff',
-                    {
-                        text: "用户终端分布",
-                        subtext: "", x: "center", y: '25px',
-                        textStyle: {
-                            //文字颜色
-                            color: '#323232',
-                            //字体风格,'normal','italic','oblique'
-                            fontStyle: 'normal',
-                            //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                            fontWeight: 'normal',
-                            //字体系列
-                            fontFamily: 'sans-serif',
-                            //字体大小
-                            fontSize: 24
-                        }
-                    },
-                    { show: true, data: [self.platformdata.bidData.terminal[1].name, self.platformdata.bidData.terminal[0].name], orient: 'vertical', x: '20px', y: '20px' },
-                    {
-                        name: "用户终端分布",
-                        type: "pie",
-                        radius: ['50%', '70%'],
-                        center: ["50%", "55%"],
-                        color: ["#fe7228", "#498bec"],
-                        selectedMode: 'single',
-                        hoverAnimation: false,//设置鼠标上浮的时候不变宽
-                        itemStyle: {
-                            normal: {
-                                label: {
-                                    show: true,
-                                    position :'inner',
-                                    textStyle: {
-                                        fontSize: '20',
-                                        fontWeight: 'normal',
-                                        color: '#969696'
-                                    },
-                                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}}  {per|{d}%}  ',
-                                    backgroundColor: '#def6ff',
-                                    borderColor: '#aaa',
-                                    borderWidth: 1,
-                                    borderRadius: 4,
-                                    rich: {
-                                        a: {
-                                            color: '#999',
-                                            lineHeight: 22,
-                                            align: 'center'
-                                        },
-                                        hr: {
-                                            borderColor: '#aaa',
-                                            width: '100%',
-                                            borderWidth: 0.5,
-                                            height: 0
-                                        },
-                                        b: {
-                                            fontSize: 12,
-                                            lineHeight: 33
-                                        },
-                                        c:{
-                                            fontSize: 14,
-                                        },
-                                        per: {
-                                            color: '#eee',
-                                            backgroundColor: '#334455',
-                                            padding: [2, 4],
-                                            borderRadius: 2
-                                        }
-                                    },
-                                    labelLine: { show: false },
-                                },
-                                
-                            }
-                        },
-                        data: [
-                            { value: self.platformdata.bidData.terminal[1].value, name: self.platformdata.bidData.terminal[1].name + "：" +self.platformdata.bidData.terminal[1].value+'笔'},
-                            { value: self.platformdata.bidData.terminal[0].value, name: self.platformdata.bidData.terminal[0].name + "：" +self.platformdata.bidData.terminal[0].value+'笔', selected: true }
-                        ]
-                    })
                 var yeardatalist=[];
                 var yearlabellist=[];
                 $.each(self.platformdata.bidProportion.year,function(name,value){
@@ -280,10 +371,10 @@
                     // yearlabellist.pusth(name);
                 })
                 //投资人年龄比例
-                self.pieChart("PAgedistribution", '#fff',
+                self.pieChart("echarts_newtzrnlbl", '#fff',
                     {
                         text: "投资人年龄比例",
-                        subtext: "", x: "center", y: '25px',
+                        subtext: "", x: "center", y: 'center',
                         textStyle: {
                             //文字颜色
                             color: '#323232',
@@ -294,16 +385,16 @@
                             //字体系列
                             fontFamily: 'sans-serif',
                             //字体大小
-                            fontSize: 24
+                            fontSize: 18
                         }
                     },
-                    { show: true, data: yearlabellist, orient: 'vertical', x: '20px', y: '20px' },
+                    { show: true, data: yearlabellist, orient: 'vertical', x: 'center', y: '310px' },
                     {
                         name: "各类订单数及所占比重",
                         type: "pie",
-                        radius: ['50%', '70%'],
-                        center: ["50%", "55%"],
-                        color: ["#fe7228", "#27dcb6", "#ffeb01", "#498bec"],
+                        radius: ['50%', '60%'],
+                        center: ["50%", "50%"],
+                        color: ["#498bec", "#27dcb6", "#ffeb01", "#fb5a5c"],
                         selectedMode: 'single',
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         itemStyle: {
@@ -321,12 +412,58 @@
                             }
                         },
                         data: yeardatalist
+                })
+                //用户终端分布
+                self.pieChart("echarts_newyhzd", '#fff',
+                    {
+                        text: "用户终端分布",
+                        subtext: "", x: "center", y: 'center',
+                        textStyle: {
+                            //文字颜色
+                            color: '#323232',
+                            //字体风格,'normal','italic','oblique'
+                            fontStyle: 'normal',
+                            //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                            fontWeight: 'normal',
+                            //字体系列
+                            fontFamily: 'sans-serif',
+                            //字体大小
+                            fontSize: 18
+                        }
+                    },
+                    { show: true, data: [self.platformdata.bidData.terminal[1].name, self.platformdata.bidData.terminal[0].name], orient: 'vertical', x: 'center', y: '310px' },
+                    {
+                        name: "用户终端分布",
+                        type: "pie",
+                        radius: ['50%', '60%'],
+                        center: ["50%", "50%"],
+                        color: ["#fb5a5c", "#498aeb"],
+                        selectedMode: 'single',
+                        hoverAnimation: false,//设置鼠标上浮的时候不变宽
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: false,
+                                    textStyle: {
+                                        fontSize: '20',
+                                        fontWeight: 'normal',
+                                        color: '#969696'
+                                    }
+                                },
+                                labelLine: { show: false },
+
+                            }
+                        },
+                        data: [
+                            { value: self.platformdata.bidData.terminal[1].value, name: self.platformdata.bidData.terminal[1].name},
+                            { value: self.platformdata.bidData.terminal[0].value, name: self.platformdata.bidData.terminal[0].name}
+                        ]
                     })
                 //产品类型分布
-                self.pieChart("PTdistribution", '#fff',
+                self.pieChart("echarts_newcplx", '#fff',
                     {
                         text: "产品类型分布",
-                        subtext: "", x: "center", y: '25px',
+                        subtext: "", x: "center", y: 'center',
                         textStyle:{
                             //文字颜色
                             color: '#323232',
@@ -337,22 +474,22 @@
                             //字体系列
                             fontFamily:'sans-serif',
                             //字体大小
-                            fontSize:24
+                            fontSize:18
                         }
                     },
-                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name], orient: 'vertical', x: '30px',y:'30px' },
+                    { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name], orient: 'horizontal', x: 'center',y:'310px' },
                     {
                         name: "各类订单数及所占比重",
                         type: "pie",
-                        radius: ['50%', '70%'],
-                        center: ["50%", "55%"],
-                        color: ["#fe7228", "#498bec","#27dcb6" ],
+                        radius: ['50%', '60%'],
+                        center: ["50%", "50%"],
+                        color: ["#498aeb", "#fb5a5c","#27dcb6" ],
                         selectedMode: 'single',
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         itemStyle: {
                             normal: {
                                 label: {
-                                    show: true,
+                                    show: false,
                                     textStyle: {
                                         fontSize: '20',
                                         fontWeight: 'normal',
@@ -375,10 +512,10 @@
                     PTermlegend.push(self.term[j].name);
                     PTermseries.push({value:self.term[j].value, name:self.term[j].name})
                 }
-                self.pieChart("PTermdistribution", '#fff',
+                self.pieChart("echarts_newbdqx", '#fff',
                     {
                         text: "标的期限分布",
-                        subtext: "", x: "center", y: '25px',
+                        subtext: "", x: "center", y: 'center',
                         textStyle:{
                             //文字颜色
                             color: '#323232',
@@ -389,16 +526,16 @@
                             //字体系列
                             fontFamily:'sans-serif',
                             //字体大小
-                            fontSize:24
+                            fontSize:18
                         }
                     },
-                    { show: false, data: PTermlegend, orient: 'vertical', x: '30px',y:'30px' },
+                    { show: true, data: PTermlegend, orient: 'horizontal', x: 'center',y:'295px' },
                     {
                         name: "标的期限分布所占比重",
                         type: "pie",
-                        radius: ['50%', '70%'],
-                        center: ["50%", "55%"],
-                        color: ["#ff3232", "#ff6c32","#ffb932","#c3ff32","#32ff4f","#32ffd1","#32b4ff","#3259ff","#a132ff","#ff32d1","#ff3267"],
+                        radius: ['50%', '60%'],
+                        center: ["50%", "50%"],
+                        color: ["#498aeb", "#fb5a5c","#ffa200","#00ff66","#b049eb","#32ffd1","#32b4ff","#3259ff","#a132ff","#ff32d1","#ff3267"],
                         selectedMode: 'single',
                         hoverAnimation: false,//设置鼠标上浮的时候不变宽
                         itemStyle: {
@@ -423,76 +560,7 @@
                     pfTMC_xAxis.push(self.platformdata.transaction[i].date);
                     pfTMC_series.push(parseFloat(self.platformdata.transaction[i].money /10000).toFixed(2));
                 }
-                //每月交易额柱状图
-                var myChartTM = echarts.init(document.getElementById('pfTMC'));
-                // 指定图表的配置项和数据
-                var optionTM = {
-                    title: {
-                        show: true,
-                        text: '每月交易额',
-                        x: 'center',
-                        y: '25px',
-                        textStyle: {
-                            //文字颜色
-                            color: '#fe7228',
-                            //字体风格,'normal','italic','oblique'
-                            fontStyle: 'normal',
-                            //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                            fontWeight: 'normal',
-                            //字体系列
-                            fontFamily: 'sans-serif',
-                            //字体大小
-                            fontSize: 24
-                        }
-                    },
-                    grid: {  
-                        left: '5%',  
-                        right: '5%',
-                        bottom: '5%',
-                        top: '25%',
-                        containLabel: true  
-                    },
-                    tooltip: {},
-                    legend: {
-                        data: ['单位:万元']
-                    },
-                    xAxis: {
-                        data:pfTMC_xAxis,
-                        
-                    },
-                    yAxis: {
-                        axisTick: {
-                            show: false
-                        }
-                    },
-                    series: [{
-                        name: '交易额',
-                        type: 'bar',
-                        //设置柱体颜色  
-                        itemStyle:{  
-                            normal: {
-                                color: '#fe7228',
-                                label: {
-                                    show: true,
-                                    position: 'top',
-                                    textStyle: {
-                                        color: '#fe7228',
-                                        fontSize: 14
-                                    },
-                                    formatter: function (val){
-                                        return val.data + "万元"
-                                    }
-                                }
-                            }
-                        },
-                        barWidth: 60,//柱图宽度
-                        data: pfTMC_series
-
-                    }]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChartTM.setOption(optionTM);
-                });
+            });
         },
         mounted(){
             // 顶部菜单添加选中效果

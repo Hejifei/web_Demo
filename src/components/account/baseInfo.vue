@@ -76,8 +76,10 @@
                         <td><span class="squareSpan"></span> 自动投标</td>
                         <td>自动复投&nbsp;&nbsp;便捷投资操作</td>
                         <td>--</td>
-                        <td><span class="icon-ok-sign  tdgreen"><label>已开启</label></span></td>
-                        <td><router-link to="/account/objectBookingDetails">修改</router-link></td>
+                        <td v-if="accountInfo.isAutobid == 1"><span class="icon-ok-sign  tdgreen"><label>已开启</label></span></td>
+                        <td v-if="accountInfo.isAutobid == 0"><span class="icon-remove-sign  tdgray"><label>未开启</label></span></td>
+                        <td v-if="accountInfo.isAutobid == 1"><router-link to="/account/objectBookingDetails">修改</router-link></td>
+                        <td v-if="accountInfo.isAutobid == 0"><router-link to="/account/objectBookingDetails">立即开启</router-link></td>
                     </tr>
                     <tr>
                         <td><span class="squareSpan"></span> 私人订制</td>
