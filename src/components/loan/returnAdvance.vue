@@ -13,7 +13,7 @@
                         <td>项目名称</td>
                         <td>{{advanceDetail.title}}</td>
                         <td>借款总额</td>
-                        <td>￥{{advanceDetail.capital}}</td>
+                        <td>￥{{advanceDetail.P_Money}}</td>
                     </tr>
                     <tr>
                         <td>预期年化收益</td>
@@ -210,7 +210,7 @@
                 });
                 self.$store.state._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
                     layer.closeAll();
-                    layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=1"});});
+                    layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=2"});});
                 },function (data) {
                     layer.closeAll();
                     layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});

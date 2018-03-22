@@ -5,7 +5,7 @@
         </div>
         <div class="chge"></div>
         <div class="index_activityC usercollecTab wid900">
-            <table v-if="followList.length != 0">
+            <table v-if="followList.length != 0"  v-cloak>
                 <thead>
                     <tr>
                         <td>借款标题</td>

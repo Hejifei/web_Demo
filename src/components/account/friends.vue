@@ -43,7 +43,7 @@
                         <td><a class="redBtn graybtn">{{friend.remindTitle}}</a></td>
                     </tr>
                     <tr v-if="List.length == 0">
-                        <td colspan="5">您还没有好友，快去<router-link class="hrefa" to="/product">邀请好友</router-link>注册吧！</td>
+                        <td colspan="5">您还没有好友，快去<router-link class="hrefa" to="/service/special_regist">邀请好友</router-link>注册吧！</td>
                     </tr>
                 </tbody>
             </table>

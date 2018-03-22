@@ -154,12 +154,12 @@
 
             //菜单选中
             $(".leftmenu li .info a").click(function () {
-                if ($(this).parents('li').hasClass("selected")) {
-                    $(this).parents('li').removeClass("selected");
-                } else {
+                // if ($(this).parents('li').hasClass("selected")) {
+                //     $(this).parents('li').removeClass("selected");
+                // } else {
                     $(".selected").removeClass("selected");
                     $(this).parents('li').addClass("selected");
-                }
+                // }
             })
             //页面初始化添加左侧菜单选中效果
             $(".info a").each(function () {
