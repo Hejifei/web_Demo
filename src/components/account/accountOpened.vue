@@ -10,7 +10,7 @@
             <h3>
                 现在，您可以根据需求进行操作：
             </h3>
-            <router-link to="/product" class="redBtn">立即投资</router-link>
+            <router-link to="/product" class="redBtn" style="font-size:14px;">立即投资</router-link>
         </div>
     </div>
 </template>

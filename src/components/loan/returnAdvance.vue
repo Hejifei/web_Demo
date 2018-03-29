@@ -136,7 +136,13 @@
             // for(var i=1;i<=self.advanceDetail.repayTerm;i++){
             //     self.repayTermList.push({"ternNo":parseInt(self.advanceDetail.repayedTerm)+i});
             // }
-        }, '');
+        }, function (data) {
+            if(data.code == 0){
+                self.$router.push({path:"/account/returnMoney?repayType=2"});
+            }else{
+                layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});                        
+            }
+        });
     },
     mounted:function(){
         var self = this;
@@ -210,10 +216,18 @@
                 });
                 self.$store.state._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
                     layer.closeAll();
-                    layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=2"});});
+                    layer.alert(data.msg ,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=2"});});
                 },function (data) {
                     layer.closeAll();
-                    layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});
+                    if(data.code == 99){
+                        //还款中
+                        layer.alert(data.msg ,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=2"});});
+                    }if(data.code == 9){
+                        //还款余额不足，跳到充值界面
+                        layer.alert(data.msg ,{title: '操作提示',icon: 5},function(){layer.closeAll();self.$router.push({path:"/account/recharge"});});
+                    }else{
+                        layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();window.location.reload();});                        
+                    }
                 });
         },
         selinptactive:function(e){

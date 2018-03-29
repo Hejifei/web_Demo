@@ -46,8 +46,8 @@
         that.$http.post(APIURL + _url,
             a,{emulateJSON:true}).then(
             function(res){
-                let d =res.body;
-                // console.log(d)
+                let d = res.body;
+                d = (typeof(d) == 'string') ? JSON.parse(d) : d;
                 //成功的处理
                 if (d.code == '-1' || _url == "/api/session/check" && d.code == 0) {
                     getSID(that);
