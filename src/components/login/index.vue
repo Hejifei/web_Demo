@@ -36,14 +36,14 @@
                             <p class="mb20 clearfix">
                                 <span class="logname fl"><em class="f-red"></em>密码：</span>
                                 <span class="loglabel fl form-group" style="width:240px">
-                                    <input type="password" name="password" id="password" placeholder="请输入密码" class="input_text radius form-submit required password"/>
+                                    <input type="password" v-model="password" name="password" id="password" placeholder="请输入密码" class="input_text radius form-submit required password"/>
                                     <span class="tip"></span>
                                 </span>
                             </p>
                             <p class="mb20 clearfix">
                                 <span class="logname fl">验证码：</span>
                                 <span class="loglabel fl form-group" style="width:240px">
-                                    <input type="text"  placeholder="请输入验证码" class="input_text  radius w90 form-submit required" name="imgverify" id="imgverify">
+                                    <input type="text"  placeholder="请输入验证码" class="input_text  radius w90 form-submit required" name="imgverify" id="imgverify" v-model="imgverify">
                                     <span class="tip" style="right: 120px;"></span>
                                     <span class="code">
                                         <!-- <img id="codeimg" :src="codeimgurl" @click='numchange'> -->
@@ -86,11 +86,17 @@
                 sid: '',
                 mobile:'',
                 numrandom : '',
+                password:'',
+                yzmFailCount:0,
+                imgverify:''
             }
         },
         mounted:function(){
             var self = this;
-            
+            // setTimeout(function(){
+            //     self.numchange();
+            // },0)
+
             //提交登陆申请
             this.$store.state.AjaxSumbit(this,"/", "/api/user/login", function (j) {
                 localStorage.uid = j.data.id;
@@ -113,10 +119,13 @@
                 }
                 layer.alert(j.msg,{title: '操作提示',icon: 5},function(){
                     layer.closeAll();
-                    if(j.code == 1001){
+                    if(j.code == 0){
                         self.$store.state.getSID(self);
                     }else{
-                        window.location.reload();
+                        // window.location.reload();
+                        self.numchange();
+                        self.password ='';
+                        self.imgverify='';
                     }
                     
                 });
@@ -124,7 +133,21 @@
 
             //验证码获取失败重新获取sid
             this.$refs.img.onerror = () => {
-                self.$store.state.getSID(self);
+                // self.$store.state.getSID(self);
+                if(self.yzmFailCount === 0){
+                    self.$store.state._ajax(self,'/api/session/check', {}, function (data) {
+                        self.yzmFailCount = Number(self.yzmFailCount)+1;
+                        self.numchange();
+                        return ;
+                    }, function(){});
+                }else if(self.yzmFailCount < 5){
+                    self.yzmFailCount = Number(self.yzmFailCount)+1;
+                    self.numchange();
+                    return ;
+                }else{
+                    layer.alert("验证码获取失败，请联系客服<br />400-606-1018",{title: '操作提示',icon: 5},function(){layer.closeAll();});
+                }
+                
             }
         },
         created() {   

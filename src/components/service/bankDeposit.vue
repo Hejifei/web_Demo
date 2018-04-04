@@ -11,7 +11,7 @@
                 <div class="bankDepTitleline">
                     <span>什么是银行存管<i></i></span>
                 </div>
-                <div class="bankDepInfo" style="top:-60px;">
+                <div class="bankDepInfo">
                     <img src="../../common/stylus/img/bankDepMan.png"/>
                     <p>银行存管是互联网金融平台在存管银行拥有独立存管子账户，由存管银行对资金进行管理与监督，是杜绝平台碰触用户资金的一种资金安全保障方式。</p>
                 </div>

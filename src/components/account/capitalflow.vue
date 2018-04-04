@@ -25,7 +25,7 @@
             <input class="laydate-icon input dateselinput" id="begintime" name="begintime" plugin="datepicker" placeholder="起始日期">
             <span class="spanbetweeninput">~</span>
             <input class="laydate-icon input dateselinput" id="endtime" name="endtime" plugin="datepicker" placeholder="结束日期">
-            <a class="redBtn" @click="investListGet(type)">搜索</a>
+            <a class="redBtn" @click="investListGet(type,1)">搜索</a>
         </div>
         <div class="content-rowlist" style="">
             <table class="table  table-bg table-border table-bordered table-striped">
@@ -135,8 +135,9 @@
                 {
                     type: _type,
                     page:_page,
-                    beginTime: $("#begintime").val(),
-                    endTime: $("#endtime").val() 
+                    recordType:2,
+                    beginTime: self.$store.state.unixChange($("#begintime").val()),
+                    endTime: self.$store.state.unixChange($("#endtime").val()) 
                 },
                 function (data) {
                     var flowlist = data.data.data;

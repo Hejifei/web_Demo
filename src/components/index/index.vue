@@ -188,7 +188,7 @@
             </div>
             <div class="index_newproductC" style="position:relative;">
                 <!-- <img src="../../common/stylus/img/newyear_4.png" style="position:absolute;left:-328.5px;width:388.5px;height:324px;z-index:1;" /> -->
-                <img src="../../common/stylus/img/newyear_3.png" style="position:absolute;left:-230px;top:0;" />
+                <!-- <img src="../../common/stylus/img/newyear_3.png" style="position:absolute;left:-230px;top:0;" /> -->
                 <div class="newP_left" style="z-index:9;position:relative;">
                     <h1><img src="../../common/stylus/img/newindex_productlogo.png" />生财有道</h1>
                     <ul>

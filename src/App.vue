@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="min-width:1200px;">
     <v-header v-if="headshow"></v-header>
     <div v-if="headshow" class="header" style="padding:0;">
       <div class="headerwp">

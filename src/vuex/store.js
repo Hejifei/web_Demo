@@ -41,6 +41,7 @@
         }
         if (localStorage.SID == null || localStorage.SID == undefined || localStorage.SID == '') {
             getSID(that);
+            return ;
         }
         a.sid = localStorage.SID;
         that.$http.post(APIURL + _url,
@@ -355,7 +356,8 @@
                     }
                 })
                 if (localStorage.SID == '' || localStorage.SID == undefined) {
-                    getSID();
+                    getSID(that);
+                    return ;
                 }
                 formData.append("sid", localStorage.SID);
                 that.$http.post(Url,
@@ -669,7 +671,7 @@
     //获取sid
     const getSID =function(that,newhref) {
         localStorage.removeItem("uid");
-        localStorage.removeItem("sid");
+        localStorage.removeItem("SID");
         localStorage.removeItem("ltjfUserInfo");
         var uuid = getCookie('uuid');
         if(!uuid){
@@ -678,7 +680,7 @@
             setCookie('uuid',uuid,1000);
         }
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:'20180319','uuid': uuid},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20180402','uuid': uuid},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {
