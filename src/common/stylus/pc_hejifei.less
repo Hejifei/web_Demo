@@ -347,7 +347,7 @@
         .swiper-slide img{height: 100%;}
     }
 }
-#ContactC{display:none;position:fixed;left: 0;top: 0;width:100%;height:100vh;background:rgba(0,0,0,.5);z-index:999999;-webkit-transform: translateZ(0);
+#ContactC{display: block;position:fixed;left: 0;top: 0;width:100%;height:100vh;background:rgba(0,0,0,.5);z-index:999999;-webkit-transform: translateZ(0);
       #Contact{position:absolute ;top:0;left:0;bottom:0;right:0;overflow:hidden;margin:auto;height:365px;
            .Contact_box{width:600px;margin:auto;height:100%;background-color:#fff;padding:0 0px;border-radius:13px;position:relative;
                     .Contact_head{width:100%;height:50px;border-bottom:0px solid darkgray;font-size:18px;text-align:center;line-height:50px;padding:0px;background-color:@btn-red;color:#fff;padding:0 15px;border-top-left-radius:10px;border-top-right-radius:10px;box-sizing: border-box;
@@ -396,7 +396,7 @@
             }
         }
 }
-.SignContactC{display:none;position:fixed;width:100%;min-width:1200px;height:100vh;left:0;top:0;background:rgba(0,0,0,.5);z-index:99;
+.SignContactC{display:block;position:fixed;width:100%;min-width:1200px;height:100vh;left:0;top:0;background:rgba(0,0,0,.5);z-index:99;
     .SignContact{position:absolute ;top:0;left:0;bottom:0;right:0;overflow:hidden;margin:auto;width:484px;height:775px;
         .sign_head{position: relative;width:478px;height:305px;margin:auto;background:url(/static/img/sign_topBG.png) no-repeat center bottom;background-size: cover;z-index:999999;}                       
         .sign_body{height:450px;width:410px;margin:auto;background-color: #fff;position: relative;top:-20px;padding-top:20px;z-index:1;
@@ -436,7 +436,9 @@
 
     }
 }
-
+// 签到界面淡入淡出
+.fade-enter-active, .fade-leave-active {transition: opacity .5s;}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {opacity: 0;}
 .InvestmentRecordC{background:url(firstp_bg.png) fixed no-repeat;background-size:100vw 100vh;height:100vh;}
 .InvestmentRecordC h1{text-align:center;color:#fff;font-size:45px;line-height:24vh;}
 #UpdatePanel1{height:450px;overflow:auto;position:relative;}

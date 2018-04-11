@@ -1,38 +1,41 @@
 <template>
   <div class="hello">
     <!-- 银行限额 -->
-    <div id="ContactC" @click="modehide($event)">
-      <div id="Contact">
-        <div class="Contact_box">
-            <div class="cancelmodelbtn" @click="ContactHide"><span class="icon-remove"></span></div>
-            <div class="Contact_head">
-                支持银行及限额
-            </div>
-            <div class="Contact_body">
-                <div class="sqbody">
-                    <div class="sqbodyson">
-                        <table class="model_table">
-                            <thead>
-                                <tr>
-                                    <td>银行名称</td>
-                                    <td>单笔限额(元)</td>
-                                    <td>每日限额(元)</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <tr v-for="(bankcard,index) in bankcardlimitList" :key='index'>
-                                <td><img :src="bankcard.logo" />{{bankcard.name}}</td>
-                                <td>{{bankcard.limit}}</td>
-                                <td>{{bankcard.daylimit}}</td>
-                              </tr>
-                            </tbody>
-                        </table>
+    <transition name="fade">
+        <div id="ContactC" v-if="ContactC_show" @click="modehide($event)">
+            <div id="Contact">
+                <div class="Contact_box">
+                    <div class="cancelmodelbtn" @click="ContactC_show = !ContactC_show"><span class="icon-remove"></span></div>
+                    <div class="Contact_head">
+                        支持银行及限额
+                    </div>
+                    <div class="Contact_body">
+                        <div class="sqbody">
+                            <div class="sqbodyson">
+                                <table class="model_table">
+                                    <thead>
+                                        <tr>
+                                            <td>银行名称</td>
+                                            <td>单笔限额(元)</td>
+                                            <td>每日限额(元)</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(bankcard,index) in bankcardlimitList" :key='index'>
+                                        <td><img :src="bankcard.logo" />{{bankcard.name}}</td>
+                                        <td>{{bankcard.limit}}</td>
+                                        <td>{{bankcard.daylimit}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
-    </div>
+    </transition>
+    
     <!-- 借款详细图片 -->
     <div class="PhotoMagnifyC" id="PhotoMagnifyC" v-show="PhotoMagnifyC" @click="swiperBighide($event)">
         <div class="PhotoMagnify" id="PhotoMagnify">
@@ -124,7 +127,7 @@
                             <!-- <router-link to="/account/recharge">充值</router-link> -->
                         </label>
                         <!-- <label v-if="uid == null" class="mymoneyleft">账户余额 <span></span><router-link  to="/login">登录查看</router-link></label> -->
-                        <input maxlength="8" class="form-submit" type="text" name="money" @keyup="moneyChange" v-model="money" id="money" :placeholder="'最低'+productDetail.mini_money+'元起投'" />
+                        <input v-focus maxlength="8" class="form-submit" type="text" name="money" @keyup="moneyChange" v-model="money" id="money" :placeholder="'最低'+productDetail.mini_money+'元起投'" />
                         <!-- <input maxlength="8" class="form-submit" type="text" name="money" @onkeyup="moneyChange" v-model="money" :placeholder="'最低'+productDetail.mini_money+'元起投'"  /> -->
                         <div class="awardSelLine"  v-if="uid != null">
                             <span class="spanredpackage"></span>
@@ -221,14 +224,22 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>个人基本信息</h3>
-                        <table>
+                        <h3 v-if="user_type == 0">个人基本信息</h3>
+                        <table v-if="user_type == 0">
                             <tbody id="personbaseInfo">
                                 <tr><td>姓名</td><td>{{BorrowerInfo.realname}}</td><td>年龄</td><td>{{BorrowerInfo.age}}</td></tr>
-                                <tr id="sextr"><td>性别</td><td>{{BorrowerInfo.sex}}</td></i>
-                                <!-- <tr><td v-if="productrisking.authInfo[1].content != null">{{productrisking.authInfo[1].content}}</td><td v-if="productrisking.authInfo[1].content != null">已认证</td><td v-if="productrisking.authInfo[2].content != null">{{productrisking.authInfo[2].content}}</td><td  v-if="productrisking.authInfo[2].content != null">已认证</td></tr> -->
-                                <!-- <tr><td v-if="productrisking.authInfo[3].content != null">{{productrisking.authInfo[3].content}}</td><td v-if="productrisking.authInfo[3].content != null">已认证</td><td></td><td></td></tr> -->
-                                </tr>
+                                <tr id="sextr"><td>性别</td><td>{{BorrowerInfo.sex}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
+                            </tbody>
+                        </table>
+                        <h3 v-if="user_type == 1">企业基本信息</h3>
+                        <table v-if="user_type == 1">
+                            <tbody id="personbaseInfo">
+                                <tr><td>企业名称</td><td>{{BorrowerInfo.companyName}}</td><td>企业法人</td><td>{{BorrowerInfo.realname}}</td></tr>
+                                <tr><td>公司类型</td><td>{{BorrowerInfo.companyNature}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
                             </tbody>
                         </table>
                         <h3>风控措施</h3>
@@ -286,7 +297,7 @@
                             <div class="swiper-button-prev"></div>
                         </div>
 
-                        <h3>银行限额<a v-on:click="BanklimitInfo" class="getmoreBank">查看更多<span class="icon-double-angle-right"></span></a></h3>
+                        <h3>银行限额<a v-on:click="ContactC_show = !ContactC_show" class="getmoreBank">查看更多<span class="icon-double-angle-right"></span></a></h3>
                         <img class="banklimitimg" src="/static/img/bank_limit.png"/>
                     </div>
                     <!-- @*投资记录*@ -->
@@ -336,6 +347,7 @@
 
 <script>
     import LTJF from '../../common/js/ltjf.js';
+    
     export default {
     data () {
         return {
@@ -357,14 +369,20 @@
             ret:0,
             sid:'',
             actualmoney:0,
-            risk:0
+            risk:0,
+            user_type:0,
+            authInfo1:'',
+            authInfo2:'',
+            authInfo3:'',
+            authInfo4:'',
+            ContactC_show:false
         }
     },
     created() {
             var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
-            console.log('id: ' + this.$route.params.id);
+            // console.log('id: ' + this.$route.params.id);
             self.sid = localStorage.SID;
             var idGet = this.$store.state.getUrl(location.href).id;
             self.productId = idGet;
@@ -406,6 +424,7 @@
                 productdetail.extra_rate = Number(productdetail.extra_rate);
                 self.productDetail = productdetail;
                 self.risk = parseInt(data.data.risk);
+                self.user_type = data.data.user_type;
             });
             //借款人信息获取
             this.$store.state._ajax(this,'/api/product/information', { id: idGet }, function (data) {
@@ -445,18 +464,11 @@
                 var risking= data.data;
                 risking.creditInfo = risking.creditInfo.split('；');
                 self.productrisking = risking;
-                // console.log(self.productrisking);
                 if(self.productrisking.authInfo.length > 0){
-                    $("#sextr").append("<td>"+self.productrisking.authInfo[0].content+"</td><td>已认证</td>")
-                    let authinfoC='';
-                    for(var i = 1;i<self.productrisking.authInfo.length;i++){
-                    if(i %2 != 0){
-                        authinfoC +="<tr><td>"+self.productrisking.authInfo[i].content+"</td><td>已认证</td>";
-                    }else{
-                        authinfoC +="<td>"+self.productrisking.authInfo[2].content+"</td><td>已认证</td></tr>";
+                    for(var i = 0;i<self.productrisking.authInfo.length;i++){
+                        var authinfonum = 'authInfo'+(i+1);
+                        self[authinfonum] =self.productrisking.authInfo[i].content;
                     }
-                    }
-                    $("#personbaseInfo").append(authinfoC);
                 }
             
             }, '');
@@ -531,14 +543,12 @@
                 self.PhotoMagnifyC = false;
             }
         },
-        ContactHide:function(){
-            //点击×关闭模态框
-            $("#ContactC").hide();
-        },
         modehide:function(e){
             // 点击空白关闭模态框
+            let self = this;            
             if (e.target.id == "ContactC" || e.target.id == "Model") {
-                $("#ContactC").hide();
+                // $("#ContactC").hide();
+                self.ContactC_show = !self.ContactC_show;
             }
         },
         projectInfoSel:function(event,index){
@@ -597,9 +607,6 @@
                 // self.$router.push({path:"/product/InvestConfirm?id=" + self.productId + "&money=" + self.money});
                 self.investConfirm();
             }            
-        },
-        BanklimitInfo: function () {
-            $("#ContactC").show();
         },
         RewardgetList:function(_rewardType,_page){
                 var self = this;
@@ -725,6 +732,15 @@
                     });
         }
 
+    },
+    directives: {
+        focus: {
+            // 自定义指令
+            // 指令的定义
+            inserted: function (el) {
+            el.focus()
+            }
+        }
     }
 }
 </script>

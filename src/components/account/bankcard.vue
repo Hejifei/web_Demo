@@ -46,7 +46,8 @@
             return {
                 sid: '',
                 ret:'',
-                bankcardList: []
+                bankcardList: [],
+                regType:JSON.parse(localStorage.ltjfUserInfo).regType
             }
         },
         mounted:function(){
@@ -56,7 +57,8 @@
             self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
                 if (data.data.status == 0 ) {
                     //未实名认证
-                    layer.alert('请先进行实名认证!',{title: '操作提示',icon: 5},function(){self.$router.push({path:"/account/accountOpen"});layer.closeAll(); });
+                    let msg = self.regType === 0 ? '实名认证' : '企业认证';
+                    layer.alert('请先进行'+msg+'!',{title: '操作提示',icon: 5},function(){self.$router.push({path:"/account/accountOpen"});layer.closeAll(); });
                     setTimeout(function () { self.$router.push({path:"/account/accountOpen"});layer.closeAll();}, 3000);
                 }
             }, '');

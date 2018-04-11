@@ -10,9 +10,15 @@
                         <router-link style="display:block;width:70px;height:70px;margin:auto;" to="/account/headImgChange"><img class="headimg" :src="userInfo.avatar" /></router-link>
                         <a class="checkinBtn" @click="SignNow">每日签到</a>
                         <ul class="iconul">
-                            <li>
+                            <!-- 个人 -->
+                            <li v-if="regType == 0">
                                 <router-link v-if="userInfo.status == '0'" to="/account/accountOpen"><img src="../../common/stylus/accounticon/myaccount_shimingnormal.png" title="实名未认证"></router-link>
                                 <router-link v-if="userInfo.status == '1'" to="/account/accountOpened"><img src="../../common/stylus/accounticon/myaccount_shimingselected.png" title="实名已认证"></router-link>
+                            </li>
+                            <!-- 企业 -->
+                            <li v-else-if="regType == 1">
+                                <router-link v-if="userInfo.status == '0'" to="/account/accountOpen"><img src="../../common/stylus/accounticon/myaccount_shimingnormal.png" title="企业未认证"></router-link>
+                                <router-link v-if="userInfo.status == '1'" to="/account/accountOpened"><img src="../../common/stylus/accounticon/myaccount_shimingselected.png" title="企业已认证"></router-link>
                             </li>
                             <!-- <li>
                                 <a v-if="userInfo.U_Mail == null || userInfo.U_Mail == 0">
@@ -133,10 +139,12 @@
     export default {
         data () {
             return {
-                userInfo:[]
+                userInfo:[],
+                regType:JSON.parse(localStorage.ltjfUserInfo).regType
             }
         },
         created(){
+            var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
         },

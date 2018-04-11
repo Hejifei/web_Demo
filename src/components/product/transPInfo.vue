@@ -1,37 +1,40 @@
 <template>
   <div class="hello">
-    <div id="ContactC" @click="modehide($event)">
-      <div id="Contact">
-        <div class="Contact_box">
-            <div class="cancelmodelbtn" @click="ContactHide"><span class="icon-remove"></span></div>
-            <div class="Contact_head">
-                支持银行及限额
-            </div>
-            <div class="Contact_body">
-                <div class="sqbody">
-                    <div class="sqbodyson">
-                        <table class="model_table">
-                            <thead>
-                                <tr>
-                                    <td>银行名称</td>
-                                    <td>单笔限额(元)</td>
-                                    <td>每日限额(元)</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <tr v-for="(bankcard,index) in bankcardlimitList" :key='index'>
-                                <td><img :src="bankcard.logo" />{{bankcard.name}}</td>
-                                <td>{{bankcard.limit}}</td>
-                                <td>{{bankcard.daylimit}}</td>
-                              </tr>
-                            </tbody>
-                        </table>
+    <transition name="fade">
+        <div id="ContactC" v-if="ContactC_show" @click="modehide($event)">
+            <div id="Contact">
+                <div class="Contact_box">
+                    <div class="cancelmodelbtn" @click="ContactC_show = !ContactC_show"><span class="icon-remove"></span></div>
+                    <div class="Contact_head">
+                        支持银行及限额
+                    </div>
+                    <div class="Contact_body">
+                        <div class="sqbody">
+                            <div class="sqbodyson">
+                                <table class="model_table">
+                                    <thead>
+                                        <tr>
+                                            <td>银行名称</td>
+                                            <td>单笔限额(元)</td>
+                                            <td>每日限额(元)</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(bankcard,index) in bankcardlimitList" :key='index'>
+                                        <td><img :src="bankcard.logo" />{{bankcard.name}}</td>
+                                        <td>{{bankcard.limit}}</td>
+                                        <td>{{bankcard.daylimit}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
-    </div>
+    </transition>
+    
     <div class="PhotoMagnifyC" id="PhotoMagnifyC" v-show="PhotoMagnifyC" @click="swiperBighide($event)">
         <div class="PhotoMagnify" id="PhotoMagnify">
             <a class='cancelx' @click="swiperBighide2"><span class="icon-remove"></span></a>
@@ -53,7 +56,7 @@
     <div class="index_centerC">
         <div class="index_center projectListC">
             <div class="projectInfoC">
-                <div class="graph">
+                <div class="graph pad30">
                     <img :src="productDetail.img"/>
                     {{productDetail.title}}
                 </div>
@@ -147,13 +150,22 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>个人基本信息</h3>
-                        <table>
+                        <h3 v-if="user_type == 0">个人基本信息</h3>
+                        <table v-if="user_type == 0">
                             <tbody id="personbaseInfo">
-                                <tr>
-                                    <td>姓名</td><td>{{BorrowerInfo.realname}}</td><td>年龄</td><td>{{BorrowerInfo.age}}</td></tr>
-                                    <tr id="sextr"><td>性别</td><td>{{BorrowerInfo.sex}}</td></i>
-                                </tr>
+                                <tr><td>姓名</td><td>{{BorrowerInfo.realname}}</td><td>年龄</td><td>{{BorrowerInfo.age}}</td></tr>
+                                <tr id="sextr"><td>性别</td><td>{{BorrowerInfo.sex}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
+                            </tbody>
+                        </table>
+                        <h3 v-if="user_type == 1">企业基本信息</h3>
+                        <table v-if="user_type == 1">
+                            <tbody id="personbaseInfo">
+                                <tr><td>企业名称</td><td>{{BorrowerInfo.companyName}}</td><td>企业法人</td><td>{{BorrowerInfo.realname}}</td></tr>
+                                <tr><td>公司类型</td><td>{{BorrowerInfo.companyNature}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
+                                <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
                             </tbody>
                         </table>
                         <h3>风控措施</h3>
@@ -201,7 +213,7 @@
                             <div class="swiper-button-prev"></div>
                         </div>
 
-                        <h3>银行限额<a v-on:click="BanklimitInfo" class="getmoreBank">查看更多<span class="icon-double-angle-right"></span></a></h3>
+                        <h3>银行限额<a @click="ContactC_show = !ContactC_show" class="getmoreBank">查看更多<span class="icon-double-angle-right"></span></a></h3>
                         <img class="banklimitimg" src="/static/img/bank_limit.png"/>
                     </div>
                     <!-- @*回款计划*@ -->
@@ -250,7 +262,13 @@
             ret:0,
             sid:'',
             risk:0,
-            available:0
+            available:0,
+            ContactC_show:false,
+            user_type:0,
+            authInfo1:'',
+            authInfo2:'',
+            authInfo3:'',
+            authInfo4:'',
         }
     },
     created() {
@@ -282,6 +300,7 @@
                 console.log(data);
                 // var detail = data.data.detail;
                 var productdetail=data.data.detail;
+                self.user_type = data.data.detail.user_type;
                 productdetail.transferTime = productdetail.transferTime.substr(0, 10)
                 productdetail.repayTime = productdetail.repayTime.substr(0, 10)
                 productdetail.description = productdetail.description.split('；');
@@ -324,17 +343,27 @@
                 var risking= data.data.risking;
                 risking.creditInfo = risking.creditInfo.split('；');
                 self.productrisking = risking;
+                if(self.productrisking.authInfo.length > 0){
+                    for(var i = 0;i<self.productrisking.authInfo.length;i++){
+                        var authinfonum = 'authInfo'+(i+1);
+                        self[authinfonum] =self.productrisking.authInfo[i].content;
+                    }
+                }
                 if(risking.authInfo.length > 0){
-                    $("#sextr").append("<td>"+risking.authInfo[0].content+"</td><td>已认证</td>")
-                    let authinfoC='';
-                    for(var i = 1;i<risking.authInfo.length;i++){
-                    if(i %2 != 0){
-                        authinfoC +="<tr><td>"+risking.authInfo[i].content+"</td><td>已认证</td>";
-                    }else{
-                        authinfoC +="<td>"+risking.authInfo[2].content+"</td><td>已认证</td></tr>";
+                    for(var i = 0;i<risking.authInfo.length;i++){
+                        var authinfonum = 'authInfo'+(i+1);
+                        self[authinfonum] =risking.authInfo[i].content;
                     }
-                    }
-                    $("#personbaseInfo").append(authinfoC);
+                    // $("#sextr").append("<td>"+risking.authInfo[0].content+"</td><td>已认证</td>")
+                    // let authinfoC='';
+                    // for(var i = 1;i<risking.authInfo.length;i++){
+                    // if(i %2 != 0){
+                    //     authinfoC +="<tr><td>"+risking.authInfo[i].content+"</td><td>已认证</td>";
+                    // }else{
+                    //     authinfoC +="<td>"+risking.authInfo[2].content+"</td><td>已认证</td></tr>";
+                    // }
+                    // }
+                    // $("#personbaseInfo").append(authinfoC);
                 }
 
                 var repayPlanlist = data.data.transferPlan;
@@ -393,10 +422,11 @@
             $("#ContactC").hide();
         },
         modehide:function(e){
-        // 点击空白关闭模态框
-        if (e.target.id == "ContactC" || e.target.id == "Model") {
-            $("#ContactC").hide();
-        }
+            // 点击空白关闭模态框
+            let self = this;    
+            if (e.target.id == "ContactC" || e.target.id == "Model") {
+                self.ContactC_show = !self.ContactC_show;
+            }
         },
         projectInfoSel:function(event,index){
             $(".awardList_active").removeClass("awardList_active");
@@ -440,9 +470,6 @@
                 // self.$router.push({path:"/product/transInvestComfirm?id=" + self.productId + "&transfer_id=" + self.productDetail.detail.transfer_id})
                 $("#SubmitBtn").click();
             }  
-        },
-        BanklimitInfo: function () {
-            $("#ContactC").show();
         },
         getdangerLevel:function(){
             layer.open({

@@ -1,67 +1,64 @@
 <template>
     <div class="hello">
-        <div class="SignContactC" id="SignContactC" @click="SignContactChide($event)">
-            <div class="SignContact clearfix" id="SignContact">
-                <div class="cancelmodelbtn" @click="modelClose"><span class="icon-remove"></span></div>
-                <div class="sign_head"></div>
-                <div class="sign_body">
-                    <div class="allscoreLine">
-                        积分余额：{{userSignInfo.totalScore}}积分
-                        <a to="/account/integration" @click="sign_newhref($event)">签到记录</a>
-                    </div>
-                    <div class="TodayScoreLine">
-                        <span>+{{userSignInfo.score}}</span>积分
-                    </div>
-                    <div class="sign_content">{{userSignInfo.content}}</div>
-                    <div class="sign_processC">
-                        <div class="sign_processline"><i :style="{width:sign_process +'%'}"></i></div>
-                        <div class="signDay">
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=1}"><i>1</i>天</div>
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=2}"><i>2</i>天</div>
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=3}"><i>3</i>天</div>
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=4}"><i>4</i>天</div>
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=5}"><i>5</i>天</div>
-                            <div class="everyDay" :class="{noShow:userSignInfo.num !=6}"><i>6</i>天</div>
-                            <div class="everyDay lastDay"><i>7</i>天
-                                <div class="signaward">{{userSignInfo.maxScore}}</div>
+        <transition name="fade">
+            <div class="SignContactC" v-if="SignContactCshow" id="SignContactC" @click="SignContactChide($event)">
+                <div class="SignContact clearfix" id="SignContact">
+                    <div class="cancelmodelbtn" @click="SignContactCshow = !SignContactCshow"><span class="icon-remove"></span></div>
+                    <div class="sign_head"></div>
+                    <div class="sign_body">
+                        <div class="allscoreLine">
+                            积分余额：{{userSignInfo.totalScore}}积分
+                            <a to="/account/integration" @click="sign_newhref($event)">签到记录</a>
+                        </div>
+                        <div class="TodayScoreLine">
+                            <span>+{{userSignInfo.score}}</span>积分
+                        </div>
+                        <div class="sign_content">{{userSignInfo.content}}</div>
+                        <div class="sign_processC">
+                            <div class="sign_processline"><i :style="{width:sign_process +'%'}"></i></div>
+                            <div class="signDay">
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=1}"><i>1</i>天</div>
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=2}"><i>2</i>天</div>
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=3}"><i>3</i>天</div>
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=4}"><i>4</i>天</div>
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=5}"><i>5</i>天</div>
+                                <div class="everyDay" :class="{noShow:userSignInfo.num !=6}"><i>6</i>天</div>
+                                <div class="everyDay lastDay"><i>7</i>天
+                                    <div class="signaward">{{userSignInfo.maxScore}}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="more-list">
-                        <div class="more-title row">获取更多积分
-                            <a to="/service/integratRule" @click="sign_newhref($event)" class="clrCornflower">积分规则</a>
+                        <div class="more-list">
+                            <div class="more-title row">获取更多积分
+                                <a to="/service/integratRule" @click="sign_newhref($event)" class="clrCornflower">积分规则</a>
+                            </div>
+                            <ul>
+                                <li class="row" v-for="(userSignli,index) in userSignList" :key="index">
+                                    <div><img :src="userSignli.img"/><span>{{userSignli.title}}</span></div>
+                                    <div v-if="userSignli.complete == 1" class="clr9">{{userSignli.rule}}</div>
+                                    <a @click="sign_newhref($event)" to="/login/registerPersonal" v-if="userSignli.target == 0 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <a @click="sign_newhref($event)" to="/account/accountOpen" v-if="userSignli.target == 24 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <a @click="sign_newhref($event)" to="/account/objectBookingDetails" v-if="userSignli.target == 21 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <!-- 风险评测 -->
+                                    <a @click="sign_newhref($event)" to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <!-- 意见反馈 -->
+                                    <a @click="sign_newhref($event)" to="/account/Feedback" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <!-- 邀请好友 -->
+                                    <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <!-- 好友首投 -->
+                                    <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 14 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    <!-- 投资积分 -->
+                                    <a @click="sign_newhref($event)" to="/product" v-if="userSignli.target == 6 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
+                                    
+                                </li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li class="row" v-for="(userSignli,index) in userSignList" :key="index">
-                                <div><img :src="userSignli.img"/><span>{{userSignli.title}}</span></div>
-                                <div v-if="userSignli.complete == 1" class="clr9">{{userSignli.rule}}</div>
-                                <a @click="sign_newhref($event)" to="/login/registerPersonal" v-if="userSignli.target == 0 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                <a @click="sign_newhref($event)" to="/account/accountOpen" v-if="userSignli.target == 24 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                <a @click="sign_newhref($event)" to="/account/objectBookingDetails" v-if="userSignli.target == 21 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                <!-- 风险评测 -->
-                                <a @click="sign_newhref($event)" to="/account/riskTest" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='风险评测'" class="clrCornflower">{{userSignli.rule}}</a>
-                                <!-- 意见反馈 -->
-                                <a @click="sign_newhref($event)" to="/account/Feedback" v-if="userSignli.target == 25 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                <!-- 邀请好友 -->
-                                <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 1 && userSignli.complete==0 && userSignli.title=='邀请好友'" class="clrCornflower">{{userSignli.rule}}</a>
-                                <!-- 好友首投 -->
-                                <a @click="sign_newhref($event)" to="/account/friends" v-if="userSignli.target == 14 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                <!-- 投资积分 -->
-                                <a @click="sign_newhref($event)" to="/product" v-if="userSignli.target == 6 && userSignli.complete==0" class="clrCornflower">{{userSignli.rule}}</a>
-                                
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </transition>
+       
         <div class="topnav" style="background:#fff;">
-            <!-- <div class="newyear_topC">
-                <div class="imgC">
-                    <img src="../../common/stylus/img/newyear_top_left.png" class="newyear_top_left"/>
-                    <img src="../../common/stylus/img/newyear_top_right.png" class="newyear_top_right"/>
-                </div>
-            </div> -->
             <div class="wp clearfix">
                 <div class="wp-ll publictopleft clearfix">
                     <span><img src="../../common/stylus/0818new/index_top_tel_icon.png" /></span>
@@ -71,15 +68,6 @@
                         <router-link to="/about/newHands">新手入门</router-link>
                         <router-link to="/about/helpCenter">帮助中心</router-link>
                     </span>
-                    <!-- <div class="wp-rr logobtnC fr">
-                        <a href="http://weibo.com/u/5929500361?topnav=1&wvr=6&topsug=1&is_all=1" target="_blank" class="top_weboa logoa" id="mvp"></a>
-                        <a id="contactwechat" class="top_wechata logoa" @mouseenter="wechatenter" @mouseleave="wechatleave">
-                        </a>
-                        <ul v-show="wechatul == 1" id="wechatul" class="divhide-l">
-                            <li><img src="../../common/stylus/img/index_top_erweima_img.png"></li>
-                        </ul>
-                        <router-link to="/login/appDownload" class="top_appa logoa" id="em3"></router-link>
-                    </div> -->
                 </div>
             <div class="publictopright clearfix" v-if="uid != null && uid != ''" style="width:320px;text-align:right;">
                 <span class="signImg" @click='SignNow' >
@@ -103,26 +91,6 @@
             <div class="publictopright clearfix" v-if="uid == null || uid == ''" style="width:320px;text-align:right;font-size:0;">
                 <router-link to="/login" class="unlogina">登录</router-link>
                 <router-link to="/login/registerPersonal" class="unlogina">个人注册</router-link>
-                <!-- <span class="fl margintop20">
-                    <a @click='SignNow' class="fl radius headtopbtn">
-                        <img src="../../common/stylus/0818new/sign_logoUnlogin.png"/>签到
-                    </a>
-                </span> -->
-                <!-- <span  class="fl margintop20">
-                    <router-link to="/login" class="fl radius headtopbtn">
-                        <img src="../../common/stylus/0818new/index_top_login_icon.png"/>登录
-                    </router-link>
-                </span>
-                <span class="fl margintop20">
-                    <router-link to="/login/registerPersonal" class="fl radius headtopbtn2">
-                        <img src="../../common/stylus/0818new/index_top_personal_icon.png"/>个人注册
-                    </router-link>
-                </span> -->
-                <!-- <span class="fl margintop20">
-                    <router-link to="/login/registerEnterprise" class="fl radius headtopbtn2">
-                        <img src="../../common/stylus/0818new/index_top_company_icon.png"/>企业注册
-                    </router-link>
-                </span> -->
             </div>
         </div>
     
@@ -160,7 +128,8 @@ export default {
             wechatul:0,
             userSignInfo:[],
             userSignList:[],
-            sign_process:0
+            sign_process:0,
+            SignContactCshow:false
         }
     },
     created(){
@@ -206,8 +175,9 @@ export default {
     },
     methods: {
         SignContactChide:function(e){
+            let self = this;
             if (e.target.id == "SignContactC" ) {
-                $("#SignContactC").hide();
+                self.SignContactCshow = !self.SignContactCshow;
             }
         },
         signOut: function () {
@@ -223,6 +193,7 @@ export default {
         },
         SignNow: function () {
             var that = this;
+            
             that.$store.state.checklogin(that);
             that.$store.state._ajax(that,'/api/index/userSign', {}, function (data) {
                 that.userSignInfo = data.data;  
@@ -231,7 +202,7 @@ export default {
             }, function () {
 
             }, false);
-            $(".SignContactC").show();
+            that.SignContactCshow = !that.SignContactCshow;
         },
         SignToday: function () {
             var that = this;
@@ -254,13 +225,10 @@ export default {
                     }, '', false);
                 }, '', false);
         },
-        modelClose: function () {
-            $(".SignContactC").hide();
-        },
         sign_newhref:function(e){
             let self = this;
             let newhref = e.target.getAttribute("to");
-            $(".SignContactC").hide();
+            self.SignContactCshow = !self.SignContactCshow;
             self.$router.push({path:newhref});
         },
         wechatenter:function(){

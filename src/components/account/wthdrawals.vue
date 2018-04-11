@@ -79,7 +79,7 @@
   export default {
     data () {
       return {
-        regType:0,
+        regType:JSON.parse(localStorage.ltjfUserInfo).regType,
         sid: '',
         returndata: '',
         accountInfo: '',
@@ -90,7 +90,7 @@
     created(){
         var self = this;
         // 从localStorage获取用户是否是企业或个人
-        self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
+        // self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
     },
     mounted:function(){
         var self = this;

@@ -79,15 +79,14 @@
         accountInfo: '',
         bankcardList: '',
         banklistshow: false,
-        regType:'',
         ret:'',
-        Rechargetype:1
+        Rechargetype:1,
+        regType:JSON.parse(localStorage.ltjfUserInfo).regType
       }
     },
     mounted:function(){
         var self = this;
         self.sid = localStorage.SID;
-        self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
         //充值接口的ret参数为12
         if (self.$store.state.ifRegular == 0) {
             self.ret = 12;
@@ -122,6 +121,9 @@
                     layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
             }
         }, true)
+
+
+        
     },
     methods: {
         typeChange:function(type){
@@ -129,6 +131,9 @@
         }
     }
   }
+
+
+  
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

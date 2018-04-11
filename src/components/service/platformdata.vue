@@ -18,7 +18,7 @@
                                     :decimals="2"
                                     :duration="2"
                                     :options="options"
-                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
+                                ></i-count-up><label>为用户赚取收益（元）</label></li>
                         <li><i-count-up
                                     :start="0"
                                     :end="platformTime"
@@ -32,7 +32,7 @@
                                     :decimals="0"
                                     :duration="2"
                                     :options="options"
-                                ></i-count-up><label>累计用户（位）</label></li>
+                                ></i-count-up><label>累计用户（人）</label></li>
                         <li><i-count-up
                                     :start="0"
                                     :end="bidNum"
@@ -46,7 +46,7 @@
                                     :decimals="2"
                                     :duration="2"
                                     :options="options"
-                                ></i-count-up><label>累计为用户赚取收益（元）</label></li>
+                                ></i-count-up><label>借贷余额（元）</label></li>
                         <li><i-count-up
                                     :start="0"
                                     :end="SumR_AllMoneyCount"
@@ -92,19 +92,19 @@
                         <img src="../../common/stylus/img/platformdata_jyxx.png"/>经营信息
                     </h1>
                     <ul>
-                        <li><span>{{manageInfo.SumInvestUsers}}</span><label>累计出借数量（人）</label></li>
-                        <li><span>{{manageInfo.SumLoanUsers}}</span><label>累计借款数量（人）</label></li>
-                        <li><span>{{manageInfo.NonInvestCount}}</span><label>当前累计出借数量（人）</label></li>
-                        <li><span>{{manageInfo.NonRepaymentCount}}</span><label>当前累计借款数量（人）</label></li>
-                        <li><span>{{manageInfo.Top10LoanPercent}}%</span><label>前十大借款人待还金额占比</label></li>
-                        <li><span>{{manageInfo.MaxLoanPercent}}%</span><label>最大单一借款人待还金额占比</label></li>
-                        <li><span>{{manageInfo.RelationLoanMoney}}</span><label>关联关系借款金额（元）</label></li>
+                        <li><span>{{manageInfo.SumInvestUsers}}</span><label>累计出借人数量（人）</label></li>
+                        <li><span>{{manageInfo.SumLoanUsers}}</span><label>累计借款人数量（人）</label></li>
+                        <li><span>{{manageInfo.NonInvestCount}}</span><label>当前出借人数量（人）</label></li>
+                        <li><span>{{manageInfo.NonRepaymentCount}}</span><label>当前借款人数量（人）</label></li>
+                        <li><span>{{manageInfo.Top10LoanPercent}}%</span><label>前十大借款人待还金额占比（%）</label></li>
+                        <li><span>{{manageInfo.MaxLoanPercent}}%</span><label>最大单一借款人待还金额占比（%）</label></li>
+                        <li><span>{{manageInfo.RelationLoanMoney}}</span><label>关联关系借款余额（元）</label></li>
                         <li><span>{{manageInfo.RelationLoanCount}}</span><label>关联关系借款笔数（笔）</label></li>
                         <li><span>{{manageInfo.OverdueMoney}}</span><label>逾期金额（元）</label></li>
                         <li><span>{{manageInfo.OverdueCount}}</span><label>逾期笔数（笔）</label></li>
-                        <li><span>{{manageInfo.OverdueMoney90}}</span><label>逾期90天（不含）以上金额（元）</label></li>
+                        <li><span>{{manageInfo.OverdueMoney90}}</span><label>逾期90天（不含）以上余额（元）</label></li>
                         <li><span>{{manageInfo.OverdueCount90}}</span><label>逾期90天（不含）以上笔数（笔）</label></li>
-                        <li><span>{{manageInfo.PayOverdueMoney}}</span><label>累计代偿金额</label></li>
+                        <li><span>{{manageInfo.PayOverdueMoney}}</span><label>累计代偿金额（元）</label></li>
                         <li><span>{{manageInfo.PayOverdueCount}}</span><label>累计代偿笔数（笔）</label></li>
                         <li><p>...</p></li>
                     </ul>
@@ -216,6 +216,7 @@
             this.$store.state._ajax(self,'/api/statistics/platformdata', {}, function (data) {
                 let manageInfo = data.data.manageInfo
                 self.manageInfo = data.data.manageInfo;
+                self.manageInfo.OverdueMoney90 = parseInt(self.manageInfo.OverdueMoney90);
                 self.bidNum = parseInt(manageInfo.bidNum);
                 self.SumR_AllMoney = parseFloat(manageInfo.SumR_AllMoney);
                 self.OverdueCount = parseInt(manageInfo.OverdueCount);
@@ -223,7 +224,7 @@
 
                 let statistics = data.data.totalData;
                 statistics.totalMoney = parseInt(statistics.totalMoney);
-                statistics.profit = parseInt(statistics.profit);
+                statistics.profit = parseFloat(statistics.profit);
                 self.statistics = statistics;
                 self.platformdata = data.data;
                 self.term=data.data.bidData.term;
@@ -239,7 +240,7 @@
                     singleBidTotal += parseInt(singleBid[i].value);
                 }
                 for(let j = 0;j<singleBid.length;j++){
-                    singleBid[j].percent = parseFloat(100*(parseInt(singleBid[j].value))/singleBidTotal).toFixed(1);
+                    singleBid[j].percent = parseFloat(100*(parseInt(singleBid[j].value))/singleBidTotal).toFixed(2);
                 }
                 self.singleBid = singleBid;
 
@@ -416,7 +417,7 @@
                 //用户终端分布
                 self.pieChart("echarts_newyhzd", '#fff',
                     {
-                        text: "用户终端分布",
+                        text: "理财终端分布",
                         subtext: "", x: "center", y: 'center',
                         textStyle: {
                             //文字颜色
@@ -433,7 +434,7 @@
                     },
                     { show: true, data: [self.platformdata.bidData.terminal[1].name, self.platformdata.bidData.terminal[0].name], orient: 'vertical', x: 'center', y: '310px' },
                     {
-                        name: "用户终端分布",
+                        name: "终端分布",
                         type: "pie",
                         radius: ['50%', '60%'],
                         center: ["50%", "50%"],
@@ -479,7 +480,7 @@
                     },
                     { show: true, data: [self.platformdata.bidData.productType[0].name, self.platformdata.bidData.productType[1].name], orient: 'horizontal', x: 'center',y:'310px' },
                     {
-                        name: "各类订单数及所占比重",
+                        name: "产品类型分布",
                         type: "pie",
                         radius: ['50%', '60%'],
                         center: ["50%", "50%"],
@@ -531,7 +532,7 @@
                     },
                     { show: true, data: PTermlegend, orient: 'horizontal', x: 'center',y:'295px' },
                     {
-                        name: "标的期限分布所占比重",
+                        name: "期限分布",
                         type: "pie",
                         radius: ['50%', '60%'],
                         center: ["50%", "50%"],

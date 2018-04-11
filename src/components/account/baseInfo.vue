@@ -25,7 +25,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><span class="squareSpan"></span> 实名认证</td>
+                        <!-- 个人 -->
+                        <td  v-if="regType == 0"><span class="squareSpan"></span> 实名认证</td>
+                        <!-- 个人 -->
+                        <td  v-if="regType == 1"><span class="squareSpan"></span> 企业认证</td>
                         <td>账户更加安全投资更放心</td>
                         <td>{{accountInfo.name}} {{accountInfo.idcard}}</td>
                         <td v-if="accountInfo.status == 1"><span class="icon-ok-sign  tdgreen"><label>已认证</label></span></td>
@@ -120,7 +123,8 @@
     data () {
       return {
         accountInfo: [],
-        sid: localStorage.SID
+        sid: localStorage.SID,
+        regType:JSON.parse(localStorage.ltjfUserInfo).regType
       }
     },
     created() {

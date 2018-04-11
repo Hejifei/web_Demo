@@ -140,11 +140,15 @@
                         <div class="infoC form-group">
                             <label><span>*</span>企业性质：</label>
                             <select class="form-submit required" v-model="workType" name="workType" id="workType">
-                                <option value="政府机构单位">政府机构单位</option>
-                                <option value="企事业单位">企事业单位</option>
-                                <option value="国企">国企</option>
-                                <option value="私企">私企</option>
-                                <option value="外企">外企</option>
+                                <option value="国有独资公司">国有独资公司</option>
+                                <option value="有限责任公司">有限责任公司</option>
+                                <option value="股份有限公司">股份有限公司</option>
+                                <option value="集体所有制企业">集体所有制企业</option>
+                                <option value="全民所有制企业">全民所有制企业</option>
+                                <option value="合伙企业">合伙企业</option>
+                                <option value="个人独资企业">个人独资企业</option>
+                                <option value="个体工商户">个体工商户</option>
+                                <option value="其他">其他</option>
                             </select>
                             <span class="tip"></span>
                         </div>
