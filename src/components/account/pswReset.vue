@@ -39,12 +39,12 @@
             
 
             //登录密码修改
-            self.$store.state.AjaxSumbit(self,"/account/baseInfo", "/api/user/editPassword", function (j) {
+            self.AjaxSumbit(self,"/account/baseInfo", "/api/user/editPassword", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){
                     //密码修改成功后退出登录
-                    self.$store.state._ajax(self,'/api/user/logout', {}, function (data) {
+                    self._ajax(self,'/api/user/logout', {}, function (data) {
                         if (data.code == '1') {
-                            self.$store.state.getSID(self);
+                            self.getSID(self);
                             self.$router.push({path:"/login"});
                             layer.closeAll();
                         }
@@ -52,9 +52,9 @@
                 });
                 setTimeout(function(){
                     //密码修改成功后退出登录
-                    self.$store.state._ajax(self,'/api/user/logout', {}, function (data) {
+                    self._ajax(self,'/api/user/logout', {}, function (data) {
                         if (data.code == '1') {
-                            self.$store.state.getSID(self);
+                            self.getSID(self);
                             self.$router.push({path:"/login"})
                             layer.closeAll();
                         }

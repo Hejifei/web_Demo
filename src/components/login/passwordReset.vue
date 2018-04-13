@@ -86,7 +86,7 @@
         mounted:function(){
             var self = this;
             //提交登陆申请
-            this.$store.state.AjaxSumbit(this,"/", "/api/user/resetPassword", function (j) {
+            this.AjaxSumbit(this,"/", "/api/user/resetPassword", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/login"});});
             }, '')
         },
@@ -104,12 +104,12 @@
         methods: {
             getCode:function(){
                 var self = this;
-                if (this.$store.state.countdown == 60) {
+                if (this.countdown == 60) {
                     if ($("#mobile").val() == "") {
                         layer.alert("手机号不能为空",{title: '操作提示',icon: 5},function(){layer.closeAll();});
                     } else {
-                        self.$store.state.settime();
-                        this.$store.state._ajax(self,'/api/user/sendSmsVerify',
+                        self.settime();
+                        this._ajax(self,'/api/user/sendSmsVerify',
                             {
                                 mobile: $("#mobile").val(),
                                 type: 1

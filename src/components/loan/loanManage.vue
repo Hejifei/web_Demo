@@ -65,7 +65,7 @@
                     </tr>
                 </tbody>
                 <tbody v-if="borrowList.length == 0">
-                    <tr><td colspan="9">暂无借款记录！</td></tr>
+                    <tr><td colspan="9">暂无数据！</td></tr>
                 </tbody>
             </table>
         </div>
@@ -125,12 +125,12 @@
         methods: {
             Select:function(_state, _page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/loan/borrow',
+                self._ajax(self,'/api/loan/borrow',
                     {
                         state:_state,
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.unixChange($("#begintime").val()),
+                        endTime: self.unixChange($("#endtime").val())
                     },
                 function (data) {
                     var applylist = data.data.data;

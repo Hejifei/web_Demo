@@ -85,7 +85,7 @@ export default {
   },
   methods:{
       logincheckhref:function(href){
-        this.$store.state.logincheckhref(href,this);
+        this.logincheckhref(href,this);
       }
     },
 }

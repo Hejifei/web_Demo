@@ -78,7 +78,7 @@
             $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
             var self = this;
             //提交转让购买
-            this.$store.state.AjaxSumbit(this,"/", "/api/transfer/buyTranfer", function (data) {
+            this.AjaxSumbit(this,"/", "/api/transfer/buyTranfer", function (data) {
                 //$("#respType").val('html')
                 //$('#AjaxForm').attr('action', APIURL + '/api/tender/bid').submit();
                 if (typeof data.data == "string") {
@@ -98,20 +98,20 @@
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             //借款及服务协议
-            this.$store.state._ajax(this,'/api/open/borrow', { respType: 'json' }, function (data) { $("#xieyi").attr("href", data.data); })
+            this._ajax(this,'/api/open/borrow', { respType: 'json' }, function (data) { $("#xieyi").attr("href", data.data); })
             //手动投标接口的ret参数为14
-            if (this.$store.state.ifRegular == 0) {
+            if (this.ifRegular == 0) {
                 self.ret = 15;
             } else {
                 self.ret = 150;
             }
-            var idGet = this.$store.state.getUrl(location.href).id;
-            self.transfer_idGet = this.$store.state.getUrl(location.href).transfer_id;
+            var idGet = this.getUrl(location.href).id;
+            self.transfer_idGet = this.getUrl(location.href).transfer_id;
             self.productId = idGet;
 
 
             //转让标的详情信息获取
-            this.$store.state._ajax(this,'/api/product/transferDetail', { id: self.transfer_idGet }, function (data) {
+            this._ajax(this,'/api/product/transferDetail', { id: self.transfer_idGet }, function (data) {
                 var productdetail = data.data;
                 productdetail.detail.transferTime = productdetail.detail.transferTime.substr(0, 9)
                 productdetail.detail.repay_time = productdetail.detail.repay_time.substr(0, 9)
@@ -121,7 +121,7 @@
                 self.product_pay = productdetail.pay;
             }, '');
             //如果已登陆获取账户信息
-            this.$store.state._ajax(this,'/api/account/index', {}, function (data) {
+            this._ajax(this,'/api/account/index', {}, function (data) {
                 self.accountInfo = data.data;
             }, '');
         },

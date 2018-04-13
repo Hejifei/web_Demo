@@ -96,7 +96,7 @@
             var self = this;
             self.sid = localStorage.SID;
             //验证是否已经实名制，已经实名制跳到实名制认证成功界面
-            self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+            self._ajax(self,'/api/user/userInfo', {}, function (data) {
                 if (data.data.U_IsUseAccount == '1') {
                     self.$router.push({path:"/account/accountOpened"});
                 }
@@ -108,7 +108,7 @@
                     self.plactext = "请输入营业执照编号";
                     self.idno= JSON.parse(localStorage.ltjfUserInfo).idno;
                     //提交开户申请
-                    self.$store.state.AjaxSumbit(self,"/", "/api/chinapnr/corpRegister", function (data) {
+                    self.AjaxSumbit(self,"/", "/api/chinapnr/corpRegister", function (data) {
                         if (typeof data.data == "string") {
                             var start = data.data.indexOf('<form id="autoRedirectForm"');
                             var end = data.data.indexOf('</body>');
@@ -120,7 +120,7 @@
                     //个人开户
                     self.inputtype = "idcard";
                     //提交开户申请
-                    self.$store.state.AjaxSumbit(self,"/", "/api/chinapnr/userRegister", function (data) {
+                    self.AjaxSumbit(self,"/", "/api/chinapnr/userRegister", function (data) {
                         if (typeof data.data == "string") {
                             var start = data.data.indexOf('<form id="autoRedirectForm"');
                             var end = data.data.indexOf('</body>');
@@ -132,7 +132,7 @@
             }, '', false);
 
             //开户接口的ret参数为10
-            if (self.$store.state.ifRegular == 0) {
+            if (self.ifRegular == 0) {
                 self.ret = 10;
             } else {
                 self.ret = 100;
@@ -147,7 +147,7 @@
                         layer.alert("手机号不能为空!",{title: '操作提示',icon: 5},function(){layer.closeAll();});
                     } else {
                         settime();
-                        self.$store.state._ajax(self,'/api/deposit/sendSms',
+                        self._ajax(self,'/api/deposit/sendSms',
                             {
                                 busiType: 1,
                                 usrMp: $("#usrMp").val(),

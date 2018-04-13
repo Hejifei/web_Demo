@@ -1,37 +1,50 @@
 <template>
     <div>
-        <div id="ContactC">
-            <div id="Contact">
-                <div class="Contact_box">
-                    <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
-                    <div class="Contact_head">
-                        收益详情
-                    </div>
-                    <div class="Contact_body">
-                        <div class="sqbody" style="height:296px;">
-                            <div class="sqbodyson">
-                                <table class="model_table" style=''>
-                                    <thead>
-                                        <tr>
-                                            <td>期次</td>
-                                            <td>应收日期</td>
-                                            <td>实收日期</td>
-                                            <td>应收本金</td>
-                                            <td>应收收益</td>
-                                            <td>应收总额</td>
-                                            <td>状态</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+        <transition name="fade">
+            <div id="ContactC" v-if="ContactCshow" @click="SContactChide($event)">
+                <div id="Contact">
+                    <div class="Contact_box">
+                        <div class="cancelmodelbtn" @click="ContactCshow = !ContactCshow"><span class="icon-remove"></span></div>
+                        <div class="Contact_head">
+                            收益详情
+                        </div>
+                        <div class="Contact_body">
+                            <div class="sqbody" style="height:296px;">
+                                <div class="sqbodyson">
+                                    <table class="model_table" style=''>
+                                        <thead>
+                                            <tr>
+                                                <td>期次</td>
+                                                <td>应收日期</td>
+                                                <td>实收日期</td>
+                                                <td>应收本金</td>
+                                                <td>应收收益</td>
+                                                <td>应收总额</td>
+                                                <td>状态</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(ivstDet,index) in newinvestdetaillist" :key="index">
+                                                <td>{{index+1}}</td>
+                                                <td>{{ivstDet.repayTime}}</td>
+                                                <td>{{ivstDet.payTime}}</td>
+                                                <td>{{ivstDet.repayCapital}}</td>
+                                                <td>{{ivstDet.repayInterest}}</td>
+                                                <td>{{ivstDet.repayMoney}}</td>
+                                                <td>{{ivstDet.is_pay}}</td>
+                                            </tr>
+                                            <tr v-if="newinvestdetaillist.length == 0">
+                                                <td colspan="7">暂无数据！</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </transition>
         <div class="overview"  v-cloak>
             <div class="graph">历史投资</div>
             <div class="awardListC">
@@ -82,6 +95,7 @@
                             <td v-if="type == 2 || type == 1"><router-link class="c-000" style="color:#6794d1" target="_blank" :to="'/product/receipt?id='+invest.id">查看</router-link></td>
                             <td><a class="c-000" style="color:#6794d1" @click="HuankuanDetail(invest.id,type)">查看</a></td>
                         </tr>
+                        <tr v-if="investList.length == 0"><td colspan="8">暂无数据！</td></tr>
                     </tbody>
                 </table>
 
@@ -102,16 +116,18 @@
     export default {
         data () {
             return {
-                investdetaillist: [],
+                newinvestdetaillist: [],
                 type:'',
                 investList: [],
-                type: 3
+                type: 3,
+                ContactCshow:false,
+                syxqtemp:''
             }
         },
         mounted:function(){
             var self = this;
-            var idGet = self.$store.state.getUrl(location.href).id;
-            var idtransfer_id = self.$store.state.getUrl(location.href).transfer_id;
+            var idGet = self.getUrl(location.href).id;
+            var idtransfer_id = self.getUrl(location.href).transfer_id;
             self.productId = idGet;
             self.investListGet(1, 3);
             laydate.render({
@@ -133,21 +149,17 @@
                     start.max = datas; //结束日选好后，重置开始日的最大日期
                 }
             });
-
-            //模态框隐藏
-            $(".cancelmodelbtn").click(function () {
-                $("#ContactC").hide();
-            })
-            $("#ContactC").click(function (e) {
-                if (e.target.id == "ContactC" || e.target.id == "Model") {
-                    $("#ContactC").hide();
-                }
-            })
         },
         methods: {
+            SContactChide:function(e){
+                let self = this;
+                if (e.target.id == "ContactC" ) {
+                    self.ContactCshow = !self.ContactCshow;
+                }
+            },
             readxieyi:function(proid){
                 var self = this;
-                self.$store.state._ajax(self,'/api/invest/contract', {respType : 'json',id : proid}, function (data) {
+                self._ajax(self,'/api/invest/contract', {respType : 'json',id : proid}, function (data) {
                     // window.open(data.data)
                     layer.open({
                             type: 2,
@@ -163,7 +175,7 @@
             investListGet:function(_page, _search) {
                 var self = this;
                 //签到记录取
-                self.$store.state._ajax(self,'/api/invest/index', { page: _page, search: _search, beginTime: self.$store.state.unixChange($("#begintime").val()), endTime: self.$store.state.unixChange($("#endtime").val())}, function (data) {
+                self._ajax(self,'/api/invest/index', { page: _page, search: _search, beginTime: self.unixChange($("#begintime").val()), endTime: self.unixChange($("#endtime").val())}, function (data) {
                     if (data.data.total == 0) {
                         self.investList = data.data.data;
                         $(".mypage").html("");
@@ -194,12 +206,10 @@
             HuankuanDetail:function(idget,_type) {
                 var self = this;
                 //签到记录取
-                self.$store.state._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
+                self._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
                     var investdetaillist = data.data.list;
-                    $(".model_table tbody").html("");
                     var temp = "";
                     if (investdetaillist.length == 0) {
-                        temp='<tr><td colspan="7">暂无数据</td></tr>'
                     } else {
                         for (var i = 0; i < investdetaillist.length; i++) {
                             investdetaillist[i].repayTime = investdetaillist[i].repayTime.substr(0, 10);
@@ -222,20 +232,10 @@
                                     investdetaillist[i].is_pay = "已返";
                                     break;
                             }
-                            temp += '<tr>'+
-                                        '<td>'+ (i+1) +'</td>' +
-                                        '<td>' + investdetaillist[i].repayTime + '</td>' +
-                                        '<td>' + investdetaillist[i].payTime + '</td>' +
-                                        '<td>' + investdetaillist[i].repayCapital + '</td>' +
-                                        '<td>' + investdetaillist[i].repayInterest + '</td>' +
-                                        '<td>' + investdetaillist[i].repayMoney + '</td>' +
-                                        '<td>' + investdetaillist[i].is_pay + '</td>' +
-                                '</tr>'
                         }
                     }
-                    $(".model_table tbody").html(temp);
-                    self.investdetaillist = investdetaillist;
-                    $("#ContactC").show();
+                    self.newinvestdetaillist = investdetaillist;
+                    self.ContactCshow = !self.ContactCshow;
                 }, '');
             },
             projectTypeSel: function (event, Search) {

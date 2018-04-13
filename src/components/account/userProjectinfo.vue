@@ -73,11 +73,11 @@
     },
     mounted:function(){
         var self = this;
-        var idGet = self.$store.state.getUrl(location.href).id;
-        var idtransfer_id = self.$store.state.getUrl(location.href).transfer_id;
+        var idGet = self.getUrl(location.href).id;
+        var idtransfer_id = self.getUrl(location.href).transfer_id;
         self.productId = idGet;
             
-        self.$store.state._ajax(self,'/api/invest/userProjectinfo', { id: idGet }, function (data) {
+        self._ajax(self,'/api/invest/userProjectinfo', { id: idGet }, function (data) {
             self.userProjectinfo = data.data;
             self.userProjectinfo.payInfo.createTime = self.userProjectinfo.payInfo.createTime.substr(0, 10);
             self.userProjectinfo.borrowInfo.repaymentTime = self.userProjectinfo.borrowInfo.repaymentTime.substr(0, 10);

@@ -125,10 +125,10 @@
     },
     created(){
         var self = this;
-        self.idget = self.$store.state.getUrl(location.href).id;
+        self.idget = self.getUrl(location.href).id;
         self.sid = localStorage.SID;    
         //提前还款详情
-        self.$store.state._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
+        self._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
             self.advanceDetail = data.data;
             self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,10);
             self.advanceDetail.repaymentTime=self.advanceDetail.repaymentTime.substr(0,10);
@@ -146,10 +146,10 @@
     },
     mounted:function(){
         var self = this;
-        // self.idget = self.$store.state.getUrl(location.href).id;
+        // self.idget = self.getUrl(location.href).id;
         // self.sid = localStorage.SID;    
         // //提前还款详情
-        // self.$store.state._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
+        // self._ajax(self,'/api/repay/advanceDetail', { id: self.idget }, function (data) {
         //     self.advanceDetail = data.data;
         //     self.advanceDetail.investTime=self.advanceDetail.investTime.substr(0,16);
         //     self.advanceDetail.returnTime=self.advanceDetail.returnTime.substr(0,16);
@@ -201,7 +201,7 @@
     methods: {
         repayApply:function() {
                 var self = this;
-                self.$store.state._ajax(self,'/api/repay/apply', {id:self.idget}, function (data) {
+                self._ajax(self,'/api/repay/apply', {id:self.idget}, function (data) {
                     layer.closeAll();
                     layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=1"});});
                 },function (data) {
@@ -214,7 +214,7 @@
                 var index = layer.load(2, {
                     shade: [0.2,'#000'] //0.1透明度的白色背景
                 });
-                self.$store.state._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
+                self._ajax(self,'/api/repay/advanceRepay', {id:self.idget}, function (data) {
                     layer.closeAll();
                     layer.alert(data.msg ,{title: '操作提示',icon: 6},function(){layer.closeAll();self.$router.push({path:"/account/returnMoney?repayType=2"});});
                 },function (data) {

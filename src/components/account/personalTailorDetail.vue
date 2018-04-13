@@ -101,14 +101,14 @@
         },
         created() {var self = this;
             //是否实名认证获取，若未实名就跳转到开户界面
-            // self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+            // self._ajax(self,'/api/user/userInfo', {}, function (data) {
             //     if (data.data.status == 0 ) {
             //         //未实名认证
             //         layer.alert('请先进行实名认证!',{title: '操作提示',icon: 5},function(){self.$router.push({path:"/account/accountOpen"});layer.closeAll(); });
             //         setTimeout(function () { self.$router.push({path:"/account/accountOpen"});layer.closeAll();}, 3000);
             //     }
             // }, '');
-            self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+            self._ajax(self,'/api/account/index', {}, function (data) {
                 self.money = data.data.useMoney;
             }, '');
         },  
@@ -117,7 +117,7 @@
             $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active");
             $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
 
-            this.$store.state.AjaxSumbit(this,"/", "/api/invest/customized", function (data) {
+            this.AjaxSumbit(this,"/", "/api/invest/customized", function (data) {
                 layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();});
             },function (data) {
                 layer.alert(data.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();});

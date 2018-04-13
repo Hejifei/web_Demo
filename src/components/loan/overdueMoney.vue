@@ -38,7 +38,7 @@
                     </tr>
                 </tbody>
                 <tbody v-if="arrayList.length == 0">
-                    <tr><td colspan="5">暂无逾期记录！</td></tr>
+                    <tr><td colspan="5">暂无数据！</td></tr>
                 </tbody>
             </table>
         </div>
@@ -104,12 +104,12 @@
         methods: {
             Select:function(_overdueType, _page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/loan/overdue',
+                self._ajax(self,'/api/loan/overdue',
                     {
                         overdueType: _overdueType,
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.unixChange($("#begintime").val()),
+                        endTime: self.unixChange($("#endtime").val())
                     },
                 function (data) {
                     //console.log(data)

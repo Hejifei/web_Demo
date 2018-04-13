@@ -98,7 +98,7 @@
             // },0)
 
             //提交登陆申请
-            this.$store.state.AjaxSumbit(this,"/", "/api/user/login", function (j) {
+            this.AjaxSumbit(this,"/", "/api/user/login", function (j) {
                 localStorage.uid = j.data.id;
                 layer.msg(j.msg);
                 localStorage.ltjfUserInfo = JSON.stringify(j.data);
@@ -120,7 +120,7 @@
                 layer.alert(j.msg,{title: '操作提示',icon: 5},function(){
                     layer.closeAll();
                     if(j.code == 0){
-                        self.$store.state.getSID(self);
+                        self.getSID(self);
                     }else{
                         // window.location.reload();
                         self.numchange();
@@ -133,9 +133,9 @@
 
             //验证码获取失败重新获取sid
             this.$refs.img.onerror = () => {
-                // self.$store.state.getSID(self);
+                // self.getSID(self);
                 if(self.yzmFailCount === 0){
-                    self.$store.state._ajax(self,'/api/session/check', {}, function (data) {
+                    self._ajax(self,'/api/session/check', {}, function (data) {
                         self.yzmFailCount = Number(self.yzmFailCount)+1;
                         self.numchange();
                         return ;
@@ -154,7 +154,7 @@
             var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:false});
-            self.apiurl = this.$store.state.APIURL;
+            self.apiurl = this.APIURL;
             self.sid = localStorage.SID;
             self.numrandom = Math.random();
 

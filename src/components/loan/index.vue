@@ -519,14 +519,14 @@
             var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
-            self.apiurl = self.$store.state.APIURL;
+            self.apiurl = self.APIURL;
             self.sid = localStorage.SID;
             // 从localStorage获取用户是否是企业或个人
             self.regType = JSON.parse(localStorage.ltjfUserInfo).regType;
-            self.$store.state.checklogin(self);   //验证是否登录
+            self.checklogin(self);   //验证是否登录
 
             //获取用户信息
-            self.$store.state._ajax(self,'/api/loan/finLoan', {}, function (data) {
+            self._ajax(self,'/api/loan/finLoan', {}, function (data) {
                 // console.log(data);
                 self.name = data.data.U_Name;
                 self.sex = data.data.PA_Sex;
@@ -606,7 +606,7 @@
 
 
             //提交房产抵押借款申请
-            self.$store.state.AjaxSumbit(self,"/", "/api/loan/applyLoan", function (data) {
+            self.AjaxSumbit(self,"/", "/api/loan/applyLoan", function (data) {
                 layer.alert(data.msg,{title: '操作提示',icon: 6},function(){self.$router.push({path:'/account/applyRecord'});layer.closeAll();});
                 setTimeout(function () {
                     self.$router.push({path:'/account/applyRecord'});
@@ -615,8 +615,8 @@
             },'', true, '#AjaxForm1', '#SubmitBtn1')
 
             setTimeout(function(){
-                self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : (self.regType == 0) ? 1 : 2}, function (data) {self.loanxieyi=data.data;},'');
-                self.$store.state._ajax(self,'/api/open/contract', {respType : 'json',contractType : 9}, function (data) {self.xieyi9=data.data;},'');// 9 车贷授权书
+                self._ajax(self,'/api/loan/contract', {respType : 'json',contractType : (self.regType == 0) ? 1 : 2}, function (data) {self.loanxieyi=data.data;},'');
+                self._ajax(self,'/api/open/contract', {respType : 'json',contractType : 9}, function (data) {self.xieyi9=data.data;},'');// 9 车贷授权书
             },500);
             
         },

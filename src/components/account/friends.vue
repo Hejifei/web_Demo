@@ -71,7 +71,7 @@
         getlist: function (_page) {
             var self = this;
             //签到记录取
-            self.$store.state._ajax(self,'/api/discovery/getFriends', {
+            self._ajax(self,'/api/discovery/getFriends', {
                 page: _page
             }, function (data) {
                 // console.log(data)

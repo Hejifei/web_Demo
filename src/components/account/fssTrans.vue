@@ -75,8 +75,8 @@
     methods: {
         gotoSLB:function() {
             var self = this;
-            let _ret= self.$store.state.ifRegular == 0 ? 17 :170;
-            self.$store.state._ajax(self,'/api/discovery/fssTrans', {ret: _ret}, function (data) {
+            let _ret= self.ifRegular == 0 ? 17 :170;
+            self._ajax(self,'/api/discovery/fssTrans', {ret: _ret}, function (data) {
                 location.href = data.data;
             });
         }

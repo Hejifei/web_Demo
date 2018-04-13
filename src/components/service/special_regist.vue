@@ -102,16 +102,16 @@
             $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active"); 
             $(".headernav .menuson dt a").addClass("router-link-exact-active"); 
             //提交登陆申请
-            this.$store.state.AjaxSumbit(this,"/login", "/api/user/reg", function (j) {
+            this.AjaxSumbit(this,"/login", "/api/user/reg", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){
                     // self.$router.push({path:"/login"});
                     layer.closeAll();
                 });
             },'')
             //协议
-            this.$store.state._ajax(self,'/api/open/protocol', { respType: 'json' }, function (data) {self.xieyi_regist = data.data;})
+            this._ajax(self,'/api/open/protocol', { respType: 'json' }, function (data) {self.xieyi_regist = data.data;})
             //借款及服务协议
-            self.$store.state._ajax(self,'/api/open/borrow', {respType : 'json'}, function (data) {self.loanxieyi=data.data;},'');
+            self._ajax(self,'/api/open/borrow', {respType : 'json'}, function (data) {self.loanxieyi=data.data;},'');
         },
         created(){
             // 非父子组件通信发送
@@ -120,12 +120,12 @@
         methods:{
             getcode:function(){
                 var self = this;
-                if (this.$store.state.countdown == 60) {
+                if (this.countdown == 60) {
                     if (self.mobile == "") {
                         layer.msg("手机号不能为空!");
                     } else {
-                        self.$store.state.settime();
-                        self.$store.state._ajax(self,'/api/user/sendSmsVerify',
+                        self.settime();
+                        self._ajax(self,'/api/user/sendSmsVerify',
                             {
                                 mobile: self.mobile,
                                 type: 1

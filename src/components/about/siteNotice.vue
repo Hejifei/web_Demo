@@ -59,7 +59,7 @@
         methods: {  
             noticeListGet:function (_page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/news/noticeList', {
+                self._ajax(self,'/api/news/noticeList', {
                     appType: 1,
                     page: _page
                 }, function (data) {
@@ -72,7 +72,6 @@
                             noticeList[i].time = noticeList[i].time.substr(0, 16);
                         }
                         self.noticeList = noticeList;
-                        console.log(self.noticeList)
                         //分页的重置
                         $(".mypage").html("");
                         $(".mypage").html('<div class="tcdPageCode" id="TcdPageCode" Totalpage=""></div>')

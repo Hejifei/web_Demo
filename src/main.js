@@ -2,8 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 //兼容IE
 import 'babel-polyfill';
-import 'eventsource-polyfill';
+// import 'eventsource-polyfill';
+// import 'event-source-polyfill';
 import Vue from 'vue'
+import Es6Promise from 'es6-promise';
+require('es6-promise').polyfill();
+Es6Promise.polyfill();
 
 
 import Vuex from 'vuex';
@@ -20,6 +24,8 @@ import $ from 'jquery'
 // import axios from 'axios';
 // Vue.prototype.$http = axios;
 
+
+
 import "common/stylus/common.css";
 import "common/stylus/member.css";
 import "common/stylus/style.css";
@@ -31,14 +37,13 @@ import "common/stylus/pc_hejifei.less";
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.min.css';
 import store from './vuex/store.js';
+// 全局函数的引用
+import hejifeijs from "common/js/hejifei";
 
 // 字体样式引用
 // import '../static/Font-Awesome-3.2.1/css/font-awesome.min.css';
 
 
-// vue-layer的引用
-// import layer from 'vue-layer'
-// Vue.prototype.$layer = layer(Vue);
 
 // 页面引用
 import index from 'components/index/index';
@@ -124,6 +129,7 @@ import NotFoundComponent from 'components/index/404';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Vuex);
+Vue.use(hejifeijs);
 
 const routes = [
   {path: '/',redirect: '/index'},
@@ -212,7 +218,7 @@ const routes = [
 //创建router实例,然后传routes配置
 const router = new VueRouter({
   linkActiveClass: 'active',
-  // mode:'history',
+  mode:'hash',
   routes
 });
 //切换页面后滚动到页面头部

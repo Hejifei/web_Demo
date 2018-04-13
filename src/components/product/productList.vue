@@ -221,7 +221,7 @@
         // 非父子组件通信发送
         LTJF.$emit("txt",{header:true});
         //获取统计资金
-        // this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
+        // this._ajax(self,'/api/product/statistics', {}, function (data) {
         //   var statistics = data.data;
         //   self.statistics = statistics;
         //   self.totalMoney = parseFloat(statistics.totalMoney);
@@ -271,7 +271,7 @@
       methods: {
         bidDynamic:function(){
           let self = this;
-          self.$store.state._ajax(self,'/api/product/bidDynamic', {num:10}, function (data) {
+          self._ajax(self,'/api/product/bidDynamic', {num:10}, function (data) {
             var bidDynamic = data.data;
             for(var i = 0;i<bidDynamic.length;i++){
               bidDynamic[i].createTime = bidDynamic[i].createTime.substr(0,16);
@@ -297,7 +297,7 @@
         },
         ProductListGet:function (_page, _type, _sorting) {
           let self = this;
-          self.$store.state._ajax(self,'/api/product/index',
+          self._ajax(self,'/api/product/index',
           {
             page: _page,
             type: _type,
@@ -309,8 +309,8 @@
               if (_type != 2 && _type != 5) {
                 let projectlist_sblb = data.data.data;
                 for (var i = 0; i < projectlist_sblb.length; i++) {
-                  var investdate =self.$store.state.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
-                  var date = self.$store.state.unixChange(new Date());
+                  var investdate =self.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
+                  var date = self.unixChange(new Date());
                   projectlist_sblb[i].investTime =(date < investdate) ? "即将发布" : ((projectlist_sblb[i].investTime).substr(11,5)+'开抢');
                   projectlist_sblb[i].progress = Math.floor(projectlist_sblb[i].progress);
                   projectlist_sblb[i].extra_rate = Number(projectlist_sblb[i].extra_rate);

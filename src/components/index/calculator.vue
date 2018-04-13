@@ -168,7 +168,7 @@
                 }
                 self.income = (parseFloat(total) + parseFloat(fee)).toFixed(2);
                 self.interest = fee.toFixed(2);
-                self.$store.state._ajax(self,'/api/statistics/tool', {
+                self._ajax(self,'/api/statistics/tool', {
                     bidMoney:total,
                     rate:inverstmentRate,
                     term:inverstmentTerm,

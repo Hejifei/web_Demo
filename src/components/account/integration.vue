@@ -72,7 +72,7 @@
         getsignlist:function(_page) {
             var self = this;
             //签到记录取
-            self.$store.state._ajax(self,'/api/score/getScoreList', {
+            self._ajax(self,'/api/score/getScoreList', {
                 page: _page
             }, function (data) {
                 self.allScore = data.data.total;

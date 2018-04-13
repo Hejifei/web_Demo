@@ -379,18 +379,18 @@
         }
     },
     created() {
-            var self = this;
+        var self = this;
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             // console.log('id: ' + this.$route.params.id);
             self.sid = localStorage.SID;
-            var idGet = this.$store.state.getUrl(location.href).id;
+            var idGet = this.getUrl(location.href).id;
             self.productId = idGet;
             if (idGet == undefined || idGet == null || idGet == '') {
                 self.$router.push({path:"/product"}) 
             }
             //手动投标接口的ret参数为14
-            if (this.$store.state.ifRegular == 0) {
+            if (this.ifRegular == 0) {
                 self.ret = 14;
             } else {
                 self.ret = 140;
@@ -400,23 +400,23 @@
             // 如果登录
             if (localStorage.uid != null && localStorage.uid != '') {
                 // 余额查询
-                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                self._ajax(self,'/api/account/index', {}, function (data) {
                     self.accountInfo = data.data;
                 });
                 //借款及服务协议
-                self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+                self._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
                 //可用红包获取
                 self.RewardgetList(1,1);
                 self.RewardgetList(2,1);
             }
             //产品详情信息获取
-            this.$store.state._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
                 //console.log(data.data)
                 var productdetail=data.data;
                 var ready_time = productdetail.investTime;
                 // productDetail.ready_time
-                var investdate =self.$store.state.unixChange(new Date((ready_time).substr(0,10)));
-                var date = self.$store.state.unixChange(new Date());
+                var investdate =self.unixChange(new Date((ready_time).substr(0,10)));
+                var date = self.unixChange(new Date());
                 ready_time =(date < investdate) ? "即将发布" : ((ready_time).substr(11,5)+' 开抢');
                 productdetail.ready_time = ready_time;
                 productdetail.investTime = productdetail.investTime.substr(0, 10);
@@ -427,7 +427,7 @@
                 self.user_type = data.data.user_type;
             });
             //借款人信息获取
-            this.$store.state._ajax(this,'/api/product/information', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/information', { id: idGet }, function (data) {
                 self.BorrowerInfo = data.data;
                 setTimeout(function(){
                     var swiper1 = new Swiper('#swiper-containerSmall', {
@@ -460,7 +460,7 @@
                 },10)
             });
             //风控策略获取
-            this.$store.state._ajax(this,'/api/product/risking', {id:idGet}, function (data) {
+            this._ajax(this,'/api/product/risking', {id:idGet}, function (data) {
                 var risking= data.data;
                 risking.creditInfo = risking.creditInfo.split('；');
                 self.productrisking = risking;
@@ -474,7 +474,7 @@
             }, '');
                     
             //投资记录获取
-            this.$store.state._ajax(this,'/api/product/investment', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/investment', { id: idGet }, function (data) {
                 var investment = data.data;
                 if (investment != null && investment.res.length > 0) {
                     for (var i = 0; i < investment.res.length; i++) {
@@ -485,7 +485,7 @@
                 self.investPnum = investment.res.length;
             }, '');
             //回款计划获取
-            this.$store.state._ajax(this,'/api/product/repayPlan', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/repayPlan', { id: idGet }, function (data) {
                 // console.log(data)
                 var repayPlanlist = data.data;
                 if (repayPlanlist.length != 0) {
@@ -498,7 +498,7 @@
             }, '');
 
             // 银行限额信息获取
-            this.$store.state._ajax(this,'/api/product/bankLimit', {}, function (data) {
+            this._ajax(this,'/api/product/bankLimit', {}, function (data) {
                 self.bankcardlimitList = data.data;
             },'');      
     },  
@@ -515,7 +515,7 @@
         $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active");
         $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
         //提交投资
-        this.$store.state.AjaxSumbit(this,"/", "/api/tender/bid", function (data) {
+        this.AjaxSumbit(this,"/", "/api/tender/bid", function (data) {
             if (typeof data.data == "string") {
                 var start = data.data.indexOf('<form id="autoRedirectForm"');
                 var end = data.data.indexOf('</body>');
@@ -559,7 +559,7 @@
         },
         follow: function (ifright) {
             let self = this;
-            this.$store.state._ajax(this,'/api/product/follow', { id: this.productId }, function (data) {
+            this._ajax(this,'/api/product/follow', { id: this.productId }, function (data) {
                 self.productDetail.follow = (self.productDetail.follow == 0) ? 1 :0;
             }, '');
         },
@@ -610,7 +610,7 @@
         },
         RewardgetList:function(_rewardType,_page){
                 var self = this;
-                self.$store.state._ajax(self,'/api/reward/getList', {
+                self._ajax(self,'/api/reward/getList', {
                     rewardType: _rewardType,
                     actionType: 2,
                     isUse:1,

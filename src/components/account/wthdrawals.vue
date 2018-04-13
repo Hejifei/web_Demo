@@ -96,13 +96,13 @@
         var self = this;
         self.sid = localStorage.SID;
         //提现接口的ret参数为13
-        if (self.$store.state.ifRegular == 0) {
+        if (self.ifRegular == 0) {
             self.ret = 13;
         } else {
             self.ret = 130;
         }
         //银行卡号查询
-        self.$store.state._ajax(self,'/api/bankcard/index', {}, function (data) {
+        self._ajax(self,'/api/bankcard/index', {}, function (data) {
             self.bankcardList = data.data;
         }, function (data) {
             if (data.code == 3) {
@@ -111,7 +111,7 @@
             }
         });
         //余额查询
-        self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+        self._ajax(self,'/api/account/index', {}, function (data) {
             self.accountInfo = data.data;
         }, '');
 
@@ -123,7 +123,7 @@
         })
 
         //提交充值申请
-        self.$store.state.AjaxSumbit(self,"", "/api/chinapnr/wthdrawals", function (data) {
+        self.AjaxSumbit(self,"", "/api/chinapnr/wthdrawals", function (data) {
             //$("#respType").val('html')
             //$('#AjaxForm').attr('action', APIURL + '/api/chinapnr/recharge').submit();
             if (typeof data.data == "string") {

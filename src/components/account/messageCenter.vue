@@ -40,7 +40,7 @@
     methods:{
         messageGet: function (_page) {
             var self = this;
-            self.$store.state._ajax(self,'/api/message/index', {
+            self._ajax(self,'/api/message/index', {
                 type: 0,
                 page:_page
             }, function (data) {

@@ -76,10 +76,10 @@ export default {
     var self = this;
     // 非父子组件通信发送
     LTJF.$emit("txt",{header:true});
-    var idGet = this.$store.state.getUrl(location.href).id;
+    var idGet = this.getUrl(location.href).id;
     self.productId = idGet;
             
-    this.$store.state._ajax(self,'/api/invest/userProjectinfo', { id: idGet }, function (data) {
+    this._ajax(self,'/api/invest/userProjectinfo', { id: idGet }, function (data) {
         self.userProjectinfo = data.data;
         self.userProjectinfo.payInfo.createTime = self.userProjectinfo.payInfo.createTime.substr(0, 10);
         self.userProjectinfo.borrowInfo.repaymentTime = self.userProjectinfo.borrowInfo.repaymentTime.substr(0, 10);

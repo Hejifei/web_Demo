@@ -133,7 +133,7 @@
             var self = this;
             self.TimeComein = new Date().getTime();
             self.sid = localStorage.SID;
-            self.$store.state.AjaxSumbit(self,"/", "/api/risk/index", function (data) {
+            self.AjaxSumbit(self,"/", "/api/risk/index", function (data) {
 				var riskMsg = data.msg;
 				if(data.data){
 					riskMsg ="您的评测结果为:"+data.data;

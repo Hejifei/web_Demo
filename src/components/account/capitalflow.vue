@@ -131,13 +131,13 @@
         methods: {
             investListGet:function (_type, _page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/account/record',
+                self._ajax(self,'/api/account/record',
                 {
                     type: _type,
                     page:_page,
                     recordType:2,
-                    beginTime: self.$store.state.unixChange($("#begintime").val()),
-                    endTime: self.$store.state.unixChange($("#endtime").val()) 
+                    beginTime: self.unixChange($("#begintime").val()),
+                    endTime: self.unixChange($("#endtime").val()) 
                 },
                 function (data) {
                     var flowlist = data.data.data;

@@ -24,7 +24,7 @@
             <ul>
                 <li><router-link class="outA" to="/index">首页</router-link></li>
                 <li><router-link class="outDl" to="/product">我要投资<label v-if="proNum > 0" class="pronum">{{proNum}}</label></router-link></li>
-                <li><a class="outDl" @click="logincheckhref('/loan')">我要借款</a></li>
+                <li><a class="outDl" href="#" @click="logincheckhref('/loan')">我要借款</a></li>
                 <li class="disclosure">
                   <!-- <a>信息披露<span class="topmenuspan icon-angle-down"></span></a> -->
                   <div class="menuson clearfix">
@@ -90,13 +90,14 @@
     methods:{
       NumberGet:function(_rewardType,_page){
         var self = this;
-        self.$store.state._ajax(self,'/api/product/getNum', {}, function (data) {
+        self._ajax(self,'/api/product/getNum', {}, function (data) {
           localStorage.getNum = JSON.stringify(data.data);
           self.proNum = parseInt(data.data.productsNum + data.data.transferNum);
         }, function(){});
       },
       logincheckhref:function(href){
-        this.$store.state.logincheckhref(href,this);
+        var self = this;
+        self.login_checkhref(href,self);
       },
     },
     components:{

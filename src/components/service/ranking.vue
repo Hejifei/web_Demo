@@ -77,7 +77,7 @@
                 $(".rankB_left ul li").eq(_index).find("a").addClass("rankingSel");
                 var self = this;
                 self.type = _type;
-                self.$store.state._ajax(self,'/api/discovery/ranking', {type:_type}, function (data) {
+                self._ajax(self,'/api/discovery/ranking', {type:_type}, function (data) {
                     self.rankingList = data.data.rankingList;
                     if(_type == 5){
                         for(var i = 0;i<self.rankingList.length;i++){

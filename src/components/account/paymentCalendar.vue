@@ -106,18 +106,18 @@
             var self = this;
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var nowYear = $(".calendar_month_span").html().split("年")[0];
-            self.$store.state.calUtil.showMonth=parseInt(nowMonth)-1;
-            self.$store.state.calUtil.showYear=nowYear;
-            if(self.$store.state.calUtil.showMonth==0)
+            self.calUtil.showMonth=parseInt(nowMonth)-1;
+            self.calUtil.showYear=nowYear;
+            if(self.calUtil.showMonth==0)
             {
-                self.$store.state.calUtil.showMonth=12;
-                self.$store.state.calUtil.showYear-=1;
+                self.calUtil.showMonth=12;
+                self.calUtil.showYear-=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            var changetime = self.calUtil.showYear+'/'+self.calUtil.showMonth+'/01';
             changetime= new Date(changetime);
             // 如果上一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
-            if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
+            if(nowdate.getFullYear() == self.calUtil.showYear && (nowdate.getMonth() +1) == self.calUtil.showMonth){
                 self.getCalendar(changetime,self.datetoday,true,true);
             }else{
                 self.getCalendar(changetime,self.datetoday,false);
@@ -127,18 +127,18 @@
             var self = this;
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var nowYear = $(".calendar_month_span").html().split("年")[0];
-            self.$store.state.calUtil.showMonth=parseInt(nowMonth)+1;
-            self.$store.state.calUtil.showYear=parseInt(nowYear);
-            if(self.$store.state.calUtil.showMonth==13)
+            self.calUtil.showMonth=parseInt(nowMonth)+1;
+            self.calUtil.showYear=parseInt(nowYear);
+            if(self.calUtil.showMonth==13)
             {
-                self.$store.state.calUtil.showMonth=1;
-                self.$store.state.calUtil.showYear+=1;
+                self.calUtil.showMonth=1;
+                self.calUtil.showYear+=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            var changetime = self.calUtil.showYear+'/'+self.calUtil.showMonth+'/01';
             changetime= new Date(changetime);
             // 如果下一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
-            if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
+            if(nowdate.getFullYear() == self.calUtil.showYear && (nowdate.getMonth() +1) == self.calUtil.showMonth){
                 self.getCalendar(changetime,self.datetoday,true,true);
             }else{
                 self.getCalendar(changetime,self.datetoday,false);
@@ -146,8 +146,8 @@
         },
         getCalendar:function(_time,datetoday,ifSelecteddate,ifnexttoday){
             var self = this;
-            self.$store.state._ajax(self,'/api/invest/getCalendar', {
-                time: self.$store.state.unixChange(_time),
+            self._ajax(self,'/api/invest/getCalendar', {
+                time: self.unixChange(_time),
             }, function (data) {
                 self.repayNum = data.data.repayNum != null ? data.data.repayNum : 0;
                 self.repayedNum = data.data.repayed != null ? data.data.repayedNum : 0;
@@ -166,7 +166,7 @@
                     }
                 }
                 // var repayList = [{ "signDay": "09" }, { "signDay": "11" }, { "signDay": "12" }, { "signDay": "13" }, { "signDay": "15" }, { "signDay": "25" }];
-                self.$store.state.calUtil.init(repayList,"#calendar_left",_time,repayedList,datetoday);
+                self.calUtil.init(repayList,"#calendar_left",_time,repayedList,datetoday);
                 var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
                 self.nowMonth = nowMonth;
                 // 绑定点击查看上一个月
@@ -181,23 +181,23 @@
                         var direcedate = $(this).attr("date");
                         direcedate = direcedate.replace(/-/g, "\/");
                         direcedate = new Date(direcedate);
-                        self.dailycalendar(self.$store.state.unixChange(direcedate));
+                        self.dailycalendar(self.unixChange(direcedate));
                         $(".Selecteddate").removeClass("Selecteddate");
                         $(this).addClass('Selecteddate');
                     }
                 });
                 if(ifnexttoday){
-                    self.dailycalendar(self.$store.state.unixChange(datetoday),ifSelecteddate);
+                    self.dailycalendar(self.unixChange(datetoday),ifSelecteddate);
                 }else{
-                    self.dailycalendar(self.$store.state.unixChange(_time),ifSelecteddate);
+                    self.dailycalendar(self.unixChange(_time),ifSelecteddate);
                 }
                 
             }, '');
         },
         dailycalendar:function(_time,ifSelecteddate){
             var self = this;
-            var unUnixedTime = self.$store.state.formatTime(_time);
-            self.$store.state._ajax(self,'/api/invest/calendar', {
+            var unUnixedTime = self.formatTime(_time);
+            self._ajax(self,'/api/invest/calendar', {
                 time: _time,
             }, function (data) {
                 var dayList=data.data.dayList;
@@ -220,7 +220,7 @@
         },
         nextPaydate:function(_time){
             var self = this;
-            var unUnixedTime = self.$store.state.formatTime(_time);
+            var unUnixedTime = self.formatTime(_time);
             unUnixedTime = unUnixedTime.replace(/-/g, "\/");
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var purposeMonth = (new Date(unUnixedTime)).getMonth() + 1;
@@ -236,7 +236,7 @@
         HuankuanDetail:function(idget) {
                 var self = this;
                 //签到记录取
-                self.$store.state._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
+                self._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
                     var investdetaillist = data.data.list;
                     $(".model_table tbody").html("");
                     var temp = "";

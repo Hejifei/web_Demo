@@ -170,21 +170,21 @@
             
             var self = this;
             //是否实名认证获取，若未实名就跳转到开户界面
-            self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+            self._ajax(self,'/api/user/userInfo', {}, function (data) {
                 if (data.data.status == 0 ) {
                     //未实名认证
                     layer.alert('请先进行实名认证!',{title: '操作提示',icon: 5},function(){self.$router.push({path:"/account/accountOpen"});layer.closeAll(); });
                     setTimeout(function () { self.$router.push({path:"/account/accountOpen"});layer.closeAll();}, 3000);
                 }
             }, '');
-            self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+            self._ajax(self,'/api/account/index', {}, function (data) {
                 self.money = data.data.useMoney;
             }, '');
             //自动投标的ret参数为18
-            self.ret = (self.$store.state.ifRegular == 0) ? 18 : 180;
+            self.ret = (self.ifRegular == 0) ? 18 : 180;
             
             //获取自动投标状态
-            self.$store.state._ajax(self,'/api/invest/findPlan', {}, function (data) {
+            self._ajax(self,'/api/invest/findPlan', {}, function (data) {
                 self.autoBid = data.data.autoBid;
                 self.dangerType = data.data.autoBid.dangerType;
                 if(self.dangerType == null){
@@ -217,14 +217,14 @@
                 
             });
 
-            self.$store.state._ajax(self,'/api/open/autobid', {respType : 'json',contractType : 1}, function (data) {self.autobid=data.data;},'');
+            self._ajax(self,'/api/open/autobid', {respType : 'json',contractType : 1}, function (data) {self.autobid=data.data;},'');
         },  
         mounted:function(){
             // 顶部菜单添加选中效果
             $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active");
             $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
 
-            this.$store.state.AjaxSumbit(this,"/", "/api/invest/autobidPlan", function (data) {
+            this.AjaxSumbit(this,"/", "/api/invest/autobidPlan", function (data) {
                 if (typeof data.data == "string") {
                     var start = data.data.indexOf('<form id="autoRedirectForm"');
                     var end = data.data.indexOf('</body>');
@@ -260,7 +260,7 @@
                     // self.status = (this.switch1Class == 'close1') ? '0' : '1';
                     // self.automaticBtnText = (this.switch1Class == 'close1') ? '开启' : '关闭';
                     // if (this.switch1Class == 'close1' && self.autoBid.status == 1) {
-                        self.$store.state._ajax(self,'/api/invest/closePlan', {}, function (data) {
+                        self._ajax(self,'/api/invest/closePlan', {}, function (data) {
                             layer.alert(data.msg,{title: '操作提示',icon: 6},function(){window.location.reload();});
                         });
                     // }
@@ -274,7 +274,7 @@
                 this.minTerm = $("select[name=Termrate]").find("option:selected").attr("minTerm");
                 this.maxTerm = $("select[name=Termrate]").find("option:selected").attr("maxTerm");
                 // 自动投标排序
-                self.$store.state._ajax(self,'/api/invest/autoSort', {
+                self._ajax(self,'/api/invest/autoSort', {
                     maxTerm:self.maxTerm,
                     minTerm:self.minTerm
                 }, function (data) {

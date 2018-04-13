@@ -78,7 +78,9 @@
                             <span v-if="array.status == 2">未通过</span> -->
                         </td>
                     </tr>
-
+                    <tr v-if="arrayList.length == 0">
+                        <td colspan="10">暂无数据！</td>
+                    </tr>
             </tbody>
         </table>
         </div>
@@ -114,7 +116,7 @@
         },
         mounted:function(){
             var self = this;
-            var repayTypeget = self.$store.state.getUrl(location.href).repayType;
+            var repayTypeget = self.getUrl(location.href).repayType;
             self.repayType = repayTypeget == undefined ? '' : repayTypeget;
             laydate.render({
                 elem: '#begintime', //指定元素
@@ -201,12 +203,12 @@
                 $("#selectall").prop("checked", false);
                 var beginTime = $("#begintime").val();
                 // console.log(self.unixChange(beginTime))
-                self.$store.state._ajax(self,'/api/loan/repayLoan',
+                self._ajax(self,'/api/loan/repayLoan',
                     {
                         repayType: _repayType,
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.unixChange($("#begintime").val()),
+                        endTime: self.unixChange($("#endtime").val())
                     },
                 function (data) {
                     var applylist = data.data.data;
@@ -248,7 +250,7 @@
                         return $(this).attr("value");
                     }
                 }).get().join(',');
-                self.$store.state._ajax(self,'/api/repay/index', { id: idlist }, function (data) {
+                self._ajax(self,'/api/repay/index', { id: idlist }, function (data) {
                     layer.closeAll();
                     layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();window.location.reload();});
                 },function (data) {
@@ -264,7 +266,7 @@
                 var idlist = $('.subCheckbox').map(function () {
                     return $(this).attr("value");
                 }).get().join(',');
-                self.$store.state._ajax(self,'/api/repay/index', { id: idlist }, function (data) {
+                self._ajax(self,'/api/repay/index', { id: idlist }, function (data) {
                     layer.closeAll();
                     layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();window.location.reload();});
                 },function (data) {

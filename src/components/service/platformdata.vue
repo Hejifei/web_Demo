@@ -213,7 +213,7 @@
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             var self = this;
-            this.$store.state._ajax(self,'/api/statistics/platformdata', {}, function (data) {
+            this._ajax(self,'/api/statistics/platformdata', {}, function (data) {
                 let manageInfo = data.data.manageInfo
                 self.manageInfo = data.data.manageInfo;
                 self.manageInfo.OverdueMoney90 = parseInt(self.manageInfo.OverdueMoney90);

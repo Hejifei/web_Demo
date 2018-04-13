@@ -88,13 +88,13 @@
         var self = this;
         self.sid = localStorage.SID;
         //充值接口的ret参数为12
-        if (self.$store.state.ifRegular == 0) {
+        if (self.ifRegular == 0) {
             self.ret = 12;
         } else {
             self.ret = 120;
         }
         //余额查询
-        self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+        self._ajax(self,'/api/account/index', {}, function (data) {
             self.accountInfo = data.data;
         }, '');
 
@@ -104,7 +104,7 @@
         })
 
         //提交充值申请
-        self.$store.state.AjaxSumbit(self,"", "/api/chinapnr/recharge", function (data) {
+        self.AjaxSumbit(self,"", "/api/chinapnr/recharge", function (data) {
             if (typeof data.data == "string") {
                 var start = data.data.indexOf('<form id="autoRedirectForm"');
                 var end = data.data.indexOf('</body>');

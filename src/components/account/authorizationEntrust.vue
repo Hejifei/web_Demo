@@ -92,13 +92,13 @@
             $(this).addClass("awardList_active");
         })
 
-        self.$store.state._ajax(self,'/api/open/contract', {respType : 'json',contractType : 9}, function (data) {self.xieyi9=data.data;},'');// 9 车贷授权书
+        self._ajax(self,'/api/open/contract', {respType : 'json',contractType : 9}, function (data) {self.xieyi9=data.data;},'');// 9 车贷授权书
         self.Select(1, 1);
     },
     methods: {
         Select:function(_state, _page) {
             var self = this;
-            self.$store.state._ajax(self,'/api/loan/findAuth',
+            self._ajax(self,'/api/loan/findAuth',
                 {
                     state: _state,
                     page: _page
@@ -135,10 +135,10 @@
                     return $(this).attr("value");
                 }
             }).get().join(',');
-            self.ret = self.$store.state.ifRegular == 1 ? 160 : 16;
+            self.ret = self.ifRegular == 1 ? 160 : 16;
             self.id = idlist;
             console.log('idlist=' + idlist)
-            self.$store.state._ajax(self,'/api/loan/direcTrfAuth', { id: idlist, respType: 'json', ret: self.ret }, function (data) {
+            self._ajax(self,'/api/loan/direcTrfAuth', { id: idlist, respType: 'json', ret: self.ret }, function (data) {
                 if (typeof data.data == "string") {
                             var start = data.data.indexOf('<form id="autoRedirectForm"');
                             var end = data.data.indexOf('</body>');

@@ -19,8 +19,8 @@
             LTJF.$emit("txt",{header:false});
 
             //正式的ret的值是测试链接的ret值的10倍
-            var code = this.$store.state.getUrl(location.href).code;
-            var ret = this.$store.state.getUrl(location.href).ret;
+            var code = this.getUrl(location.href).code;
+            var ret = this.getUrl(location.href).ret;
             var newret = ret < 100 ? ret : ret / 10;
             var urlRegular = 'https://www.litongjinfu.com/#';
             var urlTest = 'http://pc.litongbank.com.cn/#';

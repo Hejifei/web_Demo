@@ -102,12 +102,12 @@
         methods: {
             Select:function(_overdueType, _page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/loan/overdue',
+                self._ajax(self,'/api/loan/overdue',
                     {
                         overdueType: _overdueType,
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.unixChange($("#begintime").val()),
+                        endTime: self.unixChange($("#endtime").val())
                     },
                 function (data) {
                     //console.log(data)

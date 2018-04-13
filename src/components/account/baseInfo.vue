@@ -130,20 +130,20 @@
     created() {
         var self = this;
         // 获取风险评测
-        // self.$store.state._ajax(self,'/api/risk/getDetail', {}, function (data) {
+        // self._ajax(self,'/api/risk/getDetail', {}, function (data) {
         //     console.log(data)
         // }, '');
     },
     mounted:function(){
         var self = this;
         //用户信息获取
-        self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+        self._ajax(self,'/api/user/userInfo', {}, function (data) {
             //console.log(data.data)
             self.accountInfo = data.data;
             
             setTimeout(function () {
                 //进入存管账户
-                self.$store.state.AjaxSumbit(self,"", "/api/chinapnr/userLogin", function (data) {
+                self.AjaxSumbit(self,"", "/api/chinapnr/userLogin", function (data) {
                     //$("#respType").val('html')
                     //$('#AjaxForm').attr('action', APIURL + '/api/chinapnr/recharge').submit();
                     if (typeof data.data == "string") {

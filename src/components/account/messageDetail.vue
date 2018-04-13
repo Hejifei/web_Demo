@@ -21,8 +21,8 @@
     },
     mounted:function(){
       var self = this;
-      var idget = self.$store.state.getUrl(location.href).id;
-        self.$store.state._ajax(self,'/api/message/detail', {
+      var idget = self.getUrl(location.href).id;
+        self._ajax(self,'/api/message/detail', {
             type: 0,
             id: idget
         }, function (data) {

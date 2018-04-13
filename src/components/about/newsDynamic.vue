@@ -59,7 +59,7 @@
         methods: {  
             NewsListGet:function (_page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/news/index', {
+                self._ajax(self,'/api/news/index', {
                     page: _page
                 }, function (data) {
                     if (data.data.total == 0) {

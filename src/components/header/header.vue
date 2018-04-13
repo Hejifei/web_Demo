@@ -145,7 +145,7 @@ export default {
         if (self.uid != null && self.uid != '') {
             self.userinfo = JSON.parse(localStorage.ltjfUserInfo);
             //验证是否有未读信息
-            // self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+            // self._ajax(self,'/api/account/index', {}, function (data) {
             //     self.unreadMsg = data.data.unreadMsg;
             // }, '', false);
         }
@@ -182,20 +182,20 @@ export default {
         },
         signOut: function () {
             let self = this;
-            this.$store.state._ajax(this,'/api/user/logout', {}, function (data) {
+            this._ajax(this,'/api/user/logout', {}, function (data) {
                 if (data.code == '1') {
                     localStorage.removeItem("ltjfUserInfo");
                     localStorage.removeItem("SID");
                     localStorage.removeItem("uid");
-                    self.$store.state.getSID(self,'/login');
+                    self.getSID(self,'/login');
                 }
             })
         },
         SignNow: function () {
             var that = this;
             
-            that.$store.state.checklogin(that);
-            that.$store.state._ajax(that,'/api/index/userSign', {}, function (data) {
+            that.checklogin(that);
+            that._ajax(that,'/api/index/userSign', {}, function (data) {
                 that.userSignInfo = data.data;  
                 that.userSignList = data.data.getList;
                 that.sign_process = 100*data.data.num/data.data.maxNum;
@@ -207,12 +207,12 @@ export default {
         SignToday: function () {
             var that = this;
                 //当日签到
-                that.$store.state._ajax(that,'/api/index/getScore', {}, function (data) {
+                that._ajax(that,'/api/index/getScore', {}, function (data) {
                     that.is_sign=1;
                     that.totalScore = data.data.total.totalScore;
                     // $(".signBtn").text("已签到")
                     // $(".signBtn").addClass("signedBtn");
-                    that.$store.state._ajax(that,'/api/index/signDetail', {}, function (data) {
+                    that._ajax(that,'/api/index/signDetail', {}, function (data) {
                         var signList = [];
                         var signDetail = data.data.detail;
                         if (signDetail.length > 0) {
@@ -221,7 +221,7 @@ export default {
                             }
                         }
                         var DateInsert = new Date();
-                        that.$store.state.calUtil.init(signList,"#calendar",DateInsert);
+                        that.calUtil.init(signList,"#calendar",DateInsert);
                     }, '', false);
                 }, '', false);
         },

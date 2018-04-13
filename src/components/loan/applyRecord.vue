@@ -48,7 +48,7 @@
                 </tbody>
                 <tbody v-if="applyList.length == 0">
                     <tr>
-                        <td colspan="6">暂无申请记录！</td>
+                        <td colspan="6">暂无数据！</td>
                     </tr>
                 </tbody>
             </table>
@@ -111,11 +111,11 @@
         methods: {
             Select:function(_page) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/loan/apply',
+                self._ajax(self,'/api/loan/apply',
                     {
                         page: _page,
-                        beginTime: self.$store.state.unixChange($("#begintime").val()),
-                        endTime: self.$store.state.unixChange($("#endtime").val())
+                        beginTime: self.unixChange($("#begintime").val()),
+                        endTime: self.unixChange($("#endtime").val())
                     },
                 function (data) {
                     var applylist = data.data.data;

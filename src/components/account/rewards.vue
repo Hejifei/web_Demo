@@ -84,7 +84,7 @@
     methods: {
         getawardList:function(_page) {
             var self = this;
-            self.$store.state._ajax(self,'/api/account/award',
+            self._ajax(self,'/api/account/award',
                 {
                     page: _page
                 },
@@ -122,7 +122,7 @@
             const reward = this.reward;
             layer.confirm("是否转出至余额？",{title: '操作提示'},function(){
                 //奖励金转出
-                self.$store.state._ajax(self,'/api/award/index', { money: reward }, function (data) {
+                self._ajax(self,'/api/award/index', { money: reward }, function (data) {
                     self.bankcardList = data.data;
                 }, function (data) {
                     layer.alert(data.msg,{title: '操作提示',icon: 5},function(){window.location.reload();});

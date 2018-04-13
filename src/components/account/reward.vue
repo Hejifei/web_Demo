@@ -183,7 +183,7 @@
         getawardList:function(_type, _keywords, _page,_index) {
             var self = this;
             //红包列表获取
-            self.$store.state._ajax(self,'/api/reward/getList',
+            self._ajax(self,'/api/reward/getList',
                 {
                     rewardType: _type,
                     keywords: _keywords,

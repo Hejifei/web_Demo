@@ -157,31 +157,31 @@
             // 非父子组件通信发送
             LTJF.$emit("txt",{header:true});
             self.sid = localStorage.SID;
-            var idGet = this.$store.state.getUrl(location.href).id;
+            var idGet = this.getUrl(location.href).id;
             self.productId = idGet;
             if (idGet == undefined || idGet == null || idGet == '') {
                 self.$router.push({path:"/product"}) 
             }
             //手动投标接口的ret参数为19
-            self.ret = this.$store.state.ifRegular == 0 ? 19 :190;
+            self.ret = this.ifRegular == 0 ? 19 :190;
             //验证是否登陆
             self.uid = localStorage.uid;
             // 如果登录
             if (localStorage.uid != null && localStorage.uid != '') {
                 // 余额查询
-                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                self._ajax(self,'/api/account/index', {}, function (data) {
                     self.accountInfo = data.data;
                 });
                 //借款及服务协议
-                self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
-                self.$store.state._ajax(self,'/api/open/reserve', {respType : 'json'}, function (data) {self.reservexieyi=data.data;},'');
+                self._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+                self._ajax(self,'/api/open/reserve', {respType : 'json'}, function (data) {self.reservexieyi=data.data;},'');
                 
                 //可用红包获取
                 self.RewardgetList(1,1);
                 self.RewardgetList(2,1);
             }
             //产品详情信息获取
-            this.$store.state._ajax(this,'/api/product/reserve', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/reserve', { id: idGet }, function (data) {
                 self.productDetail = data.data;
                 self.productDetail.investTime = (self.productDetail.investTime).substr(0,16);
                 self.risk = parseInt(data.data.risk);
@@ -199,7 +199,7 @@
     mounted:function(){
         var self = this;
         //提交投资
-        this.$store.state.AjaxSumbit(this,"/", "/api/invest/reserve", function (data) {
+        this.AjaxSumbit(this,"/", "/api/invest/reserve", function (data) {
             if (typeof data.data == "string") {
                 var start = data.data.indexOf('<form id="autoRedirectForm"');
                 var end = data.data.indexOf('</body>');
@@ -277,7 +277,7 @@
         },
         RewardgetList:function(_rewardType,_page){
                 var self = this;
-                self.$store.state._ajax(self,'/api/reward/getList', {
+                self._ajax(self,'/api/reward/getList', {
                     rewardType: _rewardType,
                     actionType: 2,
                     isUse:1,

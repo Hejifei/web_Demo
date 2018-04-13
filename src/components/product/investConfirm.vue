@@ -119,7 +119,7 @@
             $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
             var self = this;
             //提交投资
-            this.$store.state.AjaxSumbit(this,"/", "/api/tender/bid", function (data) {
+            this.AjaxSumbit(this,"/", "/api/tender/bid", function (data) {
                 if (typeof data.data == "string") {
                     var start = data.data.indexOf('<form id="autoRedirectForm"');
                     var end = data.data.indexOf('</body>');
@@ -132,16 +132,16 @@
             var self = this;
             self.sid = localStorage.SID;
             //借款及服务协议
-            self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
-            // this.$store.state._ajax(this,'/api/open/borrow', { respType: 'json' }, function (data) { $("#xieyi").attr("href", data.data); })
+            self._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+            // this._ajax(this,'/api/open/borrow', { respType: 'json' }, function (data) { $("#xieyi").attr("href", data.data); })
             //手动投标接口的ret参数为14
-            if (this.$store.state.ifRegular == 0) {
+            if (this.ifRegular == 0) {
                 self.ret = 14;
             } else {
                 self.ret = 140;
             }
-            var idGet = this.$store.state.getUrl(location.href).id;
-            self.moneyGet = this.$store.state.getUrl(location.href).money;
+            var idGet = this.getUrl(location.href).id;
+            self.moneyGet = this.getUrl(location.href).money;
             self.productId = idGet;
             //如果id或者投资金额为空，跳转到散标列表界面
             if (self.moneyGet == undefined || self.productId == undefined) {
@@ -149,7 +149,7 @@
             }
 
             //产品详情信息获取
-            this.$store.state._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
                 //console.log(data.data)
                 var productdetail=data.data;
                 productdetail.investTime = productdetail.investTime.substr(0, 9)
@@ -159,7 +159,7 @@
                 
             }, '');
             //如果已登陆获取账户信息
-            this.$store.state._ajax(this,'/api/account/index', {}, function (data) {
+            this._ajax(this,'/api/account/index', {}, function (data) {
                 self.accountInfo = data.data;
             }, '');
             //可用红包获取
@@ -173,7 +173,7 @@
         methods: {
             RewardgetList:function(_rewardType,_page){
                 var self = this;
-                self.$store.state._ajax(self,'/api/reward/getList', {
+                self._ajax(self,'/api/reward/getList', {
                     rewardType: _rewardType,
                     actionType: 2,
                     isUse:1,

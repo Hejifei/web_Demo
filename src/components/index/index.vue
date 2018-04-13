@@ -424,13 +424,13 @@ export default {
             self.sid = localStorage.sid;
             if (self.uid != null && self.uid != '') {
                 //如果已登陆获取账户信息,验证是否有未读信息
-                self.$store.state._ajax(self,'/api/account/index', {}, function (data) {
+                self._ajax(self,'/api/account/index', {}, function (data) {
                     self.accountInfo = data.data;
                     self.UnreadMsg = data.data.unreadMsg;
                 }, '');
             }else{
                 // 首页提示
-                self.$store.state._ajax(self,'/api/product/statistics', {isPrompt:1}, function (data) {
+                self._ajax(self,'/api/product/statistics', {isPrompt:1}, function (data) {
                     self.prompt = data.data.prompt;
                     setTimeout(function () {
                         var swiper_prompt = new Swiper('#swiper_proptson', {
@@ -449,7 +449,7 @@ export default {
             }
 
             //获取统计资金
-            this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
+            this._ajax(self,'/api/product/statistics', {}, function (data) {
                 var statistics = data.data;
                 self.platformTime = parseFloat(statistics.platformTime);
                 self.platform_totalMoney =parseFloat(statistics.totalMoney);
@@ -466,7 +466,7 @@ export default {
                 self.statistics = data.data;
             });
             //轮播获取
-            this.$store.state._ajax(self,'/api/index/getBanner', {}, function (data) {
+            this._ajax(self,'/api/index/getBanner', {}, function (data) {
                 self.bannerList = data.data;
                 //轮播初始化
                 setTimeout(function () {
@@ -484,7 +484,7 @@ export default {
                 },10)
             }, '', false);
             //公告栏信息获取
-            this.$store.state._ajax(self,'/api/index/getTop', {}, function (data) {
+            this._ajax(self,'/api/index/getTop', {}, function (data) {
                 var newNoticeList = data.data.newNotice;
                 for (var i = 0; i < newNoticeList.length; i++) {
                 newNoticeList[i].createTime = (newNoticeList[i].createTime).substr(0, 16);
@@ -500,13 +500,13 @@ export default {
                 });
             }, 3000);
             //新手标
-            this.$store.state._ajax(self,'/api/index/newActive', {}, function (data) {
+            this._ajax(self,'/api/index/newActive', {}, function (data) {
                 var newHandAcitvity = data.data;
                 newHandAcitvity.info.limitMoney = parseInt(newHandAcitvity.info.limitMoney);
                 newHandAcitvity.info.extra_rate = Number(newHandAcitvity.info.extra_rate);
                 
-                var  investdate =self.$store.state.unixChange(new Date((newHandAcitvity.info.investTime).substr(0,10)));
-                var date = self.$store.state.unixChange(new Date());
+                var  investdate =self.unixChange(new Date((newHandAcitvity.info.investTime).substr(0,10)));
+                var date = self.unixChange(new Date());
                 newHandAcitvity.info.investTime =(date < investdate) ? "即将发布" : ((newHandAcitvity.info.investTime).substr(11,5)+'开抢');
                 // newHandAcitvity.info.investTime = (newHandAcitvity.info.investTime).substr(11,5);
                 self.newHandAcitvity = newHandAcitvity;
@@ -520,7 +520,7 @@ export default {
             // 各类标数据条数获取
             self.productNumget();
             ////合作伙伴信息获取
-            // this.$store.state._ajax(self,'/api/open/cooperation', {}, function (data) {
+            // this._ajax(self,'/api/open/cooperation', {}, function (data) {
             //     self.cooperationList = data.data;
             // });
     },
@@ -530,11 +530,11 @@ export default {
             $(".headernav ul li").eq(0).find("a").addClass("router-link-exact-active");
 
             // 波浪动画
-            this.$store.state.wave();
+            this.wave();
     },
     methods:{
         logincheckhref:function(href){
-            this.$store.state.logincheckhref(href,this)
+            this.logincheckhref(href,this)
         },
         callback: function(ins) {
             ins.update(ins.endVal + 100);
@@ -546,7 +546,7 @@ export default {
             var self = this;
             
             //散标/债券数据获取
-            self.$store.state._ajax(self,'/api/product/index',
+            self._ajax(self,'/api/product/index',
             {
                 page: 1,
                 type: _type,
@@ -557,8 +557,8 @@ export default {
                 var projectlist_sblb = data.data.data;
                 if(data.data.data.length > 0 && _type != 2){
                     for (var i = 0; i < projectlist_sblb.length; i++) {
-                        var  investdate =self.$store.state.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
-                        var date = self.$store.state.unixChange(new Date());
+                        var  investdate =self.unixChange(new Date((projectlist_sblb[i].investTime).substr(0,10)));
+                        var date = self.unixChange(new Date());
                         projectlist_sblb[i].investTime =(date < investdate) ? "即将发布" : ((projectlist_sblb[i].investTime).substr(11,5)+'开抢');
                         // projectlist_sblb[i].investTime = (projectlist_sblb[i].investTime).substr(11,5);
                         projectlist_sblb[i].progress = Math.floor(projectlist_sblb[i].progress);

@@ -74,6 +74,7 @@
                             <span v-if="transfer.transfer_status == 2">已转让</span>
                         </td>
                     </tr>
+                    <tr v-if="transferList.length == 0"><td colspan="9">暂无数据！</td></tr>
                 </tbody>
             </table>
             <div class="pages mypage clearfix">
@@ -130,7 +131,7 @@
         methods: {
             investListGet:function(_page, _search) {
                 var self = this;
-                self.$store.state._ajax(self,'/api/invest/index', { page: _page, search: _search, beginTime: self.$store.state.unixChange($("#begintime").val()), endTime: self.$store.state.unixChange($("#endtime").val())}, function (data) {
+                self._ajax(self,'/api/invest/index', { page: _page, search: _search, beginTime: self.unixChange($("#begintime").val()), endTime: self.unixChange($("#endtime").val())}, function (data) {
                     if (data.data.total == 0) {
                         self.transferList = data.data.data;
                         $(".mypage").html("");
@@ -164,7 +165,7 @@
             getTransferlist:function(_page) {
                 //转让债权列表获取
                 var self = this;
-                self.$store.state._ajax(self,'/api/transfer/index', {page: _page}, function (data) {
+                self._ajax(self,'/api/transfer/index', {page: _page}, function (data) {
                     // console.log(data)
                     var transferlist = data.data.data;
                     if (transferlist.length > 0) {
@@ -201,7 +202,7 @@
             tranferCancel:function(_id){
                 var self = this;
                 layer.confirm("是否确定取消债权转让申请？",{title: '操作提示'},function(){
-                    self.$store.state._ajax(self,'/api/transfer/cancelTranfer', { id: _id}, function (data) {
+                    self._ajax(self,'/api/transfer/cancelTranfer', { id: _id}, function (data) {
                         layer.alert(data.msg,{title: '操作提示',icon: 6},function(){window.location.reload();});
                     }, '');
                 },function(){

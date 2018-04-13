@@ -276,15 +276,15 @@
         self.sid = localStorage.SID;
         // 非父子组件通信发送
         LTJF.$emit("txt",{header:true});
-        var idGet = this.$store.state.getUrl(location.href).id;
-        var idtransfer_id = this.$store.state.getUrl(location.href).transfer_id;
-        self.transfer_idGet = this.$store.state.getUrl(location.href).transfer_id;
+        var idGet = this.getUrl(location.href).id;
+        var idtransfer_id = this.getUrl(location.href).transfer_id;
+        self.transfer_idGet = this.getUrl(location.href).transfer_id;
         self.productId = idGet;
         if (idGet == undefined || idGet == null || idGet == ''||idtransfer_id == undefined || idtransfer_id == null || idtransfer_id == '') {
             self.$router.push({path:"/product"})
         }
         //手动投标接口的ret参数为14
-        if (this.$store.state.ifRegular == 0) {
+        if (this.ifRegular == 0) {
             self.ret = 15;
         } else {
             self.ret = 150;
@@ -293,10 +293,10 @@
         self.uid = localStorage.uid;
         if (localStorage.uid != null && localStorage.uid != '') {
             //借款及服务协议
-            self.$store.state._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
+            self._ajax(self,'/api/loan/contract', {respType : 'json',contractType : 1}, function (data) {self.loanxieyi=data.data;},'');
         }
         // 债权转让详情new
-        self.$store.state._ajax(self,'/api/product/transferInfo', {id: idtransfer_id}, function (data) {
+        self._ajax(self,'/api/product/transferInfo', {id: idtransfer_id}, function (data) {
                 console.log(data);
                 // var detail = data.data.detail;
                 var productdetail=data.data.detail;
@@ -378,7 +378,7 @@
         
 
         // 银行限额信息获取
-        this.$store.state._ajax(this,'/api/product/bankLimit', {}, function (data) {
+        this._ajax(this,'/api/product/bankLimit', {}, function (data) {
             self.bankcardlimitList = data.data;
             }, function (data) {
         });      
@@ -389,7 +389,7 @@
             $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
             var self = this;
             //提交转让购买
-            this.$store.state.AjaxSumbit(this,"/", "/api/transfer/buyTranfer", function (data) {
+            this.AjaxSumbit(this,"/", "/api/transfer/buyTranfer", function (data) {
                 if (typeof data.data == "string") {
                     var start = data.data.indexOf('<form id="autoRedirectForm"');
                     var end = data.data.indexOf('</body>');

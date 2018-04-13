@@ -63,7 +63,7 @@
     methods: {
         followListGet: function(_page) {
             var self = this;
-            self.$store.state._ajax(self,'/api/invest/follow',
+            self._ajax(self,'/api/invest/follow',
                 {page: _page},
                 function (data) {
                     //bodyvue.followList = data.data;
@@ -92,7 +92,7 @@
         followCancel:function (_id) {
             var self = this;
             layer.confirm("是否确认取消关注？",{title: '操作提示',icon: 6},function(){
-                self.$store.state._ajax(self,'/api/product/follow', { id: _id }, function () {
+                self._ajax(self,'/api/product/follow', { id: _id }, function () {
                         window.location.reload();
                 }, '')
             },function(){

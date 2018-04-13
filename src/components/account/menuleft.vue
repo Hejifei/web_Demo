@@ -150,12 +150,12 @@
         },
         mounted:function(){
             var self = this;
-            self.$store.state.checklogin(self);
+            self.checklogin(self);
             // 顶部菜单添加下划线
             $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active"); 
             $(".headernav >ul >li").eq(4).find("a").addClass("router-link-exact-active");
             //个人信息获取
-            self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+            self._ajax(self,'/api/user/userInfo', {}, function (data) {
                 //console.log(data)
                 self.userInfo = data.data;
             }, '', false);

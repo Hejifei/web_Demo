@@ -1,37 +1,51 @@
 <template>
     <div class="overview">
-        <div id="ContactC">
-            <div id="Contact">
-                <div class="Contact_box">
-                    <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
-                    <div class="Contact_head">
-                        收益详情
-                    </div>
-                    <div class="Contact_body">
-                        <router-link :to="'/product/PInfo?id='+productID" style="position:absolute;bottom:15px;font-size:12px;display:block;width: 100%;text-align:center;color:#fb5a5c;">点击查看标的详情</router-link>
-                        <div class="sqbody" style="height:296px;">
-                            <div class="sqbodyson">
-                                <table class="model_table" style=''>
-                                    <thead>
-                                        <tr>
-                                            <td>期次</td>
-                                            <td>应收日期</td>
-                                            <td>实收日期</td>
-                                            <td>应收本金</td>
-                                            <td>应收收益</td>
-                                            <td>应收总额</td>
-                                            <td>状态</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+        <transition name="fade">
+            <div id="ContactC" v-if="ContactCshow" @click="SContactChide($event)">
+                <div id="Contact">
+                    <div class="Contact_box">
+                        <div class="cancelmodelbtn" @click="ContactCshow = !ContactCshow"><span class="icon-remove"></span></div>
+                        <div class="Contact_head">
+                            收益详情
+                        </div>
+                        <div class="Contact_body">
+                            <router-link :to="'/product/PInfo?id='+productID" style="position:absolute;bottom:15px;font-size:12px;display:block;width: 100%;text-align:center;color:#fb5a5c;">点击查看标的详情</router-link>
+                            <div class="sqbody" style="height:296px;">
+                                <div class="sqbodyson">
+                                    <table class="model_table" style=''>
+                                        <thead>
+                                            <tr>
+                                                <td>期次</td>
+                                                <td>应收日期</td>
+                                                <td>实收日期</td>
+                                                <td>应收本金</td>
+                                                <td>应收收益</td>
+                                                <td>应收总额</td>
+                                                <td>状态</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(ivstDet,index) in newinvestdetaillist" :key="index">
+                                                <td>{{index+1}}</td>
+                                                <td>{{ivstDet.repayTime}}</td>
+                                                <td>{{ivstDet.payTime}}</td>
+                                                <td>{{ivstDet.repayCapital}}</td>
+                                                <td>{{ivstDet.repayInterest}}</td>
+                                                <td>{{ivstDet.repayMoney}}</td>
+                                                <td>{{ivstDet.is_pay}}</td>
+                                            </tr>
+                                            <tr v-if="newinvestdetaillist.length == 0">
+                                                <td colspan="7">暂无数据！</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </transition>
         <div class="graph">
             预约记录
         </div>
@@ -78,7 +92,7 @@
                             <span v-if="reserveLog.status == 3" :title="reserveLog.describe" class="sp_span">{{reserveLog.describe}}</span>
                         </td>
                     </tr>
-                    <tr v-if="reserveLogList.length == 0"><td colspan="6" style="color:#323232;text-align:center;">暂无预约记录!</td></tr>
+                    <tr v-if="reserveLogList.length == 0"><td colspan="6" style="color:#323232;text-align:center;">暂无数据！</td></tr>
                 </tbody>
             </table>
             <!-- <div class="havenolist" v-if="reserveLogList.length == 0">
@@ -97,7 +111,9 @@
     data () {
       return {
         reserveLogList: [],
-        productID:''
+        productID:'',
+        ContactCshow:false,
+        newinvestdetaillist:''
       }
     },
     created(){
@@ -107,20 +123,18 @@
         
     },
     mounted:function(){
-        //模态框隐藏
-        $(".cancelmodelbtn").click(function () {
-            $("#ContactC").hide();
-        })
-        $("#ContactC").click(function (e) {
-            if (e.target.id == "ContactC" || e.target.id == "Model") {
-                $("#ContactC").hide();
-            }
-        })
+        var self = this;
     },
     methods: {
+        SContactChide:function(e){
+            let self = this;
+            if (e.target.id == "ContactC" ) {
+                self.ContactCshow = !self.ContactCshow;
+            }
+        },
         reserveLogListGet: function(_page) {
             var self = this;
-            self.$store.state._ajax(self,'/api/invest/reserveLog',
+            self._ajax(self,'/api/invest/reserveLog',
                 {page: _page},
                 function (data) {
                     var reserveLogList = data.data;
@@ -147,7 +161,7 @@
         reserveCancel:function (_id) {
             var self = this;
             layer.confirm("是否取消本次预约投资？",{title: '操作提示',icon: 6},function(){
-                self.$store.state._ajax(self,'/api/invest/reserveCancel', { id: _id }, function () {
+                self._ajax(self,'/api/invest/reserveCancel', { id: _id }, function () {
                     layer.alert(data.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();window.location.reload();});
                     setTimeout(function() {
                         layer.closeAll();window.location.reload();
@@ -161,7 +175,7 @@
                 var self = this;
                 self.productID = productID;
                 //签到记录取
-                self.$store.state._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
+                self._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
                     var investdetaillist = data.data.list;
                     $(".model_table tbody").html("");
                     var temp = "";
@@ -203,9 +217,9 @@
                     $(".model_table tbody").html(temp);
                     // $(".Contact_head").html(`收益详情(<router-link to="/product/PInfo?id=${productID}">点击查看标的详情</router-link>)`);
                     // $(".Contact_head").html('收益详情(<a href="/product/PInfo?id='+productID+'">点击查看标的详情</a>)');
-                    
-                    self.investdetaillist = investdetaillist;
-                    $("#ContactC").show();
+                    self.newinvestdetaillist = investdetaillist;
+                    // self.investdetaillist = investdetaillist;
+                    self.ContactCshow = !self.ContactCshow;
                 }, '');
             },
     }

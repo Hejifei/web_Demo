@@ -112,10 +112,10 @@
     },
     mounted:function(){
         var self = this;
-        self.idget = self.$store.state.getUrl(location.href).id;
+        self.idget = self.getUrl(location.href).id;
         self.sid = localStorage.SID;    
         //产品详情信息获取
-        self.$store.state._ajax(self,'/api/transfer/detail', { id: self.idget }, function (data) {
+        self._ajax(self,'/api/transfer/detail', { id: self.idget }, function (data) {
             var productDetail=data.data;
             productDetail.returnTime = productDetail.returnTime.substr(0, 10)
             self.productDetail = productDetail;
@@ -160,7 +160,7 @@
             }
         });
 
-        self.$store.state.AjaxSumbit(self,"", "/api/transfer/applyTransfer", function (data) {
+        self.AjaxSumbit(self,"", "/api/transfer/applyTransfer", function (data) {
             layer.alert(data.msg,{title: '操作提示',icon: 6},function(){
                     layer.closeAll();
                     self.$router.push({path:'/account/investlistTransfer'})
@@ -174,9 +174,9 @@
     methods: {
         getCode: function () {
                 var self = this;
-                if (self.$store.state.countdown == 60) {
-                    self.$store.state.settime();
-                        self.$store.state._ajax(self,'/api/user/sendSmsVerify',
+                if (self.countdown == 60) {
+                    self.settime();
+                        self._ajax(self,'/api/user/sendSmsVerify',
                             {
                                 mobile:JSON.parse(localStorage.ltjfUserInfo).mobile,
                                 type:1

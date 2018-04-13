@@ -92,10 +92,11 @@
             </div>
         </div>
     </div>
-    <div id="ContactC">
+    <transition name="fade">
+        <div id="ContactC" v-if="ContactCshow" @click="SContactChide($event)">
             <div id="Contact">
                 <div class="Contact_box">
-                    <div class="cancelmodelbtn"><span class="icon-remove"></span></div>
+                    <div class="cancelmodelbtn" @click="ContactCshow = !ContactCshow"><span class="icon-remove"></span></div>
                     <div class="Contact_head">
                         收益详情
                     </div>
@@ -115,6 +116,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr v-for="(invstD,index) in newinvestdetaillist" :key="index">
+                                            <td>{{index + 1}}</td>
+                                            <td>{{invstD.repayTime}}</td>
+                                            <td>{{invstD.payTime}}</td>
+                                            <td>{{invstD.repayCapital}}</td>
+                                            <td>{{invstD.repayInterest}}</td>
+                                            <td>{{invstD.repayMoney}}</td>
+                                            <td>{{invstD.is_pay}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -123,7 +133,8 @@
                 </div>
             </div>
         </div>
-</div>
+    </transition>
+    </div>
 </template>
 
 <script>
@@ -135,7 +146,9 @@
         repayedNum:0,
         dayList:[],
         nextTime:'',
-        nowMonth:'0'
+        nowMonth:'0',
+        ContactCshow:false,
+        newinvestdetaillist:''
       }
     },
     created(){
@@ -149,38 +162,35 @@
     mounted:function(){
         var self = this;
         //用户信息获取
-        self.$store.state._ajax(self,'/api/account/assets', {}, function (data) {
+        self._ajax(self,'/api/account/assets', {}, function (data) {
             //console.log(data)
             self.accountAssets = data.data;
         }, '');
-
-        //模态框隐藏
-        $(".cancelmodelbtn").click(function () {
-            $("#ContactC").hide();
-        })
-        $("#ContactC").click(function (e) {
-            if (e.target.id == "ContactC" || e.target.id == "Model") {
-                $("#ContactC").hide();
-            }
-        })      
+    
     },
     methods: {
+        SContactChide:function(e){
+                let self = this;
+                if (e.target.id == "ContactC" ) {
+                    self.ContactCshow = !self.ContactCshow;
+                }
+            },
         preMonth:function(){
             var self = this;
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var nowYear = $(".calendar_month_span").html().split("年")[0];
-            self.$store.state.calUtil.showMonth=parseInt(nowMonth)-1;
-            self.$store.state.calUtil.showYear=nowYear;
-            if(self.$store.state.calUtil.showMonth==0)
+            self.calUtil.showMonth=parseInt(nowMonth)-1;
+            self.calUtil.showYear=nowYear;
+            if(self.calUtil.showMonth==0)
             {
-                self.$store.state.calUtil.showMonth=12;
-                self.$store.state.calUtil.showYear-=1;
+                self.calUtil.showMonth=12;
+                self.calUtil.showYear-=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            var changetime = self.calUtil.showYear+'/'+self.calUtil.showMonth+'/01';
             changetime= new Date(changetime);
             // 如果上一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
-            if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
+            if(nowdate.getFullYear() == self.calUtil.showYear && (nowdate.getMonth() +1) == self.calUtil.showMonth){
                 self.getCalendar(changetime,self.datetoday,true,true);
             }else{
                 self.getCalendar(changetime,self.datetoday,false);
@@ -190,18 +200,18 @@
             var self = this;
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var nowYear = $(".calendar_month_span").html().split("年")[0];
-            self.$store.state.calUtil.showMonth=parseInt(nowMonth)+1;
-            self.$store.state.calUtil.showYear=parseInt(nowYear);
-            if(self.$store.state.calUtil.showMonth==13)
+            self.calUtil.showMonth=parseInt(nowMonth)+1;
+            self.calUtil.showYear=parseInt(nowYear);
+            if(self.calUtil.showMonth==13)
             {
-                self.$store.state.calUtil.showMonth=1;
-                self.$store.state.calUtil.showYear+=1;
+                self.calUtil.showMonth=1;
+                self.calUtil.showYear+=1;
             };
-            var changetime = self.$store.state.calUtil.showYear+'/'+self.$store.state.calUtil.showMonth+'/01';
+            var changetime = self.calUtil.showYear+'/'+self.calUtil.showMonth+'/01';
             changetime= new Date(changetime);
             // 如果下一个月是当前时间的月份，自动选择今天
             var nowdate = new Date();
-            if(nowdate.getFullYear() == self.$store.state.calUtil.showYear && (nowdate.getMonth() +1) == self.$store.state.calUtil.showMonth){
+            if(nowdate.getFullYear() == self.calUtil.showYear && (nowdate.getMonth() +1) == self.calUtil.showMonth){
                 self.getCalendar(changetime,self.datetoday,true,true);
             }else{
                 self.getCalendar(changetime,self.datetoday,false);
@@ -209,8 +219,8 @@
         },
         getCalendar:function(_time,datetoday,ifSelecteddate,ifnexttoday){
             var self = this;
-            self.$store.state._ajax(self,'/api/invest/getCalendar', {
-                time: self.$store.state.unixChange(_time),
+            self._ajax(self,'/api/invest/getCalendar', {
+                time: self.unixChange(_time),
             }, function (data) {
                 self.repayNum = data.data.repayNum != null ? data.data.repayNum : 0;
                 self.repayedNum = data.data.repayed != null ? data.data.repayedNum : 0;
@@ -229,7 +239,7 @@
                     }
                 }
                 // var repayList = [{ "signDay": "09" }, { "signDay": "11" }, { "signDay": "12" }, { "signDay": "13" }, { "signDay": "15" }, { "signDay": "25" }];
-                self.$store.state.calUtil.init(repayList,"#calendar_left",_time,repayedList,datetoday);
+                self.calUtil.init(repayList,"#calendar_left",_time,repayedList,datetoday);
                 var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
                 self.nowMonth = nowMonth;
                 // 绑定点击查看上一个月
@@ -244,23 +254,23 @@
                         var direcedate = $(this).attr("date");
                         direcedate = direcedate.replace(/-/g, "\/");
                         direcedate = new Date(direcedate);
-                        self.dailycalendar(self.$store.state.unixChange(direcedate));
+                        self.dailycalendar(self.unixChange(direcedate));
                         $(".Selecteddate").removeClass("Selecteddate");
                         $(this).addClass('Selecteddate');
                     }
                 });
                 if(ifnexttoday){
-                    self.dailycalendar(self.$store.state.unixChange(datetoday),ifSelecteddate);
+                    self.dailycalendar(self.unixChange(datetoday),ifSelecteddate);
                 }else{
-                    self.dailycalendar(self.$store.state.unixChange(_time),ifSelecteddate);
+                    self.dailycalendar(self.unixChange(_time),ifSelecteddate);
                 }
                 
             }, '');
         },
         dailycalendar:function(_time,ifSelecteddate){
             var self = this;
-            var unUnixedTime = self.$store.state.formatTime(_time);
-            self.$store.state._ajax(self,'/api/invest/calendar', {
+            var unUnixedTime = self.formatTime(_time);
+            self._ajax(self,'/api/invest/calendar', {
                 time: _time,
             }, function (data) {
                 var dayList=data.data.dayList;
@@ -283,7 +293,7 @@
         },
         nextPaydate:function(_time){
             var self = this;
-            var unUnixedTime = self.$store.state.formatTime(_time);
+            var unUnixedTime = self.formatTime(_time);
             unUnixedTime = unUnixedTime.replace(/-/g, "\/");
             var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
             var purposeMonth = (new Date(unUnixedTime)).getMonth() + 1;
@@ -299,7 +309,7 @@
         HuankuanDetail:function(idget) {
                 var self = this;
                 //签到记录取
-                self.$store.state._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
+                self._ajax(self,'/api/invest/detail', { id: idget }, function (data) {
                     var investdetaillist = data.data.list;
                     $(".model_table tbody").html("");
                     var temp = "";
@@ -326,20 +336,12 @@
                                     investdetaillist[i].is_pay = "已返";
                                     break;
                             }
-                            temp += '<tr>'+
-                                        '<td>'+ (i+1) +'</td>' +
-                                        '<td>' + investdetaillist[i].repayTime + '</td>' +
-                                        '<td>' + investdetaillist[i].payTime + '</td>' +
-                                        '<td>' + investdetaillist[i].repayCapital + '</td>' +
-                                        '<td>' + investdetaillist[i].repayInterest + '</td>' +
-                                        '<td>' + investdetaillist[i].repayMoney + '</td>' +
-                                        '<td>' + investdetaillist[i].is_pay + '</td>' +
-                                '</tr>'
+                            
                         }
                     }
-                    $(".model_table tbody").html(temp);
-                    self.investdetaillist = investdetaillist;
-                    $("#ContactC").show();
+                    self.newinvestdetaillist = investdetaillist
+                    // $(".model_table tbody").html(temp);
+                    self.ContactCshow = !self.ContactCshow;
                 }, '');
             },
     }

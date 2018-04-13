@@ -117,13 +117,13 @@
             LTJF.$emit("txt",{header:true});
             var self = this;
             //获取统计资金
-            // this.$store.state._ajax(self,'/api/product/statistics', {}, function (data) {
+            // this._ajax(self,'/api/product/statistics', {}, function (data) {
             //     let statistics = data.data;
             //     statistics.totalMoney = parseInt(statistics.totalMoney);
             //     statistics.profit = parseInt(statistics.profit);
             //     self.statistics = statistics;
             // });
-            this.$store.state._ajax(self,'/api/statistics/platformdata', {}, function (data) {
+            this._ajax(self,'/api/statistics/platformdata', {}, function (data) {
                 let statistics = data.data.totalData;
                 statistics.totalMoney = parseInt(statistics.totalMoney);
                 statistics.profit = parseInt(statistics.profit);

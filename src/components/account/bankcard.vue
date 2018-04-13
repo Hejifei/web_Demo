@@ -54,7 +54,7 @@
             var self = this;
             self.sid = localStorage.SID;
             //是否实名认证获取，若未实名就跳转到开户界面
-            self.$store.state._ajax(self,'/api/user/userInfo', {}, function (data) {
+            self._ajax(self,'/api/user/userInfo', {}, function (data) {
                 if (data.data.status == 0 ) {
                     //未实名认证
                     let msg = self.regType === 0 ? '实名认证' : '企业认证';
@@ -63,14 +63,14 @@
                 }
             }, '');
             //绑卡接口的ret参数为11
-            if (self.$store.state.ifRegular == 0) {
+            if (self.ifRegular == 0) {
                 self.ret = 11;
             } else {
                 self.ret = 110;
             }
 
             //银行卡获取
-            self.$store.state._ajax(self,'/api/bankcard/getCardList', {}, function (data) {
+            self._ajax(self,'/api/bankcard/getCardList', {}, function (data) {
                 var bankcardlist = data.data;
                 if (bankcardlist.length > 0) {
                     for (var i = 0; i < bankcardlist.length; i++) {
@@ -85,7 +85,7 @@
         methods: {
             addnewCard: function () {
                 var self = this;
-                self.$store.state._ajax(self,'/api/chinapnr/bidCard', {
+                self._ajax(self,'/api/chinapnr/bidCard', {
                     type: '',
                     respType:'json'
                 }, function (data) {
@@ -109,7 +109,7 @@
                 var self = this;
                 layer.confirm("你确定要删除该银行卡嘛？",{title: '操作提示'},function(){
                     //银行卡号删除
-                    self.$store.state._ajax(self,'/api/chinapnr/delCard', { cardId: bankId }, function (data) {
+                    self._ajax(self,'/api/chinapnr/delCard', { cardId: bankId }, function (data) {
                         layer.alert(data.msg,{title: '操作提示',icon: 6},function(){window.location.reload();});
                     },  function (data) {
                         layer.alert(data.msg,{title: '操作提示',icon: 5},function(){window.location.reload();});
@@ -121,7 +121,7 @@
             },
             gotohuifu: function () {
                 var self = this;
-                self.$store.state._ajax(self,'/api/chinapnr/userLogin', {
+                self._ajax(self,'/api/chinapnr/userLogin', {
                     type: '',
                     respType:'json'
                 }, function (data) {

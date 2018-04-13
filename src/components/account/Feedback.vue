@@ -60,7 +60,7 @@
                     // 请填写反馈内容
                     layer.alert("请填写反馈内容", {title: '操作提示',icon: 5}, function () { layer.closeAll(); })
                 }else{
-                    self.$store.state._ajax(self,'/api/account/feedback',
+                    self._ajax(self,'/api/account/feedback',
                         {content: self.content,tel:self.tel},
                         function (data) {
                             layer.alert(data.msg, {title: '操作提示',icon: 6}, function () { layer.closeAll();self.getFeedbackList();  self.feedbacktype = 1;})
@@ -72,7 +72,7 @@
             },
             getFeedbackList:function(){
                 var self = this;
-                self.$store.state._ajax(self,'/api/account/getFeedback',{},
+                self._ajax(self,'/api/account/getFeedback',{},
                     function (data) {
                         var feedbacklist = data.data;
                         if(feedbacklist.length >0){
