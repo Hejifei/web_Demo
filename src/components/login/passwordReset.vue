@@ -24,14 +24,14 @@
                                 <p class="mb20 clearfix">
                                     <span class="registname fl">手机号：</span>
                                     <span class="registlabel fl form-group">
-                                        <input type="text" placeholder="请输入手机号" class="form-submit required phone" name="mobile" id="mobile">
+                                        <input  maxlength="11" type="text" placeholder="请输入手机号" class="form-submit required phone" name="mobile" id="mobile">
                                         <span class="tip"></span>
                                     </span>
                                 </p>
                                 <p class="mb20 clearfix">
                                     <span class="registname fl">短信验证码：</span>
                                     <span class="registlabel fl form-group">
-                                        <input type="text" name="smsverify" id="smsverify" class="form-submit required" placeholder="请输入验证码" style="width: 125px">
+                                        <input  maxlength="6" type="text" name="smsverify" id="smsverify" class="form-submit required" placeholder="请输入验证码" style="width: 125px">
                                         <span class="tip" style="right:125px;"></span>
                                         <a class="redBtn getcodeBtn" id="getSmsVerify" @click="getCode">点击获取验证码</a>
                                     </span>
@@ -105,15 +105,15 @@
             getCode:function(){
                 var self = this;
                 if (this.countdown == 60) {
-                    if ($("#mobile").val() == "") {
+                    if (($("#mobile").val()).trim() == "") {
                         layer.alert("手机号不能为空",{title: '操作提示',icon: 5},function(){layer.closeAll();});
-                    } else {
-                        self.settime();
+                    } else if($("#mobile").siblings('.tip').text() === '') {
                         this._ajax(self,'/api/user/sendSmsVerify',
                             {
-                                mobile: $("#mobile").val(),
-                                type: 1
+                                mobile: ($("#mobile").val()).trim(),
+                                type: 6
                             }, function (j) {
+                                self.settime();
                                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){layer.closeAll();});
                             }, function (j) {
                                 layer.alert(j.msg,{title: '操作提示',icon: 5},function(){layer.closeAll();});

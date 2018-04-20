@@ -28,7 +28,7 @@
                             <p class="mb20 clearfix">
                                 <span class="logname fl">手机号：</span>
                                 <span class="loglabel fl form-group" style="width:240px">
-                                    <input type="text" v-model="mobile" name="mobile" id="mobile" placeholder="请输入手机号码"  class="input_text radius form-submit required phone"/>
+                                    <input maxlength="11" type="text" v-model="mobile" name="mobile" id="mobile" placeholder="请输入手机号码"  class="input_text radius form-submit required phone" onkeyup="value=value.replace(/[^\d]/g,'')"/>
                                     <span class="tip"></span>
                                 </span>
                             </p>
@@ -43,7 +43,7 @@
                             <p class="mb20 clearfix">
                                 <span class="logname fl">验证码：</span>
                                 <span class="loglabel fl form-group" style="width:240px">
-                                    <input type="text"  placeholder="请输入验证码" class="input_text  radius w90 form-submit required" name="imgverify" id="imgverify" v-model="imgverify">
+                                    <input maxlength="6" type="text"  placeholder="请输入验证码" class="input_text  radius w90 form-submit required" name="imgverify" id="imgverify" v-model="imgverify">
                                     <span class="tip" style="right: 120px;"></span>
                                     <span class="code">
                                         <!-- <img id="codeimg" :src="codeimgurl" @click='numchange'> -->

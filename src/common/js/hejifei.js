@@ -182,6 +182,25 @@ exports.install = function (Vue, options) {
                 Tip.text("");
             }
         })
+        Form.find(".cardid").blur(function () {
+            var Tip = $(this).next(".tip");
+            if ($(this).val() != "") {
+                var reg = /^[0-9a-zA-Z]{15,18}$/;
+                if (!reg.test($(this).val())) {
+                    if (ifrightshow == true) {
+                        Tip.removeClass("oklogo");
+                    }
+                    Tip.text("请输入15、18位统一社会信用代码！");
+                } else {
+                    Tip.text("");
+                    if (ifrightshow == true) {
+                        Tip.addClass("oklogo");
+                    }
+                }
+            } else if (!$(this).hasClass("required")) {
+                Tip.text("");
+            }
+        })
         Form.find(".password").blur(function () {
             var Tip = $(this).next(".tip");
             if ($(this).val() != "") {
@@ -190,7 +209,7 @@ exports.install = function (Vue, options) {
                     if (ifrightshow == true) {
                         Tip.removeClass("oklogo");
                     }
-                    Tip.text("应是6-20位数字、字母组合！");
+                    Tip.text("请使用6-20位数字或字母密码！");
                 } else {
                     Tip.text("");
                     if (ifrightshow == true) {

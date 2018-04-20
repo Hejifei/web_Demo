@@ -31,7 +31,7 @@
                                         <p class="mb20 clearfix">
                                             <span class="registname fl">营业执照：</span>
                                             <span class="registlabel fl form-group">
-                                                <input type="text" placeholder="请输入营业执照" class="form-submit required" name="cardid" id="cardid" />
+                                                <input type="text" placeholder="请输入营业执照" class="form-submit cardid required" name="cardid" id="cardid" />
                                                 <span class="tip"></span>
                                                 <!-- @*注册类型 0代表个人，1代表企业*@ -->
                                                 <input type="hidden" class="form-submit" value="1" name="type" id="type" />
@@ -40,23 +40,23 @@
                                         <p class="mb20 clearfix">
                                             <span class="registname fl">手机号：</span>
                                             <span class="registlabel fl form-group">
-                                                <input type="text" placeholder="请输入手机号" class="form-submit required phone" name="mobile" id="mobile" />
+                                                <input maxlength="11" type="text" placeholder="请输入手机号码" class="form-submit required phone" name="mobile" id="mobile" onkeyup="value=value.replace(/[^\d]/g,'')"/>
                                                 <span class="tip"></span>
                                             </span>
                                         </p>
                                         <p class="mb20 clearfix">
                                             <span class="registname fl" style="width:126px">短信验证码：</span>
                                             <span class="registlabel fl form-group" style="width:260px">
-                                                <input type="text" name="smsverify" id="smsverify" class="form-submit required" placeholder="请输入验证码" style="width: 125px" />
+                                                <input maxlength="6" type="text" name="smsverify" id="smsverify" class="form-submit required" placeholder="短信验证码" style="width: 125px" />
                                                 <span class="tip" style="right:125px;"></span>
-                                                <a class="redBtn getcodeBtn" @click="getcode" id="getSmsVerify">点击获取验证码</a>
+                                                <a class="redBtn getcodeBtn" @click="getcode" id="getSmsVerify">获取验证码</a>
                                             </span>
                                         </p>
                                         <!--密码-->
                                         <p class="mb20 clearfix">
                                             <span class="registname fl">密码：</span>
                                             <span class="registlabel fl form-group">
-                                                <input type="password" placeholder="请输入密码" class="form-submit required password newpassword" name="password" id="password" />
+                                                <input type="password" placeholder="请设置6-20位密码" class="form-submit required password newpassword" name="password" id="password" />
                                                 <span class="tip"></span>
                                             </span>
                                         </p>
@@ -71,7 +71,7 @@
                                         <p class="mb20 clearfix">
                                             <span class="registname fl">推荐人手机号：</span>
                                             <span class="registlabel fl form-group">
-                                                <input type="text" placeholder="请输入推荐人手机号（可选填）" class="form-submit" name="inviter" id="inviter" />
+                                                <input type="text" maxlength="11" placeholder="推荐人手机号（选填）" class="form-submit phone" name="inviter" id="inviter" onkeyup="value=value.replace(/[^\d]/g,'')"/>
                                                 <span class="tip"></span>
                                             </span>
                                         </p>
@@ -134,15 +134,15 @@
             getcode:function(){
                 var self = this;
                 if (this.countdown == 60) {
-                    if ($("#mobile").val() == "") {
+                    if (($("#mobile").val()).trim() == "") {
                         layer.alert("手机号不能为空!",{title: '操作提示',icon: 5},function(){layer.closeAll()});
-                    } else {
-                        self.settime();
+                    } else if($("#mobile").siblings('.tip').text() === '') {
                         self._ajax(self,'/api/user/sendSmsVerify',
                             {
-                                mobile: $("#mobile").val(),
-                                type: 1
+                                mobile: ($("#mobile").val()).trim(),
+                                type: 3
                             }, function (j) {
+                                self.settime();
                                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){layer.closeAll()});
                             }, function (j) {
                                 layer.alert(j.msg,{title: '操作提示',icon: 5},function(){layer.closeAll()});

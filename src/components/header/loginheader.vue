@@ -7,7 +7,7 @@
                 <span class="fl" style="font-size:12px;font-family:微软雅黑">客服热线：</span>
                 <span style="font-size:14px;color:#666666;font-weight:bold;font-family:微软雅黑" class="fl">400-606-1018</span>
                 <router-link style="color:#eb494b;font-size:12px;font-family:微软雅黑;margin-right: 10px;margin-left: 12px;" class="fl" to="/about/helpCenter">帮助中心</router-link>
-                <span class="fl" style="font-size:12px;font-family:微软雅黑">出借有风险，投资需理性</span>
+                <span class="fl" style="font-size:12px;font-family:微软雅黑">出借有风险，投资需谨慎</span>
             </div>
         </div>
     </div>

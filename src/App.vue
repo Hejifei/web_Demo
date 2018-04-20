@@ -97,7 +97,13 @@
       },
       logincheckhref:function(href){
         var self = this;
-        self.login_checkhref(href,self);
+        // self.login_checkhref(href,self);
+        if (localStorage.uid == null || localStorage.uid == '') {
+            localStorage.url = href;
+            self.$router.push({path:'/login'});
+        } else {
+            self.$router.push({path:href})
+        }
       },
     },
     components:{

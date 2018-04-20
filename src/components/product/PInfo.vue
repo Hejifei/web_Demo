@@ -42,7 +42,7 @@
             <a class='cancelx' @click="swiperBighide2"><span class="icon-remove"></span></a>
             <div class="swiper-container" id="swiper-containerBig">
                 <div class="swiper-wrapper">
-                    <div v-for="(picture,index) in BorrowerInfo.picture"  :key='index' class="swiper-slide">
+                    <div v-for="(picture,index) in BorrowerInfo.picture.content"  :key='index' class="swiper-slide">
                         <img :src="picture" />
                         <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                     </div>
@@ -225,22 +225,25 @@
                             </tbody>
                         </table>
                         <h3 v-if="user_type == 0">个人基本信息</h3>
-                        <table v-if="user_type == 0">
+                        <!-- <table v-if="user_type == 0">
                             <tbody id="personbaseInfo">
                                 <tr><td>姓名</td><td>{{BorrowerInfo.realname}}</td><td>年龄</td><td>{{BorrowerInfo.age}}</td></tr>
                                 <tr id="sextr"><td>性别</td><td>{{BorrowerInfo.sex}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
                                 <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
                                 <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
                             </tbody>
-                        </table>
+                        </table> -->
                         <h3 v-if="user_type == 1">企业基本信息</h3>
-                        <table v-if="user_type == 1">
+                        <!-- <table v-if="user_type == 1">
                             <tbody id="personbaseInfo">
                                 <tr><td>企业名称</td><td>{{BorrowerInfo.companyName}}</td><td>企业法人</td><td>{{BorrowerInfo.realname}}</td></tr>
                                 <tr><td>公司类型</td><td>{{BorrowerInfo.companyNature}}</td><td>{{authInfo1}}</td><td v-if="authInfo1 !== ''">已认证</td></tr>
                                 <tr><td>{{authInfo2}}</td><td v-if="authInfo2 !== ''">已认证</td><td>{{authInfo3}}</td><td v-if="authInfo3 !== ''">已认证</td></tr>
                                 <tr><td>{{authInfo4}}</td><td v-if="authInfo4 !== ''">已认证</td></tr>
                             </tbody>
+                        </table> -->
+                        <table>
+                            <tbody id="personbaseInfo" v-html="BorrowerInfonew"></tbody>
                         </table>
                         <h3>风控措施</h3>
                         <table>
@@ -285,7 +288,7 @@
                         <!-- Swiper -->
                         <div class="swiper-container" id="swiper-containerSmall">
                             <div class="swiper-wrapper">
-                                <div v-for="(picture,index) in BorrowerInfo.picture" @click="swiperBig(index)"  :key='index' class="swiper-slide">
+                                <div v-for="(picture,index) in BorrowerInfo.picture.content" @click="swiperBig(index)"  :key='index' class="swiper-slide">
                                     <img :src="picture" />
                                     <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                                 </div>
@@ -355,6 +358,7 @@
             productDetail: [],
             accountInfo:[],
             BorrowerInfo:[],
+            BorrowerInfonew:'',
             productrisking:[],
             investment:[],
             investPnum:0,
@@ -427,8 +431,27 @@
                 self.user_type = data.data.user_type;
             });
             //借款人信息获取
-            this._ajax(this,'/api/product/information', { id: idGet }, function (data) {
+            this._ajax(this,'/api/product/docInfo', { id: idGet }, function (data) {
                 self.BorrowerInfo = data.data;
+                let newObj= (data.data.authInfo).reduce((a,b) => {
+                    let key = b.sort;
+                    if(a[key]){
+                        key = parseFloat(Number(key) * 1.1).toFixed(1);
+                    }
+                    a= Object.assign(a,{[key]:[b]})
+                    return a;
+                },{})
+                let newObjlist = [];
+                for(let a in newObj){
+                    newObjlist.push(parseFloat(a));
+                }
+                newObjlist = newObjlist.sort();
+                var newarr = newObjlist.map((x)=>newObj[x]);
+                let temp='';
+                for(let b in newarr){
+                    temp  += ((b % 2 === 0) ? `<tr><td>${newarr[b][0].title}</td><td>${newarr[b][0].content}</td>` : `<td>${newarr[b][0].title}</td><td>${newarr[b][0].content}</td></tr>`)
+                }
+                 self.BorrowerInfonew = temp;
                 setTimeout(function(){
                     var swiper1 = new Swiper('#swiper-containerSmall', {
                         pagination: '#swiper-containerSmall .swiper-pagination',
@@ -464,12 +487,12 @@
                 var risking= data.data;
                 risking.creditInfo = risking.creditInfo.split('；');
                 self.productrisking = risking;
-                if(self.productrisking.authInfo.length > 0){
-                    for(var i = 0;i<self.productrisking.authInfo.length;i++){
-                        var authinfonum = 'authInfo'+(i+1);
-                        self[authinfonum] =self.productrisking.authInfo[i].content;
-                    }
-                }
+                // if(self.productrisking.authInfo.length > 0){
+                //     for(var i = 0;i<self.productrisking.authInfo.length;i++){
+                //         var authinfonum = 'authInfo'+(i+1);
+                //         self[authinfonum] =self.productrisking.authInfo[i].content;
+                //     }
+                // }
             
             }, '');
                     
