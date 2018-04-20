@@ -33,7 +33,7 @@
                                     <span class="registlabel fl form-group">
                                         <input  maxlength="6" type="text" name="smsverify" id="smsverify" class="form-submit required" placeholder="请输入验证码" style="width: 125px">
                                         <span class="tip" style="right:125px;"></span>
-                                        <a class="redBtn getcodeBtn" id="getSmsVerify" @click="getCode">点击获取验证码</a>
+                                        <a class="redBtn getcodeBtn" id="getSmsVerify" @click="getCode">获取验证码</a>
                                     </span>
                                 </p>
                                 <!--密码-->
