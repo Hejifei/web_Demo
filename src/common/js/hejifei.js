@@ -53,6 +53,7 @@ exports.install = function (Vue, options) {
                 d.code == '1' ? b(d) : c(d);
             }
           }).catch(function(err){
+              console.log(_url)
             console.log('报错：' +err);
           })
         // that.$http.post(APIURL + _url,
@@ -1933,4 +1934,5 @@ exports.install = function (Vue, options) {
     Vue.prototype.unixChange=unixChange;
     Vue.prototype.wave=wave;
     Vue.prototype.formatTime=formatTime;
+    Vue.prototype.$=$;
 };

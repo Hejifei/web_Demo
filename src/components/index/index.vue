@@ -192,14 +192,18 @@
                 <div class="newP_left" style="z-index:9;position:relative;">
                     <h1><img src="../../common/stylus/img/newindex_productlogo.png" />生财有道</h1>
                     <ul>
-                        <li><a @click="productlistChange(3,0)" class="prolistSel">利房宝<span>{{productType1val}}</span></a></li>
-                        <li><a @click="productlistChange(4,1)">利车宝<span>{{productType2val}}</span></a></li>
-                        <li><a @click="productlistChange(2,2)">债权转让<span>{{typesPNum.transferNum}}</span></a></li>
-                        <li><a @click="productlistChange(5,3)" style="padding-right: 65px;">预约抢购</a></li>
+                        <li><a @click="productlistChange(1,0)" class="prolistSel">散标投资
+                            <!-- <span>{{productType1val}}</span> -->
+                            </a></li>
+                        <!-- <li><a @click="productlistChange(4,1)">利车宝<span>{{productType2val}}</span></a></li> -->
+                        <li><a @click="productlistChange(2,1)">债权转让
+                            <!-- <span>{{typesPNum.transferNum}}</span> -->
+                            </a></li>
+                        <li><a @click="productlistChange(5,2)" style="padding-right: 65px;">预约抢购</a></li>
                     </ul>
                     <canvas id="waveC"></canvas>
                 </div>
-                <div class="newP_right" v-if="type == 3 || type == 4">
+                <div class="newP_right" v-if="type == 1 || type ==  3 || type == 4">
                     <div v-for="(sblist,index) in projectlist_sblb" v-if="index < 5"  :key="index" class="newP_detailC">
                         <h3>
                             <router-link :to="'/product/PInfo?id='+sblist.id">
@@ -516,9 +520,9 @@ export default {
             // 重新获取各类标的数量
             LTJF.$emit("NumberChage",1);
             //散标、债权
-            self.productlistChange(3,0);
+            self.productlistChange(1,0);
             // 各类标数据条数获取
-            self.productNumget();
+            // self.productNumget();
             ////合作伙伴信息获取
             // this._ajax(self,'/api/open/cooperation', {}, function (data) {
             //     self.cooperationList = data.data;
@@ -544,7 +548,6 @@ export default {
         },
         productlistChange:function(_type,_index){
             var self = this;
-            
             //散标/债券数据获取
             self._ajax(self,'/api/product/index',
             {
@@ -590,19 +593,19 @@ export default {
         },
         productNumget:function(){
             var self = this;
-            var getNumdata = JSON.parse(localStorage.getNum);
-            self.typesPNum = getNumdata;
-            self.productInfoNum = getNumdata.productInfo;
-            self.productType1val = getNumdata.productInfo.home;
-            self.productType2val = getNumdata.productInfo.car;
-            //散标、债权
-            if(self.productInfoNum.home > 0){
-            }else if(self.productInfoNum.car > 0){
-                self.productlistChange(4,1);
-            }else if(self.productInfoNum.transferNum > 0){
-                self.productlistChange(2,2);
-            }else{
-            }
+            // var getNumdata = JSON.parse(localStorage.getNum);
+            // self.typesPNum = getNumdata;
+            // self.productInfoNum = getNumdata.productInfo;
+            // self.productType1val = getNumdata.productInfo.home;
+            // self.productType2val = getNumdata.productInfo.car;
+            // //散标、债权
+            // if(self.productInfoNum.home > 0){
+            // }else if(self.productInfoNum.car > 0){
+            //     self.productlistChange(4,1);
+            // }else if(self.productInfoNum.transferNum > 0){
+            //     self.productlistChange(2,2);
+            // }else{
+            // }
         }
     }, 
     components:{

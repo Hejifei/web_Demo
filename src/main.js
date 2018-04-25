@@ -19,7 +19,7 @@ import App from './App';
 
 // jquery引用
 // import 'jquery';
-import $ from 'jquery'
+import $ from 'jquery';
 // import  "../static/js/my_pc3.0.js";
 // import axios from 'axios';
 // Vue.prototype.$http = axios;

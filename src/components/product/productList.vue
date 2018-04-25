@@ -6,10 +6,12 @@
         <div class="newPLC_left">
           <label>产品列表</label>
           <ul class="np_left_menuul">
-            <!-- <li :class="{np_left_liactive:listnum ==1}" @click='ProductListGet(1,1,"")'>散标投资（{{getNum.productsNum}}）</li> -->
-            <li :class="{np_left_liactive:listnum ==3}" @click='ProductListGet(1,3,"")'>利房宝（{{productInfo.home}}）</li>
-            <li :class="{np_left_liactive:listnum ==4}" @click='ProductListGet(1,4,"")'>利车宝（{{productInfo.car}}）</li>
-            <li :class="{np_left_liactive:listnum ==2}" @click='ProductListGet(1,2,"")' style="border-top:0;">债权转让（{{getNum.transferNum}}）</li>
+            <li :class="{np_left_liactive:listnum ==3}" @click='ProductListGet(1,1,"")'>散标投资</li>
+            <!-- <li :class="{np_left_liactive:listnum ==3}" @click='ProductListGet(1,3,"")'>利房宝（{{productInfo.home}}）</li>
+            <li :class="{np_left_liactive:listnum ==4}" @click='ProductListGet(1,4,"")'>利车宝（{{productInfo.car}}）</li> -->
+            <li :class="{np_left_liactive:listnum ==2}" @click='ProductListGet(1,2,"")' style="border-top:0;">债权转让
+              <!-- （{{getNum.transferNum}}） -->
+            </li>
             <li :class="{np_left_liactive:listnum ==5}" @click='ProductListGet(1,5,"")' style="border-top:0;">预约抢购</li>
           </ul>
           <div class="investDynamicC">
@@ -31,7 +33,7 @@
             <label>排序方式</label>
             <ul>
               <li>项目规模<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="1" desc_sorting="2"></span></li>
-              <li>预计年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
+              <li>预期年化<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="3" desc_sorting="4"></span></li>
               <li>投资期限<span @click="listsort($event,listnum)" class="sort_both" asc_sorting="5" desc_sorting="6"></span></li>
             </ul>
             <!-- <ul v-if="listnum ==2">
@@ -231,8 +233,8 @@
         this.ProductListGet(1, 1, '');
         // 重新获取各类标的数量
         LTJF.$emit("NumberChage",1);
-        self.getNum = JSON.parse(localStorage.getNum);
-        self.productInfo = JSON.parse(localStorage.getNum).productInfo;
+        // self.getNum = JSON.parse(localStorage.getNum);
+        // self.productInfo = JSON.parse(localStorage.getNum).productInfo;
         self.bidDynamic();
       },
       mounted:function(){

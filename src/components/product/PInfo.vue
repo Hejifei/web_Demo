@@ -42,7 +42,7 @@
             <a class='cancelx' @click="swiperBighide2"><span class="icon-remove"></span></a>
             <div class="swiper-container" id="swiper-containerBig">
                 <div class="swiper-wrapper">
-                    <div v-for="(picture,index) in BorrowerInfo.picture.content"  :key='index' class="swiper-slide">
+                    <div v-for="(picture,index) in picturecontent"  :key='index' class="swiper-slide">
                         <img :src="picture" />
                         <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                     </div>
@@ -288,7 +288,7 @@
                         <!-- Swiper -->
                         <div class="swiper-container" id="swiper-containerSmall">
                             <div class="swiper-wrapper">
-                                <div v-for="(picture,index) in BorrowerInfo.picture.content" @click="swiperBig(index)"  :key='index' class="swiper-slide">
+                                <div v-for="(picture,index) in picturecontent" @click="swiperBig(index)"  :key='index' class="swiper-slide">
                                     <img :src="picture" />
                                     <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                                 </div>
@@ -350,7 +350,6 @@
 
 <script>
     import LTJF from '../../common/js/ltjf.js';
-    
     export default {
     data () {
         return {
@@ -359,6 +358,7 @@
             accountInfo:[],
             BorrowerInfo:[],
             BorrowerInfonew:'',
+            picturecontent:[],
             productrisking:[],
             investment:[],
             investPnum:0,
@@ -414,7 +414,7 @@
                 self.RewardgetList(2,1);
             }
             //产品详情信息获取
-            this._ajax(this,'/api/product/detail', { id: idGet }, function (data) {
+            self._ajax(self,'/api/product/detail', { id: idGet }, function (data) {
                 //console.log(data.data)
                 var productdetail=data.data;
                 var ready_time = productdetail.investTime;
@@ -431,8 +431,9 @@
                 self.user_type = data.data.user_type;
             });
             //借款人信息获取
-            this._ajax(this,'/api/product/docInfo', { id: idGet }, function (data) {
+            self._ajax(self,'/api/product/docInfo', { id: idGet }, function (data) {
                 self.BorrowerInfo = data.data;
+                self.picturecontent =  data.data.picture.content;
                 let newObj= (data.data.authInfo).reduce((a,b) => {
                     let key = b.sort;
                     if(a[key]){
@@ -497,7 +498,7 @@
             }, '');
                     
             //投资记录获取
-            this._ajax(this,'/api/product/investment', { id: idGet }, function (data) {
+            self._ajax(self,'/api/product/investment', { id: idGet }, function (data) {
                 var investment = data.data;
                 if (investment != null && investment.res.length > 0) {
                     for (var i = 0; i < investment.res.length; i++) {
@@ -508,7 +509,7 @@
                 self.investPnum = investment.res.length;
             }, '');
             //回款计划获取
-            this._ajax(this,'/api/product/repayPlan', { id: idGet }, function (data) {
+            self._ajax(self,'/api/product/repayPlan', { id: idGet }, function (data) {
                 // console.log(data)
                 var repayPlanlist = data.data;
                 if (repayPlanlist.length != 0) {
@@ -521,7 +522,7 @@
             }, '');
 
             // 银行限额信息获取
-            this._ajax(this,'/api/product/bankLimit', {}, function (data) {
+            self._ajax(self,'/api/product/bankLimit', {}, function (data) {
                 self.bankcardlimitList = data.data;
             },'');      
     },  
@@ -534,11 +535,12 @@
         }
     },
     mounted:function(){
+        var self = this;
         // 顶部菜单添加选中效果
         $(".headernav ul li .router-link-exact-active").removeClass("router-link-exact-active");
         $(".headernav ul li").eq(1).find("a").addClass("router-link-exact-active");
         //提交投资
-        this.AjaxSumbit(this,"/", "/api/tender/bid", function (data) {
+        self.AjaxSumbit(self,"/", "/api/tender/bid", function (data) {
             if (typeof data.data == "string") {
                 var start = data.data.indexOf('<form id="autoRedirectForm"');
                 var end = data.data.indexOf('</body>');
@@ -546,6 +548,7 @@
                 $(form).appendTo('body').submit();
             }
         },'', true)
+
     },     
     methods:{
         swiperBighide2:function(){
@@ -588,23 +591,23 @@
         },
         buynow: function () {
             let self = this;
-            console.log(self.risk == 1)
+            // console.log(self.risk)
             // risk 风险提示 0未登录1未评测2风险不匹配3风险匹配
-            if(self.risk == 0){
+            if(self.risk === 0){
                 layer.confirm("您还没有登录！",{title: '操作提示',icon: 6, btn: ['去登录','取消']},function(){
                     self.$router.push({path:"/login"});
                     layer.closeAll();
                 },function(){
                     layer.closeAll();
                 });
-            }else if(self.risk == 1){
+            }else if(self.risk === 1){
                 layer.confirm("投资前须进行风险测评！",{title: '操作提示',icon: 6, btn: ['去测评','取消']},function(){
                     self.$router.push({path:"/account/riskTest"});
                     layer.closeAll();
                 },function(){
                     layer.closeAll();
                 });
-            }else if(self.risk == 2){
+            }else if(self.risk === 2){
                 layer.confirm("该产品超过您当前的风险承受能力。",{title: '操作提示',icon: 6, btn: ['确认购买','取消']},function(){
                     layer.closeAll();
                     self.moneyCheck();
@@ -628,6 +631,7 @@
                 layer.alert("投资金额不能大于剩余金额!",'',function(){layer.closeAll();});
             } else {
                 // self.$router.push({path:"/product/InvestConfirm?id=" + self.productId + "&money=" + self.money});
+                // console.log(111)
                 self.investConfirm();
             }            
         },
@@ -714,7 +718,7 @@
                     layer.closeAll();
                 });
             }else{
-                $("#SubmitBtn").click();
+               $("#SubmitBtn").click();
             }
         }, 
         caculate:function(total, type, inverstmentRate, inverstmentTerm, unit) {

@@ -40,7 +40,7 @@
             <a class='cancelx' @click="swiperBighide2"><span class="icon-remove"></span></a>
             <div class="swiper-container" id="swiper-containerBig">
                 <div class="swiper-wrapper">
-                    <div v-for="(picture,index) in BorrowerInfo.picture.content"  :key='index' class="swiper-slide">
+                    <div v-for="(picture,index) in picturecontent"  :key='index' class="swiper-slide">
                         <img :src="picture" />
                         <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                     </div>
@@ -204,7 +204,7 @@
                         <!-- Swiper -->
                         <div class="swiper-container" id="swiper-containerSmall">
                             <div class="swiper-wrapper">
-                                <div v-for="(picture,index) in BorrowerInfo.picture.content" @click="swiperBig(index)"  :key='index' class="swiper-slide">
+                                <div v-for="(picture,index) in picturecontent" @click="swiperBig(index)"  :key='index' class="swiper-slide">
                                     <img :src="picture" />
                                     <img class="Authenticatedimg" src="../../common/stylus/img/Authenticated.png" />
                                 </div>
@@ -273,6 +273,7 @@
             authInfo2:'',
             authInfo3:'',
             authInfo4:'',
+            picturecontent:[]
         }
     },
     created() {
@@ -315,6 +316,7 @@
                 self.available = data.data.available;
 
                 self.BorrowerInfo = data.data.information;
+                self.picturecontent =  data.data.information.picture.content
 
                 let newObj= (data.data.information.authInfo).reduce((a,b) => {
                     let key = b.sort;
