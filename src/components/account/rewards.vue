@@ -112,8 +112,8 @@
                             }
                         });
                     }
-                    self.reward = data.data.reward.reward;
-                    self.totalReward = data.data.reward.totalReward;
+                    self.reward = parseFloat(data.data.reward.reward).toFixed(2);
+                    self.totalReward = parseFloat(data.data.reward.totalReward).toFixed(2);
                     self.arrlist = arrlist;
                 }, '');
         },

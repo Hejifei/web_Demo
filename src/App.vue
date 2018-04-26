@@ -24,7 +24,7 @@
             <ul>
                 <li><router-link class="outA" to="/index">首页</router-link></li>
                 <li><router-link class="outDl" to="/product">我要投资<label v-if="proNum > 0" class="pronum">{{proNum}}</label></router-link></li>
-                <li><a class="outDl" href="#" @click="logincheckhref('/loan')">我要借款</a></li>
+                <li><a class="outDl" @click="logincheckhref('/loan')">我要借款</a></li>
                 <li class="disclosure">
                   <!-- <a>信息披露<span class="topmenuspan icon-angle-down"></span></a> -->
                   <div class="menuson clearfix">

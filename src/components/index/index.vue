@@ -4,7 +4,7 @@
     <div class="banner" >
       <div class="bannerwp">
         <div class="indexbanner-txt bannertopbox" v-if="uid == null || uid == ''">
-          <h3>预计年化收益率</h3>
+          <h3>预期年化</h3>
           <!-- <div class="InvestmentSumC">
             <span v-for="(totalMoneyList,index) in totalMoneyList" class="numspan" :key="index">{{totalMoneyList.key}}</span>
             万元
@@ -149,7 +149,7 @@
                             <li>
                                 <label v-if="newHandAcitvityInfo.extra_rate == 0"><span>{{newHandAcitvityInfo.base_rate}}</span>%</label>
                                 <label v-if="newHandAcitvityInfo.extra_rate > 0"><span>{{newHandAcitvityInfo.base_rate}}</span>%+{{newHandAcitvityInfo.extra_rate}}%</label>
-                                <p>预期年化利率</p>
+                                <p>预期年化</p>
                             </li>
                             <li>
                                 <label v-if="newHandAcitvityInfo.termUnit == 1"><span>{{newHandAcitvityInfo.term}}个月</span></label>
@@ -217,8 +217,8 @@
                         </h3>
                         <ul>
                             <li>
-                                <label title="预计年利率" v-if="sblist.extra_rate == 0" class="redlabel"><span>{{sblist.base_rate}}</span>%</label>
-                                <label title="预计年利率" v-if="sblist.extra_rate > 0" class="redlabel"><span>{{sblist.base_rate}}</span>%+{{sblist.extra_rate}}%</label>
+                                <label title="预期年化" v-if="sblist.extra_rate == 0" class="redlabel"><span>{{sblist.base_rate}}</span>%</label>
+                                <label title="预期年化" v-if="sblist.extra_rate > 0" class="redlabel"><span>{{sblist.base_rate}}</span>%+{{sblist.extra_rate}}%</label>
                             </li>
                             <li>
                                 <label title="期限" v-if="sblist.termUnit == 1"><span>{{sblist.term}}</span>个月</label>
@@ -264,7 +264,7 @@
                         <ul>
                             <li>
                                 <label class="redlabel"><span>{{sblist.rate}}</span>%</label>
-                                <p>预计年利率</p>
+                                <p>预期年化</p>
                             </li>
                             <li>
                                 <label><span>{{sblist.transferTerm}}</span>个月</label>
@@ -301,7 +301,7 @@
                         <ul>
                             <li>
                                 <label class="redlabel"><span>{{sblist.rate}}</span>%起</label>
-                                <p>预计年化</p>
+                                <p>预期年化</p>
                             </li>
                             <li>
                                 <!-- <label><span>{{sblist.transferTerm}}</span>个月</label> -->
