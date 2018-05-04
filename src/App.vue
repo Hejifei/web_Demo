@@ -80,6 +80,15 @@
       LTJF.$on("NumberChage",function(){
             self.NumberGet();
       });
+      //访问统计
+      var _hmt = _hmt || [];
+      (function () {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?ea99b579e17565aa4a36d33ab52cb0cd";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+      })();
+
     },
     mounted:function(){
         
@@ -97,7 +106,6 @@
       },
       logincheckhref:function(href){
         var self = this;
-        // self.login_checkhref(href,self);
         if (localStorage.uid == null || localStorage.uid == '') {
             localStorage.url = href;
             self.$router.push({path:'/login'});

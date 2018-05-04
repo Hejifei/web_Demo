@@ -85,7 +85,13 @@ export default {
   },
   methods:{
       logincheckhref:function(href){
-        this.logincheckhref(href,this);
+        var self = this;
+        if (localStorage.uid == null || localStorage.uid == '') {
+            localStorage.url = href;
+            self.$router.push({path:'/login'});
+        } else {
+            self.$router.push({path:href})
+        }
       }
     },
 }

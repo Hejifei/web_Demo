@@ -350,6 +350,9 @@ exports.install = function (Vue, options) {
                 }
             })
             if (flag) {
+                var index = layer.load(2, {
+                    shade: [0.2,'#000'] //0.1透明度的白色背景
+                });
                 flag = false;
                 Btn.prop("disabled", true);
                 Success = typeof (Success) == "function" ? Success : function (j) { 
@@ -385,6 +388,7 @@ exports.install = function (Vue, options) {
                     url: Url,
                     data: formData
                   }).then(function(res){
+                    layer.closeAll();
                     let data = res.data;
                     Btn.prop("disabled", true);
                     var j = (data);
@@ -398,6 +402,7 @@ exports.install = function (Vue, options) {
                         Fail(j);
                     }
                   }).catch(function(err){
+                    layer.closeAll();
                     console.log('报错：' +err);
                   })
                 // that.$http.post(Url,

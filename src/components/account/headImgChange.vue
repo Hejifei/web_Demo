@@ -5,7 +5,7 @@
         <div class="rechargeC EditrechargeC" id="AjaxForm">
             <div class="rechargeline form-group">
                 <label class="width90label" style="text-align:right;">头像图片</label>
-                <input class="moneyinput required" name="massage" id="inputshow" />
+                <input class="moneyinput required" name="massage" readonly id="inputshow" />
                 <input class="fileinput form-submit required" type="file"  name="file" id="file"/>
                 <input class="fileinput form-submit required" name="type" id="type" />
                 <a class="getcodebtn" id="ImgGet">图片选择</a>
@@ -31,7 +31,6 @@
             var self = this;
             
 
-            //登录密码修改
             self.AjaxSumbit(self,"/account/baseInfo", "/api/avatar/upload", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){
                     self.$router.push({path:"/account/baseInfo"});layer.closeAll();window.location.reload()
