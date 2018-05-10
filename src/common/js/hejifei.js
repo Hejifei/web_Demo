@@ -126,6 +126,7 @@ exports.install = function (Vue, options) {
         var ifErroralerttip = IfErroralerttip ? IfErroralerttip :false;
         Url = APIURL+ Url;
         Form.find(".required").blur(function () {
+            $(this).val($(this).val().trim().replace(/\s/g,""));
             var Tip = $(this).parents(".form-group").find(".tip");
             if ($(this).val() == "") {
                 if (ifrightshow == true) {

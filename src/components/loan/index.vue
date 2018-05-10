@@ -53,7 +53,7 @@
                         </div>
                         <div class="infoC form-group">
                             <label><span>*</span>身份证号码：</label>
-                            <input class="form-submit required"  v-model="userCard" name="userCard" id="userCard" readonly />
+                            <input class="form-submit required idcard"  v-model="userCard" name="userCard" id="userCard" readonly />
                             <span class="tip"></span>
                         </div>
                         <div v-if="type == 4 || type == 5" class="infoC form-group">
@@ -119,7 +119,7 @@
                         </div>
                         <div class="infoC form-group">
                             <label><span>*</span>企业电话：</label>
-                            <input class="form-submit required"  type="text" v-model="tell" name="tell" id="tell" />
+                            <input class="form-submit required"  type="text" v-model="tell" name="tell" id="tell" readonly />
                             <span class="tip"></span>
                         </div>
                         <div class="infoC form-group">
@@ -155,6 +155,16 @@
                         <div class="infoC form-group">
                             <label><span>*</span>主营业务：</label>
                             <input class="form-submit required" type="text" v-model="mainBusiness" name="mainBusiness" id="mainBusiness" />
+                            <span class="tip"></span>
+                        </div>
+                        <div class="infoC form-group">
+                            <label><span>*</span>企业法人：</label>
+                            <input class="form-submit required" type="text" v-model="real_name" name="compUserName" id="compUserName" />
+                            <span class="tip"></span>
+                        </div>
+                        <div class="infoC form-group">
+                            <label><span>*</span>法人身份证：</label>
+                            <input class="form-submit required idcard" type="text" v-model="compUserCard" name="compUserCard" id="compUserCard" />
                             <span class="tip"></span>
                         </div>
                     </div>
@@ -512,7 +522,9 @@
                 otherLoan:0,
                 mainBusiness:'',
                 loanxieyi:'',
-                xieyi9:''
+                xieyi9:'',
+                real_name:'',
+                compUserCard:''
             }
         },
         created(){
@@ -534,6 +546,8 @@
                 self.userCard = data.data.U_CardID;
                 self.tell = data.data.U_Mobile;
                 self.PA_State = data.data.PA_State;
+                self.real_name = data.data.real_name;
+                self.compUserCard = data.data.compUserCard;
                 if(data.data.PA_State == 0){
                     layer.confirm("您已有借款申请，是否重新编辑？",{title: '操作提示',icon: 6},function(){
                         layer.closeAll();
@@ -554,6 +568,7 @@
                     self.returnType = data.data.PA_ReturnType;
                     self.text = data.data.PA_Text;
                     self.mainBusiness = data.data.PA_MainBusiness;
+                    
                     //省市区赋值
                     $("#houseaddressC").citySelect({
                         url: "../static/js/city.min.js",
