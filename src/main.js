@@ -5,14 +5,17 @@ import 'babel-polyfill';
 // import 'eventsource-polyfill';
 // import 'event-source-polyfill';
 import Vue from 'vue'
-import Es6Promise from 'es6-promise';
-require('es6-promise').polyfill();
-Es6Promise.polyfill();
+import VueResource from 'vue-resource';
+// cmd方式
+require('es6-promise').polyfill()
+// ES6模块方式
+import Es6Promise from 'es6-promise'
+Es6Promise.polyfill()
 
 
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
+
 
 
 import App from './App';

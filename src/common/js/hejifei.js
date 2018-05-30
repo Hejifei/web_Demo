@@ -1,10 +1,13 @@
+import $ from 'jquery';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import $ from 'jquery';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import axios from 'axios'
 import qs from 'qs';
+
+import promise from 'es6-promise';
+promise.polyfill();
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -35,11 +38,43 @@ exports.install = function (Vue, options) {
             return ;
         }
         a.sid = localStorage.SID;
+        // var formData = new FormData();
+        // for(let x in a){
+        //     console.log(x)
+        //     formData.append(x, a[x]);
+        // }
+
+        // formData.append("sid", localStorage.SID);
+
+        // $.ajax({ 
+        //     url: APIURL + _url,
+        //     method: 'post',
+        //     data:a,
+        //     dataType: "json",
+        //     success: function(res){
+        //         console.log(res)
+        //         let d = res;
+        //         d = (typeof(d) == 'string') ? JSON.parse(d) : d;
+        //         //成功的处理
+        //         if (d.code == '-1' || _url == "/api/session/check" && d.code == 0) {
+        //             getSID(that);
+        //         } else if (d.code == '-3'|| _url == "/api/user/logout" && d.code == -1) {
+        //             layer.msg(d.msg);
+        //             getSID(that,'/login')
+        //         } else {
+        //             d.code == '1' ? b(d) : c(d);
+        //         }
+        //     },
+        //     error:function (err) {//请求失败后调用的函数
+        //         console.log(err)
+        //     }
+        // });
         axios({
             method: 'post',
             url: APIURL + _url,
             data: qs.stringify(a)
           }).then(function(res){
+            layer.closeAll();
             // console.log(res)
             let d = res.data;
             d = (typeof(d) == 'string') ? JSON.parse(d) : d;
@@ -73,7 +108,7 @@ exports.install = function (Vue, options) {
         //     },function(err){
         //         console.log('报错：' +err);
         //     }
-        // )
+        // ).catch(function(res){console.log('res='+res)})
     }
 
     //获取地址栏参数

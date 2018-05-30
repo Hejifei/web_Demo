@@ -20,7 +20,7 @@
             <div class="dynamicC">
               <ul>
                 <li v-for="(bidDynamic,index) in bidDynamicList" :key="index">
-                  <router-link :to="'/product/PInfo?id='+bidDynamic.id">
+                  <router-link  target="_blank" :to="'/product/PInfo?id='+bidDynamic.id">
                     <p>用户：<span>{{bidDynamic.name}}</span> 投资项目： <span>{{bidDynamic.title}}</span> <span>{{bidDynamic.bidMoney}}</span> 元<i class="datei"> {{bidDynamic.createTime}}</i></p>
                   </router-link>
                 </li>
@@ -52,7 +52,7 @@
             <ul v-if="listnum != 2  && listnum != 5 && projectlist_sblb.length >0">
               <li v-for="(sblist,index) in projectlist_sblb" :key='index'>
                 <h3 :title="sblist.title">
-                  <router-link :to="'/product/PInfo?id='+sblist.id">
+                  <router-link :to="'/product/PInfo?id='+sblist.id" target="_blank">
                     <img :src="sblist.img"/> 
                     {{sblist.title}} 
                     <span title="此标的可使用红包" v-if="sblist.is_reward == 1" class="ptitlelogo">红包</span>
@@ -60,14 +60,14 @@
                     <span title="此为新手专享标" v-if="sblist.is_new == 1" class="ptitlelogo">新手</span>
                     <span title="此为私人定制" v-if="sblist.isCustomized == 1" class="ptitlelogo">私人</span>
                   </router-link>
-                  <router-link  class="projectingbtn" v-if="sblist.status == 1" :to="'/product/PInfo?id='+sblist.id">立即投资</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.status == 1" :to="'/product/PInfo?id='+sblist.id" target="_blank">立即投资</router-link>
                     <a v-if="sblist.status == 6" class="projectingbtn projectEndbtn">投资满额</a>
                     <a v-if="sblist.status == 8" class="projectingbtn projectEndbtn">正在还款</a>
                     <a v-if="sblist.status == 9" class="projectingbtn projectEndbtn">已还款</a>
                     <a v-if="sblist.status == 10" class="projectingbtn projectEndbtn">已结束</a>
                     <a v-if="sblist.status == 11" class="projectingbtn projectEndbtn">已失效</a>
                     <a v-if="sblist.status == 13" class="projectingbtn projectEndbtn">出借结束</a>
-                  <router-link  class="projectingbtn" v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id">{{sblist.investTime}}</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.status == 15" :to="'/product/PInfo?id='+sblist.id" target="_blank">{{sblist.investTime}}</router-link>
                 </h3>
                 <div class="newprodInfo">
                   <div class="newInfoSon">
@@ -103,8 +103,8 @@
             <ul v-else-if="listnum ==2 && projectlist_zqzr.length >0">
               <li v-for="(sblist,index) in projectlist_zqzr" :key='index'>
                 <h3 :title="sblist.title">
-                  <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id"><img :src="sblist.img" /> {{sblist.title}}</router-link>
-                  <router-link  class="projectingbtn" v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id">立即承接</router-link>
+                  <router-link :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id" target="_blank"><img :src="sblist.img" /> {{sblist.title}}</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.transfer_status == 1" :to="'/product/transPInfo?id='+sblist.id+'&transfer_id='+sblist.transfer_id" target="_blank">立即承接</router-link>
                   <a v-else class="projectingbtn projectEndbtn">转让结束</a>
                 </h3>
                 <div class="newprodInfo">
@@ -142,8 +142,8 @@
             <ul v-else-if="listnum ==5 && projectlist_yyqg.length >0">
               <li v-for="(sblist,index) in projectlist_yyqg" :key='index'>
                 <h3 :title="sblist.title">
-                  <router-link :to="'/product/Pinfo_order?id='+sblist.id"><img :src="sblist.img" /> {{sblist.title}}</router-link>
-                  <router-link  class="projectingbtn" v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id">确认预约</router-link>
+                  <router-link :to="'/product/Pinfo_order?id='+sblist.id" target="_blank"><img :src="sblist.img" /> {{sblist.title}}</router-link>
+                  <router-link  class="projectingbtn" v-if="sblist.reserveStatus == 1" :to="'/product/Pinfo_order?id='+sblist.id" target="_blank">确认预约</router-link>
                   <a  v-if="sblist.reserveStatus != 1" class="projectingbtn projectEndbtn">立即预约</a>
                 </h3>
                 <div class="newprodInfo">

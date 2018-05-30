@@ -76,7 +76,7 @@
                             <th>预期收益</th>
                             <th>投资期限</th>
                             <th>起息日期</th>
-                            <th v-if="type == 2 || type == 1">合同</th>
+                            <th v-if="type == 2 || type == 1">合同 <span @click="hetongTip()" class="icon-exclamation-sign" style="color:#fabc27;"></span></th>
                             <th v-if="type == 2 || type == 1">回执单</th>
                             <th>收益</th>
                         </tr>
@@ -91,7 +91,9 @@
                             <td v-if="invest.termUnit == 1">{{invest.term}}月</td>
                             <td v-if="invest.termUnit == 2">{{invest.term}}天</td>
                             <td style="white-space:nowrap;"><span class="f-main" style="color:#646464">{{invest.repaymentTime}}</span></td>
-                            <td v-if="type == 2 || type == 1"><a class="c-000" style="color:#6794d1" @click="readxieyi(invest.id)">查看</a></td>
+                            <td v-if="type == 2 || type == 1">
+                                <a class="c-000" style="color:#6794d1" @click="readxieyi(invest.id)">查看</a> /<a class="c-000" style="color:#6794d1" @click="downloadxieyi(invest.id)">下载</a>
+                            </td>
                             <td v-if="type == 2 || type == 1"><router-link class="c-000" style="color:#6794d1" target="_blank" :to="'/product/receipt?id='+invest.id">查看</router-link></td>
                             <td><a class="c-000" style="color:#6794d1" @click="HuankuanDetail(invest.id,type)">查看</a></td>
                         </tr>
@@ -157,20 +159,65 @@
                     self.ContactCshow = !self.ContactCshow;
                 }
             },
+            hetongTip:function(){
+                layer.tips('电子签章暂不支持在火狐、移动端下预览，请更换其他浏览器进行查看,建议使用谷歌浏览器！', '.icon-exclamation-sign', {
+                    tips: [1, '#fabc27'],
+                    time: 4000
+                });
+            },
             readxieyi:function(proid){
                 var self = this;
-                self._ajax(self,'/api/invest/contract', {respType : 'json',id : proid}, function (data) {
+                var index = layer.load(1, {
+                    shade: [0.1,'#fff'] //0.1透明度的白色背景
+                });
+                if((navigator.userAgent.indexOf("Firefox") > -1) || (!!navigator.userAgent.match(/AppleWebKit.*Mobile.*/))  ){  
+                    layer.alert('电子签章暂不支持在火狐、移动端下预览，请更换其他浏览器进行查看,建议使用谷歌浏览器！', {icon: 5}, function () { layer.closeAll(); })
+                } else{
+                    self._ajax(self,'/api/invest/electronicSeal', {id : proid}, function (data) {
                     // window.open(data.data)
                     layer.open({
                             type: 2,
-                            title: '《借款及服务协议》',
+                            title: '《借款及服务协议》-(建议在火狐以外的浏览器中打开)',
                             shadeClose: true,
                             shade: [0.5,'#000'],
                             maxmin: false, //开启最大化最小化按钮
                             area: ['893px', '600px'],
                             content: data.data
                             });
+                    },'');
+                }
+            },
+            downloadxieyi:function(proid){
+                var self = this;
+                layer.open({
+                    type: 1,
+                    title:'利通金服提醒您',
+                    shadeClose: true,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '200px'], //宽高
+                    content: `<div style='text-align:center;line-height:146px;font-size:14px;'>
+                                <div class="layui-layer-loading" type="loading" times="9" showtime="0" contype="string" style="z-index: 19891023;width:37px;height:37px;display:inline-block;position:relative;top:13px;">
+                                    <div id="" class="layui-layer-loading1"></div>
+                                    <span class="layui-layer-setwin"></span>
+                                </div>
+                                正在生成合同，请稍候...
+                            </div>`
+                });
+                self._ajax(self,'/api/upload/contractDownload', {id : proid}, function (data) {
+                    // location.href=data.data;
+                    layer.open({
+                        type: 1,
+                        title:'利通金服提醒您',
+                        shadeClose: true,
+                        skin: 'layui-layer-rim', //加上边框
+                        area: ['420px', '200px'], //宽高
+                        content: `<div style='text-align:center;line-height:146px;font-size:14px;'>
+                                    已经生成合同，<a href='${data.data}' style='color:rgb(103, 148, 209);' download>点击下载合同</a>
+                                </div>`
+                    });
                 },'');
+                
+                
             },
             investListGet:function(_page, _search) {
                 var self = this;

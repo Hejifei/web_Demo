@@ -31,13 +31,13 @@
                                 <div class="ytbSelline clearfix">
                                     <div class="ytbfistLine form-group">
                                         <span class="blodspan">最大投资金额</span>
-                                        <input type="text" class="form-submit required" id="maxMoney" name="maxMoney" placeholder="100元起"  onkeyup="this.value=this.value.replace(/\D/g,'')" v-model="maxMoney"  />
+                                        <input type="number" onkeyup="value=value.replace(/[^\d]/g,'') " class="form-submit required" id="maxMoney" name="maxMoney" placeholder="100元起"   v-model="maxMoney" number />
                                         <span class="blodspan">元</span>
                                         <span class="tip"></span>
                                     </div>
                                     <div class="ytbfistLine form-group">
                                         <span class="blodspan">最小投资金额</span>
-                                        <input type="text" class="form-submit required" id="minMoney" name="minMoney" placeholder="100元起"  onkeyup="this.value=this.value.replace(/\D/g,'')" v-model="minMoney"  />
+                                        <input type="number" onkeyup="value=value.replace(/[^\d]/g,'') " class="form-submit required" id="minMoney" name="minMoney" placeholder="100元起"   v-model="minMoney" number />
                                         <span class="blodspan">元</span>
                                         <span class="tip"></span>
                                     </div>
@@ -45,7 +45,7 @@
                                 <div class="ytbSelline clearfix">
                                     <div class="ytbfistLine form-group">
                                         <span class="blodspan">账户保留金额</span>
-                                        <input type="number" class="form-submit required" id="reserveMoney" name="reserveMoney"  onkeyup="this.value=this.value.replace(/\D/g,'')"  v-model="reserveMoney"  />
+                                        <input type="number" onkeyup="value=value.replace(/[^\d]/g,'') " class="form-submit required" id="reserveMoney" name="reserveMoney"    v-model="reserveMoney" number />
                                         <span class="blodspan">元</span>
                                         <span class="tip"></span>
                                         <input class="form-submit" type="hidden" name="type" />
@@ -205,9 +205,9 @@
                 self.maxTerm = data.data.autoBid.maxTerm;
                 self.Termrate = data.data.autoBid.minTerm + '~' + (data.data.autoBid.maxTerm > 12 ? 999 : data.data.autoBid.maxTerm);
                 self.minRate = (data.data.autoBid.minRate == null) ? self.minSysRate : data.data.autoBid.minRate;
-                self.maxMoney = data.data.autoBid.maxMoney;
-                self.minMoney = data.data.autoBid.minMoney;
-                self.reserveMoney = data.data.autoBid.reserveMoney; 
+                self.maxMoney = parseInt(data.data.autoBid.maxMoney);
+                self.minMoney = parseInt(data.data.autoBid.minMoney);
+                self.reserveMoney = parseInt(data.data.autoBid.reserveMoney); 
                 self.repeat = data.data.autoBid.repeat;
                 self.useReward = data.data.autoBid.useReward;
                 self.useExtraRate = data.data.autoBid.useExtraRate;
