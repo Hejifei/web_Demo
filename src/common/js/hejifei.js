@@ -761,7 +761,7 @@ exports.install = function (Vue, options) {
             setCookie('uuid',uuid,1000);
         }
         that.$http.post(APIURL + '/api/session/create',
-        {client: 'webpc',from:400, version:'20180402','uuid': uuid},{emulateJSON:true}).then(
+        {client: 'webpc',from:400, version:'20180604','uuid': uuid},{emulateJSON:true}).then(
             function(res){
                 let d =res.body;
                 if (d.code == '1') {

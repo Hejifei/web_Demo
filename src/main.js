@@ -113,6 +113,7 @@ import FirORLasInvest from 'components/service/FirORLasInvest';//首尾投专题
 import refuseGlyh from 'components/service/refuseGlyh';//拒绝高利诱惑
 import special_Invite from 'components/service/special_Invite';//邀请好友专题
 import special_regist from 'components/service/special_regist';//邀请注册专题
+import special_gqrz from 'components/service/special_gqrz';//国企入资专题
 import integratRule from 'components/service/integratRule';//积分规则
 import aboutus from 'components/about/aboutus';//关于我们
 import platform from 'components/about/platform';//平台原理
@@ -204,6 +205,7 @@ const routes = [
   {path: '/service/refuseGlyh',component: refuseGlyh,},
   {path: '/service/special_Invite',component: special_Invite,},
   {path: '/service/special_regist',component: special_regist,},
+  {path: '/service/special_gqrz',component: special_gqrz,},
   {path: '/service/integratRule',component: integratRule,},
   {path: '/about/aboutus',component: aboutus,},
   {path: '/about/platform',component: platform,},
