@@ -1,5 +1,40 @@
 <template>
     <div class="overview">
+        <!-- 银行限额 -->
+        <transition name="fade">
+            <div id="ContactC" v-if="ContactC_show" @click="modehide($event)">
+                <div id="Contact">
+                    <div class="Contact_box">
+                        <div class="cancelmodelbtn" @click="ContactC_show = !ContactC_show"><span class="icon-remove"></span></div>
+                        <div class="Contact_head">
+                            支持银行及限额
+                        </div>
+                        <div class="Contact_body">
+                            <div class="sqbody">
+                                <div class="sqbodyson">
+                                    <table class="model_table">
+                                        <thead>
+                                            <tr>
+                                                <td>银行名称</td>
+                                                <td>单笔限额(元)</td>
+                                                <td>每日限额(元)</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="(bankcard,index) in bankcardlimitList" :key='index'>
+                                            <td><img :src="bankcard.logo" />{{bankcard.name}}</td>
+                                            <td>{{bankcard.limit}}</td>
+                                            <td>{{bankcard.daylimit}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
         <div class="graph">我要充值</div>
         <div class="rechargeC" id="AjaxForm"  v-cloak>
             <div class="awardListC row">
@@ -64,7 +99,7 @@
                 <p>2.每日的充值限额依据各银行限额为准；</p>
                 <p>3.严禁利用充值功能进行信用卡套现、转账、洗钱等行为，一经发现，资金将退回原卡并封停账号30天；</p>
                 <p>4.充值后未用于投资的提现申请金额，将视情况通过第三方支付平台退回原卡，到账时间以发卡行通知为准；</p>
-                <p>5.快捷充值支持银行：农业、建设、中国、光大、兴业、平安、上海、渤海、邮储、浦发、工商、民生。</p>
+                <p>5.<a style="color: #fb5a5c;text-decoration: underline;"  @click="ContactC_show = !ContactC_show">银行限额</a></p>
             </div>
         </div>
     </div>
@@ -81,6 +116,8 @@
         banklistshow: false,
         ret:'',
         Rechargetype:1,
+        bankcardlimitList:'',
+        ContactC_show:false,
         regType:JSON.parse(localStorage.ltjfUserInfo).regType
       }
     },
@@ -121,14 +158,26 @@
                     layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
             }
         }, true)
-
-
-        
+    },
+    created() {
+        var self = this;
+        // 银行限额信息获取
+        self._ajax(self,'/api/product/bankLimit', {}, function (data) {
+            self.bankcardlimitList = data.data;
+        },'');   
     },
     methods: {
         typeChange:function(type){
             this.Rechargetype = type;
-        }
+        },
+        modehide:function(e){
+            // 点击空白关闭模态框
+            let self = this;            
+            if (e.target.id == "ContactC" || e.target.id == "Model") {
+                // $("#ContactC").hide();
+                self.ContactC_show = !self.ContactC_show;
+            }
+        },
     }
   }
 

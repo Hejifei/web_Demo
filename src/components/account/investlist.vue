@@ -92,7 +92,9 @@
                             <td v-if="invest.termUnit == 2">{{invest.term}}天</td>
                             <td style="white-space:nowrap;"><span class="f-main" style="color:#646464">{{invest.repaymentTime}}</span></td>
                             <td v-if="type == 2 || type == 1">
-                                <a class="c-000" style="color:#6794d1" @click="readxieyi(invest.id)">查看</a> /<a class="c-000" style="color:#6794d1" @click="downloadxieyi(invest.id)">下载</a>
+                                <a class="c-000" style="color:#6794d1" @click="readxieyi(invest.id)">查看</a>
+                                <!-- /
+                                <a class="c-000" style="color:#6794d1" @click="downloadxieyi(invest.id)">下载</a> -->
                             </td>
                             <td v-if="type == 2 || type == 1"><router-link class="c-000" style="color:#6794d1" target="_blank" :to="'/product/receipt?id='+invest.id">查看</router-link></td>
                             <td><a class="c-000" style="color:#6794d1" @click="HuankuanDetail(invest.id,type)">查看</a></td>
@@ -173,17 +175,20 @@
                 if((navigator.userAgent.indexOf("Firefox") > -1) || (!!navigator.userAgent.match(/AppleWebKit.*Mobile.*/))  ){  
                     layer.alert('电子签章暂不支持在火狐、移动端下预览，请更换其他浏览器进行查看,建议使用谷歌浏览器！', {icon: 5}, function () { layer.closeAll(); })
                 } else{
-                    self._ajax(self,'/api/invest/electronicSeal', {id : proid}, function (data) {
-                    // window.open(data.data)
-                    layer.open({
-                            type: 2,
-                            title: '《借款及服务协议》-(建议在火狐以外的浏览器中打开)',
-                            shadeClose: true,
-                            shade: [0.5,'#000'],
-                            maxmin: false, //开启最大化最小化按钮
-                            area: ['893px', '600px'],
-                            content: data.data
-                            });
+                    self._ajax(self,
+                        // '/api/invest/electronicSeal',//新合同接口
+                        '/api/invest/contract', //旧合同接口
+                        {id : proid}, function (data) {
+                        // window.open(data.data)
+                        layer.open({
+                                type: 2,
+                                title: '《借款及服务协议》-(建议在火狐以外的浏览器中打开)',
+                                shadeClose: true,
+                                shade: [0.5,'#000'],
+                                maxmin: false, //开启最大化最小化按钮
+                                area: ['893px', '600px'],
+                                content: data.data
+                                });
                     },'');
                 }
             },
@@ -264,7 +269,7 @@
                             investdetaillist[i].payTime = investdetaillist[i].payTime == null ? '--': investdetaillist[i].payTime.substr(0, 10);
                             switch (investdetaillist[i].is_pay) {
                                 case '0':
-                                    investdetaillist[i].is_pay = "未还";
+                                    investdetaillist[i].is_pay = (investdetaillist[i].advance === '1') ? '提前还款' : "未还";
                                     break;
                                 case '1':
                                     investdetaillist[i].is_pay = "已还";

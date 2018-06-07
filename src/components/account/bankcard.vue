@@ -139,7 +139,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-    .m-rightmain{position:relative;}
     .gotohuifua{display:block;width:100%;text-align:center;position:absolute;bottom:40px;
                 text-decoration:underline;
     }
