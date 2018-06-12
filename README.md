@@ -1,3 +1,8 @@
+安装node
+安装淘宝npm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cmd进入项目路径
+# 安装依赖 cnpm install
 # 运行 npm run dev
 # 打包 npm run build
 
