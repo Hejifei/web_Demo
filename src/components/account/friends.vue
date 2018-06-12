@@ -109,7 +109,8 @@
             self._ajax(self,'/api/discovery/remind', {
                 id: _id
             }, function (data) {
-                layer.alert(data.msg, {icon: 6}, function () { layer.closeAll(); self.getlist(self.currentPage)})
+                self.getlist(self.currentPage)
+                layer.alert(data.msg, {icon: 6}, function () { layer.closeAll(); })
             }, '');
         }
     }
