@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 exports.install = function (Vue, options) {
-
+    // 根据url判定连接正式或测试服务器
     let APIURL = ''
     let ifRegular = 0;
     if (window.location.hostname.indexOf('pc.litongbank.com.cn') != '-1' || window.location.hostname.indexOf('localhost') != '-1') { //测试环境
@@ -27,12 +27,14 @@ exports.install = function (Vue, options) {
     //ajax全局配置_url接口名称 a参数 b成功方法(code 1)  c失败方法(code other)
     const _ajax = function(that,_url, a, b, c, async) {
         var _async = async == false ? false : true;
+        // 接口统一处理，若不传获取失败方法，则统一弹出错误提示
         if (typeof c != "function") {
             c = function (data) {
                 setTimeout(function(){layer.closeAll();}, 2000);
                 layer.alert(data.msg, {icon: 5}, function () { layer.closeAll(); })
             }
         }
+        // 若sid为空，则获取sid
         if (localStorage.SID == null || localStorage.SID == undefined || localStorage.SID == '') {
             getSID(that);
             return ;
@@ -134,6 +136,7 @@ exports.install = function (Vue, options) {
         exdate.setDate(exdate.getDate() + expiredays);
         document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + ";path=/;domain=litongjinfu.com";
     }
+    //获取cookie
     function getCookie(name) {
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
           if (arr = document.cookie.match(reg))
@@ -374,12 +377,14 @@ exports.install = function (Vue, options) {
             Form.find("textarea").blur();
             var flag = true;
             var testNoList=[];
+            // 若有错误提示，则不能提交
             Form.find(".tip").each(function () {
                 if ($(this).text() != "" && !$(this).is(":hidden")) {
                     flag = false;
                     testNoList.push($(this).attr('testNo'));
                 }
             })
+            // 判定协议是否勾选
             Form.find(".agreement").each(function () {
                 if ($(this).prop("checked") == false) {
                     flag = false;
@@ -474,6 +479,7 @@ exports.install = function (Vue, options) {
         })
     }
 
+    // uuid生成
     function MathRand(len){ 
         var length = len || 10;
         var str=""; 
@@ -798,7 +804,7 @@ exports.install = function (Vue, options) {
         }
     }
 
-
+    // 验证码倒计时
     var countdown = 60;
     const settime =function() {
         if (countdown == 0) {

@@ -40,7 +40,10 @@
                         <td v-if="friend.isUserAccount == 0">未实名</td>
                         <td v-if="friend.isUserAccount == 1 && friend.isInvest  == 0">未投资</td>
                         <td v-if="friend.isUserAccount == 1 && friend.isInvest  == 1">已投资</td>
-                        <td><a class="redBtn graybtn">{{friend.remindTitle}}</a></td>
+                        <td>
+                            <a v-if="friend.remindStatus == 0" class="redBtn graybtn">{{friend.remindTitle}}</a>
+                            <a v-if="friend.remindStatus == 1" class="redBtn bluebtn" @click="remindFriend(friend.id)">{{friend.remindTitle}}</a>
+                        </td>
                     </tr>
                     <tr v-if="List.length == 0">
                         <td colspan="5">您还没有好友，快去<router-link class="hrefa" to="/service/special_regist">邀请好友</router-link>注册吧！</td>
@@ -60,7 +63,8 @@
       return {
         List: [],
         friendsNum:'',
-        userid:JSON.parse(localStorage.ltjfUserInfo).id
+        userid:JSON.parse(localStorage.ltjfUserInfo).id,
+        currentPage:1
       }
     },
     mounted:function(){
@@ -74,6 +78,7 @@
             self._ajax(self,'/api/discovery/getFriends', {
                 page: _page
             }, function (data) {
+                self.currentPage=_page;
                 // console.log(data)
                 var list = data.data.data;
                 if (list.length > 0) {
@@ -97,8 +102,16 @@
                 self.friendsNum = data.data.total;
                 self.List = list;
             }, '');
+        },
+        remindFriend:function(_id){
+            var self = this;
+            //签到记录取
+            self._ajax(self,'/api/discovery/remind', {
+                id: _id
+            }, function (data) {
+                layer.alert(data.msg, {icon: 6}, function () { layer.closeAll(); self.getlist(self.currentPage)})
+            }, '');
         }
-        
     }
   }
 </script>

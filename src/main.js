@@ -60,7 +60,7 @@ import InvestConfirm from 'components/product/investConfirm';
 import transPInfo from 'components/product/transPInfo';
 import transInvestComfirm from 'components/product/transInvestComfirm';
 import receipt from 'components/product/receipt';//回执单 
-import objectBookingDetails from 'components/product/objectBookingDetails';//自动投标
+import objectBookingDetails from 'components/account/objectBookingDetails';//自动投标
 import login from 'components/login/index';
 import appDownload from 'components/login/appDownload';
 import passwordReset from 'components/login/passwordReset';
@@ -82,7 +82,7 @@ import rewards from 'components/account/rewards';
 import Feedback from 'components/account/Feedback';//意见反馈
 import messageCenter from 'components/account/messageCenter';//消息中心
 import messageDetail from 'components/account/messageDetail';//消息详情
-import wthdrawals from 'components/account/wthdrawals';
+import withdrawals from 'components/account/withdrawals';
 import recharge from 'components/account/recharge';
 import capitalflow from 'components/account/capitalflow';
 import bankcard from 'components/account/bankcard';
@@ -173,7 +173,7 @@ const routes = [
       {path: '/account/messageCenter',component: messageCenter,},
       {path: '/account/messageDetail',component: messageDetail,},
       {path: '/account/recharge',component: recharge,},
-      {path: '/account/withdrawals',component: wthdrawals,},
+      {path: '/account/withdrawals',component: withdrawals,},
       {path: '/account/capitalflow',component: capitalflow,},
       {path: '/account/bankcard',component: bankcard,},
       {path: '/account/authorizationEntrust',component: authorizationEntrust,},

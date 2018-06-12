@@ -76,7 +76,9 @@
                             <th>预期收益</th>
                             <th>投资期限</th>
                             <th>起息日期</th>
-                            <th v-if="type == 2 || type == 1">合同 <span @click="hetongTip()" class="icon-exclamation-sign" style="color:#fabc27;"></span></th>
+                            <th v-if="type == 2 || type == 1">合同 
+                                <!-- <span @click="hetongTip()" class="icon-exclamation-sign" style="color:#fabc27;"></span> -->
+                            </th>
                             <th v-if="type == 2 || type == 1">回执单</th>
                             <th>收益</th>
                         </tr>
@@ -179,16 +181,16 @@
                         // '/api/invest/electronicSeal',//新合同接口
                         '/api/invest/contract', //旧合同接口
                         {id : proid}, function (data) {
-                        // window.open(data.data)
-                        layer.open({
-                                type: 2,
-                                title: '《借款及服务协议》-(建议在火狐以外的浏览器中打开)',
-                                shadeClose: true,
-                                shade: [0.5,'#000'],
-                                maxmin: false, //开启最大化最小化按钮
-                                area: ['893px', '600px'],
-                                content: data.data
-                                });
+                            window.open(data.data)
+                            // layer.open({
+                            //         type: 2,
+                            //         title: '《借款及服务协议》-(建议在火狐以外的浏览器中打开)',
+                            //         shadeClose: true,
+                            //         shade: [0.5,'#000'],
+                            //         maxmin: false, //开启最大化最小化按钮
+                            //         area: ['893px', '600px'],
+                            //         content: data.data
+                            //         });
                     },'');
                 }
             },
