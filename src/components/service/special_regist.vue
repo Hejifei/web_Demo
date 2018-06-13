@@ -105,6 +105,7 @@
             this.AjaxSumbit(this,"/login", "/api/user/reg", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){
                     // self.$router.push({path:"/login"});
+                    window.location.reload();
                     layer.closeAll();
                 });
             },'')
