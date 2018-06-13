@@ -2436,36 +2436,66 @@ table{border-collapse: collapse;border-spacing: 0;background-color:#fff;}
 //端午节专题
 .Special_DBF{position: relative;background: url(/static/img/special_DBFBG.png) no-repeat center center;background-size: cover;overflow: hidden;
     .DBF_topbannerC{width: 1200px;margin: auto;}
-    .DBF_topbanner{width: 999px;height: 428px;background: url(./img/specialDBFBanner.png) no-repeat center center;position: relative;top:-27px;}
+    .DBF_topbanner{width: 999px;height: 428px;background: url(/static/img/specialDBFBanner.png) no-repeat center center;position: relative;top:-27px;}
     .DBF_bodyC{min-width: 1000px;
         .DBF_body{width: 1000px;margin: auto;
             h3{margin:60px 0 40px 0;text-align: center;color:#666666;font-size:20px;line-height: 26px;font-weight:normal;
-                span{color: #FFFFFF;background-color: #8FA44E;}
+                span{color: #FFFFFF;background-color: #8FA44E;margin:0 5px;}
             }
             .DBF_part1{margin:20px 0;
                 .part1_son{width:50%;float:left;text-align:center;height:125px;
                     label{margin:10px 0 33px;}
-                    p{padding-bottom:20px;}
+                    p{padding:0 20px 20px;}
                 }
                 .part1_son:nth-child(1){border-right:1px solid #8FA44E;}
             }
-            label{font-size:18px;line-height:24px;color:#6C8A0D;display:inline-block;}
+            label{font-size:18px;line-height:24px;color:#6C8A0D;display:inline-block;position: relative;font-weight: bold}
+            label::after{content:'';width:94%;height:20px;display:block;background-color: RGBA(143, 164, 78, 0.25);position: absolute;left:19px;top:7px;}
             p{color: #666666;font-size: 14px;line-height:19px;margin-bottom:20px;
                 span{color:#6C8A0D;}
             }
             .DBF_part2{
                 label{margin:40px 0 33px;}
-                .part2SonC{display:flex;
-                    .sons{border:1px solid #8FA44E;border-radius: 20px;}
+                .part2SonC{display: -moz-box;  /* Firefox */
+                            display: -ms-flexbox;    /* IE10 */
+                            display: -webkit-box;    /* Safari */ 
+                            display: -webkit-flex;    /* Chrome, WebKit */
+                            display: box; 
+                            display: flexbox; 
+                    .sons{border:1px solid #8FA44E;border-radius: 20px;padding:10px 30px;font-size:14px;margin-right:27px;position:relative;
+                        img{margin-bottom: 25px;}
+                        .numberC{color:rgba(102,102,102,1);line-height:19px;display:flex;
+                            .numberleft{display:inline-block;text-align: center;
+                                .numberlefttop{border-bottom: 1px solid rgba(102,102,102,1);padding-bottom:5px;}
+                                .numberleftbottom{padding-top:4px;}
+                            }
+                            .numberright{display:inline-block;line-height: 48px;}
+                        }
+                        .soninfoC{text-align: center;margin-top:20px;}
+                        .soninfo{display:inline-block;margin:auto;color:rgba(108,138,13,1);line-height:19px;border:1px solid rgba(143,164,78,1);}
+                    }
+                    .sons::after{content:'';width:41px;height:40px;display:block;background:url(./img/specialDBFjiantou.png) no-repeat center center;position: absolute;top:59px;right: -28px;}
                     .son1{width:290px;}
+                    .son2{width:297px;}
+                    .son3{width:359px;}
+                    .sons:nth-child(3){margin-right:0;}
+                    .sons:nth-child(3)::after{width:0;height:0;}
+                    
                 }
                 .exampleC{margin:43px 0  40px;
-                    i{color:RGBA(108, 138, 13, 1);font-size:18px;line-height: 24px;}
+                    i{color:RGBA(108, 138, 13, 1);font-size:18px;line-height: 24px;
+                        img{display:inline-block;}
+                        img:nth-child(1){margin-right: 10px;}
+                        img:nth-child(2){margin:0 20px 0 10px;}
+                    }
                     p{display:inline-block;font-size:14px;line-height:19px;color: RGBA(102, 102, 102, 1);}
                 }
             }
             .DBF_part3{padding:40px 0 60px;
-                label{font-size:18px;color:rgba(108,138,13,1);line-height:24px;}
+                label{font-size:18px;color:rgba(108,138,13,1);line-height:24px;margin-bottom:30px;
+                    // img:nth-child(1){margin-right：10px;}
+                    // img:nth-child(2){margin-right：10px;}
+                }
                 p{font-size:14px;color:rgba(102,102,102,1);line-height:19px;
                     img{margin-right:20px;}
                 }

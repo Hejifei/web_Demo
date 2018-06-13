@@ -27,22 +27,55 @@
                             <img src="../../common/stylus/img/specialDBF1.png"/>
                             <div class="numberC">
                                 <div class="numberleft">
-                                    <div class="numberlefttop"></div>
-                                    <div class="numberleftbottom"></div>
+                                    <div class="numberlefttop">单笔投资*项目期限（月）</div>
+                                    <div class="numberleftbottom">12</div>
                                 </div>
-                                <div class="numberright"></div>
+                                <div class="numberright">≥ 5000元</div>
+                            </div>
+                            <div class="soninfoC">
+                                <div class="soninfo">送50元理财红包</div>
+                            </div>
+                        </div>
+                        <div class="sons son2">
+                            <img src="../../common/stylus/img/specialDBF2.png"/>
+                            <div class="numberC">
+                                <div class="numberleft">
+                                    <div class="numberlefttop">单笔投资*项目期限（月）</div>
+                                    <div class="numberleftbottom">12</div>
+                                </div>
+                                <div class="numberright">≥ 15000元</div>
+                            </div>
+                            <div class="soninfoC">
+                                <div class="soninfo">送150元理财红包</div>
+                            </div>
+                        </div>
+                        <div class="sons son3">
+                            <img src="../../common/stylus/img/specialDBF3.png"/>
+                            <div class="numberC">
+                                <div class="numberleft">
+                                    <div class="numberlefttop">单笔投资*项目期限（月）</div>
+                                    <div class="numberleftbottom">12</div>
+                                </div>
+                                <div class="numberright">≥ 50000元</div>
+                            </div>
+                            <div class="soninfoC">
+                                <div class="soninfo">送500元理财红包(2*150红包、4*50红包)</div>
                             </div>
                         </div>
                     </div>
                     <div class="exampleC">
-                        <i>例子</i>
-                        <p>用户a投资了20000元期限为三个月的项目20000*3/12=5000，a就可以获得一个50元的无门槛理财红包。</p>
+                        <i>
+                            <img src='../../common/stylus/img/specialDBFexampleleft.png'/>
+                            例子
+                            <img src='../../common/stylus/img/specialDBFexampleright.png'/>    
+                        </i>
+                        <p>用户a投资了20000元期限为三个月的项目20000*3/12=5000，a即可获得50元理财红包1个。</p>
                     </div>
                 </div>
                 <img src="../../common/stylus/img/specialDBFPline.png"/>
                 <div class="DBF_part3">
                     <label>备注</label>
-                    <p><img src="../../common/stylus/img/specialDBF1.png"/>所有理财红包仅在三个月项目方可使用。</p>
+                    <p><img src="../../common/stylus/img/specialDBF1.png"/>所有理财红包仅供三个月及以上项目使用</p>
                     <p><img src="../../common/stylus/img/specialDBF2.png"/>理财红包使用期限为一个月，理财红包发放时间为活动结束后两个工作日内。</p>
                 </div>
                 <!-- https://lanhuapp.com/web/#/item/board/detail?pid=2a47658d-5e88-4c88-ad35-8795c2b41ad4&project_id=2a47658d-5e88-4c88-ad35-8795c2b41ad4&image_id=00530be0-f3f8-4b27-a12a-492bb63beeb0 -->

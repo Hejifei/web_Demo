@@ -1,6 +1,5 @@
 安装node
-安装淘宝npm
-npm install -g cnpm --registry=https://registry.npm.taobao.org
+安装淘宝npm ：npm install -g cnpm --registry=https://registry.npm.taobao.org
 cmd进入项目路径
 # 安装依赖 cnpm install
 # 运行 npm run dev
@@ -116,6 +115,7 @@ cmd进入项目路径
 │   │        ├──platformdataold           平台数据（旧）
 │   │        ├──ranking                   创富排行
 │   │        ├──refuseGlyh                拒绝高息诱惑专题
+│   │        ├──special_DragonBoatFestival端午节专题
 │   │        ├──special_gqrz              国企入资专题
 │   │        ├──special_Invite            邀请好友专题
 │   │        └──special_regist            新人888注册专题

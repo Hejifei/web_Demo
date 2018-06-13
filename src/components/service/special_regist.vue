@@ -2,7 +2,7 @@
     <div class="Special_registC">
         <div class="SR_topbanner"></div>
         <div class="SR_body">
-            <input type="password" style="width:0;height:0;"/>
+            <form><input type="password" style="width:0;height:0;"/></form>
             <div class="SR_bodyC">
                 <h3><img src="../../common/stylus/img/special_regist_titlr_right.png" /> 活动详情 <img src="../../common/stylus/img/special_regist_title_left.png" /></h3>
                 <div class="SR_PC">
@@ -52,28 +52,28 @@
                 
                 <div class="SR_Form" id="AjaxForm">
                     <div class="SR_Form_line form-group">
-                        <input type="text" placeholder="请输入手机号" name="mobile" v-model="mobile" class="input_01 form-submit required phone" />
+                        <input type="text" placeholder="请输入手机号" autocomplete="off" name="mobile" v-model="mobile" class="input_01 form-submit required phone" />
                         <span class="tip"></span>
                     </div>
                     <div class="SR_Form_line form-group">
-                        <input type="text" placeholder="请输入验证码" name="smsverify" class="input_02 form-submit required" maxlength="6"/>
+                        <input type="text" placeholder="请输入验证码" autocomplete="off" name="smsverify" class="input_02 form-submit required" maxlength="6"/>
                         <a class="getcodeBtn" @click="getcode" id="getSmsVerify">获取验证码</a>
                         <span class="tip"></span>
                     </div>
                     <div class="SR_Form_line form-group">
-                        <input type="password" placeholder="请输入密码" name="password" v-model="password" class="input_03 form-submit required password" />
+                        <input type="password" placeholder="请输入密码" autocomplete="off" name="password" v-model="password" class="input_03 form-submit required password" />
                         <span class="tip"></span>
                         
                     </div>
-                    <input type="password" style="display:none;" name="repassword" v-model="password" class="form-submit" />
+                    <input type="password" style="width:0;height:0;" autocomplete="off" name="repassword" v-model="password" class="form-submit" />
                     <div class="SR_Form_line form-group">
                         <input type="text" placeholder="请输入推荐人手机号（可选填）" name="inviter" class="input_04 form-submit" />
                         <span class="tip"></span>
                     </div>
                     <div class="SR_Form_line">
-                        <input type="hidden" class="form-submit" value="0" name="type" id="type" />
+                        <input type="hidden" class="form-submit" autocomplete="off" value="0" name="type" id="type" />
                         <a class="btna" id="SubmitBtn">注册立享 888 现金红包</a>
-                        <label><input  class="agreement" type="checkbox"/> 我已阅读并同意 <a :href="xieyi_regist" target="_blank">《注册及服务协议》</a>和 <a :href="loanxieyi" target="_blank">《线上借款及服务协议》</a></label>
+                        <label><input  class="agreement" type="checkbox" checked/> 我已阅读并同意 <a :href="xieyi_regist" target="_blank">《注册及服务协议》</a>和 <a :href="loanxieyi" target="_blank">《线上借款及服务协议》</a></label>
                     </div>
                     <div class="SR_joinusC">
                         <label><img src="../../common/stylus/img/qspecial_regist_q.png"/> 福利QQ群534484215 </label>
@@ -128,7 +128,7 @@
                         self._ajax(self,'/api/user/sendSmsVerify',
                             {
                                 mobile: self.mobile,
-                                type: 1
+                                type: 3
                             }, function (j) {
                                 layer.msg(j.msg);
                             }, function (j) {
