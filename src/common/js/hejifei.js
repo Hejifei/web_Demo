@@ -373,7 +373,11 @@ exports.install = function (Vue, options) {
             }
         })
         Btn.click(function () {
-            Form.find("input").blur();
+            Form.find("input").each(function(){
+                if($(this).attr('type') !== 'file'){
+                    $(this).blur();
+                }
+            })
             Form.find("textarea").blur();
             var flag = true;
             var testNoList=[];

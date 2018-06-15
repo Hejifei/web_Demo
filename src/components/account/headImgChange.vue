@@ -2,12 +2,13 @@
     <div class="overview">
         <div class="graph">头像上传</div>
         <div class="chge"></div>
-        <div class="rechargeC EditrechargeC" id="AjaxForm">
+        <form class="rechargeC EditrechargeC" id="AjaxForm">
+            
             <div class="rechargeline form-group">
                 <label class="width90label" style="text-align:right;">头像图片</label>
                 <input class="moneyinput required" name="massage" readonly id="inputshow" />
+                <input type="hidden" class="fileinput form-submit required" name="type" id="type" />
                 <input class="fileinput form-submit required" type="file"  name="file" id="file"/>
-                <input class="fileinput form-submit required" name="type" id="type" />
                 <a class="getcodebtn" id="ImgGet">图片选择</a>
                 <span class="tip" style="left:630px;"></span>
             </div>
@@ -15,7 +16,7 @@
                 <label></label>
                 <a class="rechargeNow" id="SubmitBtn">确认提交</a>
             </div>
-        </div>
+        </form>
     </div>
 </template>
 
@@ -29,8 +30,6 @@
         },
         mounted:function(){
             var self = this;
-            
-
             self.AjaxSumbit(self,"/account/baseInfo", "/api/avatar/upload", function (j) {
                 layer.alert(j.msg,{title: '操作提示',icon: 6},function(){
                     self.$router.push({path:"/account/baseInfo"});layer.closeAll();window.location.reload()
@@ -43,7 +42,8 @@
             }, '',true)
 
             $("#ImgGet").click(function () {
-                $(this).siblings(":file").click();
+                // $(this).siblings(":file").click();
+                $('#file').click();
             })
             $(":file").change(function () {
                 var that = $(this);
@@ -51,8 +51,11 @@
                 if (/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG|BMP)$/.test(file.name)) {
                     var file = that[0].files[0];
                     //console.log(file.type)
-                    $("#type").val(file.type);
-                    $("#inputshow").val(file.name);
+                    let type = file.type;
+                    let name = file.name;
+                    $("#type").val(type);
+                    $("#inputshow").val(name);
+
                     //var fileName = that[0].files[0].name;
                     //var reader = new FileReader();
                     //reader.readAsDataURL(file);
